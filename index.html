@@ -22,6 +22,7 @@
   .help ul{margin:10px 0 2px;padding-left:18px;max-width:85ch;line-height:1.55;color:#dfe5ee}
   .help li{margin:4px 0}
   .help b{color:#fff}
+  .help ol{margin:4px 0 0;padding-left:20px}
   @media (min-width:900px){ .help ul{max-width:none;columns:2;column-gap:40px} .help li{break-inside:avoid;margin:0 0 6px} }
   nav.tabs{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);display:flex;gap:4px;padding:8px 12px}
   nav.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-size:14px;cursor:pointer;color:var(--ink)}
@@ -109,8 +110,16 @@
       <li><b>Full schedule</b> lists one day at a time; narrow it by track or room. Typing in the search box searches all three days at once, including speakers and abstracts. Sessions that are over are greyed and marked "ended".</li>
       <li><b>Abstract</b> under a session opens its description, and <b>details ↗</b> opens the session on lpc.events.</li>
       <li><b>☆</b> adds a session to <b>My picks</b>. There, picks that clash are flagged, and you can download them as a calendar file or copy them as text.</li>
-      <li>Picks are saved in this browser only. To move them to another device, use <b>Copy share link</b> or <b>Show QR code</b> in My picks and open the link there.</li>
-      <li id="helpSync" hidden><b>Calendar subscription and sync</b> in My picks gives you a private calendar link that follows your picks, and keeps your picks the same in every browser you link. <b>Unlink this browser</b> there stops it for one browser.</li>
+      <li>Picks are saved in this browser only. <b>Copy share link</b> or <b>Show QR code</b> in My picks copies them once to another device, or to someone else.</li>
+      <li id="helpSync" hidden><b>Calendar sync</b> puts your picks in your calendar app and keeps them the same in every browser you use:
+        <ol>
+          <li>In <b>My picks</b>, under "Calendar subscription and sync", click <b>Turn on</b>.</li>
+          <li>Subscribe your calendar app to the <b>Calendar link</b>. In Google Calendar, copy it and add it under Other calendars, From URL. In most other apps, <b>Open in calendar app</b> does it. This link is read-only, so it is also the one to give to someone who wants to follow your picks.</li>
+          <li>For your phone or another browser, click <b>Link another browser</b> and scan the QR code or open the link there. Keep that link to yourself: it lets a browser change your picks.</li>
+          <li>Star and unstar as usual. Linked browsers catch up within a few minutes, or at once when you open the page. Your calendar shows changes when the app next refreshes, which Google Calendar may only do once or twice a day.</li>
+          <li><b>Unlink this browser</b> stops syncing in one browser. <b>Delete my synced picks</b> removes them from the server and ends the calendar link.</li>
+        </ol>
+      </li>
       <li>All times are Prague time. The schedule is a snapshot of lpc.events: the footer says when it was taken, and reloading the page gets the newest one.</li>
     </ul>
   </details>
@@ -862,7 +871,7 @@ function renderSync(){
     const feed = st.feed ? SYNC_URL+'/cal/'+st.feed+'.ics' : '', dev = siteBase()+'#sync='+st.id, waiting = Object.keys(st.q).length;
     html += syncProblem ? '<p class="bad">Offline: '+(waiting ? waiting+(waiting===1?' change':' changes') : 'changes')+' will be sent when the connection is back.</p>'
       : '<p>On. '+(st.at ? 'Last synced at '+new Date(st.at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})+'.' : 'Syncing…')+'</p>';
-    if(feed) html += '<p><b>Calendar link.</b> Subscribe to it in your calendar app (in Google Calendar: Other calendars, then From URL). New picks show up when the app next refreshes; Google Calendar may only do that once or twice a day.</p>'
+    if(feed) html += '<p><b>Calendar link (read-only, safe to share).</b> Subscribe to it in your calendar app (in Google Calendar: Other calendars, then From URL). Anyone you give it to can follow your picks in their calendar but cannot change them. New picks show up when the app next refreshes; Google Calendar may only do that once or twice a day.</p>'
       +'<div class="row"><input readonly value="'+esc(feed)+'"><button data-sync="copyfeed">Copy</button><a class="btn" href="'+esc(feed.replace(/^https?:/,'webcal:'))+'">Open in calendar app</a></div>';
     html += '<div class="row"><button data-sync="qr">'+(syncQr?'Hide the link for another browser':'Link another browser')+'</button>'
       +'<button data-sync="unlink">Unlink this browser</button><button data-sync="delete">Delete my synced picks</button></div>';
