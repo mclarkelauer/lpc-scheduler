@@ -110,7 +110,7 @@
       <li><b>Abstract</b> under a session opens its description, and <b>details ↗</b> opens the session on lpc.events.</li>
       <li><b>☆</b> adds a session to <b>My picks</b>. There, picks that clash are flagged, and you can download them as a calendar file or copy them as text.</li>
       <li>Picks are saved in this browser only. To move them to another device, use <b>Copy share link</b> or <b>Show QR code</b> in My picks and open the link there.</li>
-      <li id="helpSync" hidden><b>Calendar subscription and sync</b> in My picks gives you a private calendar link that follows your picks, and keeps your picks the same on every device you connect.</li>
+      <li id="helpSync" hidden><b>Calendar subscription and sync</b> in My picks gives you a private calendar link that follows your picks, and keeps your picks the same in every browser you link. <b>Unlink this browser</b> there stops it for one browser.</li>
       <li>All times are Prague time. The schedule is a snapshot of lpc.events: the footer says when it was taken, and reloading the page gets the newest one.</li>
     </ul>
   </details>
@@ -141,7 +141,7 @@
       <button id="linkBtn">Copy share link</button>
       <button id="qrBtn">Show QR code</button>
       <button id="clearBtn">Clear all</button>
-      <span style="font-size:12px;color:var(--muted);align-self:center">Picks auto-save in this browser. The share link or QR code copies them to another device.</span>
+      <span style="font-size:12px;color:var(--muted);align-self:center">Picks auto-save in this browser. The share link or QR code copies them once to another browser; linking browsers below keeps them in step.</span>
     </div>
     <div id="importNote"></div>
     <div id="syncPanel" class="syncpanel" hidden></div>
@@ -794,8 +794,8 @@ function finishImport(mode){
 
 /* ---------- calendar subscription + sync between devices (served by the Worker in worker/) ---------- */
 const SYNC_URL = 'https://lpc-scheduler-picks.mdlauer.workers.dev';  // the deployed Worker; set to '' to hide the whole feature
-let syncBusy = false, syncTimer = 0, syncProblem = '', syncQr = false;
-// What this device knows about its sync account: {id, feed, q: {session id: true to add / false to remove}, at: last sync}
+let syncBusy = false, syncTimer = 0, syncProblem = '', syncQr = false, syncUnlink = false;
+// What this browser knows about its sync account: {id, feed, q: {session id: true to add / false to remove}, at: last sync}
 function getSync(){ try{ return JSON.parse(localStorage.getItem('lpc2026sync')||'null'); }catch(e){ return null; } }
 function putSync(st){ if(st) localStorage.setItem('lpc2026sync', JSON.stringify(st)); else localStorage.removeItem('lpc2026sync'); }
 function syncSoon(){ clearTimeout(syncTimer); syncTimer = setTimeout(syncNow, 700); }
@@ -832,14 +832,14 @@ function syncOn(){
     .catch(()=>{ syncProblem='offline'; renderSync(); });
 }
 function syncJoin(id){
-  const q = {}; getPicks().filter(i=>byId[i]).forEach(i=>{ q[i]=true; });  // this device's picks join the shared ones
+  const q = {}; getPicks().filter(i=>byId[i]).forEach(i=>{ q[i]=true; });  // this browser's picks join the shared ones
   putSync({id:id, feed:'', q:q, at:0}); syncProblem=''; syncNow();
 }
 function syncDelete(){
   const st = getSync();
-  if(!st || !confirm('Delete your synced picks from the server? The calendar link stops working and your other devices stop syncing. The picks on this device stay.')) return;
+  if(!st || !confirm('Delete your synced picks from the server? The calendar link stops working and every linked browser is unlinked. The picks in this browser stay.')) return;
   fetch(SYNC_URL+'/api/users/'+st.id, {method:'DELETE'})
-    .then(r=>{ if(!r.ok && r.status!==404) throw new Error('HTTP '+r.status); putSync(null); syncProblem=''; syncQr=false; renderSync(); })
+    .then(r=>{ if(!r.ok && r.status!==404) throw new Error('HTTP '+r.status); putSync(null); syncProblem=''; syncQr=false; syncUnlink=false; renderSync(); })
     .catch(()=>{ syncProblem='offline'; renderSync(); });
 }
 function copyText(txt, btn){
@@ -853,8 +853,9 @@ function renderSync(){
   if(!SYNC_URL) return;
   let html = '<h3>Calendar subscription and sync</h3>';
   if(!st){
-    html += '<p>Get a private calendar link that your calendar app can subscribe to. It follows your picks as you star and unstar, and your picks stay the same on every device you connect.</p>'
-      +(syncProblem==='gone' ? '<p class="bad">Sync is off on this device: the synced picks it pointed to no longer exist. The picks on this device are unchanged.</p>' : '')
+    html += '<p>Get a private calendar link that your calendar app can subscribe to. It follows your picks as you star and unstar, and your picks stay the same in every browser you link.</p>'
+      +'<p>Already syncing in another browser? Open its link for another browser here instead of turning this on, which would start a separate set of picks.</p>'
+      +(syncProblem==='gone' ? '<p class="bad">This browser is no longer linked: the synced picks it pointed to do not exist any more. The picks in this browser are unchanged.</p>' : '')
       +(syncProblem==='offline' ? '<p class="bad">The sync service could not be reached. Try again in a moment.</p>' : '')
       +'<div class="row"><button class="primary" data-sync="on">Turn on</button></div>';
   } else {
@@ -863,11 +864,14 @@ function renderSync(){
       : '<p>On. '+(st.at ? 'Last synced at '+new Date(st.at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})+'.' : 'Syncing…')+'</p>';
     if(feed) html += '<p><b>Calendar link.</b> Subscribe to it in your calendar app (in Google Calendar: Other calendars, then From URL). New picks show up when the app next refreshes; Google Calendar may only do that once or twice a day.</p>'
       +'<div class="row"><input readonly value="'+esc(feed)+'"><button data-sync="copyfeed">Copy</button><a class="btn" href="'+esc(feed.replace(/^https?:/,'webcal:'))+'">Open in calendar app</a></div>';
-    html += '<div class="row"><button data-sync="qr">'+(syncQr?'Hide the device link':'Connect another device')+'</button>'
-      +'<button data-sync="off">Turn off on this device</button><button data-sync="delete">Delete my synced picks</button></div>';
+    html += '<div class="row"><button data-sync="qr">'+(syncQr?'Hide the link for another browser':'Link another browser')+'</button>'
+      +'<button data-sync="unlink">Unlink this browser</button><button data-sync="delete">Delete my synced picks</button></div>';
+    if(syncUnlink) html += '<p><b>Unlink this browser?</b> It stops syncing. Your other browsers and your calendar link keep working, and you can link this one again later with the link from another browser.'
+      +(waiting ? ' <span class="bad">'+waiting+(waiting===1?' change':' changes')+' made here could not be sent yet and will not reach them.</span>' : '')+'</p>'
+      +'<div class="row"><button data-sync="unlink-keep">Unlink, keep the picks here</button><button data-sync="unlink-clear">Unlink and clear the picks here</button><button data-sync="unlink-cancel">Cancel</button></div>';
     if(syncQr){
       const m = qrMatrix(dev);
-      html += '<p><b>Device link.</b> Scan or open it on your other device to connect it to these picks. Keep it private: anyone who has it can change your picks.</p>'
+      html += '<p><b>Link for another browser.</b> Scan it with a phone or open it in the other browser to link it to these picks. Keep it private: anyone who has it can change your picks.</p>'
         +'<div class="row">'+(m ? qrSvg(m) : '')+'</div><div class="row"><input readonly value="'+esc(dev)+'"><button data-sync="copydev">Copy</button></div>';
     }
   }
@@ -876,7 +880,12 @@ function renderSync(){
   panel.querySelectorAll('[data-sync]').forEach(b=>{ b.onclick=()=>{
     const act = b.getAttribute('data-sync'), cur = getSync();
     if(act==='on') syncOn();
-    if(act==='off'){ putSync(null); syncProblem=''; syncQr=false; renderSync(); }
+    if(act==='unlink'){ syncUnlink=true; renderSync(); }
+    if(act==='unlink-cancel'){ syncUnlink=false; renderSync(); }
+    if(act==='unlink-keep' || act==='unlink-clear'){  // only this browser forgets the id; nothing is removed on the server
+      putSync(null); syncProblem=''; syncQr=false; syncUnlink=false;
+      if(act==='unlink-clear'){ storePicks([]); renderNow(); renderSched(); renderPicks(); } else renderSync();
+    }
     if(act==='delete') syncDelete();
     if(act==='qr'){ syncQr=!syncQr; renderSync(); }
     if(act==='copyfeed') copyText(SYNC_URL+'/cal/'+cur.feed+'.ics', b);
@@ -889,9 +898,9 @@ function readSyncLink(){
   history.replaceState(null,'',location.pathname+location.search);  // the key should not stay in the address bar
   const cur = getSync();
   if(!SYNC_URL || (cur && cur.id===hit[1])){ showTab('picks'); return; }
-  if(cur && !confirm('This device already syncs with another set of picks. Switch to the one in this link? The picks on this device will be added to it.')) return;
-  syncJoin(hit[1]);
-  $('importNote').innerHTML = '<div class="warn">This device is now connected to your synced picks. Picks already on it were added to them.</div>';
+  if(cur && !confirm('This browser is already linked to another set of picks. Switch to the one in this link? The picks in this browser will be added to it.')) return;
+  syncUnlink = false; syncJoin(hit[1]);
+  $('importNote').innerHTML = '<div class="warn">This browser is now linked to your synced picks. Picks already in it were added to them.</div>';
   showTab('picks');
 }
 
