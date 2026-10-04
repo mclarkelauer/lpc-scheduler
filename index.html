@@ -83,6 +83,30 @@
   .qrpanel svg{flex:0 0 auto;max-width:100%;height:auto}
   .qrpanel .how{flex:1;min-width:200px;font-size:13px;color:var(--muted)}
   .qrpanel input{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12px;margin-top:8px;color:var(--ink);background:#fff}
+  .calhint{font-size:12.5px;color:var(--muted);margin:10px 0 8px}
+  .cal{max-height:75vh;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+  .calgrid{display:grid;grid-template-columns:52px repeat(3,minmax(240px,1fr));min-width:772px}
+  .calcorner,.calname{position:sticky;top:0;z-index:3;background:var(--card);border-bottom:1px solid var(--line)}
+  .calcorner{left:0;z-index:4}
+  .calname{padding:8px;font-size:13px;font-weight:600;text-align:center;border-left:1px solid var(--line)}
+  .calname.today{color:var(--accent)}
+  .calgutter{position:sticky;left:0;z-index:2;background:var(--card)}
+  .calgutter span{position:absolute;right:6px;margin-top:2px;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .calday{position:relative;border-left:1px solid var(--line);cursor:pointer;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(#f1f3f6 1px,transparent 1px);background-size:100% 96px,100% 48px}
+  .calev{position:absolute;box-sizing:border-box;overflow:hidden;border-radius:6px;border-left:3px solid var(--accent);background:#e7efff;padding:2px 6px;font-size:12px;line-height:1.25}
+  .calev b{display:block;font-weight:600}
+  .calev span{display:block;font-size:11px;color:var(--muted)}
+  .calev.bof{border-color:var(--bof);background:#f1e9fe}
+  .calev.other{border-color:var(--other);background:#fdf0e1}
+  .calev.clash{box-shadow:inset 0 0 0 1px #f59e0b}
+  .calev.past{opacity:.6}
+  .calslot{position:absolute;left:0;right:0;background:rgba(11,95,255,.12);border:1px dashed var(--accent);pointer-events:none}
+  .calnow{position:absolute;left:0;right:0;border-top:2px solid #ef4444;pointer-events:none;z-index:1}
+  .sheet{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(1100px,100%);max-height:50vh;overflow:auto;z-index:20;background:var(--bg);border:1px solid var(--line);border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -8px 30px rgba(16,24,40,.18);padding:0 14px 16px}
+  .sheet[hidden]{display:none}
+  .sheethead{position:sticky;top:0;z-index:1;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--bg);padding:10px 0 6px}
+  .sheethead span{flex:1;font-size:13px;color:var(--muted)}
+  .sheethead button{border:1px solid var(--line);background:#fff;border-radius:8px;width:32px;height:32px;font-size:18px;line-height:1;cursor:pointer}
   .syncpanel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:13px}
   .syncpanel[hidden]{display:none}
   .syncpanel .head{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center}
@@ -113,7 +137,7 @@
       <li><b>Now &amp; next</b> shows what is on in each room right now and what follows, while the conference is running. It updates every minute.</li>
       <li><b>Full schedule</b> lists one day at a time; narrow it by track or room. Typing in the search box searches all three days at once, including speakers and abstracts. Sessions that are over are greyed and marked "ended".</li>
       <li><b>Abstract</b> under a session opens its description, and <b>details ↗</b> opens the session on lpc.events.</li>
-      <li><b>☆</b> adds a session to <b>My picks</b>. There, picks that clash are flagged, and you can download them as a calendar file or copy them as text.</li>
+      <li><b>☆</b> adds a session to <b>My picks</b>. There, picks that clash are flagged, and you can download them as a calendar file or copy them as text. Switch My picks to <b>Calendar</b> to see them as a timetable; click an empty time in it to see what is on then.</li>
       <li>Picks are saved in this browser only. <b>Copy share link</b> or <b>Show QR code</b> in My picks copies them once to another device, or to someone else.</li>
       <li id="helpSync" hidden><b>Calendar sync</b> puts your picks in your calendar app and keeps them the same in every browser you use:
         <ol>
@@ -148,6 +172,7 @@
     <div id="schedList"></div>
   </section>
   <section id="tabPicks" hidden>
+    <div class="daypills" id="viewPills"><button data-view="list">List</button><button data-view="cal">Calendar</button></div>
     <div class="pickbar">
       <button class="primary" id="icsBtn">Download calendar (.ics)</button>
       <button id="copyBtn">Copy picks as text</button>
@@ -160,8 +185,10 @@
     <div id="syncPanel" class="syncpanel" hidden></div>
     <div id="qrPanel" class="qrpanel" hidden></div>
     <div id="picksList"></div>
+    <div id="picksCal" hidden></div>
   </section>
 </main>
+<div id="slotSheet" class="sheet" hidden></div>
 <footer class="note">
   Data: full scheduled program from lpc.events (Indico export), snapshot taken Oct 4 2026, 10:37 Prague time — 294 sessions across
   30 tracks and 10 rooms, with abstracts embedded for 284 of them (the search box looks through abstracts too).
@@ -576,6 +603,7 @@ function showTab(t){
   state.tab=t;
   ['Now','All','Picks'].forEach(x=>{ $('tab'+x).hidden = (x.toLowerCase()!==t); $('tabBtn'+x).classList.toggle('active', x.toLowerCase()===t); });
   if(t==='now') renderNow(); if(t==='all') renderSched(); if(t==='picks') renderPicks();
+  renderSlot();
 }
 $('tabBtnNow').onclick=()=>showTab('now');
 $('tabBtnAll').onclick=()=>showTab('all');
@@ -681,6 +709,10 @@ function renderSched(){
 function renderPicks(){
   $('pickCount').textContent = getPicks().length;
   renderQr(); renderSync();
+  $('viewPills').querySelectorAll('button').forEach(b=>{ b.classList.toggle('active', b.getAttribute('data-view')===picksView); });
+  $('picksList').hidden = picksView!=='list'; $('picksCal').hidden = picksView!=='cal';
+  renderSlot();
+  if(picksView==='cal'){ renderCal(); return; }
   const list = $('picksList');
   const picks = getPicks().map(id=>byId[id]).filter(Boolean).sort((a,b)=> a.date<b.date?-1 : a.date>b.date?1 : mins(a.start)-mins(b.start));
   if(!picks.length){ list.innerHTML='<div class="empty">No picks yet — star sessions from the <b>Now &amp; next</b> or <b>Full schedule</b> tabs.</div>'; return; }
@@ -744,6 +776,94 @@ function fallbackCopy(txt, done){
   document.body.removeChild(ta);
 }
 $('clearBtn').onclick=()=>{ if(confirm('Remove all picks?')){ setPicks([]); $('pickCount').textContent='0'; renderNow(); renderSched(); renderPicks(); } };
+
+/* ---------- picks as a calendar ---------- */
+const CAL_PPM = 1.6;  // pixels per minute; the hour and half-hour lines in the stylesheet (96px, 48px) follow from it
+const CAL_RANGE = (()=>{ let a=1440, b=0; SESSIONS.forEach(s=>{ a=Math.min(a,mins(s.start)); b=Math.max(b,mins(s.end)); }); return [Math.floor(a/60)*60, Math.ceil(b/60)*60]; })();
+let picksView = 'list', slot = null;  // slot: {date, start, end} in minutes, the time whose sessions the sheet lists
+try{ if(localStorage.getItem('lpc2026view')==='cal') picksView = 'cal'; }catch(e){}
+const hhmm = m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+$('viewPills').querySelectorAll('button').forEach(b=>{ b.onclick=()=>{
+  picksView = b.getAttribute('data-view'); slot = null;
+  try{ localStorage.setItem('lpc2026view', picksView); }catch(e){}
+  renderPicks();
+}; });
+function renderCal(){
+  const box = $('picksCal'), was = box.querySelector('.cal'), keep = was ? [was.scrollLeft, was.scrollTop] : null;
+  const t0 = CAL_RANGE[0], t1 = CAL_RANGE[1], H = (t1-t0)*CAL_PPM, now = pragueNow(), y = m=>Math.round((m-t0)*CAL_PPM);
+  const picks = getPicks().map(id=>byId[id]).filter(Boolean);
+  let html = '<p class="calhint">'+(picks.length ? 'Click an empty time to see what is on then, or a pick to see what else runs alongside it.'
+      : 'No picks yet. Click any time to see what is on then, and star what you want.')+'</p>'
+    +'<div class="cal"><div class="calgrid"><div class="calcorner"></div>'
+    +DAYS.map(d=>'<div class="calname'+(d.d===now.date?' today':'')+'">'+d.label+'</div>').join('')
+    +'<div class="calgutter" style="height:'+H+'px">';
+  for(let m=t0; m<t1; m+=60) html += '<span style="top:'+y(m)+'px">'+hhmm(m)+'</span>';
+  html += '</div>';
+  DAYS.forEach(d=>{
+    // picks that overlap are put side by side: each run of overlapping picks shares the width between its columns
+    const laid = []; let run = [], ends = [], runEnd = -1;
+    const flush = ()=>{ run.forEach(c=>{ c.n = ends.length; laid.push(c); }); run = []; ends = []; runEnd = -1; };
+    picks.filter(s=>s.date===d.d).sort((a,b)=>mins(a.start)-mins(b.start) || mins(b.end)-mins(a.end)).forEach(s=>{
+      const a = mins(s.start), b = mins(s.end);
+      if(run.length && a>=runEnd) flush();
+      let col = ends.findIndex(e=>e<=a);
+      if(col===-1){ col = ends.length; ends.push(b); } else ends[col] = b;
+      run.push({s:s, col:col}); runEnd = Math.max(runEnd, b);
+    });
+    flush();
+    html += '<div class="calday" data-date="'+d.d+'" style="height:'+H+'px">';
+    if(slot && slot.date===d.d) html += '<div class="calslot" style="top:'+y(slot.start)+'px;height:'+(y(slot.end)-y(slot.start))+'px"></div>';
+    if(now.date===d.d && now.mins>=t0 && now.mins<=t1) html += '<div class="calnow" style="top:'+y(now.mins)+'px"></div>';
+    laid.forEach(c=>{
+      const s = c.s, a = mins(s.start), b = mins(s.end), done = s.date<now.date || (s.date===now.date && b<=now.mins);
+      html += '<div class="calev '+esc(s.type)+(c.n>1?' clash':'')+(done?' past':'')+'" data-ev="'+esc(s.id)+'" title="'+esc(s.title)+'"'
+        +' style="top:'+y(a)+'px;height:'+Math.max(18,y(b)-y(a)-2)+'px;left:calc('+(c.col/c.n*100)+'% + 2px);width:calc('+(100/c.n)+'% - 4px)">'
+        +'<b>'+esc(s.title)+'</b><span>'+esc(s.start)+'–'+esc(s.end)+' · '+esc(s.room==='TBD'?'Location TBA':s.room)+'</span></div>';
+    });
+    html += '</div>';
+  });
+  box.innerHTML = html+'</div></div>';
+  const cal = box.querySelector('.cal');
+  if(keep){ cal.scrollLeft = keep[0]; cal.scrollTop = keep[1]; }
+  else {  // first draw: start on today near the current time, otherwise at the earliest pick
+    const i = DAYS.findIndex(d=>d.d===now.date);
+    if(i>0) cal.scrollLeft = cal.querySelectorAll('.calday')[i].offsetLeft-52;
+    const first = i!==-1 ? now.mins : Math.min.apply(null, picks.map(s=>mins(s.start)).concat([t1]));
+    cal.scrollTop = Math.max(0, y(first-30));
+  }
+  box.querySelectorAll('.calday').forEach(col=>{ col.onclick=e=>{
+    const hit = e.target.closest('[data-ev]'), date = col.getAttribute('data-date');
+    if(hit){ const s = byId[hit.getAttribute('data-ev')]; slot = {date:date, start:mins(s.start), end:mins(s.end)}; }
+    else { const a = Math.floor((t0+(e.clientY-col.getBoundingClientRect().top)/CAL_PPM)/30)*30; slot = {date:date, start:a, end:a+30}; }  // the half hour that was clicked
+    renderCal(); renderSlot();
+  }; });
+}
+// The sheet at the bottom: every session that runs during the chosen time, with stars to add or drop them.
+function renderSlot(){
+  const sheet = $('slotSheet');
+  sheet.hidden = !slot || state.tab!=='picks' || picksView!=='cal';
+  document.body.style.paddingBottom = '';
+  if(sheet.hidden) return;
+  const ss = SESSIONS.filter(s=>s.date===slot.date && mins(s.start)<slot.end && mins(s.end)>slot.start)
+    .sort((a,b)=> mins(a.start)-mins(b.start) || ROOM_ORDER.indexOf(a.room)-ROOM_ORDER.indexOf(b.room));
+  const brk = BREAKS.find(b=>b.date===slot.date && mins(b.start)<slot.end && mins(b.end)>slot.start);
+  let html = '<div class="sheethead"><b>'+DAYNAME[slot.date]+' · '+hhmm(slot.start)+'–'+hhmm(slot.end)+'</b>'
+    +'<span>'+(ss.length ? ss.length+(ss.length===1?' session':' sessions') : 'Nothing is scheduled then')
+    +(brk ? ' · '+esc(brk.title)+' '+esc(brk.start)+'–'+esc(brk.end) : '')+'</span><button data-close title="Close">×</button></div>';
+  ss.forEach(s=>{
+    html += '<div class="srow"><div class="time">'+esc(s.start)+'<br>–'+esc(s.end)+'</div>'
+      +'<button class="starbtn'+(isStarred(s.id)?' on':'')+'" data-star="'+esc(s.id)+'" title="Pick">'+(isStarred(s.id)?'★':'☆')+'</button>'
+      +'<div class="body"><div class="title">'+esc(s.title)+'</div>'
+      +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+'</div></div>'
+      +'<a class="dl" href="'+esc(detailsUrl(s))+'" target="_blank" rel="noopener">details ↗</a>'+absFor(s)+'</div>';
+  });
+  sheet.innerHTML = html;
+  document.body.style.paddingBottom = sheet.offsetHeight+'px';  // room to scroll the calendar clear of the sheet
+  sheet.querySelector('[data-close]').onclick=()=>{ slot = null; renderPicks(); };
+  sheet.querySelectorAll('[data-star]').forEach(b=>{ b.onclick=()=>toggleStar(b.getAttribute('data-star')); });
+  wireAbs(sheet);
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && slot){ slot = null; renderPicks(); } });
 
 /* ---------- sharing picks: link + QR code ---------- */
 const SITE_URL = 'https://mclarkelauer.github.io/lpc-scheduler/';  // base for share links when the page is opened from a file
