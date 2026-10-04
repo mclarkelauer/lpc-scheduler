@@ -253,8 +253,7 @@ def footer_text(sessions, taken):
     stamp = '%s %d %d, %s' % (taken.strftime('%b'), taken.day, taken.year, taken.strftime('%H:%M'))
     return ('  Data: full scheduled program from lpc.events (Indico export), snapshot taken %s Prague time — %d sessions across\n'
             '  %d tracks and %d rooms, with abstracts embedded for %d of them (the search box looks through abstracts too).\n'
-            '  An automated job re-checks lpc.events about every 15 minutes from Oct 3 to Oct 8 and replaces the snapshot when the\n'
-            '  schedule changes. Times are Europe/Prague. Breaks follow the lpc.events timetable.\n'
+            '  Times are Europe/Prague. Breaks follow the lpc.events timetable.\n'
             % (stamp, len(sessions), len(tracks), len(rooms), sum(1 for s in sessions if s['abstract'])))
 
 

@@ -3,8 +3,7 @@ name: Refresh schedule snapshot
 on:
   schedule:
     # Every 15 minutes. The first job step disables this workflow after Oct 8 (UTC),
-    # once the conference is over. The footer text in rebuild.py mentions this
-    # schedule; keep the two in step.
+    # once the conference is over.
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
     inputs:
