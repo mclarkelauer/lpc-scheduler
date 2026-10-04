@@ -10,13 +10,14 @@
 //   DELETE /api/users/<id>                                      -> 204                 forget the user
 //   GET    /cal/<feed>.ics          the picks as a calendar, for calendar apps to subscribe to
 //
-// Setup, once, from this directory:
+// Deploying, from this directory, with Cloudflare's cf CLI (npm install -g cf):
 //   npm install
-//   npx wrangler login
-//   npx wrangler d1 create lpc-scheduler-picks      # put the database_id it prints into wrangler.jsonc
-//   npx wrangler d1 execute lpc-scheduler-picks --remote --file=schema.sql
-//   npx wrangler deploy                             # prints the Worker URL; set SYNC_URL in ../index.html to it
-// Local run:
+//   cf auth login
+//   cf deploy                                       # prints the Worker URL; SYNC_URL in ../index.html must be that address
+// Setting up from scratch in another account also needs, before the deploy:
+//   cf d1 create --name lpc-scheduler-picks         # put the id it prints into cloudflare.config.ts and wrangler.jsonc
+//   cf d1 query <database id> --sql "<the statements in schema.sql>"
+// Local run (no login needed):
 //   npx wrangler d1 execute lpc-scheduler-picks --local --file=schema.sql && npx wrangler dev
 
 const KEY = /^[A-Za-z0-9_-]{22}$/;

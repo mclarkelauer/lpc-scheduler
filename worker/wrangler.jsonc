@@ -1,5 +1,6 @@
 {
-  // Cloudflare Worker that stores each user's picks and serves them as a calendar feed.
+  // Settings for running the Worker locally with `npx wrangler dev`.
+  // Deployment goes through the cf CLI and cloudflare.config.ts, which holds the same settings; keep the two in step.
   // Setup and deploy steps are in the header of src/index.js.
   "name": "lpc-scheduler-picks",
   "main": "src/index.js",
@@ -12,8 +13,7 @@
     {
       "binding": "DB",
       "database_name": "lpc-scheduler-picks",
-      // Replace with the id printed by: npx wrangler d1 create lpc-scheduler-picks
-      "database_id": "00000000-0000-0000-0000-000000000000"
+      "database_id": "8c52fc96-e329-4238-8b76-176cb75f4fac"
     }
   ]
 }

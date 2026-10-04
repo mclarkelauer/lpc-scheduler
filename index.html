@@ -793,7 +793,7 @@ function finishImport(mode){
 }
 
 /* ---------- calendar subscription + sync between devices (served by the Worker in worker/) ---------- */
-const SYNC_URL = '';  // address of the deployed Worker; while it is empty the whole feature stays hidden
+const SYNC_URL = 'https://lpc-scheduler-picks.mdlauer.workers.dev';  // the deployed Worker; set to '' to hide the whole feature
 let syncBusy = false, syncTimer = 0, syncProblem = '', syncQr = false;
 // What this device knows about its sync account: {id, feed, q: {session id: true to add / false to remove}, at: last sync}
 function getSync(){ try{ return JSON.parse(localStorage.getItem('lpc2026sync')||'null'); }catch(e){ return null; } }
