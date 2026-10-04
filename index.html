@@ -82,6 +82,16 @@
   .qrpanel svg{flex:0 0 auto;max-width:100%;height:auto}
   .qrpanel .how{flex:1;min-width:200px;font-size:13px;color:var(--muted)}
   .qrpanel input{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12px;margin-top:8px;color:var(--ink);background:#fff}
+  .syncpanel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:13px}
+  .syncpanel[hidden]{display:none}
+  .syncpanel h3{margin:0 0 4px;font-size:14px}
+  .syncpanel p{margin:6px 0 0;color:var(--muted);max-width:85ch}
+  .syncpanel p.bad{color:#b45309;font-weight:600}
+  .syncpanel .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 2px}
+  .syncpanel input{flex:1;min-width:200px;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12px;color:var(--ink);background:#fff}
+  .syncpanel button,.syncpanel a.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--ink);text-decoration:none}
+  .syncpanel button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .syncpanel svg{max-width:100%;height:auto}
   @media (max-width:560px){ .srow .time{flex-basis:86px} }
 </style>
 </head>
@@ -100,6 +110,7 @@
       <li><b>Abstract</b> under a session opens its description, and <b>details ↗</b> opens the session on lpc.events.</li>
       <li><b>☆</b> adds a session to <b>My picks</b>. There, picks that clash are flagged, and you can download them as a calendar file or copy them as text.</li>
       <li>Picks are saved in this browser only. To move them to another device, use <b>Copy share link</b> or <b>Show QR code</b> in My picks and open the link there.</li>
+      <li id="helpSync" hidden><b>Calendar subscription and sync</b> in My picks gives you a private calendar link that follows your picks, and keeps your picks the same on every device you connect.</li>
       <li>All times are Prague time. The schedule is a snapshot of lpc.events: the footer says when it was taken, and reloading the page gets the newest one.</li>
     </ul>
   </details>
@@ -133,6 +144,7 @@
       <span style="font-size:12px;color:var(--muted);align-self:center">Picks auto-save in this browser. The share link or QR code copies them to another device.</span>
     </div>
     <div id="importNote"></div>
+    <div id="syncPanel" class="syncpanel" hidden></div>
     <div id="qrPanel" class="qrpanel" hidden></div>
     <div id="picksList"></div>
   </section>
@@ -489,7 +501,15 @@ function pragueNow(){
   }catch(e){ const n=new Date(); return {date:'', mins:n.getHours()*60+n.getMinutes(), label:''}; }
 }
 function getPicks(){ try{ return JSON.parse(localStorage.getItem('lpc2026picks')||'[]'); }catch(e){ return []; } }
-function setPicks(a){ localStorage.setItem('lpc2026picks', JSON.stringify(a)); }
+function storePicks(a){ localStorage.setItem('lpc2026picks', JSON.stringify(a)); }
+function setPicks(a){
+  const old = getPicks(), st = getSync();
+  storePicks(a);
+  if(!st) return;
+  old.forEach(id=>{ if(a.indexOf(id)===-1) st.q[id]=false; });  // queue what changed for the sync service
+  a.forEach(id=>{ if(old.indexOf(id)===-1) st.q[id]=true; });
+  putSync(st); syncSoon();
+}
 function isStarred(id){ return getPicks().indexOf(id) !== -1; }
 function toggleStar(id){
   let p = getPicks();
@@ -647,7 +667,7 @@ function renderSched(){
 /* ---------- Picks ---------- */
 function renderPicks(){
   $('pickCount').textContent = getPicks().length;
-  renderQr();
+  renderQr(); renderSync();
   const list = $('picksList');
   const picks = getPicks().map(id=>byId[id]).filter(Boolean).sort((a,b)=> a.date<b.date?-1 : a.date>b.date?1 : mins(a.start)-mins(b.start));
   if(!picks.length){ list.innerHTML='<div class="empty">No picks yet — star sessions from the <b>Now &amp; next</b> or <b>Full schedule</b> tabs.</div>'; return; }
@@ -716,9 +736,9 @@ $('clearBtn').onclick=()=>{ if(confirm('Remove all picks?')){ setPicks([]); $('p
 const SITE_URL = 'https://mclarkelauer.github.io/lpc-scheduler/';  // base for share links when the page is opened from a file
 let qrOpen = false;
 let incoming = null;  // picks from a share link, waiting for the choice between merging and replacing
+function siteBase(){ return /^https?:$/.test(location.protocol) ? location.origin+location.pathname : SITE_URL; }
 function shareLink(){
-  const base = /^https?:$/.test(location.protocol) ? location.origin+location.pathname : SITE_URL;
-  return base+'#picks='+getPicks().filter(id=>byId[id]).map(id=>encodeURIComponent(id)).join(',');
+  return siteBase()+'#picks='+getPicks().filter(id=>byId[id]).map(id=>encodeURIComponent(id)).join(',');
 }
 $('linkBtn').onclick=()=>{
   if(!getPicks().length){ alert('Star some sessions first.'); return; }
@@ -770,6 +790,109 @@ function finishImport(mode){
   if(mode==='replace') setPicks(incoming);
   incoming = null; $('importNote').innerHTML='';
   renderNow(); renderSched(); renderPicks();
+}
+
+/* ---------- calendar subscription + sync between devices (served by the Worker in worker/) ---------- */
+const SYNC_URL = '';  // address of the deployed Worker; while it is empty the whole feature stays hidden
+let syncBusy = false, syncTimer = 0, syncProblem = '', syncQr = false;
+// What this device knows about its sync account: {id, feed, q: {session id: true to add / false to remove}, at: last sync}
+function getSync(){ try{ return JSON.parse(localStorage.getItem('lpc2026sync')||'null'); }catch(e){ return null; } }
+function putSync(st){ if(st) localStorage.setItem('lpc2026sync', JSON.stringify(st)); else localStorage.removeItem('lpc2026sync'); }
+function syncSoon(){ clearTimeout(syncTimer); syncTimer = setTimeout(syncNow, 700); }
+// Sends the queued changes (if any) and takes the server's list as the truth, with still-queued changes on top.
+function syncNow(){
+  const st = getSync();
+  if(!SYNC_URL || !st || syncBusy) return;
+  syncBusy = true;
+  const sent = Object.assign({}, st.q), ids = Object.keys(sent);
+  const opts = ids.length ? {method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({add:ids.filter(i=>sent[i]), remove:ids.filter(i=>!sent[i])})} : {};
+  fetch(SYNC_URL+'/api/users/'+st.id+'/picks', opts).then(r=>{
+    if(r.status===404) return null;
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  }).then(d=>{
+    const cur = getSync();
+    if(!cur || cur.id!==st.id) return;  // switched off or changed while the request was out
+    if(!d){ putSync(null); syncProblem='gone'; renderSync(); return; }  // deleted from another device, or a dead link
+    ids.forEach(i=>{ if(cur.q[i]===sent[i]) delete cur.q[i]; });  // anything changed meanwhile stays queued
+    const picks = d.picks.filter(i=>cur.q[i]!==false);
+    Object.keys(cur.q).forEach(i=>{ if(cur.q[i] && picks.indexOf(i)===-1) picks.push(i); });
+    cur.feed = d.feed; cur.at = Date.now(); putSync(cur); syncProblem='';
+    const changed = picks.slice().sort().join()!==getPicks().slice().sort().join();
+    storePicks(picks);
+    if(changed){ renderNow(); renderSched(); renderPicks(); } else renderSync();
+    if(Object.keys(cur.q).length) syncSoon();
+  }).catch(()=>{ syncProblem='offline'; renderSync(); }).then(()=>{ syncBusy = false; });
+}
+function syncOn(){
+  fetch(SYNC_URL+'/api/users', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({picks:getPicks().filter(id=>byId[id])})})
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(d=>{ putSync({id:d.id, feed:d.feed, q:{}, at:Date.now()}); syncProblem=''; renderSync(); })
+    .catch(()=>{ syncProblem='offline'; renderSync(); });
+}
+function syncJoin(id){
+  const q = {}; getPicks().filter(i=>byId[i]).forEach(i=>{ q[i]=true; });  // this device's picks join the shared ones
+  putSync({id:id, feed:'', q:q, at:0}); syncProblem=''; syncNow();
+}
+function syncDelete(){
+  const st = getSync();
+  if(!st || !confirm('Delete your synced picks from the server? The calendar link stops working and your other devices stop syncing. The picks on this device stay.')) return;
+  fetch(SYNC_URL+'/api/users/'+st.id, {method:'DELETE'})
+    .then(r=>{ if(!r.ok && r.status!==404) throw new Error('HTTP '+r.status); putSync(null); syncProblem=''; syncQr=false; renderSync(); })
+    .catch(()=>{ syncProblem='offline'; renderSync(); });
+}
+function copyText(txt, btn){
+  const label = btn.textContent, done = ()=>{ btn.textContent='Copied ✓'; setTimeout(()=>{ btn.textContent=label; },2000); };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt, done)); }
+  else fallbackCopy(txt, done);
+}
+function renderSync(){
+  const panel = $('syncPanel'), st = getSync();
+  panel.hidden = !SYNC_URL;
+  if(!SYNC_URL) return;
+  let html = '<h3>Calendar subscription and sync</h3>';
+  if(!st){
+    html += '<p>Get a private calendar link that your calendar app can subscribe to. It follows your picks as you star and unstar, and your picks stay the same on every device you connect.</p>'
+      +(syncProblem==='gone' ? '<p class="bad">Sync is off on this device: the synced picks it pointed to no longer exist. The picks on this device are unchanged.</p>' : '')
+      +(syncProblem==='offline' ? '<p class="bad">The sync service could not be reached. Try again in a moment.</p>' : '')
+      +'<div class="row"><button class="primary" data-sync="on">Turn on</button></div>';
+  } else {
+    const feed = st.feed ? SYNC_URL+'/cal/'+st.feed+'.ics' : '', dev = siteBase()+'#sync='+st.id, waiting = Object.keys(st.q).length;
+    html += syncProblem ? '<p class="bad">Offline: '+(waiting ? waiting+(waiting===1?' change':' changes') : 'changes')+' will be sent when the connection is back.</p>'
+      : '<p>On. '+(st.at ? 'Last synced at '+new Date(st.at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})+'.' : 'Syncing…')+'</p>';
+    if(feed) html += '<p><b>Calendar link.</b> Subscribe to it in your calendar app (in Google Calendar: Other calendars, then From URL). New picks show up when the app next refreshes; Google Calendar may only do that once or twice a day.</p>'
+      +'<div class="row"><input readonly value="'+esc(feed)+'"><button data-sync="copyfeed">Copy</button><a class="btn" href="'+esc(feed.replace(/^https?:/,'webcal:'))+'">Open in calendar app</a></div>';
+    html += '<div class="row"><button data-sync="qr">'+(syncQr?'Hide the device link':'Connect another device')+'</button>'
+      +'<button data-sync="off">Turn off on this device</button><button data-sync="delete">Delete my synced picks</button></div>';
+    if(syncQr){
+      const m = qrMatrix(dev);
+      html += '<p><b>Device link.</b> Scan or open it on your other device to connect it to these picks. Keep it private: anyone who has it can change your picks.</p>'
+        +'<div class="row">'+(m ? qrSvg(m) : '')+'</div><div class="row"><input readonly value="'+esc(dev)+'"><button data-sync="copydev">Copy</button></div>';
+    }
+  }
+  panel.innerHTML = html;
+  panel.querySelectorAll('input').forEach(i=>{ i.onclick=()=>i.select(); });
+  panel.querySelectorAll('[data-sync]').forEach(b=>{ b.onclick=()=>{
+    const act = b.getAttribute('data-sync'), cur = getSync();
+    if(act==='on') syncOn();
+    if(act==='off'){ putSync(null); syncProblem=''; syncQr=false; renderSync(); }
+    if(act==='delete') syncDelete();
+    if(act==='qr'){ syncQr=!syncQr; renderSync(); }
+    if(act==='copyfeed') copyText(SYNC_URL+'/cal/'+cur.feed+'.ics', b);
+    if(act==='copydev') copyText(siteBase()+'#sync='+cur.id, b);
+  }; });
+}
+function readSyncLink(){
+  const hit = /[#&]sync=([A-Za-z0-9_-]{22})(?:&|$)/.exec(location.hash);
+  if(!hit) return;
+  history.replaceState(null,'',location.pathname+location.search);  // the key should not stay in the address bar
+  const cur = getSync();
+  if(!SYNC_URL || (cur && cur.id===hit[1])){ showTab('picks'); return; }
+  if(cur && !confirm('This device already syncs with another set of picks. Switch to the one in this link? The picks on this device will be added to it.')) return;
+  syncJoin(hit[1]);
+  $('importNote').innerHTML = '<div class="warn">This device is now connected to your synced picks. Picks already on it were added to them.</div>';
+  showTab('picks');
 }
 
 /* ---------- QR code encoder (byte mode, error correction level L, versions 1-40) ---------- */
@@ -889,12 +1012,17 @@ function tick(){
 }
 setInterval(tick, 30000); tick();
 setInterval(()=>{ if(state.tab==='now') renderNow(); }, 60000);
+setInterval(()=>{ if(!document.hidden) syncNow(); }, 300000);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) syncNow(); });
+window.addEventListener('online', syncNow);
 (function init(){
   const n = pragueNow();
   state.day = DAYS.some(d=>d.d===n.date) ? n.date : '2026-10-05';
   $('pickCount').textContent = getPicks().length;
   initFilters(); renderNow();
-  readShareLink(); window.addEventListener('hashchange', readShareLink);
+  $('helpSync').hidden = !SYNC_URL;
+  readSyncLink(); readShareLink(); syncNow();
+  window.addEventListener('hashchange', ()=>{ readSyncLink(); readShareLink(); });
 })();
 </script>
 </body>

@@ -241,7 +241,10 @@ def breaks_js(breaks):
 
 
 def sessions_js(sessions):
-    """One session per line, so a snapshot diff shows which sessions changed."""
+    """One session per line, so a snapshot diff shows which sessions changed.
+
+    worker/src/index.js reads this layout too: it picks sessions out of the page line by line.
+    """
     enc = lambda s: (json.dumps(s, ensure_ascii=False).replace('</', '<\\/')
                      .replace('\u2028', '\\u2028').replace('\u2029', '\\u2029'))
     return '[\n' + ',\n'.join(enc(s) for s in sessions) + '\n]'

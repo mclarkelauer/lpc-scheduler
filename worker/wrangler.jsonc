@@ -1,0 +1,19 @@
+{
+  // Cloudflare Worker that stores each user's picks and serves them as a calendar feed.
+  // Setup and deploy steps are in the header of src/index.js.
+  "name": "lpc-scheduler-picks",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "vars": {
+    // The published schedule page. The calendar feed reads session times, rooms and abstracts from it.
+    "SCHEDULE_URL": "https://mclarkelauer.github.io/lpc-scheduler/"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lpc-scheduler-picks",
+      // Replace with the id printed by: npx wrangler d1 create lpc-scheduler-picks
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ]
+}
