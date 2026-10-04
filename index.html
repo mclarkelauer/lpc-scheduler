@@ -100,6 +100,7 @@
   .calev.other{border-color:var(--other);background:#fdf0e1}
   .calev.clash{box-shadow:inset 0 0 0 1px #f59e0b}
   .calev.past{opacity:.6}
+  .calev.sel{outline:2px solid var(--accent);outline-offset:-1px}
   .calslot{position:absolute;left:0;right:0;background:rgba(11,95,255,.12);border:1px dashed var(--accent);pointer-events:none}
   .calnow{position:absolute;left:0;right:0;border-top:2px solid #ef4444;pointer-events:none;z-index:1}
   .sheet{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(1100px,100%);max-height:50vh;overflow:auto;z-index:20;background:var(--bg);border:1px solid var(--line);border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -8px 30px rgba(16,24,40,.18);padding:0 14px 16px}
@@ -138,7 +139,7 @@
       <li><b>Full schedule</b> lists one day at a time; narrow it by track or room. Typing in the search box searches all three days at once, including speakers and abstracts; clicking a day leaves the search. Sessions that are over are greyed and marked "ended".</li>
       <li><b>Abstract</b> under a session opens its description, and <b>details ↗</b> opens the session on lpc.events.</li>
       <li>The <b>☆ star</b> on a session adds it to <b>My picks</b>; clicking it again removes it. There you can download your picks as a calendar file, copy them as text, or clear them. The <b>List</b> view shows them in order and flags picks that clash.</li>
-      <li><b>Calendar</b>, the other view in My picks, lays your picks out as a timetable of the three days, side by side where they overlap; on a phone, swipe sideways for the other days. Click an empty time to see every session in that half hour and star the ones you want. Click a pick to see what else runs alongside it. A red line marks the current time during the conference.</li>
+      <li><b>Calendar</b>, the other view in My picks, lays your picks out as a timetable of the three days, side by side where they overlap; on a phone, swipe sideways for the other days. Click an empty time to see every session in that half hour and star the ones you want. Click a pick to see its details and abstract. A red line marks the current time during the conference.</li>
       <li>Picks are saved in this browser only. <b>Copy share link</b> or <b>Show QR code</b> in My picks copies them once to another device, or to someone else; the browser that opens the link can add them to its own picks or replace them.</li>
       <li id="helpSync" hidden><b>Calendar sync</b> puts your picks in your calendar app and keeps them the same in every browser you use:
         <ol>
@@ -781,7 +782,7 @@ $('clearBtn').onclick=()=>{ if(confirm('Remove all picks?')){ setPicks([]); $('p
 /* ---------- picks as a calendar ---------- */
 const CAL_PPM = 1.6;  // pixels per minute; the hour and half-hour lines in the stylesheet (96px, 48px) follow from it
 const CAL_RANGE = (()=>{ let a=1440, b=0; SESSIONS.forEach(s=>{ a=Math.min(a,mins(s.start)); b=Math.max(b,mins(s.end)); }); return [Math.floor(a/60)*60, Math.ceil(b/60)*60]; })();
-let picksView = 'list', slot = null;  // slot: {date, start, end} in minutes, the time whose sessions the sheet lists
+let picksView = 'list', slot = null;  // what the sheet shows: {date, start, end} in minutes lists that time's sessions; with id, that pick's details
 try{ if(localStorage.getItem('lpc2026view')==='cal') picksView = 'cal'; }catch(e){}
 const hhmm = m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
 $('viewPills').querySelectorAll('button').forEach(b=>{ b.onclick=()=>{
@@ -793,7 +794,7 @@ function renderCal(){
   const box = $('picksCal'), was = box.querySelector('.cal'), keep = was ? [was.scrollLeft, was.scrollTop] : null;
   const t0 = CAL_RANGE[0], t1 = CAL_RANGE[1], H = (t1-t0)*CAL_PPM, now = pragueNow(), y = m=>Math.round((m-t0)*CAL_PPM);
   const picks = getPicks().map(id=>byId[id]).filter(Boolean);
-  let html = '<p class="calhint">'+(picks.length ? 'Click an empty time to see what is on then, or a pick to see what else runs alongside it.'
+  let html = '<p class="calhint">'+(picks.length ? 'Click an empty time to see what you could put there, or a pick to see its details.'
       : 'No picks yet. Click any time to see what is on then, and star what you want.')+'</p>'
     +'<div class="cal"><div class="calgrid"><div class="calcorner"></div>'
     +DAYS.map(d=>'<div class="calname'+(d.d===now.date?' today':'')+'">'+d.label+'</div>').join('')
@@ -813,11 +814,11 @@ function renderCal(){
     });
     flush();
     html += '<div class="calday" data-date="'+d.d+'" style="height:'+H+'px">';
-    if(slot && slot.date===d.d) html += '<div class="calslot" style="top:'+y(slot.start)+'px;height:'+(y(slot.end)-y(slot.start))+'px"></div>';
+    if(slot && !slot.id && slot.date===d.d) html += '<div class="calslot" style="top:'+y(slot.start)+'px;height:'+(y(slot.end)-y(slot.start))+'px"></div>';
     if(now.date===d.d && now.mins>=t0 && now.mins<=t1) html += '<div class="calnow" style="top:'+y(now.mins)+'px"></div>';
     laid.forEach(c=>{
       const s = c.s, a = mins(s.start), b = mins(s.end), done = s.date<now.date || (s.date===now.date && b<=now.mins);
-      html += '<div class="calev '+esc(s.type)+(c.n>1?' clash':'')+(done?' past':'')+'" data-ev="'+esc(s.id)+'" title="'+esc(s.title)+'"'
+      html += '<div class="calev '+esc(s.type)+(c.n>1?' clash':'')+(done?' past':'')+(slot && slot.id===s.id?' sel':'')+'" data-ev="'+esc(s.id)+'" title="'+esc(s.title)+'"'
         +' style="top:'+y(a)+'px;height:'+Math.max(18,y(b)-y(a)-2)+'px;left:calc('+(c.col/c.n*100)+'% + 2px);width:calc('+(100/c.n)+'% - 4px)">'
         +'<b>'+esc(s.title)+'</b><span>'+esc(s.start)+'–'+esc(s.end)+' · '+esc(s.room==='TBD'?'Location TBA':s.room)+'</span></div>';
     });
@@ -834,33 +835,40 @@ function renderCal(){
   }
   box.querySelectorAll('.calday').forEach(col=>{ col.onclick=e=>{
     const hit = e.target.closest('[data-ev]'), date = col.getAttribute('data-date');
-    if(hit){ const s = byId[hit.getAttribute('data-ev')]; slot = {date:date, start:mins(s.start), end:mins(s.end)}; }
+    if(hit){ const s = byId[hit.getAttribute('data-ev')]; slot = {date:date, start:mins(s.start), end:mins(s.end), id:s.id}; }
     else { const a = Math.floor((t0+(e.clientY-col.getBoundingClientRect().top)/CAL_PPM)/30)*30; slot = {date:date, start:a, end:a+30}; }  // the half hour that was clicked
     renderCal(); renderSlot();
   }; });
 }
-// The sheet at the bottom: every session that runs during the chosen time, with stars to add or drop them.
+// The sheet at the bottom: the details of the pick that was clicked, or every session that runs during the time that was clicked.
 function renderSlot(){
-  const sheet = $('slotSheet');
-  sheet.hidden = !slot || state.tab!=='picks' || picksView!=='cal';
+  const sheet = $('slotSheet'), one = slot && slot.id ? byId[slot.id] : null;
+  sheet.hidden = !slot || (slot.id && !one) || state.tab!=='picks' || picksView!=='cal';
   document.body.style.paddingBottom = '';
   if(sheet.hidden) return;
-  const ss = SESSIONS.filter(s=>s.date===slot.date && mins(s.start)<slot.end && mins(s.end)>slot.start)
-    .sort((a,b)=> mins(a.start)-mins(b.start) || ROOM_ORDER.indexOf(a.room)-ROOM_ORDER.indexOf(b.room));
-  const brk = BREAKS.find(b=>b.date===slot.date && mins(b.start)<slot.end && mins(b.end)>slot.start);
-  let html = '<div class="sheethead"><b>'+DAYNAME[slot.date]+' · '+hhmm(slot.start)+'–'+hhmm(slot.end)+'</b>'
-    +'<span>'+(ss.length ? ss.length+(ss.length===1?' session':' sessions') : 'Nothing is scheduled then')
-    +(brk ? ' · '+esc(brk.title)+' '+esc(brk.start)+'–'+esc(brk.end) : '')+'</span><button data-close title="Close">×</button></div>';
-  ss.forEach(s=>{
-    html += '<div class="srow"><div class="time">'+esc(s.start)+'<br>–'+esc(s.end)+'</div>'
-      +'<button class="starbtn'+(isStarred(s.id)?' on':'')+'" data-star="'+esc(s.id)+'" title="Pick">'+(isStarred(s.id)?'★':'☆')+'</button>'
-      +'<div class="body"><div class="title">'+esc(s.title)+'</div>'
-      +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+'</div></div>'
-      +'<a class="dl" href="'+esc(detailsUrl(s))+'" target="_blank" rel="noopener">details ↗</a>'+absFor(s)+'</div>';
-  });
+  const row = (s, extra)=>'<div class="srow"><div class="time">'+esc(s.start)+'<br>–'+esc(s.end)+'</div>'
+    +'<button class="starbtn'+(isStarred(s.id)?' on':'')+'" data-star="'+esc(s.id)+'" title="Pick">'+(isStarred(s.id)?'★':'☆')+'</button>'
+    +'<div class="body"><div class="title">'+esc(s.title)+'</div>'
+    +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+'</div></div>'
+    +'<a class="dl" href="'+esc(detailsUrl(s))+'" target="_blank" rel="noopener">details ↗</a>'+extra+'</div>';
+  const head = note=>'<div class="sheethead"><b>'+DAYNAME[slot.date]+' · '+hhmm(slot.start)+'–'+hhmm(slot.end)+'</b><span>'+note+'</span><button data-close title="Close">×</button></div>';
+  let html;
+  if(one){
+    html = head(isStarred(one.id) ? 'Your pick' : 'No longer one of your picks')
+      +row(one, '<div class="abs"><div class="abstxt">'+(one.abstract ? fmtAbs(one.abstract) : 'No abstract has been published for this session.')+'</div></div>')
+      +'<div class="pickbar"><button data-else>See what else is on at this time</button></div>';
+  } else {
+    const ss = SESSIONS.filter(s=>s.date===slot.date && mins(s.start)<slot.end && mins(s.end)>slot.start)
+      .sort((a,b)=> mins(a.start)-mins(b.start) || ROOM_ORDER.indexOf(a.room)-ROOM_ORDER.indexOf(b.room));
+    const brk = BREAKS.find(b=>b.date===slot.date && mins(b.start)<slot.end && mins(b.end)>slot.start);
+    html = head((ss.length ? ss.length+(ss.length===1?' session':' sessions') : 'Nothing is scheduled then')
+      +(brk ? ' · '+esc(brk.title)+' '+esc(brk.start)+'–'+esc(brk.end) : ''));
+    ss.forEach(s=>{ html += row(s, absFor(s)); });
+  }
   sheet.innerHTML = html;
   document.body.style.paddingBottom = sheet.offsetHeight+'px';  // room to scroll the calendar clear of the sheet
   sheet.querySelector('[data-close]').onclick=()=>{ slot = null; renderPicks(); };
+  sheet.querySelectorAll('[data-else]').forEach(b=>{ b.onclick=()=>{ slot = {date:slot.date, start:slot.start, end:slot.end}; renderPicks(); }; });
   sheet.querySelectorAll('[data-star]').forEach(b=>{ b.onclick=()=>toggleStar(b.getAttribute('data-star')); });
   wireAbs(sheet);
 }
