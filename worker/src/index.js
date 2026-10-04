@@ -4,11 +4,17 @@
 //   id    private: whoever has it can read and change that user's picks; devices are joined with it
 //   feed  read-only: the only key in the calendar URL, so handing out the calendar does not let anyone edit
 //
-//   POST   /api/users               {picks: [...]}             -> {id, feed, picks}   register a user
-//   GET    /api/users/<id>/picks                                -> {feed, picks}
-//   POST   /api/users/<id>/picks    {add: [...], remove: [...]} -> {feed, picks}       star and unstar
-//   DELETE /api/users/<id>                                      -> 204                 forget the user
-//   GET    /cal/<feed>.ics          the picks as a calendar, for calendar apps to subscribe to
+// A pick has a level: 1 = interested, 2 = attending (which implies interested).
+//
+//   POST   /api/users               {levels: {session: 1|2}}    -> {id, feed, picks, levels}   register a user
+//   GET    /api/users/<id>/picks                                 -> {feed, picks, levels}
+//   POST   /api/users/<id>/picks    {set: {session: 0|1|2},      -> {feed, picks, levels}       0 removes the pick
+//                                    raise: {session: 1|2}}                                     raise never lowers a level
+//   DELETE /api/users/<id>                                       -> 204                          forget the user
+//   GET    /cal/<feed>.ics          the sessions being attended, as a calendar for calendar apps to subscribe to
+//
+// "picks" in a reply lists the attended sessions. Pages loaded before levels existed still send
+// {picks: [...]} and {add: [...], remove: [...]}; those mean attending.
 //
 // Deploying, from this directory, with Cloudflare's cf CLI (npm install -g cf):
 //   npm install
@@ -58,24 +64,44 @@ function idList(v) {
   return [...new Set(v)];
 }
 
-async function picksOf(db, id) {
-  const { results } = await db.prepare('SELECT session_id FROM picks WHERE user_id = ? ORDER BY added_at, session_id').bind(id).all();
-  return results.map(r => r.session_id);
+// A {session id: level} map from a request body, as {level: [ids]}; null when it is not one.
+function levelMap(v, allowed) {
+  if (v === undefined) return {};
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return null;
+  const keys = Object.keys(v);
+  if (keys.length > MAX_PICKS || !keys.every(k => SESSION.test(k) && allowed.includes(v[k]))) return null;
+  const byLevel = {};
+  for (const k of keys) (byLevel[v[k]] ||= []).push(k);
+  return byLevel;
+}
+
+async function levelsOf(db, id) {
+  const { results } = await db.prepare('SELECT session_id, level FROM picks WHERE user_id = ? ORDER BY added_at, session_id').bind(id).all();
+  const levels = {};
+  for (const r of results) levels[r.session_id] = r.level;
+  return { picks: results.filter(r => r.level === 2).map(r => r.session_id), levels };
 }
 
 // The ids travel as one JSON parameter, so a request is a fixed handful of statements however many picks it carries.
-const addPicks = (db, id, ids, now) =>
-  db.prepare('INSERT OR IGNORE INTO picks (user_id, session_id, added_at) SELECT ?1, value, ?2 FROM json_each(?3)').bind(id, now, JSON.stringify(ids));
+// "raise" keeps the higher of the stored and the given level; otherwise the given level replaces the stored one.
+const putPicks = (db, id, ids, level, now, raise) =>
+  db.prepare('INSERT INTO picks (user_id, session_id, added_at, level) SELECT ?1, value, ?2, ?4 FROM json_each(?3) WHERE true '
+    + 'ON CONFLICT(user_id, session_id) DO UPDATE SET level = ' + (raise ? 'MAX(level, excluded.level)' : 'excluded.level'))
+    .bind(id, now, JSON.stringify(ids), level);
+const dropPicks = (db, id, ids) =>
+  db.prepare('DELETE FROM picks WHERE user_id = ?1 AND session_id IN (SELECT value FROM json_each(?2))').bind(id, JSON.stringify(ids));
 
 async function register(request, env) {
-  const body = await readJson(request), picks = body && idList(body.picks);
-  if (!picks) return fail(400, 'expected {"picks": [session ids]}');
+  const body = await readJson(request), picks = body && idList(body.picks), levels = body && levelMap(body.levels, [1, 2]);
+  if (!picks || !levels) return fail(400, 'expected {"levels": {session id: 1 or 2}}');
   const id = newKey(), feed = newKey(), now = Date.now();
   await env.DB.batch([
     env.DB.prepare('INSERT INTO users (id, feed, created_at, updated_at) VALUES (?, ?, ?, ?)').bind(id, feed, now, now),
-    addPicks(env.DB, id, picks, now),
+    putPicks(env.DB, id, picks, 2, now),
+    putPicks(env.DB, id, levels[1] || [], 1, now),
+    putPicks(env.DB, id, levels[2] || [], 2, now),
   ]);
-  return json({ id, feed, picks: await picksOf(env.DB, id) }, 201);
+  return json({ id, feed, ...await levelsOf(env.DB, id) }, 201);
 }
 
 async function picks(request, env, id) {
@@ -83,17 +109,23 @@ async function picks(request, env, id) {
   if (!user) return fail(404, 'unknown user');
   if (request.method === 'POST') {
     const body = await readJson(request), add = body && idList(body.add), remove = body && idList(body.remove);
-    if (!add || !remove) return fail(400, 'expected {"add": [session ids], "remove": [session ids]}');
+    const set = body && levelMap(body.set, [0, 1, 2]), raise = body && levelMap(body.raise, [1, 2]);
+    if (!add || !remove || !set || !raise) return fail(400, 'expected {"set": {session id: 0, 1 or 2}}');
+    const incoming = [add, set[1], set[2], raise[1], raise[2]].reduce((n, ids) => n + (ids ? ids.length : 0), 0);
     const have = await env.DB.prepare('SELECT COUNT(*) AS n FROM picks WHERE user_id = ?').bind(id).first();
-    if (have.n + add.length > MAX_PICKS) return fail(400, 'too many picks');
+    if (have.n + incoming > MAX_PICKS) return fail(400, 'too many picks');
     const now = Date.now();
     await env.DB.batch([
-      env.DB.prepare('DELETE FROM picks WHERE user_id = ?1 AND session_id IN (SELECT value FROM json_each(?2))').bind(id, JSON.stringify(remove)),
-      addPicks(env.DB, id, add, now),
+      putPicks(env.DB, id, raise[1] || [], 1, now, true),
+      putPicks(env.DB, id, raise[2] || [], 2, now, true),
+      dropPicks(env.DB, id, remove.concat(set[0] || [])),
+      putPicks(env.DB, id, add, 2, now),
+      putPicks(env.DB, id, set[1] || [], 1, now),
+      putPicks(env.DB, id, set[2] || [], 2, now),
       env.DB.prepare('UPDATE users SET updated_at = ? WHERE id = ?').bind(now, id),
     ]);
   }
-  return json({ feed: user.feed, picks: await picksOf(env.DB, id) });
+  return json({ feed: user.feed, ...await levelsOf(env.DB, id) });
 }
 
 async function forget(env, id) {
@@ -167,7 +199,7 @@ export function ics(sessions, now = new Date()) {
 async function calendar(env, feed) {
   const user = await env.DB.prepare('SELECT id FROM users WHERE feed = ?').bind(feed).first();
   if (!user) return new Response('No such calendar.\n', { status: 404 });
-  const picked = new Set(await picksOf(env.DB, user.id));
+  const picked = new Set((await levelsOf(env.DB, user.id)).picks);  // the calendar holds what is being attended
   let sessions;
   try {
     const page = await fetch(env.SCHEDULE_URL, { cf: { cacheEverything: true, cacheTtl: 300 } });

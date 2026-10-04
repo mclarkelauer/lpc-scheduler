@@ -55,6 +55,12 @@
   .chip.room{background:#e8edf3;color:#3c4654}
   .starbtn{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:10px;width:38px;height:38px;font-size:20px;cursor:pointer;color:#b9c2cf;line-height:1}
   .starbtn.on{color:var(--star);border-color:var(--star)}
+  .flags{flex:0 0 auto;display:flex;flex-direction:column;gap:4px}
+  .flags .starbtn{height:32px}
+  .gobtn{border:1px solid var(--line);background:#fff;border-radius:10px;width:38px;height:28px;font-size:15px;font-weight:700;cursor:pointer;color:#b9c2cf;line-height:1}
+  .gobtn.on{background:#15803d;border-color:#15803d;color:#fff}
+  .ti .flags{display:inline-flex;flex-direction:row;vertical-align:middle}
+  .legend{font-size:12px;color:var(--muted);margin:0 0 8px}
   .dl{font-size:12px;color:var(--accent);text-decoration:none;white-space:nowrap}
   .brow{background:#f3f4f6;border:1px dashed var(--line);border-radius:12px;padding:8px 14px;margin:8px 0;font-size:13px;color:var(--muted);text-align:center}
   .warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:10px 14px;margin:8px 0;font-size:13px}
@@ -99,6 +105,7 @@
   .calev.bof{border-color:var(--bof);background:#f1e9fe}
   .calev.other{border-color:var(--other);background:#fdf0e1}
   .calev.clash{box-shadow:inset 0 0 0 1px #f59e0b}
+  .calev.maybe{background:#fff;border:1px dashed #9aa7b8;border-left:3px solid #9aa7b8}
   .calev.past{opacity:.6}
   .calev.sel{outline:2px solid var(--accent);outline-offset:-1px}
   .calslot{position:absolute;left:0;right:0;background:rgba(11,95,255,.12);border:1px dashed var(--accent);pointer-events:none}
@@ -138,15 +145,16 @@
       <li><b>Now &amp; next</b> shows what is on in each room right now and what follows, while the conference is running. It updates every minute.</li>
       <li><b>Full schedule</b> lists one day at a time; narrow it by track or room. Typing in the search box searches all three days at once, including speakers and abstracts; clicking a day leaves the search. Sessions that are over are greyed and marked "ended".</li>
       <li><b>Abstract</b> under a session opens its description, and <b>details ↗</b> opens the session on lpc.events.</li>
-      <li>The <b>☆ star</b> on a session adds it to <b>My picks</b>; clicking it again removes it. There you can download your picks as a calendar file, copy them as text, or clear them. The <b>List</b> view shows them in order and flags picks that clash.</li>
-      <li><b>Calendar</b>, the other view in My picks, lays your picks out as a timetable of the three days, side by side where they overlap; on a phone, swipe sideways for the other days. Click an empty time to see every session in that half hour and star the ones you want. Click a pick to see its details and abstract. A red line marks the current time during the conference.</li>
+      <li>Every session has two buttons. <b>☆ Interested</b> puts it in <b>My picks</b>, for example to watch the recording later. <b>✓ Attending</b> says you plan to be there, and counts as interested too. Click ✓ again to keep a session as interested only, or the star again to drop it.</li>
+      <li><b>My picks</b> in its <b>List</b> view shows everything you marked, or only what you are attending, or only what you are interested in but not attending, which is your list of talks to catch up on afterwards. Attended sessions that clash are flagged. You can copy the picks as text, download the attended ones as a calendar file, or clear them.</li>
+      <li><b>Calendar</b>, the other view in My picks, lays your picks out as a timetable of the three days: solid blocks for what you are attending, dashed for what you are only interested in. On a phone, swipe sideways for the other days. Click an empty time to see every session in that half hour and mark the ones you want. Click a pick to see its details and abstract. A red line marks the current time during the conference.</li>
       <li>Picks are saved in this browser only. <b>Copy share link</b> or <b>Show QR code</b> in My picks copies them once to another device, or to someone else; the browser that opens the link can add them to its own picks or replace them.</li>
-      <li id="helpSync" hidden><b>Calendar sync</b> puts your picks in your calendar app and keeps them the same in every browser you use:
+      <li id="helpSync" hidden><b>Calendar sync</b> puts the sessions you are attending in your calendar app and keeps all your picks the same in every browser you use:
         <ol>
           <li>In <b>My picks</b>, click <b>Turn on</b> on the "Calendar subscription and sync" line. From then on the line shows whether sync is on and when it last synced; click its name to open or close the rest.</li>
-          <li>With it open, subscribe your calendar app to the <b>Calendar link</b>. In Google Calendar, copy it and add it under Other calendars, From URL. In most other apps, <b>Open in calendar app</b> does it. This link is read-only, so it is also the one to give to someone who wants to follow your picks.</li>
+          <li>With it open, subscribe your calendar app to the <b>Calendar link</b>. In Google Calendar, copy it and add it under Other calendars, From URL. In most other apps, <b>Open in calendar app</b> does it. It holds the sessions you are attending. This link is read-only, so it is also the one to give to someone who wants to follow them.</li>
           <li>For your phone or another browser, open the line, click <b>Link another browser</b>, and scan the QR code or open the link there. Keep that link to yourself: it lets a browser change your picks.</li>
-          <li>Star and unstar as usual, in any linked browser. The others catch up within a few minutes, or at once when you open the page, and changes made without a connection are sent when it returns. Your calendar shows changes when the app next refreshes, which Google Calendar may only do once or twice a day.</li>
+          <li>Mark sessions as usual, in any linked browser. The others catch up within a few minutes, or at once when you open the page, and changes made without a connection are sent when it returns. Your calendar shows changes when the app next refreshes, which Google Calendar may only do once or twice a day.</li>
           <li>To stop, open the line. <b>Unlink this browser</b> stops syncing in one browser and lets you keep or clear the picks in it. <b>Delete my synced picks</b> removes them from the server, unlinks every browser and ends the calendar link.</li>
         </ol>
       </li>
@@ -171,6 +179,7 @@
       <select id="trackSel"></select>
       <select id="roomSel"></select>
     </div>
+    <p class="legend">☆ marks a session you are interested in · ✓ marks one you are attending</p>
     <div id="schedList"></div>
   </section>
   <section id="tabPicks" hidden>
@@ -542,22 +551,39 @@ function pragueNow(){
     return {date:p.year+'-'+p.month+'-'+p.day, mins:(+p.hour)*60+(+p.minute), label:p.hour+':'+p.minute};
   }catch(e){ const n=new Date(); return {date:'', mins:n.getHours()*60+n.getMinutes(), label:''}; }
 }
-function getPicks(){ try{ return JSON.parse(localStorage.getItem('lpc2026picks')||'[]'); }catch(e){ return []; } }
-function storePicks(a){ localStorage.setItem('lpc2026picks', JSON.stringify(a)); }
-function setPicks(a){
-  const old = getPicks(), st = getSync();
-  storePicks(a);
+// Two flags per session. Interested (level 1) is the star; attending (level 2) is the tick and implies interested.
+// Attending ids are kept in 'lpc2026picks', where picks were before there were two levels; interested-only ids in 'lpc2026liked'.
+function readIds(key){ try{ const v = JSON.parse(localStorage.getItem(key)||'[]'); return Array.isArray(v) ? v : []; }catch(e){ return []; } }
+function getPicks(){ return readIds('lpc2026picks'); }  // the sessions being attended
+function getFlags(){ const f = {}; readIds('lpc2026liked').forEach(id=>{ f[id]=1; }); getPicks().forEach(id=>{ f[id]=2; }); return f; }
+function storeFlags(f){
+  const ids = Object.keys(f);
+  localStorage.setItem('lpc2026picks', JSON.stringify(ids.filter(id=>f[id]===2)));
+  localStorage.setItem('lpc2026liked', JSON.stringify(ids.filter(id=>f[id]===1)));
+}
+function setFlags(f){
+  const old = getFlags(), st = getSync();
+  storeFlags(f);
   if(!st) return;
-  old.forEach(id=>{ if(a.indexOf(id)===-1) st.q[id]=false; });  // queue what changed for the sync service
-  a.forEach(id=>{ if(old.indexOf(id)===-1) st.q[id]=true; });
+  Object.keys(Object.assign({}, old, f)).forEach(id=>{ if((old[id]||0)!==(f[id]||0)) st.q[id] = f[id]||0; });  // queue what changed for the sync service
   putSync(st); syncSoon();
 }
-function isStarred(id){ return getPicks().indexOf(id) !== -1; }
-function toggleStar(id){
-  let p = getPicks();
-  p = p.indexOf(id)===-1 ? p.concat([id]) : p.filter(x=>x!==id);
-  setPicks(p); $('pickCount').textContent = p.length;
+function setLevel(id, lv){
+  const f = getFlags();
+  if(lv) f[id] = lv; else delete f[id];
+  setFlags(f);
   renderNow(); renderSched(); renderPicks();
+}
+function toggleStar(id){ setLevel(id, getFlags()[id] ? 0 : 1); }               // dropping the interest drops attending too
+function toggleGoing(id){ setLevel(id, getFlags()[id]===2 ? 1 : 2); }          // no longer attending leaves it as interested
+function flagBtns(s, f){
+  const lv = f[s.id]||0;
+  return '<span class="flags"><button class="starbtn'+(lv?' on':'')+'" data-star="'+esc(s.id)+'" aria-pressed="'+(lv>0)+'" title="'+(lv?'Interested. Click to remove it from your picks':'Mark as interested')+'">'+(lv?'★':'☆')+'</button>'
+    +'<button class="gobtn'+(lv===2?' on':'')+'" data-go="'+esc(s.id)+'" aria-pressed="'+(lv===2)+'" title="'+(lv===2?'Attending. Click to keep it as interested only':'Mark as attending')+'">✓</button></span>';
+}
+function wireFlags(el){
+  el.querySelectorAll('[data-star]').forEach(b=>{ b.onclick=()=>toggleStar(b.getAttribute('data-star')); });
+  el.querySelectorAll('[data-go]').forEach(b=>{ b.onclick=()=>toggleGoing(b.getAttribute('data-go')); });
 }
 const byId = {}; SESSIONS.forEach(s=>{ byId[s.id]=s; });
 function chipFor(s){
@@ -613,7 +639,7 @@ $('tabBtnPicks').onclick=()=>showTab('picks');
 
 /* ---------- Now & Next ---------- */
 function renderNow(){
-  const now = pragueNow();
+  const now = pragueNow(), f = getFlags();
   const day = DAYS.find(d=>d.d===now.date);
   const grid = $('nowGrid'), note = $('nowNote');
   if(!day){
@@ -631,7 +657,7 @@ function renderNow(){
     if(cur){
       const left = mins(cur.end)-now.mins;
       html += '<div class="slot"><div class="t">NOW · '+esc(cur.start)+'–'+esc(cur.end)+' · <span class="in">ends in '+left+' min</span></div>'
-        +'<div class="ti">'+esc(cur.title)+' <button class="starbtn'+(isStarred(cur.id)?' on':'')+'" data-star="'+esc(cur.id)+'" title="Pick">'+(isStarred(cur.id)?'★':'☆')+'</button></div>'
+        +'<div class="ti">'+esc(cur.title)+' '+flagBtns(cur, f)+'</div>'
         +'<div class="m">'+chipFor(cur)+' '+metaFor(cur)+'</div>'+absFor(cur)+'</div>';
     } else if(brk){
       html += '<div class="breakline">☕ '+esc(brk.title)+' until '+esc(brk.end)+'</div>';
@@ -640,14 +666,14 @@ function renderNow(){
       const wait = mins(nxt.start)-now.mins;
       const when = wait<=0 ? 'starting now' : (cur ? 'up next' : (wait<60 ? 'in '+wait+' min' : 'at '+esc(nxt.start)));
       html += '<div class="slot next"><div class="t">NEXT · '+esc(nxt.start)+'–'+esc(nxt.end)+' · <span class="in">'+esc(when)+'</span></div>'
-        +'<div class="ti">'+esc(nxt.title)+' <button class="starbtn'+(isStarred(nxt.id)?' on':'')+'" data-star="'+esc(nxt.id)+'" title="Pick">'+(isStarred(nxt.id)?'★':'☆')+'</button></div>'
+        +'<div class="ti">'+esc(nxt.title)+' '+flagBtns(nxt, f)+'</div>'
         +'<div class="m">'+chipFor(nxt)+' '+metaFor(nxt)+'</div>'+absFor(nxt)+'</div>';
     } else if(!cur){
       html += '<div class="breakline">Done for the day.</div>';
     }
     return html+'</div>';
   }).join('');
-  grid.querySelectorAll('[data-star]').forEach(b=>{ b.onclick=()=>toggleStar(b.getAttribute('data-star')); });
+  wireFlags(grid);
   wireAbs(grid);
 }
 
@@ -669,7 +695,7 @@ $('roomSel').onchange=e=>{ state.room = e.target.value==='All rooms'?'All':e.tar
 $('q').oninput=e=>{ state.q=e.target.value.trim().toLowerCase(); renderSched(); };
 function renderSched(){
   const list = $('schedList');
-  const q = state.q, now = pragueNow();
+  const q = state.q, now = pragueNow(), f = getFlags();
   const past = s=>s.date<now.date || (s.date===now.date && mins(s.end)<=now.mins);
   let ss = q ? SESSIONS.slice() : SESSIONS.filter(s=>s.date===state.day);  // a search covers every day
   $('dayPills').classList.toggle('searching', !!q);
@@ -696,53 +722,65 @@ function renderSched(){
     const s=it.s, done=past(s);
     if(q && s.date!==lastDay){ html += '<h3 class="dayhead">'+DAYNAME[s.date]+'</h3>'; lastDay=s.date; }
     html += '<div class="srow'+(done?' past':'')+'"><div class="time">'+esc(s.start)+'<br>–'+esc(s.end)+(done?'<br><span class="ended">ended</span>':'')+'</div>'
-      +'<button class="starbtn'+(isStarred(s.id)?' on':'')+'" data-star="'+esc(s.id)+'" title="Pick">'+(isStarred(s.id)?'★':'☆')+'</button>'
+      +flagBtns(s, f)
       +'<div class="body"><div class="title">'+esc(s.title)+'</div>'
       +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+'</div></div>'
       +'<a class="dl" href="'+esc(detailsUrl(s))+'" target="_blank" rel="noopener">details ↗</a>'
       +(q && hay(s).indexOf(q)===-1 ? absHit(s,q) : '')+absFor(s)+'</div>';
   });
   list.innerHTML = html;
-  list.querySelectorAll('[data-star]').forEach(b=>{ b.onclick=()=>toggleStar(b.getAttribute('data-star')); });
+  wireFlags(list);
   wireAbs(list);
 }
 
 /* ---------- Picks ---------- */
+let picksFilter = 'all';  // which picks the list shows: all, going (attending) or liked (interested only)
+const byTime = (a,b)=> a.date<b.date?-1 : a.date>b.date?1 : mins(a.start)-mins(b.start);
+// Ids of the attended sessions that overlap another attended session.
+function clashes(f){
+  const going = Object.keys(f).filter(id=>f[id]===2 && byId[id]).map(id=>byId[id]), out = new Set();
+  for(let i=0;i<going.length;i++) for(let j=i+1;j<going.length;j++){
+    const a=going[i], b=going[j];
+    if(a.date===b.date && mins(a.start)<mins(b.end) && mins(b.start)<mins(a.end)){ out.add(a.id); out.add(b.id); }
+  }
+  return out;
+}
 function renderPicks(){
-  $('pickCount').textContent = getPicks().length;
+  const f = getFlags(), all = Object.keys(f).filter(id=>byId[id]).map(id=>byId[id]).sort(byTime);
+  $('pickCount').textContent = all.length;
   renderQr(); renderSync();
   $('viewPills').querySelectorAll('button').forEach(b=>{ b.classList.toggle('active', b.getAttribute('data-view')===picksView); });
   $('picksList').hidden = picksView!=='list'; $('picksCal').hidden = picksView!=='cal';
   renderSlot();
   if(picksView==='cal'){ renderCal(); return; }
   const list = $('picksList');
-  const picks = getPicks().map(id=>byId[id]).filter(Boolean).sort((a,b)=> a.date<b.date?-1 : a.date>b.date?1 : mins(a.start)-mins(b.start));
-  if(!picks.length){ list.innerHTML='<div class="empty">No picks yet — star sessions from the <b>Now &amp; next</b> or <b>Full schedule</b> tabs.</div>'; return; }
-  const conflict = new Set();
-  for(let i=0;i<picks.length;i++) for(let j=i+1;j<picks.length;j++){
-    const a=picks[i], b=picks[j];
-    if(a.date!==b.date) continue;
-    if(mins(a.start)<mins(b.end) && mins(b.start)<mins(a.end)){ conflict.add(a.id); conflict.add(b.id); }
-  }
+  if(!all.length){ list.innerHTML='<div class="empty">No picks yet. In the <b>Now &amp; next</b> or <b>Full schedule</b> tabs, ☆ marks a session you are interested in and ✓ one you are attending.</div>'; return; }
+  const going = all.filter(s=>f[s.id]===2), liked = all.filter(s=>f[s.id]===1), conflict = clashes(f);
+  const picks = picksFilter==='going' ? going : picksFilter==='liked' ? liked : all;
+  let html = '<div class="daypills" id="flagPills">'
+    +'<button data-flt="all"'+(picksFilter==='all'?' class="active"':'')+'>All <small>· '+all.length+'</small></button>'
+    +'<button data-flt="going"'+(picksFilter==='going'?' class="active"':'')+'>✓ Attending <small>· '+going.length+'</small></button>'
+    +'<button data-flt="liked"'+(picksFilter==='liked'?' class="active"':'')+'>★ Interested, not attending <small>· '+liked.length+'</small></button></div>';
+  if(!picks.length) html += '<div class="empty">'+(picksFilter==='going' ? 'Nothing marked as attending yet. ✓ on a session marks it.' : 'Everything you are interested in is marked as attending.')+'</div>';
   let lastDay='';
-  list.innerHTML = picks.map(s=>{
-    let html='';
+  picks.forEach(s=>{
     if(s.date!==lastDay){ html+='<h3 style="margin:18px 0 4px;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em">'+DAYNAME[s.date]+'</h3>'; lastDay=s.date; }
     html += '<div class="srow'+(conflict.has(s.id)?' conflict':'')+'"><div class="time">'+esc(s.start)+'<br>–'+esc(s.end)+'</div>'
-      +'<button class="starbtn on" data-star="'+esc(s.id)+'" title="Remove">★</button>'
+      +flagBtns(s, f)
       +'<div class="body"><div class="title">'+esc(s.title)+'</div>'
-      +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+(conflict.has(s.id)?' <span class="cflag">⚠ overlaps another pick</span>':'')+'</div></div>'
+      +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+(conflict.has(s.id)?' <span class="cflag">⚠ overlaps another session you are attending</span>':'')+'</div></div>'
       +'<a class="dl" href="'+esc(detailsUrl(s))+'" target="_blank" rel="noopener">details ↗</a>'+absFor(s)+'</div>';
-    return html;
-  }).join('');
-  list.querySelectorAll('[data-star]').forEach(b=>{ b.onclick=()=>toggleStar(b.getAttribute('data-star')); });
+  });
+  list.innerHTML = html;
+  list.querySelectorAll('[data-flt]').forEach(b=>{ b.onclick=()=>{ picksFilter = b.getAttribute('data-flt'); renderPicks(); }; });
+  wireFlags(list);
   wireAbs(list);
 }
 function icsEsc(s){ return String(s==null?'':s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n'); }
 function dtLocal(date,time){ return date.replace(/-/g,'')+'T'+time.replace(/:/g,'')+'00'; }
 $('icsBtn').onclick=()=>{
-  const picks = getPicks().map(id=>byId[id]).filter(Boolean).sort((a,b)=> a.date<b.date?-1 : a.date>b.date?1 : mins(a.start)-mins(b.start));
-  if(!picks.length){ alert('Star some sessions first.'); return; }
+  const picks = getPicks().map(id=>byId[id]).filter(Boolean).sort(byTime);  // the calendar file holds what you are attending
+  if(!picks.length){ alert('Mark the sessions you are attending with ✓ first. The calendar file holds those.'); return; }
   const stamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';
   let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Muse//LPC 2026 Schedule//EN\r\nCALSCALE:GREGORIAN\r\n'
     +'BEGIN:VTIMEZONE\r\nTZID:Europe/Prague\r\n'
@@ -764,10 +802,13 @@ $('icsBtn').onclick=()=>{
   setTimeout(()=>URL.revokeObjectURL(a.href), 5000);
 };
 $('copyBtn').onclick=()=>{
-  const picks = getPicks().map(id=>byId[id]).filter(Boolean).sort((a,b)=> a.date<b.date?-1 : a.date>b.date?1 : mins(a.start)-mins(b.start));
-  if(!picks.length){ alert('Star some sessions first.'); return; }
-  const lines = picks.map(s=> DAYNAME[s.date]+' · '+s.start+'–'+s.end+' · '+(s.room==='TBD'?'TBA':s.room)+' · '+s.title+(s.track?' ('+s.track+')':''));
-  const txt = 'My LPC 2026 picks ('+picks.length+'):\n'+lines.join('\n');
+  const f = getFlags(), all = Object.keys(f).filter(id=>byId[id]).map(id=>byId[id]).sort(byTime);
+  if(!all.length){ alert('Mark some sessions first.'); return; }
+  const line = s=> DAYNAME[s.date]+' · '+s.start+'–'+s.end+' · '+(s.room==='TBD'?'TBA':s.room)+' · '+s.title+(s.track?' ('+s.track+')':'');
+  const going = all.filter(s=>f[s.id]===2), liked = all.filter(s=>f[s.id]===1);
+  const txt = 'My LPC 2026 picks'
+    +(going.length ? '\n\nAttending ('+going.length+'):\n'+going.map(line).join('\n') : '')
+    +(liked.length ? '\n\nInterested, not attending ('+liked.length+'):\n'+liked.map(line).join('\n') : '');
   const done = ()=>{ $('copyBtn').textContent='Copied ✓'; setTimeout(()=>{$('copyBtn').textContent='Copy picks as text';},2000); };
   if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt, done)); }
   else fallbackCopy(txt, done);
@@ -777,7 +818,7 @@ function fallbackCopy(txt, done){
   try{ document.execCommand('copy'); done(); }catch(e){ prompt('Copy your picks:', txt); }
   document.body.removeChild(ta);
 }
-$('clearBtn').onclick=()=>{ if(confirm('Remove all picks?')){ setPicks([]); $('pickCount').textContent='0'; renderNow(); renderSched(); renderPicks(); } };
+$('clearBtn').onclick=()=>{ if(confirm('Remove all picks, both attending and interested?')){ setFlags({}); renderNow(); renderSched(); renderPicks(); } };
 
 /* ---------- picks as a calendar ---------- */
 const CAL_PPM = 1.6;  // pixels per minute; the hour and half-hour lines in the stylesheet (96px, 48px) follow from it
@@ -793,9 +834,9 @@ $('viewPills').querySelectorAll('button').forEach(b=>{ b.onclick=()=>{
 function renderCal(){
   const box = $('picksCal'), was = box.querySelector('.cal'), keep = was ? [was.scrollLeft, was.scrollTop] : null;
   const t0 = CAL_RANGE[0], t1 = CAL_RANGE[1], H = (t1-t0)*CAL_PPM, now = pragueNow(), y = m=>Math.round((m-t0)*CAL_PPM);
-  const picks = getPicks().map(id=>byId[id]).filter(Boolean);
-  let html = '<p class="calhint">'+(picks.length ? 'Click an empty time to see what you could put there, or a pick to see its details.'
-      : 'No picks yet. Click any time to see what is on then, and star what you want.')+'</p>'
+  const f = getFlags(), picks = Object.keys(f).filter(id=>byId[id]).map(id=>byId[id]), conflict = clashes(f);
+  let html = '<p class="calhint">'+(picks.length ? 'Solid blocks are sessions you are attending, dashed ones you are only interested in. Click an empty time to see what you could put there, or a pick to see its details.'
+      : 'No picks yet. Click any time to see what is on then, and mark what you want.')+'</p>'
     +'<div class="cal"><div class="calgrid"><div class="calcorner"></div>'
     +DAYS.map(d=>'<div class="calname'+(d.d===now.date?' today':'')+'">'+d.label+'</div>').join('')
     +'<div class="calgutter" style="height:'+H+'px">';
@@ -818,7 +859,7 @@ function renderCal(){
     if(now.date===d.d && now.mins>=t0 && now.mins<=t1) html += '<div class="calnow" style="top:'+y(now.mins)+'px"></div>';
     laid.forEach(c=>{
       const s = c.s, a = mins(s.start), b = mins(s.end), done = s.date<now.date || (s.date===now.date && b<=now.mins);
-      html += '<div class="calev '+esc(s.type)+(c.n>1?' clash':'')+(done?' past':'')+(slot && slot.id===s.id?' sel':'')+'" data-ev="'+esc(s.id)+'" title="'+esc(s.title)+'"'
+      html += '<div class="calev '+esc(s.type)+(f[s.id]===2?'':' maybe')+(conflict.has(s.id)?' clash':'')+(done?' past':'')+(slot && slot.id===s.id?' sel':'')+'" data-ev="'+esc(s.id)+'" title="'+esc(s.title)+'"'
         +' style="top:'+y(a)+'px;height:'+Math.max(18,y(b)-y(a)-2)+'px;left:calc('+(c.col/c.n*100)+'% + 2px);width:calc('+(100/c.n)+'% - 4px)">'
         +'<b>'+esc(s.title)+'</b><span>'+esc(s.start)+'–'+esc(s.end)+' · '+esc(s.room==='TBD'?'Location TBA':s.room)+'</span></div>';
     });
@@ -842,19 +883,19 @@ function renderCal(){
 }
 // The sheet at the bottom: the details of the pick that was clicked, or every session that runs during the time that was clicked.
 function renderSlot(){
-  const sheet = $('slotSheet'), one = slot && slot.id ? byId[slot.id] : null;
+  const sheet = $('slotSheet'), one = slot && slot.id ? byId[slot.id] : null, f = getFlags();
   sheet.hidden = !slot || (slot.id && !one) || state.tab!=='picks' || picksView!=='cal';
   document.body.style.paddingBottom = '';
   if(sheet.hidden) return;
   const row = (s, extra)=>'<div class="srow"><div class="time">'+esc(s.start)+'<br>–'+esc(s.end)+'</div>'
-    +'<button class="starbtn'+(isStarred(s.id)?' on':'')+'" data-star="'+esc(s.id)+'" title="Pick">'+(isStarred(s.id)?'★':'☆')+'</button>'
+    +flagBtns(s, f)
     +'<div class="body"><div class="title">'+esc(s.title)+'</div>'
     +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+'</div></div>'
     +'<a class="dl" href="'+esc(detailsUrl(s))+'" target="_blank" rel="noopener">details ↗</a>'+extra+'</div>';
   const head = note=>'<div class="sheethead"><b>'+DAYNAME[slot.date]+' · '+hhmm(slot.start)+'–'+hhmm(slot.end)+'</b><span>'+note+'</span><button data-close title="Close">×</button></div>';
   let html;
   if(one){
-    html = head(isStarred(one.id) ? 'Your pick' : 'No longer one of your picks')
+    html = head(f[one.id]===2 ? 'You are attending' : f[one.id] ? 'Interested, not attending' : 'No longer one of your picks')
       +row(one, '<div class="abs"><div class="abstxt">'+(one.abstract ? fmtAbs(one.abstract) : 'No abstract has been published for this session.')+'</div></div>')
       +'<div class="pickbar"><button data-else>See what else is on at this time</button></div>';
   } else {
@@ -869,7 +910,7 @@ function renderSlot(){
   document.body.style.paddingBottom = sheet.offsetHeight+'px';  // room to scroll the calendar clear of the sheet
   sheet.querySelector('[data-close]').onclick=()=>{ slot = null; renderPicks(); };
   sheet.querySelectorAll('[data-else]').forEach(b=>{ b.onclick=()=>{ slot = {date:slot.date, start:slot.start, end:slot.end}; renderPicks(); }; });
-  sheet.querySelectorAll('[data-star]').forEach(b=>{ b.onclick=()=>toggleStar(b.getAttribute('data-star')); });
+  wireFlags(sheet);
   wireAbs(sheet);
 }
 document.addEventListener('keydown', e=>{ if(e.key==='Escape' && slot){ slot = null; renderPicks(); } });
@@ -877,24 +918,27 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape' && slot){ slot = n
 /* ---------- sharing picks: link + QR code ---------- */
 const SITE_URL = 'https://mclarkelauer.github.io/lpc-scheduler/';  // base for share links when the page is opened from a file
 let qrOpen = false;
-let incoming = null;  // picks from a share link, waiting for the choice between merging and replacing
+let incoming = null;  // flags from a share link, waiting for the choice between merging and replacing
 function siteBase(){ return /^https?:$/.test(location.protocol) ? location.origin+location.pathname : SITE_URL; }
+// The link carries the attended sessions as picks= and the interested-only ones as liked=.
 function shareLink(){
-  return siteBase()+'#picks='+getPicks().filter(id=>byId[id]).map(id=>encodeURIComponent(id)).join(',');
+  const f = getFlags(), ids = lv=>Object.keys(f).filter(id=>byId[id] && f[id]===lv).map(id=>encodeURIComponent(id)).join(',');
+  return siteBase()+'#picks='+ids(2)+(ids(1) ? '&liked='+ids(1) : '');
 }
+const flagged = ()=>{ const f = getFlags(); return Object.keys(f).filter(id=>byId[id]).length; };
 $('linkBtn').onclick=()=>{
-  if(!getPicks().length){ alert('Star some sessions first.'); return; }
+  if(!flagged()){ alert('Mark some sessions first.'); return; }
   const txt = shareLink();
   const done = ()=>{ $('linkBtn').textContent='Link copied ✓'; setTimeout(()=>{$('linkBtn').textContent='Copy share link';},2000); };
   if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt, done)); }
   else fallbackCopy(txt, done);
 };
 $('qrBtn').onclick=()=>{
-  if(!getPicks().length){ alert('Star some sessions first.'); return; }
+  if(!flagged()){ alert('Mark some sessions first.'); return; }
   qrOpen = !qrOpen; renderQr();
 };
 function renderQr(){
-  const panel = $('qrPanel'), n = getPicks().filter(id=>byId[id]).length;
+  const panel = $('qrPanel'), n = flagged();
   panel.hidden = !qrOpen || !n;
   $('qrBtn').textContent = panel.hidden ? 'Show QR code' : 'Hide QR code';
   if(panel.hidden) return;
@@ -906,20 +950,22 @@ function renderQr(){
   panel.querySelector('input').onclick = e=>e.target.select();
 }
 function readShareLink(){
-  const hit = /[#&]picks=([^&]*)/.exec(location.hash);
-  if(!hit) return;
+  if(!/[#&](picks|liked)=/.test(location.hash)) return;
+  const part = key=>{ const hit = new RegExp('[#&]'+key+'=([^&]*)').exec(location.hash); return hit ? hit[1].split(',').map(x=>{ try{ return decodeURIComponent(x); }catch(e){ return ''; } }).filter(Boolean) : []; };
+  const theirs = {}; part('liked').forEach(id=>{ theirs[id]=1; }); part('picks').forEach(id=>{ theirs[id]=2; });
   history.replaceState(null,'',location.pathname+location.search);  // so a reload does not import again
-  const all = [...new Set(hit[1].split(',').map(x=>{ try{ return decodeURIComponent(x); }catch(e){ return ''; } }).filter(Boolean))];
-  const ids = all.filter(id=>byId[id]), mine = getPicks(), fresh = ids.filter(id=>mine.indexOf(id)===-1);
+  const all = Object.keys(theirs), ids = all.filter(id=>byId[id]), mine = getFlags(), have = Object.keys(mine).length;
+  const fresh = ids.filter(id=>theirs[id]>(mine[id]||0));  // new here, or attending there and only interested here
+  const got = {}; ids.forEach(id=>{ got[id]=theirs[id]; });
   const gone = all.length-ids.length, skipped = gone ? ' ('+gone+' not in the current schedule '+(gone===1?'was':'were')+' skipped)' : '';
   const picks = k=>'<b>'+k+'</b> '+(k===1?'pick':'picks');
   let note;
   if(!ids.length) note = 'That link did not contain any sessions from this schedule.';
-  else if(!mine.length){ setPicks(ids); note = 'Loaded '+picks(ids.length)+' from the link'+skipped+'.'; }
+  else if(!have){ setFlags(got); note = 'Loaded '+picks(ids.length)+' from the link'+skipped+'.'; }
   else if(!fresh.length) note = 'You already have every pick from that link'+skipped+'.';
   else{
-    incoming = ids;
-    note = 'This link carries '+picks(ids.length)+skipped+', '+fresh.length+' of them new here. You already have '+picks(mine.length)+' on this device.<br>'
+    incoming = got;
+    note = 'This link carries '+picks(ids.length)+skipped+', '+fresh.length+' of them new or marked higher than here. You already have '+picks(have)+' on this device.<br>'
       +'<button data-imp="merge">Add them to mine</button><button data-imp="replace">Replace mine</button><button data-imp="ignore">Ignore the link</button>';
   }
   $('importNote').innerHTML = '<div class="warn">'+note+'</div>';
@@ -927,9 +973,9 @@ function readShareLink(){
   renderNow(); renderSched(); showTab('picks');
 }
 function finishImport(mode){
-  const mine = getPicks();
-  if(mode==='merge') setPicks(mine.concat(incoming.filter(id=>mine.indexOf(id)===-1)));
-  if(mode==='replace') setPicks(incoming);
+  const f = getFlags();
+  if(mode==='merge'){ Object.keys(incoming).forEach(id=>{ f[id] = Math.max(f[id]||0, incoming[id]); }); setFlags(f); }  // attending wins over interested
+  if(mode==='replace') setFlags(incoming);
   incoming = null; $('importNote').innerHTML='';
   renderNow(); renderSched(); renderPicks();
 }
@@ -937,18 +983,21 @@ function finishImport(mode){
 /* ---------- calendar subscription + sync between devices (served by the Worker in worker/) ---------- */
 const SYNC_URL = 'https://lpc-scheduler-picks.mdlauer.workers.dev';  // the deployed Worker; set to '' to hide the whole feature
 let syncBusy = false, syncTimer = 0, syncProblem = '', syncOpen = false, syncQr = false, syncUnlink = false;
-// What this browser knows about its sync account: {id, feed, q: {session id: true to add / false to remove}, at: last sync}
-function getSync(){ try{ return JSON.parse(localStorage.getItem('lpc2026sync')||'null'); }catch(e){ return null; } }
+// What this browser knows about its sync account: {id, feed, q: {session id: level to set, 0 removes}, raise: flags to merge in after linking, at: last sync}
+function getSync(){
+  let st; try{ st = JSON.parse(localStorage.getItem('lpc2026sync')||'null'); }catch(e){ return null; }
+  if(st) Object.keys(st.q||(st.q={})).forEach(i=>{ if(st.q[i]===true) st.q[i]=2; if(st.q[i]===false) st.q[i]=0; });  // queued before there were two levels
+  return st;
+}
 function putSync(st){ if(st) localStorage.setItem('lpc2026sync', JSON.stringify(st)); else localStorage.removeItem('lpc2026sync'); }
 function syncSoon(){ clearTimeout(syncTimer); syncTimer = setTimeout(syncNow, 700); }
-// Sends the queued changes (if any) and takes the server's list as the truth, with still-queued changes on top.
+// Sends the queued changes (if any) and takes the server's flags as the truth, with still-queued changes on top.
 function syncNow(){
   const st = getSync();
   if(!SYNC_URL || !st || syncBusy) return;
   syncBusy = true;
-  const sent = Object.assign({}, st.q), ids = Object.keys(sent);
-  const opts = ids.length ? {method:'POST', headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({add:ids.filter(i=>sent[i]), remove:ids.filter(i=>!sent[i])})} : {};
+  const sent = Object.assign({}, st.q), ids = Object.keys(sent), raise = st.raise;
+  const opts = ids.length || raise ? {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(raise ? {set:sent, raise:raise} : {set:sent})} : {};
   fetch(SYNC_URL+'/api/users/'+st.id+'/picks', opts).then(r=>{
     if(r.status===404) return null;
     if(!r.ok) throw new Error('HTTP '+r.status);
@@ -958,24 +1007,25 @@ function syncNow(){
     if(!cur || cur.id!==st.id) return;  // switched off or changed while the request was out
     if(!d){ putSync(null); syncProblem='gone'; renderSync(); return; }  // deleted from another device, or a dead link
     ids.forEach(i=>{ if(cur.q[i]===sent[i]) delete cur.q[i]; });  // anything changed meanwhile stays queued
-    const picks = d.picks.filter(i=>cur.q[i]!==false);
-    Object.keys(cur.q).forEach(i=>{ if(cur.q[i] && picks.indexOf(i)===-1) picks.push(i); });
+    if(raise) delete cur.raise;
+    const f = Object.assign({}, d.levels);
+    Object.keys(cur.q).forEach(i=>{ if(cur.q[i]) f[i] = cur.q[i]; else delete f[i]; });
     cur.feed = d.feed; cur.at = Date.now(); putSync(cur); syncProblem='';
-    const changed = picks.slice().sort().join()!==getPicks().slice().sort().join();
-    storePicks(picks);
+    const old = getFlags(), changed = Object.keys(Object.assign({}, old, f)).some(i=>(old[i]||0)!==(f[i]||0));
+    storeFlags(f);
     if(changed){ renderNow(); renderSched(); renderPicks(); } else renderSync();
     if(Object.keys(cur.q).length) syncSoon();
   }).catch(()=>{ syncProblem='offline'; renderSync(); }).then(()=>{ syncBusy = false; });
 }
+const knownFlags = ()=>{ const f = getFlags(), out = {}; Object.keys(f).forEach(id=>{ if(byId[id]) out[id] = f[id]; }); return out; };
 function syncOn(){
-  fetch(SYNC_URL+'/api/users', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({picks:getPicks().filter(id=>byId[id])})})
+  fetch(SYNC_URL+'/api/users', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({levels:knownFlags()})})
     .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(d=>{ putSync({id:d.id, feed:d.feed, q:{}, at:Date.now()}); syncProblem=''; syncOpen=true; renderSync(); })
     .catch(()=>{ syncProblem='offline'; renderSync(); });
 }
 function syncJoin(id){
-  const q = {}; getPicks().filter(i=>byId[i]).forEach(i=>{ q[i]=true; });  // this browser's picks join the shared ones
-  putSync({id:id, feed:'', q:q, at:0}); syncProblem=''; syncNow();
+  putSync({id:id, feed:'', q:{}, raise:knownFlags(), at:0}); syncProblem=''; syncNow();  // this browser's flags join the shared ones, never lowering one
 }
 function syncDelete(){
   const st = getSync();
@@ -993,7 +1043,7 @@ function renderSync(){
   const panel = $('syncPanel'), st = getSync();
   panel.hidden = !SYNC_URL;
   if(!SYNC_URL) return;
-  const waiting = st ? Object.keys(st.q).length : 0;
+  const waiting = st ? Object.keys(st.q).length+(st.raise ? Object.keys(st.raise).length : 0) : 0;
   const state = !st ? 'Off'
     : syncProblem ? 'Offline: '+(waiting ? waiting+(waiting===1?' change':' changes') : 'changes')+' will be sent when the connection is back'
     : 'On'+(st.at ? ' · last synced at '+new Date(st.at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : ' · syncing…');
@@ -1004,12 +1054,12 @@ function renderSync(){
   if(!st && syncProblem==='gone') html += '<p class="bad">This browser is no longer linked: the synced picks it pointed to do not exist any more. The picks in this browser are unchanged.</p>';
   if(!st && syncProblem==='offline') html += '<p class="bad">The sync service could not be reached. Try again in a moment.</p>';
   if(syncOpen && !st){
-    html += '<p>Get a private calendar link that your calendar app can subscribe to. It follows your picks as you star and unstar, and your picks stay the same in every browser you link.</p>'
+    html += '<p>Get a private calendar link that your calendar app can subscribe to. It holds the sessions you mark as attending and follows your changes, and all your picks stay the same in every browser you link.</p>'
       +'<p>Already syncing in another browser? Open its link for another browser here instead of turning this on, which would start a separate set of picks.</p>';
   }
   if(syncOpen && st){
     const feed = st.feed ? SYNC_URL+'/cal/'+st.feed+'.ics' : '', dev = siteBase()+'#sync='+st.id;
-    if(feed) html += '<p><b>Calendar link (read-only, safe to share).</b> Subscribe to it in your calendar app (in Google Calendar: Other calendars, then From URL). Anyone you give it to can follow your picks in their calendar but cannot change them. New picks show up when the app next refreshes; Google Calendar may only do that once or twice a day.</p>'
+    if(feed) html += '<p><b>Calendar link (read-only, safe to share).</b> Subscribe to it in your calendar app (in Google Calendar: Other calendars, then From URL). It holds the sessions you are attending. Anyone you give it to can follow them in their calendar but cannot change your picks. Changes show up when the app next refreshes; Google Calendar may only do that once or twice a day.</p>'
       +'<div class="row"><input readonly value="'+esc(feed)+'"><button data-sync="copyfeed">Copy</button><a class="btn" href="'+esc(feed.replace(/^https?:/,'webcal:'))+'">Open in calendar app</a></div>';
     html += '<div class="row"><button data-sync="qr">'+(syncQr?'Hide the link for another browser':'Link another browser')+'</button>'
       +'<button data-sync="unlink">Unlink this browser</button><button data-sync="delete">Delete my synced picks</button></div>';
@@ -1032,7 +1082,7 @@ function renderSync(){
     if(act==='unlink-cancel'){ syncUnlink=false; renderSync(); }
     if(act==='unlink-keep' || act==='unlink-clear'){  // only this browser forgets the id; nothing is removed on the server
       putSync(null); syncProblem=''; syncQr=false; syncUnlink=false;
-      if(act==='unlink-clear'){ storePicks([]); renderNow(); renderSched(); renderPicks(); } else renderSync();
+      if(act==='unlink-clear'){ storeFlags({}); renderNow(); renderSched(); renderPicks(); } else renderSync();
     }
     if(act==='delete') syncDelete();
     if(act==='qr'){ syncQr=!syncQr; renderSync(); }
@@ -1175,7 +1225,7 @@ window.addEventListener('online', syncNow);
 (function init(){
   const n = pragueNow();
   state.day = DAYS.some(d=>d.d===n.date) ? n.date : '2026-10-05';
-  $('pickCount').textContent = getPicks().length;
+  $('pickCount').textContent = flagged();
   initFilters(); renderNow();
   $('helpSync').hidden = !SYNC_URL;
   readSyncLink(); readShareLink(); syncNow();

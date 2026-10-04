@@ -94,6 +94,57 @@ test('two devices sharing one id see each other\'s stars and unstars', async () 
   assert.deepEqual((await call('POST', url, {})).body.picks.sort(), ['2436', '2453']);
 });
 
+test('a pick is either interested (1) or attending (2), and attending is what "picks" lists', async () => {
+  const { env, call } = setup();
+  const r = await call('POST', '/api/users', { levels: { '2439': 2, '2453': 1 } });
+  assert.equal(r.status, 201);
+  assert.deepEqual(r.body.levels, { '2439': 2, '2453': 1 });
+  assert.deepEqual(r.body.picks, ['2439']);
+  const url = `/api/users/${r.body.id}/picks`;
+  let now = await call('POST', url, { set: { '2453': 2, '2439': 1, '2436': 1 } });       // swap which one is attended, add an interest
+  assert.deepEqual(now.body.levels, { '2439': 1, '2453': 2, '2436': 1 });
+  assert.deepEqual(now.body.picks, ['2453']);
+  now = await call('POST', url, { set: { '2439': 0, 'never-there': 0 } });                // 0 removes; removing nothing is fine
+  assert.deepEqual(now.body.levels, { '2453': 2, '2436': 1 });
+  assert.equal(env.DB.count('picks'), 2);
+  assert.deepEqual((await call('GET', url)).body.levels, { '2453': 2, '2436': 1 });
+  for (const body of [{ set: { a: 3 } }, { set: { a: '2' } }, { set: ['a'] }, { raise: { a: 0 } }, { set: { 'bad id': 1 } }]) {
+    assert.equal((await call('POST', url, body)).status, 400);
+  }
+  assert.equal((await call('POST', '/api/users', { levels: { a: 0 } })).status, 400);
+});
+
+test('raise adds what a newly linked browser has without lowering anything', async () => {
+  const { call } = setup();
+  const { body: user } = await call('POST', '/api/users', { levels: { '2439': 2, '2453': 1 } });
+  const url = `/api/users/${user.id}/picks`;
+  const r = await call('POST', url, { raise: { '2439': 1, '2453': 2, '2436': 1, '2445': 2 } });
+  assert.deepEqual(r.body.levels, { '2439': 2, '2453': 2, '2436': 1, '2445': 2 });
+  const both = await call('POST', url, { raise: { '2436': 2 }, set: { '2436': 1 } });      // set is applied after raise
+  assert.equal(both.body.levels['2436'], 1);
+});
+
+test('the calendar holds the attended sessions only', async () => {
+  const { call } = setup();
+  const { body: user } = await call('POST', '/api/users', { levels: { '2439': 2, '2453': 1, 'evening-20261007': 2 } });
+  const uids = async () => (await call('GET', `/cal/${user.feed}.ics`)).body.replace(/\r\n /g, '').split('\r\n').filter(l => l.startsWith('UID:'));
+  assert.deepEqual(await uids(), ['UID:lpc2026-2439@lpc.events', 'UID:lpc2026-evening-20261007@lpc.events']);
+  await call('POST', `/api/users/${user.id}/picks`, { set: { '2453': 2, '2439': 1 } });
+  assert.deepEqual(await uids(), ['UID:lpc2026-2453@lpc.events', 'UID:lpc2026-evening-20261007@lpc.events']);
+});
+
+test('pages from before levels existed keep working: their picks mean attending', async () => {
+  const { call } = setup();
+  const { body: user } = await call('POST', '/api/users', { picks: ['2439'], levels: { '2453': 1 } });
+  assert.deepEqual(user.levels, { '2439': 2, '2453': 1 });
+  const url = `/api/users/${user.id}/picks`;
+  const added = await call('POST', url, { add: ['2453', '2436'] });                        // starring there means attending
+  assert.deepEqual(added.body.levels, { '2439': 2, '2453': 2, '2436': 2 });
+  const removed = await call('POST', url, { remove: ['2439'] });
+  assert.deepEqual(removed.body.picks.sort(), ['2436', '2453']);
+  assert.equal(removed.body.levels['2439'], undefined);
+});
+
 test('the feed key only reads the calendar; it cannot edit', async () => {
   const { call } = setup();
   const { body: user } = await call('POST', '/api/users', { picks: ['2439'] });

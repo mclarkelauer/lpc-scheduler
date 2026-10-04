@@ -6,10 +6,13 @@ CREATE TABLE IF NOT EXISTS users (
   updated_at INTEGER NOT NULL
 );
 
--- The sessions each user has starred.
+-- The sessions each user has flagged.
 CREATE TABLE IF NOT EXISTS picks (
   user_id    TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   session_id TEXT NOT NULL,         -- a session id from the schedule page
   added_at   INTEGER NOT NULL,
+  level      INTEGER NOT NULL DEFAULT 2,  -- 1 = interested, 2 = attending (which implies interested)
   PRIMARY KEY (user_id, session_id)
 );
+-- A database created before levels existed needs, once:
+--   ALTER TABLE picks ADD COLUMN level INTEGER NOT NULL DEFAULT 2;
