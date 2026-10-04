@@ -85,13 +85,17 @@
   .qrpanel input{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12px;margin-top:8px;color:var(--ink);background:#fff}
   .syncpanel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:13px}
   .syncpanel[hidden]{display:none}
-  .syncpanel h3{margin:0 0 4px;font-size:14px}
+  .syncpanel .head{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center}
+  .syncpanel .state{font-size:12px;color:var(--muted)}
+  .syncpanel .state.on{color:#15803d;font-weight:600}
+  .syncpanel .state.bad{color:#b45309;font-weight:600}
   .syncpanel p{margin:6px 0 0;color:var(--muted);max-width:85ch}
   .syncpanel p.bad{color:#b45309;font-weight:600}
   .syncpanel .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 2px}
   .syncpanel input{flex:1;min-width:200px;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12px;color:var(--ink);background:#fff}
   .syncpanel button,.syncpanel a.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--ink);text-decoration:none}
   .syncpanel button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .syncpanel button.tog{border:0;background:none;padding:0;font-size:14px;font-weight:600}
   .syncpanel svg{max-width:100%;height:auto}
   @media (max-width:560px){ .srow .time{flex-basis:86px} }
 </style>
@@ -113,8 +117,8 @@
       <li>Picks are saved in this browser only. <b>Copy share link</b> or <b>Show QR code</b> in My picks copies them once to another device, or to someone else.</li>
       <li id="helpSync" hidden><b>Calendar sync</b> puts your picks in your calendar app and keeps them the same in every browser you use:
         <ol>
-          <li>In <b>My picks</b>, under "Calendar subscription and sync", click <b>Turn on</b>.</li>
-          <li>Subscribe your calendar app to the <b>Calendar link</b>. In Google Calendar, copy it and add it under Other calendars, From URL. In most other apps, <b>Open in calendar app</b> does it. This link is read-only, so it is also the one to give to someone who wants to follow your picks.</li>
+          <li>In <b>My picks</b>, click <b>Turn on</b> next to "Calendar subscription and sync". The line then shows whether sync is on; click it to open or close the rest.</li>
+          <li>With it open, subscribe your calendar app to the <b>Calendar link</b>. In Google Calendar, copy it and add it under Other calendars, From URL. In most other apps, <b>Open in calendar app</b> does it. This link is read-only, so it is also the one to give to someone who wants to follow your picks.</li>
           <li>For your phone or another browser, click <b>Link another browser</b> and scan the QR code or open the link there. Keep that link to yourself: it lets a browser change your picks.</li>
           <li>Star and unstar as usual. Linked browsers catch up within a few minutes, or at once when you open the page. Your calendar shows changes when the app next refreshes, which Google Calendar may only do once or twice a day.</li>
           <li><b>Unlink this browser</b> stops syncing in one browser. <b>Delete my synced picks</b> removes them from the server and ends the calendar link.</li>
@@ -803,7 +807,7 @@ function finishImport(mode){
 
 /* ---------- calendar subscription + sync between devices (served by the Worker in worker/) ---------- */
 const SYNC_URL = 'https://lpc-scheduler-picks.mdlauer.workers.dev';  // the deployed Worker; set to '' to hide the whole feature
-let syncBusy = false, syncTimer = 0, syncProblem = '', syncQr = false, syncUnlink = false;
+let syncBusy = false, syncTimer = 0, syncProblem = '', syncOpen = false, syncQr = false, syncUnlink = false;
 // What this browser knows about its sync account: {id, feed, q: {session id: true to add / false to remove}, at: last sync}
 function getSync(){ try{ return JSON.parse(localStorage.getItem('lpc2026sync')||'null'); }catch(e){ return null; } }
 function putSync(st){ if(st) localStorage.setItem('lpc2026sync', JSON.stringify(st)); else localStorage.removeItem('lpc2026sync'); }
@@ -837,7 +841,7 @@ function syncNow(){
 function syncOn(){
   fetch(SYNC_URL+'/api/users', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({picks:getPicks().filter(id=>byId[id])})})
     .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-    .then(d=>{ putSync({id:d.id, feed:d.feed, q:{}, at:Date.now()}); syncProblem=''; renderSync(); })
+    .then(d=>{ putSync({id:d.id, feed:d.feed, q:{}, at:Date.now()}); syncProblem=''; syncOpen=true; renderSync(); })
     .catch(()=>{ syncProblem='offline'; renderSync(); });
 }
 function syncJoin(id){
@@ -860,17 +864,22 @@ function renderSync(){
   const panel = $('syncPanel'), st = getSync();
   panel.hidden = !SYNC_URL;
   if(!SYNC_URL) return;
-  let html = '<h3>Calendar subscription and sync</h3>';
-  if(!st){
+  const waiting = st ? Object.keys(st.q).length : 0;
+  const state = !st ? 'Off'
+    : syncProblem ? 'Offline: '+(waiting ? waiting+(waiting===1?' change':' changes') : 'changes')+' will be sent when the connection is back'
+    : 'On'+(st.at ? ' · last synced at '+new Date(st.at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : ' · syncing…');
+  // The header is always there: what the state is, and Turn on while it is off. The rest shows when expanded.
+  let html = '<div class="head"><button class="tog" data-sync="toggle" aria-expanded="'+syncOpen+'">'+(syncOpen?'▾':'▸')+' Calendar subscription and sync</button>'
+    +'<span class="state'+(st ? (syncProblem?' bad':' on') : '')+'">'+state+'</span>'
+    +(st ? '' : '<button class="primary" data-sync="on">Turn on</button>')+'</div>';
+  if(!st && syncProblem==='gone') html += '<p class="bad">This browser is no longer linked: the synced picks it pointed to do not exist any more. The picks in this browser are unchanged.</p>';
+  if(!st && syncProblem==='offline') html += '<p class="bad">The sync service could not be reached. Try again in a moment.</p>';
+  if(syncOpen && !st){
     html += '<p>Get a private calendar link that your calendar app can subscribe to. It follows your picks as you star and unstar, and your picks stay the same in every browser you link.</p>'
-      +'<p>Already syncing in another browser? Open its link for another browser here instead of turning this on, which would start a separate set of picks.</p>'
-      +(syncProblem==='gone' ? '<p class="bad">This browser is no longer linked: the synced picks it pointed to do not exist any more. The picks in this browser are unchanged.</p>' : '')
-      +(syncProblem==='offline' ? '<p class="bad">The sync service could not be reached. Try again in a moment.</p>' : '')
-      +'<div class="row"><button class="primary" data-sync="on">Turn on</button></div>';
-  } else {
-    const feed = st.feed ? SYNC_URL+'/cal/'+st.feed+'.ics' : '', dev = siteBase()+'#sync='+st.id, waiting = Object.keys(st.q).length;
-    html += syncProblem ? '<p class="bad">Offline: '+(waiting ? waiting+(waiting===1?' change':' changes') : 'changes')+' will be sent when the connection is back.</p>'
-      : '<p>On. '+(st.at ? 'Last synced at '+new Date(st.at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})+'.' : 'Syncing…')+'</p>';
+      +'<p>Already syncing in another browser? Open its link for another browser here instead of turning this on, which would start a separate set of picks.</p>';
+  }
+  if(syncOpen && st){
+    const feed = st.feed ? SYNC_URL+'/cal/'+st.feed+'.ics' : '', dev = siteBase()+'#sync='+st.id;
     if(feed) html += '<p><b>Calendar link (read-only, safe to share).</b> Subscribe to it in your calendar app (in Google Calendar: Other calendars, then From URL). Anyone you give it to can follow your picks in their calendar but cannot change them. New picks show up when the app next refreshes; Google Calendar may only do that once or twice a day.</p>'
       +'<div class="row"><input readonly value="'+esc(feed)+'"><button data-sync="copyfeed">Copy</button><a class="btn" href="'+esc(feed.replace(/^https?:/,'webcal:'))+'">Open in calendar app</a></div>';
     html += '<div class="row"><button data-sync="qr">'+(syncQr?'Hide the link for another browser':'Link another browser')+'</button>'
@@ -888,6 +897,7 @@ function renderSync(){
   panel.querySelectorAll('input').forEach(i=>{ i.onclick=()=>i.select(); });
   panel.querySelectorAll('[data-sync]').forEach(b=>{ b.onclick=()=>{
     const act = b.getAttribute('data-sync'), cur = getSync();
+    if(act==='toggle'){ syncOpen=!syncOpen; renderSync(); }
     if(act==='on') syncOn();
     if(act==='unlink'){ syncUnlink=true; renderSync(); }
     if(act==='unlink-cancel'){ syncUnlink=false; renderSync(); }
