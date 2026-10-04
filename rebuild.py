@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Refresh the schedule snapshot embedded in index.html from lpc.events.
 
-    ./rebuild.py             fetch the current schedule and rewrite index.html
+    ./rebuild.py             fetch the current schedule; rewrite index.html if it changed
     ./rebuild.py --dry-run   report what would change without writing anything
+    ./rebuild.py --force     rewrite even if nothing changed (refreshes the snapshot time)
+
+.github/workflows/refresh.yml runs this on a schedule and commits the result.
 
 Three parts of the page are regenerated: the SESSIONS array, the BREAKS array and
 the footer note. The data comes from the two public Indico exports of the event
@@ -17,10 +20,12 @@ picks saved in visitors' browsers refer to those ids.
 import argparse
 import collections
 import datetime
+import http.client
 import json
 import os
 import re
 import sys
+import time
 import urllib.request
 from zoneinfo import ZoneInfo
 
@@ -41,10 +46,17 @@ hm = lambda d: d['time'][:5]
 mins = lambda t: int(t[:2]) * 60 + int(t[3:5])
 
 
-def fetch(url):
+def fetch(url, tries=3):
     req = urllib.request.Request(url, headers={'User-Agent': 'lpc-scheduler rebuild.py'})
-    with urllib.request.urlopen(req, timeout=90) as r:
-        return json.load(r)
+    for attempt in range(1, tries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=90) as r:
+                return json.load(r)
+        except (OSError, ValueError, http.client.HTTPException) as e:   # network error or a cut-off reply
+            if attempt == tries:
+                raise
+            print('  %s: %s; retrying' % (type(e).__name__, e))
+            time.sleep(10 * attempt)
 
 
 def clean_abstract(t):
@@ -241,7 +253,8 @@ def footer_text(sessions, taken):
     stamp = '%s %d %d, %s' % (taken.strftime('%b'), taken.day, taken.year, taken.strftime('%H:%M'))
     return ('  Data: full scheduled program from lpc.events (Indico export), snapshot taken %s Prague time — %d sessions across\n'
             '  %d tracks and %d rooms, with abstracts embedded for %d of them (the search box looks through abstracts too).\n'
-            '  Times are Europe/Prague. Breaks follow the lpc.events timetable.\n'
+            '  An automated job re-checks lpc.events about every 15 minutes from Oct 3 to Oct 8 and replaces the snapshot when the\n'
+            '  schedule changes. Times are Europe/Prague. Breaks follow the lpc.events timetable.\n'
             % (stamp, len(sessions), len(tracks), len(rooms), sum(1 for s in sessions if s['abstract'])))
 
 
@@ -268,6 +281,8 @@ def report(old, new):
             lines.append('  track     %s -> %s  %s' % (o['track'], s['track'], what))
         if o.get('abstract', '') != s['abstract']:
             lines.append('  abstract  %s' % what)
+        if (o['url'], o['type']) != (s['url'], s['type']):
+            lines.append('  link/type %s' % what)
     ids = {s['id'] for s in new}
     for o in old:
         if o['id'] not in ids:
@@ -280,6 +295,7 @@ def main():
     ap.add_argument('page', nargs='?', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'index.html'),
                     help='page to update (default: index.html next to this script)')
     ap.add_argument('--dry-run', action='store_true', help='report what would change, write nothing')
+    ap.add_argument('--force', action='store_true', help='rewrite the page even if the schedule has not changed')
     args = ap.parse_args()
 
     src = open(args.page, encoding='utf-8').read()
@@ -319,6 +335,9 @@ def main():
     assert n == 1, 'footer note not found'
     if args.dry_run:
         print('Dry run: %s not written.' % args.page)
+        return
+    if not changes and not args.force:
+        print('%s left as it is (--force rewrites it with the new snapshot time).' % args.page)
         return
     tmp = args.page + '.tmp'
     with open(tmp, 'w', encoding='utf-8') as f:

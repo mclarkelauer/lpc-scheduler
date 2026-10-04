@@ -1,0 +1,51 @@
+name: Refresh schedule snapshot
+
+on:
+  schedule:
+    # Every 15 minutes from Oct 3 to Oct 8 (UTC), i.e. around the conference.
+    # The footer text in rebuild.py mentions this schedule; keep the two in step.
+    - cron: '7,22,37,52 * 3-8 10 *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Rewrite the snapshot even if the schedule has not changed
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-snapshot
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Rebuild from lpc.events
+        env:
+          FORCE: ${{ inputs.force }}
+        run: |
+          args=()
+          if [ "$FORCE" = "true" ]; then args+=(--force); fi
+          python3 rebuild.py "${args[@]}" | tee "$RUNNER_TEMP/report.txt"
+
+      - name: Commit and push if the snapshot changed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Snapshot unchanged, nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # The commit body lists what changed in the schedule.
+          git commit -q -m "Refresh schedule snapshot" \
+            -m "$(grep -v -e '^Fetching ' -e '^Wrote ' "$RUNNER_TEMP/report.txt")" -- index.html
+          git push
