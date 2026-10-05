@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2439@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T103000
 SUMMARY:Rust-BPF updates
@@ -41,7 +41,7 @@ URL:https://lpc.events/event/20/contributions/2439/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2438@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T103000
 DTEND;TZID=Europe/Prague:20261005T110000
 SUMMARY:Support large-size arguments and Rust based exception handling
@@ -68,7 +68,7 @@ URL:https://lpc.events/event/20/contributions/2438/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2408@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T110000
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:Extending the BPF Type Format to support more languages
@@ -85,7 +85,7 @@ URL:https://lpc.events/event/20/contributions/2408/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2436@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T123000
 SUMMARY:Slaying the BPF Verifier: Safe & Static Kernel Extensions Using Rus
@@ -120,7 +120,7 @@ URL:https://lpc.events/event/20/contributions/2436/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2432@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T123000
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:blitmus: Litmus-testing the eBPF memory model on real hardware
@@ -160,7 +160,7 @@ URL:https://lpc.events/event/20/contributions/2432/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2431@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T130000
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Adding KASAN support for JIT-compiled BPF Programs
@@ -188,7 +188,7 @@ URL:https://lpc.events/event/20/contributions/2431/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2442@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T153000
 SUMMARY:BPF Kernel Verifier meets GCC: A saga of arranged marriage
@@ -202,7 +202,7 @@ URL:https://lpc.events/event/20/contributions/2442/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2447@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T153000
 DTEND;TZID=Europe/Prague:20261005T160000
 SUMMARY:Evolution of Value Tracking in the BPF Verifier
@@ -221,7 +221,7 @@ URL:https://lpc.events/event/20/contributions/2447/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2440@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T160000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Proof-Carrying Verification for eBPF
@@ -312,49 +312,47 @@ URL:https://lpc.events/event/20/contributions/2440/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2445@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T173000
 SUMMARY:Safely Optimizing eBPF for Hardware and Workloads
 LOCATION:South Hall 1 A\, Prague Congress Centre
 DESCRIPTION:eBPF Track · YUSHENG ZHENG\, Hao Sun · https://lpc.events/eve
  nt/20/contributions/2445/\n\neBPF users pay for verified safety with perfo
- rmance. Across 27 microbenchmarks extracted from production programs\, cod
- e that reaches native speed when compiled directly is up to 2x slower thro
- ugh the eBPF pipeline. The gap is structural and cannot be closed by LLVM 
- optimization passes or source code rewrites: every deployment runs on spec
- ific hardware under a specific workload\, yet the pipeline is a single-pas
- s JIT deliberately kept simple to keep a minimal trusted computing base (T
- CB)\, without many optimizations. For example\, a 64-bit rotate costs 15 m
- achine instructions in the eBPF JIT instead of one ROL. Hardware features 
- and registers\, and workload facts such as stable input patterns\, map con
- tents\, and biased branches remain under-explored. Improving the JIT in pl
- ace needs upstream acceptance\, enlarges the TCB that years of formal-meth
- ods work have hardened\, and grows per-architecture kernel code.\n\nThe ta
- lk covers two pieces that try to approach this problem with minimal additi
- ons to the kernel TCB. BpfReJIT is a userspace library built on LLVM: an i
- n-process shim intercepts an unmodified application's load and attach call
- s\, rewrites the bytecode based on configs\, workloads\, and the kernel ve
- rsion\, and resubmits every candidate through the original verifier and JI
- T. It can perform runtime speculative optimization similar to V8 or the JV
- M\, but separates correctness (ensured in userspace) from safety (ensured 
- in the kernel). Kops is the part that needs a kernel patch and discussion.
-  A small one-time patch adds an interface through which kernel modules can
-  register new hardware-specific operations without further core changes. E
- ach operation carries a proof sequence of vanilla eBPF instructions that t
- he verifier checks on every load\, plus a native emit that the JIT compile
- s. We can further leverage Lean 4 proofs to establish that the two compute
-  the same result\, so the emit is the only per-operation addition to the T
- CB. Seven hardware-idiom operations yield speedups of up to 24% on x86-64 
- and 22% on ARM64\, and add up to 12% datapath throughput on Cilium and Kat
- ran. We would like feedback on the interface design\, on where module-supp
- lied emits sit in the kernel's trust story\, and on when to apply an opera
- tion at all\, since naively applying every matched site can regress.
+ rmance. Across 27 microbenchmarks\, we find that eBPF code runs 1.7–2.1x
+  slower than the same code compiled natively. Most of the time is lost in 
+ the JIT\, which translates one instruction at a time and leaves many hardw
+ are features unused. The JIT also does not adapt to the workload\, such as
+  stable map entries or branches. This is by design: the eBPF instruction s
+ et is designed for verification\, not execution\, and the kernel must trus
+ t the JIT and keeps it simple to keep the trusted computing base (TCB) sma
+ ll\, so optimizing it is harder than optimizing a userspace JIT. We ask: h
+ ow can we get the speed back without growing the TCB much?\n\nWe start wit
+ h the hardware. We propose verified inline kfuncs (kinsn)\, which are kfun
+ cs that BPF programs use like instructions\, and can be verified and inlin
+ ed by the JIT. Each carries a short eBPF body that the verifier checks at 
+ every call\, while the JIT inlines native code in its place. We can also f
+ ormally verify the eBPF and the native code is same. Seven such operations
+  speed up microbenchmarks by up to 24% and Cilium and Katran by up to 12%.
+ \n\nkinsn fixes one operation at a time\, but registers\, branches and cal
+ ls still slow down the whole program. What if the kernel just accepted nat
+ ive code? Then we propose kprog: it runs the whole program as native code\
+ , and the verifier checks an eBPF simulator of the native code\, instead o
+ f JIT-compiling the eBPF into native code. You can then use any language o
+ r any compiler to compile your kernel extensions. A simulator is far easie
+ r and simpler to prove than an optimizing JIT\, and applications run up to
+  1.83x faster.\n\nMany workload patterns appear only at run time. To use t
+ hem\, we also propose Speculative ReJIT\, which rewrites an unmodified app
+ lication's bytecode in userspace and resubmits it to the existing verifier
+ \, so correctness stays in userspace and safety stays in the kernel.\n\nWe
+  would like feedback on the kinsn interface\, on when an operation should 
+ be applied at all\, and on whether kprog and Speculative ReJIT are worth p
+ ursuing.
 URL:https://lpc.events/event/20/contributions/2445/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2407@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T173000
 DTEND;TZID=Europe/Prague:20261005T180000
 SUMMARY:BPF\, sysctls and programmable kernel decision points
@@ -379,7 +377,7 @@ URL:https://lpc.events/event/20/contributions/2407/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2444@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261005T180000
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:eBPF Security: The Uneven Landscape
@@ -399,7 +397,7 @@ URL:https://lpc.events/event/20/contributions/2444/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2427@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T103000
 SUMMARY:eBPF Research: What's Going On In Academia?
@@ -420,7 +418,7 @@ URL:https://lpc.events/event/20/contributions/2427/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2434@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T103000
 DTEND;TZID=Europe/Prague:20261006T110000
 SUMMARY:bpf_fault: Custom Page Fault Handling with eBPF
@@ -452,7 +450,7 @@ URL:https://lpc.events/event/20/contributions/2434/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2429@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T110000
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Programming Across the VM Boundary with eBPF: Lessons from Revisiti
@@ -497,7 +495,7 @@ URL:https://lpc.events/event/20/contributions/2429/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2437@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T123000
 SUMMARY:shirudo: BPF live-patching infra for the agentic era
@@ -522,7 +520,7 @@ URL:https://lpc.events/event/20/contributions/2437/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2426@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T123000
 DTEND;TZID=Europe/Prague:20261006T130000
 SUMMARY:One Layer of the Onion: A Daemonless eBPF LSM for Confidential VMs 
@@ -584,7 +582,7 @@ URL:https://lpc.events/event/20/contributions/2426/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2435@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T130000
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:Scaling BPF LSM hooks and error injection across the kernel
@@ -611,7 +609,7 @@ URL:https://lpc.events/event/20/contributions/2435/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2428@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T153000
 SUMMARY:Application-Layer Parsing in eBPF
@@ -636,7 +634,7 @@ URL:https://lpc.events/event/20/contributions/2428/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2433@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T153000
 DTEND;TZID=Europe/Prague:20261006T160000
 SUMMARY:Inline DDoS protection for cloud-native game servers at PlayStation
@@ -668,7 +666,7 @@ URL:https://lpc.events/event/20/contributions/2433/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2430@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T160000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:BPF ksock: bringing network sockets to BPF
@@ -694,7 +692,7 @@ URL:https://lpc.events/event/20/contributions/2430/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2441@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T173000
 SUMMARY:BPF-RBACd: Delegating BPF permissions with high granularity
@@ -720,7 +718,7 @@ URL:https://lpc.events/event/20/contributions/2441/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2443@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T173000
 DTEND;TZID=Europe/Prague:20261006T180000
 SUMMARY:eBPF on Wheels - Automotive and Industrial Use Cases
@@ -746,7 +744,7 @@ URL:https://lpc.events/event/20/contributions/2443/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2446@lpc.events
-DTSTAMP:20261005T093727Z
+DTSTAMP:20261005T102220Z
 DTSTART;TZID=Europe/Prague:20261006T180000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Pluggable Runtime Verification (RV) monitors with BPF
