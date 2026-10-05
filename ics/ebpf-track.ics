@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2439@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T103000
 SUMMARY:Rust-BPF updates
@@ -41,7 +41,7 @@ URL:https://lpc.events/event/20/contributions/2439/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2438@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T103000
 DTEND;TZID=Europe/Prague:20261005T110000
 SUMMARY:Support large-size arguments and Rust based exception handling
@@ -68,7 +68,7 @@ URL:https://lpc.events/event/20/contributions/2438/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2408@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T110000
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:Extending the BPF Type Format to support more languages
@@ -85,7 +85,7 @@ URL:https://lpc.events/event/20/contributions/2408/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2436@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T123000
 SUMMARY:Slaying the BPF Verifier: Safe & Static Kernel Extensions Using Rus
@@ -120,7 +120,7 @@ URL:https://lpc.events/event/20/contributions/2436/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2432@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T123000
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:blitmus: Litmus-testing the eBPF memory model on real hardware
@@ -160,7 +160,7 @@ URL:https://lpc.events/event/20/contributions/2432/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2431@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T130000
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Adding KASAN support for JIT-compiled BPF Programs
@@ -188,7 +188,7 @@ URL:https://lpc.events/event/20/contributions/2431/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2442@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T153000
 SUMMARY:BPF Kernel Verifier meets GCC: A saga of arranged marriage
@@ -202,7 +202,7 @@ URL:https://lpc.events/event/20/contributions/2442/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2447@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T153000
 DTEND;TZID=Europe/Prague:20261005T160000
 SUMMARY:Evolution of Value Tracking in the BPF Verifier
@@ -221,7 +221,7 @@ URL:https://lpc.events/event/20/contributions/2447/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2440@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T160000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Proof-Carrying Verification for eBPF
@@ -312,7 +312,7 @@ URL:https://lpc.events/event/20/contributions/2440/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2445@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T173000
 SUMMARY:Safely Optimizing eBPF for Hardware and Workloads
@@ -352,7 +352,7 @@ URL:https://lpc.events/event/20/contributions/2445/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2407@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T173000
 DTEND;TZID=Europe/Prague:20261005T180000
 SUMMARY:BPF\, sysctls and programmable kernel decision points
@@ -377,7 +377,7 @@ URL:https://lpc.events/event/20/contributions/2407/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2444@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261005T180000
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:eBPF Security: The Uneven Landscape
@@ -397,7 +397,7 @@ URL:https://lpc.events/event/20/contributions/2444/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2427@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T103000
 SUMMARY:eBPF Research: What's Going On In Academia?
@@ -418,7 +418,7 @@ URL:https://lpc.events/event/20/contributions/2427/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2434@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T103000
 DTEND;TZID=Europe/Prague:20261006T110000
 SUMMARY:bpf_fault: Custom Page Fault Handling with eBPF
@@ -450,7 +450,7 @@ URL:https://lpc.events/event/20/contributions/2434/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2429@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T110000
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Programming Across the VM Boundary with eBPF: Lessons from Revisiti
@@ -495,7 +495,7 @@ URL:https://lpc.events/event/20/contributions/2429/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2437@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T123000
 SUMMARY:shirudo: BPF live-patching infra for the agentic era
@@ -520,7 +520,7 @@ URL:https://lpc.events/event/20/contributions/2437/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2426@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T123000
 DTEND;TZID=Europe/Prague:20261006T130000
 SUMMARY:One Layer of the Onion: A Daemonless eBPF LSM for Confidential VMs 
@@ -582,7 +582,7 @@ URL:https://lpc.events/event/20/contributions/2426/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2435@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T130000
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:Scaling BPF LSM hooks and error injection across the kernel
@@ -609,7 +609,7 @@ URL:https://lpc.events/event/20/contributions/2435/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2428@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T153000
 SUMMARY:Application-Layer Parsing in eBPF
@@ -634,7 +634,7 @@ URL:https://lpc.events/event/20/contributions/2428/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2433@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T153000
 DTEND;TZID=Europe/Prague:20261006T160000
 SUMMARY:Inline DDoS protection for cloud-native game servers at PlayStation
@@ -666,7 +666,7 @@ URL:https://lpc.events/event/20/contributions/2433/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2430@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T160000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:BPF ksock: bringing network sockets to BPF
@@ -692,7 +692,7 @@ URL:https://lpc.events/event/20/contributions/2430/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2441@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T173000
 SUMMARY:BPF-RBACd: Delegating BPF permissions with high granularity
@@ -718,7 +718,7 @@ URL:https://lpc.events/event/20/contributions/2441/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2443@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T173000
 DTEND;TZID=Europe/Prague:20261006T180000
 SUMMARY:eBPF on Wheels - Automotive and Industrial Use Cases
@@ -744,7 +744,7 @@ URL:https://lpc.events/event/20/contributions/2443/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2446@lpc.events
-DTSTAMP:20261005T113727Z
+DTSTAMP:20261005T133728Z
 DTSTART;TZID=Europe/Prague:20261006T180000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Pluggable Runtime Verification (RV) monitors with BPF
