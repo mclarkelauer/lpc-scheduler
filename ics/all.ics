@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2439@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T103000
 SUMMARY:Rust-BPF updates
@@ -41,7 +41,7 @@ URL:https://lpc.events/event/20/contributions/2439/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2393@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T103000
 SUMMARY:Security Features status update
@@ -62,7 +62,7 @@ URL:https://lpc.events/event/20/contributions/2393/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2345@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T104500
 SUMMARY:Untangling convoluted performance regression
@@ -79,7 +79,7 @@ URL:https://lpc.events/event/20/contributions/2345/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2628@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T100500
 SUMMARY:Intro/Welcome
@@ -90,7 +90,7 @@ URL:https://lpc.events/event/20/contributions/2628/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2493@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T101000
 SUMMARY:Aspects of Dependable Linux Systems
@@ -116,7 +116,7 @@ URL:https://lpc.events/event/20/contributions/2493/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-session-277@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Nova GPU & DRM Rust Workshop
@@ -142,7 +142,7 @@ URL:https://lpc.events/event/20/sessions/277/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2635@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T104500
 SUMMARY:AF_XDP BoF
@@ -162,7 +162,7 @@ URL:https://lpc.events/event/20/contributions/2635/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2627@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T100100
 SUMMARY:Android MC Intro
@@ -172,7 +172,7 @@ URL:https://lpc.events/event/20/contributions/2627/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2450@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T102000
 SUMMARY:Performance Tools and Prompts
@@ -194,7 +194,7 @@ URL:https://lpc.events/event/20/contributions/2450/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2556@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100100
 DTEND;TZID=Europe/Prague:20261005T101500
 SUMMARY:Vendor hooks in Android kernels? Why? What do vendors do with them?
@@ -215,7 +215,7 @@ URL:https://lpc.events/event/20/contributions/2556/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2424@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100500
 DTEND;TZID=Europe/Prague:20261005T103500
 SUMMARY:A Compressed RAM Service
@@ -245,7 +245,7 @@ URL:https://lpc.events/event/20/contributions/2424/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2540@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T101500
 DTEND;TZID=Europe/Prague:20261005T104000
 SUMMARY:Towards Program Verification of the Linux Kernel Library XArray
@@ -291,7 +291,7 @@ URL:https://lpc.events/event/20/contributions/2540/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2565@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T101500
 DTEND;TZID=Europe/Prague:20261005T103000
 SUMMARY:Kernel Lock Contention Hotspots Causing Frame Drops on Android Main
@@ -341,7 +341,7 @@ URL:https://lpc.events/event/20/contributions/2565/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2576@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T102000
 DTEND;TZID=Europe/Prague:20261005T103500
 SUMMARY:Unified collection of kernel bug reports
@@ -379,7 +379,7 @@ URL:https://lpc.events/event/20/contributions/2576/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2438@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T103000
 DTEND;TZID=Europe/Prague:20261005T110000
 SUMMARY:Support large-size arguments and Rust based exception handling
@@ -406,7 +406,7 @@ URL:https://lpc.events/event/20/contributions/2438/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2391@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T103000
 DTEND;TZID=Europe/Prague:20261005T110000
 SUMMARY:Compiler-Based Context Analysis for Compile-Time Lock Safety
@@ -432,7 +432,7 @@ URL:https://lpc.events/event/20/contributions/2391/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2561@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T103000
 DTEND;TZID=Europe/Prague:20261005T104500
 SUMMARY:RT tasks in sched-ext support
@@ -468,7 +468,7 @@ URL:https://lpc.events/event/20/contributions/2561/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2468@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T103500
 DTEND;TZID=Europe/Prague:20261005T110500
 SUMMARY:Unordered I/O (UIO) support and P2P paths
@@ -492,7 +492,7 @@ URL:https://lpc.events/event/20/contributions/2468/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2550@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T103500
 DTEND;TZID=Europe/Prague:20261005T105500
 SUMMARY:What Bugs Matter? Continuous Linux Kernel Bug Monitoring
@@ -528,7 +528,7 @@ URL:https://lpc.events/event/20/contributions/2550/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2344@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T104500
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:The slab allocator sheaves post-mortem
@@ -550,7 +550,7 @@ URL:https://lpc.events/event/20/contributions/2344/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2492@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T104500
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:Common pitfalls and errors\, when using Linux in Safety Application
@@ -568,7 +568,7 @@ URL:https://lpc.events/event/20/contributions/2492/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2640@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T104500
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:Attested TLS for Confidential AI Agents: Insights and Lessons Learn
@@ -595,7 +595,7 @@ URL:https://lpc.events/event/20/contributions/2640/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2557@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T104500
 DTEND;TZID=Europe/Prague:20261005T110000
 SUMMARY:BPF FD Loader: Integrity-Verified BPF on Android
@@ -625,7 +625,7 @@ URL:https://lpc.events/event/20/contributions/2557/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2547@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T105500
 DTEND;TZID=Europe/Prague:20261005T111500
 SUMMARY:Detecting Unhealthy Kernels at Scale
@@ -644,7 +644,7 @@ URL:https://lpc.events/event/20/contributions/2547/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2408@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T110000
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:Extending the BPF Type Format to support more languages
@@ -661,7 +661,7 @@ URL:https://lpc.events/event/20/contributions/2408/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2394@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T110000
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:BPF support in the GNU Toolchain
@@ -677,7 +677,7 @@ URL:https://lpc.events/event/20/contributions/2394/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2564@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T110000
 DTEND;TZID=Europe/Prague:20261005T111500
 SUMMARY:CPU Power Regression Testing with Wattson
@@ -698,7 +698,7 @@ URL:https://lpc.events/event/20/contributions/2564/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2521@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T110500
 DTEND;TZID=Europe/Prague:20261005T112500
 SUMMARY:CXL Performance Monitoring - Status and Outlook
@@ -723,7 +723,7 @@ URL:https://lpc.events/event/20/contributions/2521/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2559@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T111500
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:Modernizing Android USB: Userspace AOA\, Multi-UDC\, Type-C\, and F
@@ -753,7 +753,7 @@ URL:https://lpc.events/event/20/contributions/2559/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2548@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T111500
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:We don't know what we're looking for until we find what we're looki
@@ -777,7 +777,7 @@ URL:https://lpc.events/event/20/contributions/2548/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2436@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T123000
 SUMMARY:Slaying the BPF Verifier: Safe & Static Kernel Extensions Using Rus
@@ -812,7 +812,7 @@ URL:https://lpc.events/event/20/contributions/2436/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2399@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T123000
 SUMMARY:Are your types the same as mine?
@@ -833,7 +833,7 @@ URL:https://lpc.events/event/20/contributions/2399/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2351@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T124500
 SUMMARY:Modern Developments with NFS in Linux
@@ -850,7 +850,7 @@ URL:https://lpc.events/event/20/contributions/2351/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2425@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T122500
 SUMMARY:Using Platform-provided Hints for Hot Page Detection and Promotion
@@ -897,7 +897,7 @@ URL:https://lpc.events/event/20/contributions/2425/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2541@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T122500
 SUMMARY:Scaling the Design Definition
@@ -920,7 +920,7 @@ URL:https://lpc.events/event/20/contributions/2541/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2641@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T124500
 SUMMARY:Live Update BoF
@@ -944,7 +944,7 @@ URL:https://lpc.events/event/20/contributions/2641/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2560@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T121500
 SUMMARY:Space sharing between super and data partitions on Android system
@@ -969,7 +969,7 @@ URL:https://lpc.events/event/20/contributions/2560/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2549@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T122000
 SUMMARY:Following the bread crumbs: Tracing packets through the kernel with
@@ -1015,7 +1015,7 @@ URL:https://lpc.events/event/20/contributions/2549/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2562@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T121500
 DTEND;TZID=Europe/Prague:20261005T123000
 SUMMARY:Android GBL + Dynamic Partitions 2.0
@@ -1035,7 +1035,7 @@ URL:https://lpc.events/event/20/contributions/2562/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2386@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T122000
 DTEND;TZID=Europe/Prague:20261005T124000
 SUMMARY:Crash Dumps at a Bare-Metal Cloud Provider - Capture\, Dedup\, and 
@@ -1097,7 +1097,7 @@ URL:https://lpc.events/event/20/contributions/2386/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2518@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T122500
 DTEND;TZID=Europe/Prague:20261005T125000
 SUMMARY:DAMON (Data Attributes Monitoring/Operations Engine)-based {C\,G\,X
@@ -1132,7 +1132,7 @@ URL:https://lpc.events/event/20/contributions/2518/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2432@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T123000
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:blitmus: Litmus-testing the eBPF memory model on real hardware
@@ -1172,7 +1172,7 @@ URL:https://lpc.events/event/20/contributions/2432/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2395@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T123000
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:Towards real-time ABI compatibility assurance and smarter module ve
@@ -1206,7 +1206,7 @@ URL:https://lpc.events/event/20/contributions/2395/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2491@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T123000
 DTEND;TZID=Europe/Prague:20261005T125500
 SUMMARY:Defining Linux Kernel Requirements and Test Specifications out of t
@@ -1225,7 +1225,7 @@ URL:https://lpc.events/event/20/contributions/2491/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2558@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T123000
 DTEND;TZID=Europe/Prague:20261005T124500
 SUMMARY:Generic Boot Loader on Android platforms
@@ -1254,7 +1254,7 @@ URL:https://lpc.events/event/20/contributions/2558/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2546@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T124000
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:Breakpoints in drgn
@@ -1271,7 +1271,7 @@ URL:https://lpc.events/event/20/contributions/2546/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2353@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T124500
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Modernizing Kernel Boot Options: Resolving cmdline and Bootconfig D
@@ -1291,7 +1291,7 @@ URL:https://lpc.events/event/20/contributions/2353/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2566@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T124500
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:Actionable Strategies to mitigate memory footprint on 16kb kernels
@@ -1315,7 +1315,7 @@ URL:https://lpc.events/event/20/contributions/2566/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2516@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T125000
 DTEND;TZID=Europe/Prague:20261005T131000
 SUMMARY:XMFS: A Cross-node Express Memory File System
@@ -1359,7 +1359,7 @@ URL:https://lpc.events/event/20/contributions/2516/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2431@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T130000
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Adding KASAN support for JIT-compiled BPF Programs
@@ -1387,7 +1387,7 @@ URL:https://lpc.events/event/20/contributions/2431/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2397@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T130000
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Adding C library wrappers for all Linux syscalls - The Return
@@ -1409,7 +1409,7 @@ URL:https://lpc.events/event/20/contributions/2397/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2490@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T130000
 DTEND;TZID=Europe/Prague:20261005T132500
 SUMMARY:From Manual Argument to Machine-Readable Graph: Toward a Safety SBO
@@ -1439,7 +1439,7 @@ URL:https://lpc.events/event/20/contributions/2490/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2593@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T130000
 DTEND;TZID=Europe/Prague:20261005T131500
 SUMMARY:16KB page cache and mTHP on Android
@@ -1465,7 +1465,7 @@ URL:https://lpc.events/event/20/contributions/2593/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2517@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T131000
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:DAXFS: What Does Shared-Memory Storage Need from DAX\, VFS\, and CX
@@ -1510,7 +1510,7 @@ URL:https://lpc.events/event/20/contributions/2517/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2630@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T131500
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Compatibility for 4KB Applications on Large Page-Sized Systems
@@ -1532,7 +1532,7 @@ URL:https://lpc.events/event/20/contributions/2630/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2542@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T132500
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Wrap up
@@ -1543,7 +1543,7 @@ URL:https://lpc.events/event/20/contributions/2542/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2442@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T153000
 SUMMARY:BPF Kernel Verifier meets GCC: A saga of arranged marriage
@@ -1557,7 +1557,7 @@ URL:https://lpc.events/event/20/contributions/2442/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2396@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T153000
 SUMMARY:Advancing PGO\, AutoFDO\, and Propeller in the Linux Kernel
@@ -1575,7 +1575,7 @@ URL:https://lpc.events/event/20/contributions/2396/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2346@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T154500
 SUMMARY:Nova — Building an NVIDIA GPU Driver in Rust Upstream
@@ -1602,7 +1602,7 @@ URL:https://lpc.events/event/20/contributions/2346/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2578@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T152000
 SUMMARY:Linux Crypto API is dead\, long live Linux Crypto API v2?
@@ -1646,7 +1646,7 @@ URL:https://lpc.events/event/20/contributions/2578/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2419@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T153000
 SUMMARY:Reducing kernel stack memory (on arm64)
@@ -1677,7 +1677,7 @@ URL:https://lpc.events/event/20/contributions/2419/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2381@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T154500
 SUMMARY:Debugging CPU isolation / nohz_full
@@ -1691,7 +1691,7 @@ URL:https://lpc.events/event/20/contributions/2381/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2522@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T152500
 SUMMARY:Secure vIOMMU architecture and implementation challenges
@@ -1725,7 +1725,7 @@ URL:https://lpc.events/event/20/contributions/2522/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2401@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T153000
 SUMMARY:Optimizing Gaming Performance and Power Efficiency with Intel LPMD
@@ -1746,7 +1746,7 @@ URL:https://lpc.events/event/20/contributions/2401/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2585@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T152500
 DTEND;TZID=Europe/Prague:20261005T154500
 SUMMARY:Early Attestation is Very Harmful. Why is it Required?
@@ -1803,7 +1803,7 @@ URL:https://lpc.events/event/20/contributions/2585/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2624@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T152500
 DTEND;TZID=Europe/Prague:20261005T154500
 SUMMARY:IOMMU Page Table Observability and Reclamation
@@ -1828,7 +1828,7 @@ URL:https://lpc.events/event/20/contributions/2624/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2447@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T153000
 DTEND;TZID=Europe/Prague:20261005T160000
 SUMMARY:Evolution of Value Tracking in the BPF Verifier
@@ -1847,7 +1847,7 @@ URL:https://lpc.events/event/20/contributions/2447/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2392@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T153000
 DTEND;TZID=Europe/Prague:20261005T160000
 SUMMARY:Upgrading Runtime Leaks to Compile-Time Errors: Adopting Clang’s 
@@ -1872,7 +1872,7 @@ URL:https://lpc.events/event/20/contributions/2392/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2421@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T153000
 DTEND;TZID=Europe/Prague:20261005T155000
 SUMMARY:Better Anon (Swap) Readahead
@@ -1897,7 +1897,7 @@ URL:https://lpc.events/event/20/contributions/2421/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2400@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T153000
 DTEND;TZID=Europe/Prague:20261005T160000
 SUMMARY:GPU Job Scheduling: Current Development
@@ -1933,7 +1933,7 @@ URL:https://lpc.events/event/20/contributions/2400/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2347@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T154500
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Long-term latency monitoring of real-time Linux systems
@@ -1966,7 +1966,7 @@ URL:https://lpc.events/event/20/contributions/2347/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2591@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T154500
 DTEND;TZID=Europe/Prague:20261005T160500
 SUMMARY:Extending BPF Signing into an IMA Integrity Lifecycle
@@ -2004,7 +2004,7 @@ URL:https://lpc.events/event/20/contributions/2591/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2382@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T154500
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Rust for Linux Office Hours
@@ -2025,7 +2025,7 @@ URL:https://lpc.events/event/20/contributions/2382/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2520@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T154500
 DTEND;TZID=Europe/Prague:20261005T161000
 SUMMARY:IOMMUFD Support for Microsoft Hypervisor Hosts
@@ -2045,7 +2045,7 @@ URL:https://lpc.events/event/20/contributions/2520/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2416@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T155000
 DTEND;TZID=Europe/Prague:20261005T161000
 SUMMARY:DMA-buf cgroup accounting for proxy allocators: attributing buffers
@@ -2075,7 +2075,7 @@ URL:https://lpc.events/event/20/contributions/2416/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2440@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T160000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Proof-Carrying Verification for eBPF
@@ -2166,7 +2166,7 @@ URL:https://lpc.events/event/20/contributions/2440/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2398@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T160000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Kage: device driver isolation in the Linux kernel with LFI
@@ -2197,7 +2197,7 @@ URL:https://lpc.events/event/20/contributions/2398/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2403@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T160000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:EPP-boost: Per-core util-based performance boosting in AMD p-state 
@@ -2215,7 +2215,7 @@ URL:https://lpc.events/event/20/contributions/2403/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2592@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T161000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Attestation-Based Storage Provisioning for Linux: Towards a Standar
@@ -2267,7 +2267,7 @@ URL:https://lpc.events/event/20/contributions/2592/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2415@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T161000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Page fault locking
@@ -2282,7 +2282,7 @@ URL:https://lpc.events/event/20/contributions/2415/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2625@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T161000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:arm-smmu contig hint support and performance impact
@@ -2306,7 +2306,7 @@ URL:https://lpc.events/event/20/contributions/2625/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2445@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T173000
 SUMMARY:Safely Optimizing eBPF for Hardware and Workloads
@@ -2346,7 +2346,7 @@ URL:https://lpc.events/event/20/contributions/2445/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2449@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T173000
 SUMMARY:GCC Rust support for Linux
@@ -2360,7 +2360,7 @@ URL:https://lpc.events/event/20/contributions/2449/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2352@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T174500
 SUMMARY:Firmware-mediated accelerators for edge AI
@@ -2383,7 +2383,7 @@ URL:https://lpc.events/event/20/contributions/2352/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2589@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T172000
 SUMMARY:Secure Boot: Getting your SHIM signed - The process and Its challen
@@ -2403,7 +2403,7 @@ URL:https://lpc.events/event/20/contributions/2589/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2420@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T173000
 SUMMARY:Direct map fragmentation
@@ -2448,25 +2448,8 @@ DESCRIPTION:Kernel Memory Management MC · Kevin Brodsky · https://lpc.eve
 URL:https://lpc.events/event/20/contributions/2420/
 END:VEVENT
 BEGIN:VEVENT
-UID:lpc2026-2383@lpc.events
-DTSTAMP:20261005T102220Z
-DTSTART;TZID=Europe/Prague:20261005T170000
-DTEND;TZID=Europe/Prague:20261005T174500
-SUMMARY:BoF: Memory Efficiency on Modern Linux Systems
-LOCATION:Club B\, Prague Congress Centre
-DESCRIPTION:Birds of a Feather (BoF) · Mykolas Krupauskas · https://lpc.e
- vents/event/20/contributions/2383/\n\nDiscussion on how organizations are 
- managing the complex tradeoffs related to efficient use of memory resource
- s in heterogeneous workload\, large-scale datacenter environments. Especia
- lly\, as DRAM prices have exploded.\n\nWhat guidance and future feature de
- velopment should the community provide to support efficient use of this re
- source?\n\n- zswap\n- proactive reclaim agents\n- DAMON\n- PSI\n- memory t
- iering\n- memcg\n- etc.
-URL:https://lpc.events/event/20/contributions/2383/
-END:VEVENT
-BEGIN:VEVENT
 UID:lpc2026-2623@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T172000
 SUMMARY:VFIO PCIe TPH Userspace API & Progressive Security Policy
@@ -2495,7 +2478,7 @@ URL:https://lpc.events/event/20/contributions/2623/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2594@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T173000
 SUMMARY:Emulating x86 atomics on arm64
@@ -2518,7 +2501,7 @@ URL:https://lpc.events/event/20/contributions/2594/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2519@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T172000
 DTEND;TZID=Europe/Prague:20261005T174500
 SUMMARY:Two Years of Making PCIe Hotplug Reliable: What Landed\, What Didn'
@@ -2558,7 +2541,7 @@ URL:https://lpc.events/event/20/contributions/2519/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2587@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T172500
 DTEND;TZID=Europe/Prague:20261005T174500
 SUMMARY:Generic Boot Flow for Type 1 Hypervisors: UKI with systemd-stub
@@ -2585,7 +2568,7 @@ URL:https://lpc.events/event/20/contributions/2587/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2407@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T173000
 DTEND;TZID=Europe/Prague:20261005T180000
 SUMMARY:BPF\, sysctls and programmable kernel decision points
@@ -2610,7 +2593,7 @@ URL:https://lpc.events/event/20/contributions/2407/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2448@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T173000
 DTEND;TZID=Europe/Prague:20261005T174500
 SUMMARY:Crossing borders between user space and kernel space: GDB/Valgrind/
@@ -2642,7 +2625,7 @@ URL:https://lpc.events/event/20/contributions/2448/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2417@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T173000
 DTEND;TZID=Europe/Prague:20261005T180000
 SUMMARY:Accelerating Page Migration and Making the Migration Core Composabl
@@ -2749,7 +2732,7 @@ URL:https://lpc.events/event/20/contributions/2417/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2402@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T174500
 DTEND;TZID=Europe/Prague:20261005T180000
 SUMMARY:Beyond Coverage: Per-Task Function Boundary Extraction for Kernel C
@@ -2875,7 +2858,7 @@ URL:https://lpc.events/event/20/contributions/2402/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2355@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T174500
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:20 years of pahole : alive and kicking!
@@ -2903,7 +2886,7 @@ URL:https://lpc.events/event/20/contributions/2355/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2590@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T174500
 DTEND;TZID=Europe/Prague:20261005T180500
 SUMMARY:Booting Android with Linux EFI Boot Stub
@@ -2932,7 +2915,7 @@ URL:https://lpc.events/event/20/contributions/2590/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2368@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T174500
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:Updates and Future Directions for Resctrl RDT/MPAM/PQOS/CBQRI
@@ -2956,7 +2939,7 @@ URL:https://lpc.events/event/20/contributions/2368/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2508@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T174500
 DTEND;TZID=Europe/Prague:20261005T181000
 SUMMARY:Describing P2PDMA capabilities in ACPI
@@ -2984,7 +2967,7 @@ URL:https://lpc.events/event/20/contributions/2508/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2444@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T180000
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:eBPF Security: The Uneven Landscape
@@ -3004,7 +2987,7 @@ URL:https://lpc.events/event/20/contributions/2444/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2418@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T180000
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:Tackling Isolation Issues Due to Memory Pressure
@@ -3027,7 +3010,7 @@ URL:https://lpc.events/event/20/contributions/2418/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2577@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T181000
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:Arm DRTM beyond the reference model: dynamic launch on real platfor
@@ -3057,7 +3040,7 @@ URL:https://lpc.events/event/20/contributions/2577/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2384@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T181000
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:Testing the Untestable: Using QEMU for Testing PCI Endpoint Framewo
@@ -3087,7 +3070,7 @@ URL:https://lpc.events/event/20/contributions/2384/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-evening-20261005@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T193000
 DTEND;TZID=Europe/Prague:20261005T223000
 SUMMARY:Evening Event
@@ -3097,7 +3080,7 @@ URL:https://lpc.events/event/20/timetable/#20261005.detailed
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2427@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T103000
 SUMMARY:eBPF Research: What's Going On In Academia?
@@ -3118,7 +3101,7 @@ URL:https://lpc.events/event/20/contributions/2427/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2373@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T104500
 SUMMARY:Kernel CVEs at AWS Scale: Two Years of Empirical Findings
@@ -3149,7 +3132,7 @@ URL:https://lpc.events/event/20/contributions/2373/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2348@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T104500
 SUMMARY:RCU Pseudo-Transactions: Bridging the gap between RCU and STM
@@ -3171,7 +3154,7 @@ URL:https://lpc.events/event/20/contributions/2348/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2514@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T102000
 SUMMARY:Probe events with typecast using BTF
@@ -3189,7 +3172,7 @@ URL:https://lpc.events/event/20/contributions/2514/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2388@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T102000
 SUMMARY:DT bindings and sources shared with U-Boot: current status and ongo
@@ -3209,7 +3192,7 @@ URL:https://lpc.events/event/20/contributions/2388/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2409@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T104500
 SUMMARY:Kernel Sanitizers Office Hours
@@ -3238,7 +3221,7 @@ URL:https://lpc.events/event/20/contributions/2409/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-session-247@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Birds of a Feather (BoF)
@@ -3248,7 +3231,7 @@ URL:https://lpc.events/event/20/sessions/247/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2552@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T103000
 SUMMARY:mmu_notifier: can we use it better?
@@ -3267,7 +3250,7 @@ URL:https://lpc.events/event/20/contributions/2552/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2645@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T104500
 SUMMARY:Sashiko current status
@@ -3281,7 +3264,7 @@ URL:https://lpc.events/event/20/contributions/2645/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2390@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T102000
 DTEND;TZID=Europe/Prague:20261006T104000
 SUMMARY:Status of the DTS Validation in the Linux Kernel
@@ -3299,7 +3282,7 @@ URL:https://lpc.events/event/20/contributions/2390/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2511@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T102200
 DTEND;TZID=Europe/Prague:20261006T104200
 SUMMARY:Build ID + offset sampling in perf events
@@ -3318,7 +3301,7 @@ URL:https://lpc.events/event/20/contributions/2511/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2434@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T103000
 DTEND;TZID=Europe/Prague:20261006T110000
 SUMMARY:bpf_fault: Custom Page Fault Handling with eBPF
@@ -3350,7 +3333,7 @@ URL:https://lpc.events/event/20/contributions/2434/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2555@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T103000
 DTEND;TZID=Europe/Prague:20261006T110000
 SUMMARY:Exploring KVM and SMMUv3 Stage-2 Page Table Sharing for arm64 pKVM
@@ -3377,7 +3360,7 @@ URL:https://lpc.events/event/20/contributions/2555/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2510@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T104400
 DTEND;TZID=Europe/Prague:20261006T110400
 SUMMARY:Developing Next Generation Perf Tools With Python
@@ -3399,7 +3382,7 @@ URL:https://lpc.events/event/20/contributions/2510/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2372@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T104500
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Regressions & tracking them: current state\, plans\, and what do yo
@@ -3428,7 +3411,7 @@ URL:https://lpc.events/event/20/contributions/2372/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2356@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T104500
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Checkpoint/Restore for RDMA: Saving and Restoring Live Queue Pairs 
@@ -3472,7 +3455,7 @@ URL:https://lpc.events/event/20/contributions/2356/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2469@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T104500
 DTEND;TZID=Europe/Prague:20261006T110500
 SUMMARY:SDCA and Devicetrees
@@ -3501,7 +3484,7 @@ URL:https://lpc.events/event/20/contributions/2469/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2410@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T104500
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Linux CVEs\, vulnerability management and agentic security workflow
@@ -3523,7 +3506,7 @@ URL:https://lpc.events/event/20/contributions/2410/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2646@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T104500
 DTEND;TZID=Europe/Prague:20261006T111500
 SUMMARY:Sashiko feedback and feature requests
@@ -3536,7 +3519,7 @@ URL:https://lpc.events/event/20/contributions/2646/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2429@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T110000
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Programming Across the VM Boundary with eBPF: Lessons from Revisiti
@@ -3581,7 +3564,7 @@ URL:https://lpc.events/event/20/contributions/2429/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2551@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T110000
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:How to support multiple backends for guest_memfd?
@@ -3609,7 +3592,7 @@ URL:https://lpc.events/event/20/contributions/2551/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2509@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T110600
 DTEND;TZID=Europe/Prague:20261006T112600
 SUMMARY:Bridging perf and ftrace: Recording perf in ftrace buffers and perf
@@ -3645,7 +3628,7 @@ URL:https://lpc.events/event/20/contributions/2509/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2470@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T111000
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Streamlining DT Bindings to Protect Upstreaming Momentum
@@ -3670,7 +3653,7 @@ URL:https://lpc.events/event/20/contributions/2470/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2597@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T111500
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Automating Kernel Bug Fixes: Syzbot's AI-Assisted Patching Workflow
@@ -3704,7 +3687,7 @@ URL:https://lpc.events/event/20/contributions/2597/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2437@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T123000
 SUMMARY:shirudo: BPF live-patching infra for the agentic era
@@ -3729,7 +3712,7 @@ URL:https://lpc.events/event/20/contributions/2437/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2375@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T124500
 SUMMARY:Challenges in multi-tenant GPU sharing
@@ -3753,7 +3736,7 @@ URL:https://lpc.events/event/20/contributions/2375/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2358@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T124500
 SUMMARY:Improving kernel test coverage using stress-ng
@@ -3769,7 +3752,7 @@ URL:https://lpc.events/event/20/contributions/2358/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2480@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T122000
 SUMMARY:Sharing trace infrastructure between in-tree and OOT tracers
@@ -3790,7 +3773,7 @@ URL:https://lpc.events/event/20/contributions/2480/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2387@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T122500
 SUMMARY:Device Tree Addons: Describe hot-pluggable extension boards
@@ -3838,7 +3821,7 @@ URL:https://lpc.events/event/20/contributions/2387/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2633@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T124500
 SUMMARY:x86 BoF
@@ -3853,7 +3836,7 @@ URL:https://lpc.events/event/20/contributions/2633/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2553@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T123000
 SUMMARY:In-Kernel Caretaker for Orphaned VMs
@@ -3881,7 +3864,7 @@ URL:https://lpc.events/event/20/contributions/2553/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2599@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T121500
 SUMMARY:Boro: Do We Need More AI-assisted Kernel Tooling?
@@ -3908,7 +3891,7 @@ URL:https://lpc.events/event/20/contributions/2599/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2600@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T121500
 DTEND;TZID=Europe/Prague:20261006T123000
 SUMMARY:Automated kernel CVE backports
@@ -3931,7 +3914,7 @@ URL:https://lpc.events/event/20/contributions/2600/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2513@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T122200
 DTEND;TZID=Europe/Prague:20261006T124200
 SUMMARY:Lightweight Preempt and IRQ Tracepoints for Production RT Kernels
@@ -3953,7 +3936,7 @@ URL:https://lpc.events/event/20/contributions/2513/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2426@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T123000
 DTEND;TZID=Europe/Prague:20261006T130000
 SUMMARY:One Layer of the Onion: A Daemonless eBPF LSM for Confidential VMs 
@@ -4015,7 +3998,7 @@ URL:https://lpc.events/event/20/contributions/2426/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2389@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T123000
 DTEND;TZID=Europe/Prague:20261006T125500
 SUMMARY:Using DT overlays to manage a collection of related boards
@@ -4084,7 +4067,7 @@ URL:https://lpc.events/event/20/contributions/2389/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2554@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T123000
 DTEND;TZID=Europe/Prague:20261006T130000
 SUMMARY:Orphaned VMs: Which VM Exits can we handle?
@@ -4110,7 +4093,7 @@ URL:https://lpc.events/event/20/contributions/2554/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2601@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T123000
 DTEND;TZID=Europe/Prague:20261006T124500
 SUMMARY:From Findings to Fixes: AI-Assisted Linux Kernel Bug Triage and Rem
@@ -4139,7 +4122,7 @@ URL:https://lpc.events/event/20/contributions/2601/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2512@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T124400
 DTEND;TZID=Europe/Prague:20261006T130400
 SUMMARY:Handling stack traces in tracing
@@ -4166,7 +4149,7 @@ URL:https://lpc.events/event/20/contributions/2512/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2370@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T124500
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:Maintainer-oriented features of b4
@@ -4183,7 +4166,7 @@ URL:https://lpc.events/event/20/contributions/2370/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2359@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T124500
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:Rust SPDM in the Kernel
@@ -4217,7 +4200,7 @@ URL:https://lpc.events/event/20/contributions/2359/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2412@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T124500
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:DRM Fabric: Vendor-Neutral Topology Infrastructure for Scale-Up Acc
@@ -4264,7 +4247,7 @@ URL:https://lpc.events/event/20/contributions/2412/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2647@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T124500
 DTEND;TZID=Europe/Prague:20261006T130000
 SUMMARY:Open discussion: using fix generation effectively
@@ -4277,7 +4260,7 @@ URL:https://lpc.events/event/20/contributions/2647/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2435@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T130000
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:Scaling BPF LSM hooks and error injection across the kernel
@@ -4304,7 +4287,7 @@ URL:https://lpc.events/event/20/contributions/2435/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2471@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T130000
 DTEND;TZID=Europe/Prague:20261006T132500
 SUMMARY:OS managed Devicetree overlays through UKI add-ons
@@ -4335,7 +4318,7 @@ URL:https://lpc.events/event/20/contributions/2471/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2632@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T130000
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:KVM and Live Update
@@ -4351,7 +4334,7 @@ URL:https://lpc.events/event/20/contributions/2632/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2598@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T130000
 DTEND;TZID=Europe/Prague:20261006T131500
 SUMMARY:Talk to Your Crash Dumps: Debugging a Real-Time Kernel Stall with d
@@ -4375,7 +4358,7 @@ URL:https://lpc.events/event/20/contributions/2598/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2515@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T130600
 DTEND;TZID=Europe/Prague:20261006T132600
 SUMMARY:DEPT (DEPendency Tracker): A Path to Mainline and Solving the False
@@ -4409,7 +4392,7 @@ URL:https://lpc.events/event/20/contributions/2515/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2648@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T131500
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:Wrap-up
@@ -4421,7 +4404,7 @@ URL:https://lpc.events/event/20/contributions/2648/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2428@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T153000
 SUMMARY:Application-Layer Parsing in eBPF
@@ -4446,7 +4429,7 @@ URL:https://lpc.events/event/20/contributions/2428/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2371@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T154500
 SUMMARY:Rust for Linux
@@ -4460,7 +4443,7 @@ URL:https://lpc.events/event/20/contributions/2371/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2349@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T154500
 SUMMARY:Virtio-GPU for Automotive: Implementing Libkrun + Vhost-User.
@@ -4526,7 +4509,7 @@ URL:https://lpc.events/event/20/contributions/2349/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2405@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T152000
 SUMMARY:Topics in RISC-V Linux kernel maintenance
@@ -4539,7 +4522,7 @@ URL:https://lpc.events/event/20/contributions/2405/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2535@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T152000
 SUMMARY:Thermal Framework Corner Cases: Bugs or Undefined Behavior?
@@ -4566,7 +4549,7 @@ URL:https://lpc.events/event/20/contributions/2535/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2413@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T154500
 SUMMARY:Bridging the Linux Tux and the FreeBSD Beastie – Linuxulator\, Li
@@ -4613,7 +4596,7 @@ URL:https://lpc.events/event/20/contributions/2413/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2644@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T150500
 SUMMARY:Testing MC Intro
@@ -4626,7 +4609,7 @@ URL:https://lpc.events/event/20/contributions/2644/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2609@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T151500
 SUMMARY:LUO support in systemd
@@ -4641,7 +4624,7 @@ URL:https://lpc.events/event/20/contributions/2609/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2534@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T150500
 DTEND;TZID=Europe/Prague:20261006T152500
 SUMMARY:kci-dev: What Changed\, What Works\, and What Kernel Developers Sti
@@ -4680,7 +4663,7 @@ URL:https://lpc.events/event/20/contributions/2534/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2617@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T151500
 DTEND;TZID=Europe/Prague:20261006T153000
 SUMMARY:Resolving Complex FD Dependencies for Live Update
@@ -4703,7 +4686,7 @@ URL:https://lpc.events/event/20/contributions/2617/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2341@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T152000
 DTEND;TZID=Europe/Prague:20261006T154000
 SUMMARY:RISC-V Svnapot: dynamic fold/unfold for folded PTEs
@@ -4729,7 +4712,7 @@ URL:https://lpc.events/event/20/contributions/2341/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2539@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T152000
 DTEND;TZID=Europe/Prague:20261006T154000
 SUMMARY:Power Cooling Devices: Bridging Thermal and Powercap
@@ -4766,7 +4749,7 @@ URL:https://lpc.events/event/20/contributions/2539/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2620@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T152500
 DTEND;TZID=Europe/Prague:20261006T154500
 SUMMARY:Kernel Builds Deserve an Identity: Portable Kernel Artifacts and Tr
@@ -4794,7 +4777,7 @@ URL:https://lpc.events/event/20/contributions/2620/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2433@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T153000
 DTEND;TZID=Europe/Prague:20261006T160000
 SUMMARY:Inline DDoS protection for cloud-native game servers at PlayStation
@@ -4826,7 +4809,7 @@ URL:https://lpc.events/event/20/contributions/2433/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2614@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T153000
 DTEND;TZID=Europe/Prague:20261006T155000
 SUMMARY:Extending Memory State Preservation Across Warm Reboots Using KHO/L
@@ -4908,7 +4891,7 @@ URL:https://lpc.events/event/20/contributions/2614/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2455@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T154000
 DTEND;TZID=Europe/Prague:20261006T160000
 SUMMARY:Optimizing the kernel with vector
@@ -4928,7 +4911,7 @@ URL:https://lpc.events/event/20/contributions/2455/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2536@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T154000
 DTEND;TZID=Europe/Prague:20261006T160000
 SUMMARY:Introducing Hardware Thermal Governor
@@ -4951,7 +4934,7 @@ URL:https://lpc.events/event/20/contributions/2536/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2376@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T154500
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:Leveraging Rust's Field Projections in the Kernel and Beyond
@@ -4979,7 +4962,7 @@ URL:https://lpc.events/event/20/contributions/2376/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2357@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T154500
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:The State of the Kconfig Ecosystem
@@ -5006,7 +4989,7 @@ URL:https://lpc.events/event/20/contributions/2357/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2634@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T154500
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:F2FS update
@@ -5019,7 +5002,7 @@ URL:https://lpc.events/event/20/contributions/2634/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2531@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T154500
 DTEND;TZID=Europe/Prague:20261006T161000
 SUMMARY:Rethinking KUnit Configuration
@@ -5054,7 +5037,7 @@ URL:https://lpc.events/event/20/contributions/2531/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2613@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T155000
 DTEND;TZID=Europe/Prague:20261006T161000
 SUMMARY:Live Update Compatibility
@@ -5079,7 +5062,7 @@ URL:https://lpc.events/event/20/contributions/2613/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2430@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T160000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:BPF ksock: bringing network sockets to BPF
@@ -5105,7 +5088,7 @@ URL:https://lpc.events/event/20/contributions/2430/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2626@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T160000
 DTEND;TZID=Europe/Prague:20261006T162000
 SUMMARY:RVA23 in practice: discovery\, dispatch\, and the hardware left beh
@@ -5138,7 +5121,7 @@ URL:https://lpc.events/event/20/contributions/2626/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2544@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T160000
 DTEND;TZID=Europe/Prague:20261006T162000
 SUMMARY:Devfreq for uncore DVFS
@@ -5162,7 +5145,7 @@ URL:https://lpc.events/event/20/contributions/2544/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2642@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T161000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:Optimizing local kernel build testing
@@ -5180,7 +5163,7 @@ URL:https://lpc.events/event/20/contributions/2642/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2610@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T161000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:Guest_Memfd Preservation For Live Update
@@ -5199,7 +5182,7 @@ URL:https://lpc.events/event/20/contributions/2610/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2454@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T162000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:Extensions - What's new? What's coming up?
@@ -5214,7 +5197,7 @@ URL:https://lpc.events/event/20/contributions/2454/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2537@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T164500
 DTEND;TZID=Europe/Prague:20261006T170500
 SUMMARY:Autonomous CPU performance selection: a new cpufreq governor?
@@ -5257,7 +5240,7 @@ URL:https://lpc.events/event/20/contributions/2537/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2441@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T173000
 SUMMARY:BPF-RBACd: Delegating BPF permissions with high granularity
@@ -5283,7 +5266,7 @@ URL:https://lpc.events/event/20/contributions/2441/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2374@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T174500
 SUMMARY:DRM: handling runtime requirements for device components.
@@ -5302,7 +5285,7 @@ URL:https://lpc.events/event/20/contributions/2374/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2363@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T174500
 SUMMARY:Devicetree-ACPI hybrid mode
@@ -5332,7 +5315,7 @@ URL:https://lpc.events/event/20/contributions/2363/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2342@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T171500
 SUMMARY:Local\, SBI\, or IPI? Tracing RISC-V TLB Flush Decisions in Linux
@@ -5381,7 +5364,7 @@ URL:https://lpc.events/event/20/contributions/2342/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2452@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T174500
 SUMMARY:Improving THP placement policies
@@ -5401,7 +5384,7 @@ URL:https://lpc.events/event/20/contributions/2452/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2643@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T171500
 SUMMARY:Kselftest coverage with kcov
@@ -5415,7 +5398,7 @@ URL:https://lpc.events/event/20/contributions/2643/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2611@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T171500
 SUMMARY:Performance improvements for live-update reboots
@@ -5431,7 +5414,7 @@ URL:https://lpc.events/event/20/contributions/2611/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2579@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T170500
 DTEND;TZID=Europe/Prague:20261006T172500
 SUMMARY:Amortizing CPU wakeup costs
@@ -5459,7 +5442,7 @@ URL:https://lpc.events/event/20/contributions/2579/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2414@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T171500
 DTEND;TZID=Europe/Prague:20261006T173000
 SUMMARY:Error INJection support for RAS on RISC-V architecture
@@ -5480,7 +5463,7 @@ URL:https://lpc.events/event/20/contributions/2414/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2532@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T171500
 DTEND;TZID=Europe/Prague:20261006T173000
 SUMMARY:KFuzzTest: Fuzzing Internal Kernel Functions\, One Year On
@@ -5517,7 +5500,7 @@ URL:https://lpc.events/event/20/contributions/2532/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2618@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T171500
 DTEND;TZID=Europe/Prague:20261006T173000
 SUMMARY:Preserving tmpfs Files Across Live Update
@@ -5540,7 +5523,7 @@ URL:https://lpc.events/event/20/contributions/2618/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2543@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T172500
 DTEND;TZID=Europe/Prague:20261006T174500
 SUMMARY:Current developments in the Common Clk Framework
@@ -5564,7 +5547,7 @@ URL:https://lpc.events/event/20/contributions/2543/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2443@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T173000
 DTEND;TZID=Europe/Prague:20261006T180000
 SUMMARY:eBPF on Wheels - Automotive and Industrial Use Cases
@@ -5590,7 +5573,7 @@ URL:https://lpc.events/event/20/contributions/2443/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2422@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T173000
 DTEND;TZID=Europe/Prague:20261006T174500
 SUMMARY:RISC-V Trace support in ACPI
@@ -5615,7 +5598,7 @@ URL:https://lpc.events/event/20/contributions/2422/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2619@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T173000
 DTEND;TZID=Europe/Prague:20261006T174500
 SUMMARY:LLM-Assisted Fuzzing with Syzkaller
@@ -5654,7 +5637,7 @@ URL:https://lpc.events/event/20/contributions/2619/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2612@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T173000
 DTEND;TZID=Europe/Prague:20261006T175000
 SUMMARY:Live Update IOMMU (vIOMMU with Arm SMMUv3)
@@ -5677,7 +5660,7 @@ URL:https://lpc.events/event/20/contributions/2612/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2377@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T174500
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Bringing Linux DRM Display Panel support in the modern age
@@ -5703,7 +5686,7 @@ URL:https://lpc.events/event/20/contributions/2377/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2364@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T174500
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Camera & ISP BoF
@@ -5756,7 +5739,7 @@ URL:https://lpc.events/event/20/contributions/2364/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2478@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T174500
 DTEND;TZID=Europe/Prague:20261006T180500
 SUMMARY:One Kernel Per Cluster: Multikernel for Heterogeneous RISC-V
@@ -5791,7 +5774,7 @@ URL:https://lpc.events/event/20/contributions/2478/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2453@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T174500
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:DAMON Nano Conference
@@ -5847,7 +5830,7 @@ URL:https://lpc.events/event/20/contributions/2453/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2580@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T175000
 DTEND;TZID=Europe/Prague:20261006T181000
 SUMMARY:Hardware Pressure on x86: Does the Linux Scheduler Need to Know Whe
@@ -5881,7 +5864,7 @@ URL:https://lpc.events/event/20/contributions/2580/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2533@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T175000
 DTEND;TZID=Europe/Prague:20261006T181000
 SUMMARY:Testing the kernel where the fleet runs: KernelCI in the cloud
@@ -5903,7 +5886,7 @@ URL:https://lpc.events/event/20/contributions/2533/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2616@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T175000
 DTEND;TZID=Europe/Prague:20261006T181000
 SUMMARY:VFIO Live Update Road to Continuous DMA
@@ -5944,7 +5927,7 @@ URL:https://lpc.events/event/20/contributions/2616/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2446@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T180000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Pluggable Runtime Verification (RV) monitors with BPF
@@ -5967,7 +5950,7 @@ URL:https://lpc.events/event/20/contributions/2446/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2479@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T180500
 DTEND;TZID=Europe/Prague:20261006T182000
 SUMMARY:Supporting Heterogeneous VLEN on RISC-V: Lessons from SpacemiT K3
@@ -6024,7 +6007,7 @@ URL:https://lpc.events/event/20/contributions/2479/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2595@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T181000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Dynamic Runtime Prediction of CPU Idle-State Exit Latency
@@ -6104,7 +6087,7 @@ URL:https://lpc.events/event/20/contributions/2595/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2621@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T181000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Security Lessons from Auditing the Linux accel/ethosu Driver
@@ -6134,7 +6117,7 @@ URL:https://lpc.events/event/20/contributions/2621/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2615@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T181000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Challenges in Preserving Virtual Networking State and dmabuf across
@@ -6179,7 +6162,7 @@ URL:https://lpc.events/event/20/contributions/2615/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-celebration-20261006@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261006T184500
 DTEND;TZID=Europe/Prague:20261006T194500
 SUMMARY:Celebration of Life: Dan Williams
@@ -6189,7 +6172,7 @@ URL:https://lpc.events/event/20/timetable/#20261006.detailed
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2406@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T090000
 DTEND;TZID=Europe/Prague:20261007T094500
 SUMMARY:TAB Q&A
@@ -6206,7 +6189,7 @@ URL:https://lpc.events/event/20/contributions/2406/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2456@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T093000
 DTEND;TZID=Europe/Prague:20261007T100000
 SUMMARY:Short-Lived UDP and the Observability Gap: Challenges in Building C
@@ -6256,7 +6239,7 @@ URL:https://lpc.events/event/20/contributions/2456/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2465@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T103000
 SUMMARY:Networking Performance Regression Testing
@@ -6298,7 +6281,7 @@ URL:https://lpc.events/event/20/contributions/2465/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2350@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T104500
 SUMMARY:Cryptographic Proofs of Personhood: Solving the Kernel Web of Trust
@@ -6331,7 +6314,7 @@ URL:https://lpc.events/event/20/contributions/2350/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602a@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T102000
 SUMMARY:Constraints of process migrations
@@ -6353,7 +6336,7 @@ URL:https://lpc.events/event/20/contributions/2602/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2582@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T103000
 SUMMARY:The Supply Chain Attack on Buildsystems
@@ -6383,8 +6366,25 @@ DESCRIPTION:Build Systems MC · Alejandro Hernandez Samaniego · https://lp
 URL:https://lpc.events/event/20/contributions/2582/
 END:VEVENT
 BEGIN:VEVENT
+UID:lpc2026-2383@lpc.events
+DTSTAMP:20261005T113727Z
+DTSTART;TZID=Europe/Prague:20261007T100000
+DTEND;TZID=Europe/Prague:20261007T104500
+SUMMARY:BoF: Memory Efficiency on Modern Linux Systems
+LOCATION:Club D\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Mykolas Krupauskas · https://lpc.e
+ vents/event/20/contributions/2383/\n\nDiscussion on how organizations are 
+ managing the complex tradeoffs related to efficient use of memory resource
+ s in heterogeneous workload\, large-scale datacenter environments. Especia
+ lly\, as DRAM prices have exploded.\n\nWhat guidance and future feature de
+ velopment should the community provide to support efficient use of this re
+ source?\n\n- zswap\n- proactive reclaim agents\n- DAMON\n- PSI\n- memory t
+ iering\n- memcg\n- etc.
+URL:https://lpc.events/event/20/contributions/2383/
+END:VEVENT
+BEGIN:VEVENT
 UID:lpc2026-2602i@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T103000
 SUMMARY:Creating self references safely
@@ -6399,7 +6399,7 @@ URL:https://lpc.events/event/20/contributions/2498/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602o@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T100200
 SUMMARY:Introduction and Kickoff
@@ -6410,7 +6410,7 @@ URL:https://lpc.events/event/20/contributions/2637/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602p@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T100200
 DTEND;TZID=Europe/Prague:20261007T102400
 SUMMARY:Enable runtime modification of nohz_full and managed_irq housekeepi
@@ -6436,7 +6436,7 @@ URL:https://lpc.events/event/20/contributions/2568/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602b@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T102000
 DTEND;TZID=Europe/Prague:20261007T104000
 SUMMARY:Memory Tracking in forensic checkpointing: what soft-dirty bits can
@@ -6482,7 +6482,7 @@ URL:https://lpc.events/event/20/contributions/2607/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602q@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T102400
 DTEND;TZID=Europe/Prague:20261007T104600
 SUMMARY:Bringing Proxy Execution’s benefits to Userland / Futexes
@@ -6526,7 +6526,7 @@ URL:https://lpc.events/event/20/contributions/2569/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2461@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T103000
 DTEND;TZID=Europe/Prague:20261007T110000
 SUMMARY:BIG TCP for UDP tunnels
@@ -6560,7 +6560,7 @@ URL:https://lpc.events/event/20/contributions/2461/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602w@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T103000
 DTEND;TZID=Europe/Prague:20261007T110000
 SUMMARY:OpenWrt is reproducible! How we got there and what we learned
@@ -6583,7 +6583,7 @@ URL:https://lpc.events/event/20/contributions/2581/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602j@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T103000
 DTEND;TZID=Europe/Prague:20261007T110000
 SUMMARY:Reworking `Request` reference counting in the Rust block device dri
@@ -6617,7 +6617,7 @@ URL:https://lpc.events/event/20/contributions/2494/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602c@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T104000
 DTEND;TZID=Europe/Prague:20261007T110000
 SUMMARY:Enabling Incremental Checkpointing for GPU Workloads
@@ -6640,7 +6640,7 @@ URL:https://lpc.events/event/20/contributions/2603/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2362@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T104500
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:A Loadable Crypto Module for FIPS Certification
@@ -6684,7 +6684,7 @@ URL:https://lpc.events/event/20/contributions/2362/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602r@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T104600
 DTEND;TZID=Europe/Prague:20261007T110800
 SUMMARY:PREEMPT_RT: How a simple interface up event might break your realti
@@ -6716,7 +6716,7 @@ URL:https://lpc.events/event/20/contributions/2575/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2467@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T110000
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:TCP Multipath implementation with BPF
@@ -6739,7 +6739,7 @@ URL:https://lpc.events/event/20/contributions/2467/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602d@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T110000
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:dm-qcow2: device-mapper-based QCOW2 storage for containers
@@ -6762,7 +6762,7 @@ URL:https://lpc.events/event/20/contributions/2605/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2586@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T110000
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:Relevance of LTS distro releases and the GenAI world
@@ -6787,7 +6787,7 @@ URL:https://lpc.events/event/20/contributions/2586/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602k@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T110000
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:dma_fence abstractions: Design and Challenges
@@ -6818,7 +6818,7 @@ URL:https://lpc.events/event/20/contributions/2495/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2636@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T110800
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:Understanding differences in results between timerlat and cyclictes
@@ -6836,7 +6836,7 @@ URL:https://lpc.events/event/20/contributions/2636/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2458@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T123000
 SUMMARY:MPTCP KTLS Support: Bringing TLS to Multipath TCP
@@ -6866,7 +6866,7 @@ URL:https://lpc.events/event/20/contributions/2458/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2361@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T124500
 SUMMARY:From CVE to Fix in Minutes: AI-Augmented Security Lifecycle Managem
@@ -6980,7 +6980,7 @@ URL:https://lpc.events/event/20/contributions/2361/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602e@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T122000
 SUMMARY:Upgrade restrictions for file descriptors
@@ -7006,7 +7006,7 @@ URL:https://lpc.events/event/20/contributions/2604/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602x@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T123000
 SUMMARY:Bitwise-Reproducible Kernel Builds for the WhatsApp TEE — Proof o
@@ -7079,7 +7079,7 @@ URL:https://lpc.events/event/20/contributions/2584/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602l@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T122500
 SUMMARY:Tyr: A Status Update
@@ -7096,7 +7096,7 @@ URL:https://lpc.events/event/20/contributions/2497/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602s@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T122200
 SUMMARY:Remaining EEVDF scheduling latency and lag improvement
@@ -7113,7 +7113,7 @@ URL:https://lpc.events/event/20/contributions/2570/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602f@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T122000
 DTEND;TZID=Europe/Prague:20261007T124000
 SUMMARY:Checkpoint/Restore of Device Cgroup eBPF Programs
@@ -7156,7 +7156,7 @@ URL:https://lpc.events/event/20/contributions/2606/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2574@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T122200
 DTEND;TZID=Europe/Prague:20261007T124400
 SUMMARY:Kernel Sched QoS Interface
@@ -7185,7 +7185,7 @@ URL:https://lpc.events/event/20/contributions/2571/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602m@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T122500
 DTEND;TZID=Europe/Prague:20261007T124500
 SUMMARY:Using Rust for out-of-tree kernel drivers
@@ -7207,7 +7207,7 @@ URL:https://lpc.events/event/20/contributions/2496/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2463@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T123000
 DTEND;TZID=Europe/Prague:20261007T130000
 SUMMARY:Native AF_VSOCK API for userspace device emulation
@@ -7247,7 +7247,7 @@ URL:https://lpc.events/event/20/contributions/2463/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602y@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T123000
 DTEND;TZID=Europe/Prague:20261007T130000
 SUMMARY:The last step to secure reproducible distribution kernels: Hash-bas
@@ -7278,7 +7278,7 @@ URL:https://lpc.events/event/20/contributions/2583/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602g@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T124000
 DTEND;TZID=Europe/Prague:20261007T130000
 SUMMARY:Addressing Challenges for Container Migration in Heterogeneous Clus
@@ -7316,7 +7316,7 @@ URL:https://lpc.events/event/20/contributions/2608/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602t@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T124400
 DTEND;TZID=Europe/Prague:20261007T130600
 SUMMARY:Energy-Aware Scheduling on x86 Hybrid Topologies: Latency Analysis 
@@ -7342,7 +7342,7 @@ URL:https://lpc.events/event/20/contributions/2574/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2360@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T124500
 DTEND;TZID=Europe/Prague:20261007T133000
 SUMMARY:BPF_PROG_TEST_RUN: the hidden perils of testing.
@@ -7370,7 +7370,7 @@ URL:https://lpc.events/event/20/contributions/2360/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2500@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T124500
 DTEND;TZID=Europe/Prague:20261007T130500
 SUMMARY:Bridging the C/Rust Divide: Replicating the PWM Subsystem's Success
@@ -7409,7 +7409,7 @@ URL:https://lpc.events/event/20/contributions/2500/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2466@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T130000
 DTEND;TZID=Europe/Prague:20261007T133000
 SUMMARY:Possibility of Userspace Networking Drivers: TUNTAP\, VDUSE and Wha
@@ -7458,7 +7458,7 @@ URL:https://lpc.events/event/20/contributions/2466/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602h@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T130000
 DTEND;TZID=Europe/Prague:20261007T132000
 SUMMARY:mmtest benchmarking of cgroup code
@@ -7479,7 +7479,7 @@ URL:https://lpc.events/event/20/contributions/2631/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602z@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T130000
 DTEND;TZID=Europe/Prague:20261007T133000
 SUMMARY:What does "buildable" mean during a toolkit migration?
@@ -7546,7 +7546,7 @@ URL:https://lpc.events/event/20/contributions/2588/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602n@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T130500
 DTEND;TZID=Europe/Prague:20261007T133000
 SUMMARY:BPF CO-RE support in Rust
@@ -7571,7 +7571,7 @@ URL:https://lpc.events/event/20/contributions/2499/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602u@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T130600
 DTEND;TZID=Europe/Prague:20261007T132800
 SUMMARY:sparsemask: the missing generic plumbing and next step forward
@@ -7601,7 +7601,7 @@ URL:https://lpc.events/event/20/contributions/2573/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602v@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T132800
 DTEND;TZID=Europe/Prague:20261007T133000
 SUMMARY:Wrap-up
@@ -7612,7 +7612,7 @@ URL:https://lpc.events/event/20/contributions/2638/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2457@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T150000
 DTEND;TZID=Europe/Prague:20261007T153000
 SUMMARY:Modernizing NFS Direct I/O for PCI Peer-to-Peer DMA
@@ -7658,7 +7658,7 @@ URL:https://lpc.events/event/20/contributions/2457/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2354@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T150000
 DTEND;TZID=Europe/Prague:20261007T154500
 SUMMARY:When Embedded Codecs Meet Graphics
@@ -7687,7 +7687,7 @@ URL:https://lpc.events/event/20/contributions/2354/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602a1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T150000
 DTEND;TZID=Europe/Prague:20261007T152000
 SUMMARY:Backward Compactiliblity of Kernel Livepatching API
@@ -7718,7 +7718,7 @@ URL:https://lpc.events/event/20/contributions/2530/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602q1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T150000
 DTEND;TZID=Europe/Prague:20261007T152500
 SUMMARY:Power Sequencing for Enumberable Busses - Driver Core Integrations?
@@ -7748,7 +7748,7 @@ URL:https://lpc.events/event/20/contributions/2502/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602g1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T150000
 DTEND;TZID=Europe/Prague:20261007T151000
 SUMMARY:Welcome to the Confidential Computing Microconference
@@ -7759,7 +7759,7 @@ URL:https://lpc.events/event/20/contributions/2639/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602o1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T150000
 DTEND;TZID=Europe/Prague:20261007T151000
 SUMMARY:Intro / Welcome
@@ -7770,7 +7770,7 @@ URL:https://lpc.events/event/20/contributions/2488/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602h1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T151000
 DTEND;TZID=Europe/Prague:20261007T153000
 SUMMARY:Improving TDX Linux integration: changes in TDX Migration and Attes
@@ -7792,7 +7792,7 @@ URL:https://lpc.events/event/20/contributions/2340/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2482@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T151000
 DTEND;TZID=Europe/Prague:20261007T152800
 SUMMARY:Bridging the VM Boundary: Scheduling Passthrough via pvsched and sc
@@ -7850,7 +7850,7 @@ URL:https://lpc.events/event/20/contributions/2482/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602b1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T152000
 DTEND;TZID=Europe/Prague:20261007T154500
 SUMMARY:livepatch: Introduce replace set support
@@ -7893,7 +7893,7 @@ URL:https://lpc.events/event/20/contributions/2526/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602r1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T152500
 DTEND;TZID=Europe/Prague:20261007T155000
 SUMMARY:Reviving early platform drivers
@@ -7921,7 +7921,7 @@ URL:https://lpc.events/event/20/contributions/2503/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2483@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T152800
 DTEND;TZID=Europe/Prague:20261007T154600
 SUMMARY:BPF-based Composable Idle cpumask Selection
@@ -7949,7 +7949,7 @@ URL:https://lpc.events/event/20/contributions/2483/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2464@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T153000
 DTEND;TZID=Europe/Prague:20261007T160000
 SUMMARY:swiotlb Under Pressure: High-Speed NICs in Confidential VMs
@@ -7984,7 +7984,7 @@ URL:https://lpc.events/event/20/contributions/2464/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602i1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T153000
 DTEND;TZID=Europe/Prague:20261007T160000
 SUMMARY:Arm CCA Realm Live Migration
@@ -8007,7 +8007,7 @@ URL:https://lpc.events/event/20/contributions/2476/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2367@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T154500
 DTEND;TZID=Europe/Prague:20261007T163000
 SUMMARY:FUSE mostly-passthrough filesystems
@@ -8034,7 +8034,7 @@ URL:https://lpc.events/event/20/contributions/2367/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602c1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T154500
 DTEND;TZID=Europe/Prague:20261007T163000
 SUMMARY:A Common Coexistence Model for Live Patching and Production Observa
@@ -8076,7 +8076,7 @@ URL:https://lpc.events/event/20/contributions/2523/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2484@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T154600
 DTEND;TZID=Europe/Prague:20261007T160400
 SUMMARY:Taming latency spikes caused by lock holder and lock waiter preempt
@@ -8105,7 +8105,7 @@ URL:https://lpc.events/event/20/contributions/2484/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602s1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T155000
 DTEND;TZID=Europe/Prague:20261007T161500
 SUMMARY:Evolving support for sync_state to subsystems beyond genpd
@@ -8133,7 +8133,7 @@ URL:https://lpc.events/event/20/contributions/2504/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2462@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T160000
 DTEND;TZID=Europe/Prague:20261007T163000
 SUMMARY:KNOD: In-Kernel GPU Offload for Packet Processing
@@ -8166,7 +8166,7 @@ URL:https://lpc.events/event/20/contributions/2462/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602j1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T160000
 DTEND;TZID=Europe/Prague:20261007T163000
 SUMMARY:CoVE in Action: the Landscape of Confidential VMs on RISC-V
@@ -8188,7 +8188,7 @@ URL:https://lpc.events/event/20/contributions/2472/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2481@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T160400
 DTEND;TZID=Europe/Prague:20261007T163000
 SUMMARY:Making proxy execution compatible with sched_ext
@@ -8211,7 +8211,7 @@ URL:https://lpc.events/event/20/contributions/2481/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602t1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T161500
 DTEND;TZID=Europe/Prague:20261007T164000
 SUMMARY:Constification of sysfs attribute structures
@@ -8237,7 +8237,7 @@ URL:https://lpc.events/event/20/contributions/2505/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2460@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T170000
 DTEND;TZID=Europe/Prague:20261007T173000
 SUMMARY:PCI data path optimization with CQE coalescing and new ethtool para
@@ -8273,7 +8273,7 @@ URL:https://lpc.events/event/20/contributions/2460/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2366@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T170000
 DTEND;TZID=Europe/Prague:20261007T174500
 SUMMARY:Defining the pkeys ABI
@@ -8332,7 +8332,7 @@ URL:https://lpc.events/event/20/contributions/2366/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602d1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T170000
 DTEND;TZID=Europe/Prague:20261007T173000
 SUMMARY:SFrame for Arm64 Reliable Stacktrace
@@ -8385,7 +8385,7 @@ URL:https://lpc.events/event/20/contributions/2529/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602k1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T170000
 DTEND;TZID=Europe/Prague:20261007T172000
 SUMMARY:SEV-TIO implementation challenges
@@ -8407,7 +8407,7 @@ URL:https://lpc.events/event/20/contributions/2473/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2485@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T170000
 DTEND;TZID=Europe/Prague:20261007T171800
 SUMMARY:Stickiness: Keeping tasks cache-warm in work-conserving LAVD schedu
@@ -8443,7 +8443,7 @@ URL:https://lpc.events/event/20/contributions/2485/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602u1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T171000
 DTEND;TZID=Europe/Prague:20261007T173500
 SUMMARY:Hardware Cross-Dependencies - Solving the Unsolvable
@@ -8459,7 +8459,7 @@ URL:https://lpc.events/event/20/contributions/2501/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2486@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T171800
 DTEND;TZID=Europe/Prague:20261007T173600
 SUMMARY:HFI plug in to scx_ext
@@ -8479,7 +8479,7 @@ URL:https://lpc.events/event/20/contributions/2486/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602l1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T172000
 DTEND;TZID=Europe/Prague:20261007T175000
 SUMMARY:Extending Arm CCA Device Assignment to CXL Type-2 Accelerators
@@ -8503,7 +8503,7 @@ URL:https://lpc.events/event/20/contributions/2474/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2459@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T173000
 DTEND;TZID=Europe/Prague:20261007T180000
 SUMMARY:Coroutines for Linux kernel
@@ -8530,7 +8530,7 @@ URL:https://lpc.events/event/20/contributions/2459/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602e1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T173000
 DTEND;TZID=Europe/Prague:20261007T180000
 SUMMARY:Bringing klp-build to LoongArch: toolchain lessons for the next arc
@@ -8572,7 +8572,7 @@ URL:https://lpc.events/event/20/contributions/2525/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602v1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T173500
 DTEND;TZID=Europe/Prague:20261007T180000
 SUMMARY:Synx: Cross-core synchronization
@@ -8615,7 +8615,7 @@ URL:https://lpc.events/event/20/contributions/2507/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2487@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T173600
 DTEND;TZID=Europe/Prague:20261007T180200
 SUMMARY:Automatic placement of accelerator workloads
@@ -8659,7 +8659,7 @@ URL:https://lpc.events/event/20/contributions/2487/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2365@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T174500
 DTEND;TZID=Europe/Prague:20261007T183000
 SUMMARY:Virtio and Vhost-User Ecosystem for Production and Automotive Syste
@@ -8712,7 +8712,7 @@ URL:https://lpc.events/event/20/contributions/2365/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602m1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T175000
 DTEND;TZID=Europe/Prague:20261007T181000
 SUMMARY:Deferring SWIOTLB Bounce to Reduce Heavy CPU Utilization
@@ -8752,7 +8752,7 @@ URL:https://lpc.events/event/20/contributions/2475/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602f1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T180000
 DTEND;TZID=Europe/Prague:20261007T183000
 SUMMARY:Testing klp-build: from unit tests to CI
@@ -8802,7 +8802,7 @@ URL:https://lpc.events/event/20/contributions/2528/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602w1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T180000
 DTEND;TZID=Europe/Prague:20261007T182500
 SUMMARY:Managing IRQ mapping and deferred probing for ACPI static tables de
@@ -8832,7 +8832,7 @@ URL:https://lpc.events/event/20/contributions/2506/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602p1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T180200
 DTEND;TZID=Europe/Prague:20261007T183000
 SUMMARY:Closing / Final Q&A
@@ -8843,7 +8843,7 @@ URL:https://lpc.events/event/20/contributions/2489/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602n1@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T181000
 DTEND;TZID=Europe/Prague:20261007T183000
 SUMMARY:PMU Event Filtering for Confidential Guests
@@ -8868,7 +8868,7 @@ URL:https://lpc.events/event/20/contributions/2477/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-evening-20261007@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261007T193000
 DTEND;TZID=Europe/Prague:20261007T223000
 SUMMARY:Evening Event

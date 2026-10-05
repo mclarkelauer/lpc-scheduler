@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2393@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T103000
 SUMMARY:Security Features status update
@@ -47,7 +47,7 @@ URL:https://lpc.events/event/20/contributions/2393/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2391@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T103000
 DTEND;TZID=Europe/Prague:20261005T110000
 SUMMARY:Compiler-Based Context Analysis for Compile-Time Lock Safety
@@ -73,7 +73,7 @@ URL:https://lpc.events/event/20/contributions/2391/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2394@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T110000
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:BPF support in the GNU Toolchain
@@ -89,7 +89,7 @@ URL:https://lpc.events/event/20/contributions/2394/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2399@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T123000
 SUMMARY:Are your types the same as mine?
@@ -110,7 +110,7 @@ URL:https://lpc.events/event/20/contributions/2399/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2395@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T123000
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:Towards real-time ABI compatibility assurance and smarter module ve
@@ -144,7 +144,7 @@ URL:https://lpc.events/event/20/contributions/2395/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2397@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T130000
 DTEND;TZID=Europe/Prague:20261005T133000
 SUMMARY:Adding C library wrappers for all Linux syscalls - The Return
@@ -166,7 +166,7 @@ URL:https://lpc.events/event/20/contributions/2397/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2396@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T153000
 SUMMARY:Advancing PGO\, AutoFDO\, and Propeller in the Linux Kernel
@@ -184,7 +184,7 @@ URL:https://lpc.events/event/20/contributions/2396/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2392@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T153000
 DTEND;TZID=Europe/Prague:20261005T160000
 SUMMARY:Upgrading Runtime Leaks to Compile-Time Errors: Adopting Clang’s 
@@ -209,7 +209,7 @@ URL:https://lpc.events/event/20/contributions/2392/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2398@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T160000
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Kage: device driver isolation in the Linux kernel with LFI
@@ -240,7 +240,7 @@ URL:https://lpc.events/event/20/contributions/2398/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2449@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T173000
 SUMMARY:GCC Rust support for Linux
@@ -254,7 +254,7 @@ URL:https://lpc.events/event/20/contributions/2449/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2448@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T173000
 DTEND;TZID=Europe/Prague:20261005T174500
 SUMMARY:Crossing borders between user space and kernel space: GDB/Valgrind/
@@ -286,7 +286,7 @@ URL:https://lpc.events/event/20/contributions/2448/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2402@lpc.events
-DTSTAMP:20261005T102220Z
+DTSTAMP:20261005T113727Z
 DTSTART;TZID=Europe/Prague:20261005T174500
 DTEND;TZID=Europe/Prague:20261005T180000
 SUMMARY:Beyond Coverage: Per-Task Function Boundary Extraction for Kernel C
