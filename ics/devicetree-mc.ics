@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2388@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T102000
 SUMMARY:DT bindings and sources shared with U-Boot: current status and ongo
@@ -46,7 +46,7 @@ URL:https://lpc.events/event/20/contributions/2388/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2390@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261006T102000
 DTEND;TZID=Europe/Prague:20261006T104000
 SUMMARY:Status of the DTS Validation in the Linux Kernel
@@ -64,7 +64,7 @@ URL:https://lpc.events/event/20/contributions/2390/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2469@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261006T104500
 DTEND;TZID=Europe/Prague:20261006T110500
 SUMMARY:SDCA and Devicetrees
@@ -93,7 +93,7 @@ URL:https://lpc.events/event/20/contributions/2469/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2470@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261006T111000
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Streamlining DT Bindings to Protect Upstreaming Momentum
@@ -118,7 +118,7 @@ URL:https://lpc.events/event/20/contributions/2470/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2387@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T122500
 SUMMARY:Device Tree Addons: Describe hot-pluggable extension boards
@@ -166,7 +166,7 @@ URL:https://lpc.events/event/20/contributions/2387/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2389@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261006T123000
 DTEND;TZID=Europe/Prague:20261006T125500
 SUMMARY:Using DT overlays to manage a collection of related boards
@@ -235,7 +235,7 @@ URL:https://lpc.events/event/20/contributions/2389/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2471@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261006T130000
 DTEND;TZID=Europe/Prague:20261006T132500
 SUMMARY:OS managed Devicetree overlays through UKI add-ons

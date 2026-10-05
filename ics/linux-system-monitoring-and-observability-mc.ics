@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2450@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T102000
 SUMMARY:Performance Tools and Prompts
@@ -48,7 +48,7 @@ URL:https://lpc.events/event/20/contributions/2450/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2576@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261005T102000
 DTEND;TZID=Europe/Prague:20261005T103500
 SUMMARY:Unified collection of kernel bug reports
@@ -86,7 +86,7 @@ URL:https://lpc.events/event/20/contributions/2576/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2550@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261005T103500
 DTEND;TZID=Europe/Prague:20261005T105500
 SUMMARY:What Bugs Matter? Continuous Linux Kernel Bug Monitoring
@@ -122,7 +122,7 @@ URL:https://lpc.events/event/20/contributions/2550/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2547@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261005T105500
 DTEND;TZID=Europe/Prague:20261005T111500
 SUMMARY:Detecting Unhealthy Kernels at Scale
@@ -141,7 +141,7 @@ URL:https://lpc.events/event/20/contributions/2547/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2548@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261005T111500
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:We don't know what we're looking for until we find what we're looki
@@ -165,7 +165,7 @@ URL:https://lpc.events/event/20/contributions/2548/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2549@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T122000
 SUMMARY:Following the bread crumbs: Tracing packets through the kernel with
@@ -211,7 +211,7 @@ URL:https://lpc.events/event/20/contributions/2549/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2386@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261005T122000
 DTEND;TZID=Europe/Prague:20261005T124000
 SUMMARY:Crash Dumps at a Bare-Metal Cloud Provider - Capture\, Dedup\, and 
@@ -273,7 +273,7 @@ URL:https://lpc.events/event/20/contributions/2386/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2546@lpc.events
-DTSTAMP:20261005T153727Z
+DTSTAMP:20261005T154929Z
 DTSTART;TZID=Europe/Prague:20261005T124000
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:Breakpoints in drgn
