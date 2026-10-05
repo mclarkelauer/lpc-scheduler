@@ -83,6 +83,9 @@
   .srow.past{background:#f3f4f6}
   .srow.past .title{color:var(--muted)}
   .ended{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .pastbox{margin:8px 0}
+  .pastbox summary{background:#f3f4f6;border:1px dashed var(--line);border-radius:12px;padding:9px 14px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
+  .pastbox summary small{font-weight:400}
   .warn button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;margin:8px 6px 0 0}
   .qrpanel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:8px 0;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
   .qrpanel[hidden]{display:none}
@@ -143,7 +146,7 @@
     <summary>How to use this page</summary>
     <ul>
       <li><b>Now &amp; next</b> shows what is on in each room right now and what follows, while the conference is running. It updates every minute.</li>
-      <li><b>Full schedule</b> lists one day at a time; narrow it by track or room. Typing in the search box searches all three days at once, including speakers and abstracts; clicking a day leaves the search. Sessions that are over are greyed and marked "ended".</li>
+      <li><b>Full schedule</b> lists one day at a time; narrow it by track or room. Typing in the search box searches all three days at once, including speakers and abstracts; clicking a day leaves the search. Sessions that are over fold away into <b>Past talks</b> at the top, which opens with a click.</li>
       <li><b>Abstract</b> under a session opens its description, and <b>details ↗</b> opens the session on lpc.events.</li>
       <li>Every session has two buttons. <b>☆ Interested</b> puts it in <b>My picks</b>, for example to watch the recording later. <b>✓ Attending</b> says you plan to be there, and counts as interested too. Click ✓ again to keep a session as interested only, or the star again to drop it.</li>
       <li><b>My picks</b> in its <b>List</b> view shows everything you marked, or only what you are attending, or only what you are interested in but not attending, which is your list of talks to catch up on afterwards. Attended sessions that clash are flagged. You can copy the picks as text, download the attended ones as a calendar file, or clear them.</li>
@@ -692,6 +695,7 @@ function initFilters(){
 $('trackSel').onchange=e=>{ state.track = e.target.value==='All tracks'?'All':e.target.value; renderSched(); };
 $('roomSel').onchange=e=>{ state.room = e.target.value==='All rooms'?'All':e.target.value; renderSched(); };
 $('q').oninput=e=>{ state.q=e.target.value.trim().toLowerCase(); renderSched(); };
+let schedPast = 0;  // how many sessions were over when the schedule was last drawn
 function renderSched(){
   const list = $('schedList');
   const q = state.q, now = pragueNow(), f = getFlags();
@@ -705,7 +709,7 @@ function renderSched(){
   ss.sort((a,b)=> a.date<b.date?-1 : a.date>b.date?1 : (mins(a.start)-mins(b.start) || ROOM_ORDER.indexOf(a.room)-ROOM_ORDER.indexOf(b.room)));
   if(!ss.length){ list.innerHTML='<div class="empty">No sessions match.</div>'; return; }
   const showBreaks = state.track==='All' && !q;
-  let html='', lastT='', lastDay='';
+  let html='', lastT='';
   if(q){
     const n = ss.filter(past).length;
     html += '<div class="found">'+ss.length+(ss.length===1?' session':' sessions')+' across all days'+(n?' · '+n+' already ended':'')+'</div>';
@@ -714,20 +718,33 @@ function renderSched(){
   const items=[];
   ss.forEach(s=>items.push({t:mins(s.start), s:s}));
   if(showBreaks){ brks.forEach(b=>items.push({t:mins(b.start), b:b})); items.sort((a,b)=>a.t-b.t); }
-  items.forEach(it=>{
-    if(it.b){
-      html += '<div class="brow">☕ '+esc(it.b.title)+' · '+esc(it.b.start)+'–'+esc(it.b.end)+'</div>'; return;
-    }
-    const s=it.s, done=past(s);
-    if(q && s.date!==lastDay){ html += '<h3 class="dayhead">'+DAYNAME[s.date]+'</h3>'; lastDay=s.date; }
-    html += '<div class="srow'+(done?' past':'')+'"><div class="time">'+esc(s.start)+'<br>–'+esc(s.end)+(done?'<br><span class="ended">ended</span>':'')+'</div>'
-      +flagBtns(s, f)
-      +'<div class="body"><div class="title">'+esc(s.title)+'</div>'
-      +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+'</div></div>'
-      +'<a class="dl" href="'+esc(detailsUrl(s))+'" target="_blank" rel="noopener">details ↗</a>'
-      +(q && hay(s).indexOf(q)===-1 ? absHit(s,q) : '')+absFor(s)+'</div>';
-  });
+  const draw = part=>{
+    let out='', lastDay='';
+    part.forEach(it=>{
+      if(it.b){
+        out += '<div class="brow">☕ '+esc(it.b.title)+' · '+esc(it.b.start)+'–'+esc(it.b.end)+'</div>'; return;
+      }
+      const s=it.s, done=past(s);
+      if(q && s.date!==lastDay){ out += '<h3 class="dayhead">'+DAYNAME[s.date]+'</h3>'; lastDay=s.date; }
+      out += '<div class="srow'+(done?' past':'')+'"><div class="time">'+esc(s.start)+'<br>–'+esc(s.end)+(done?'<br><span class="ended">ended</span>':'')+'</div>'
+        +flagBtns(s, f)
+        +'<div class="body"><div class="title">'+esc(s.title)+'</div>'
+        +'<div class="meta">'+chipFor(s)+' '+metaFor(s)+'</div></div>'
+        +'<a class="dl" href="'+esc(detailsUrl(s))+'" target="_blank" rel="noopener">details ↗</a>'
+        +(q && hay(s).indexOf(q)===-1 ? absHit(s,q) : '')+absFor(s)+'</div>';
+    });
+    return out;
+  };
+  // Sessions that are over fold away into "Past talks" while there is still something ahead of them in the list.
+  const over = it=> it.b ? past({date:it.b.date, end:it.b.end}) : past(it.s);
+  const gone = items.filter(over), ahead = items.filter(it=>!over(it)), n = gone.filter(it=>it.s).length;
+  if(n && ahead.some(it=>it.s)){
+    html += '<details class="pastbox"'+(state.pastOpen?' open':'')+'><summary>Past talks <small>· '+n+'</small></summary>'+draw(gone)+'</details>'+draw(ahead);
+  } else html += draw(items);
+  schedPast = SESSIONS.filter(past).length;
   list.innerHTML = html;
+  const box = list.querySelector('.pastbox');
+  if(box) box.ontoggle=()=>{ state.pastOpen = box.open; };
   wireFlags(list);
   wireAbs(list);
 }
@@ -1217,9 +1234,17 @@ function tick(){
   $('clock').textContent = n.label + ' CEST';
 }
 setInterval(tick, 30000); tick();
-setInterval(()=>{ if(state.tab==='now') renderNow(); }, 60000);
+setInterval(()=>{
+  if(state.tab==='now') renderNow();
+  const now = pragueNow();  // on the schedule, only redraw when another session has ended, so the list does not jump every minute
+  if(state.tab==='all' && SESSIONS.filter(s=>s.date<now.date || (s.date===now.date && mins(s.end)<=now.mins)).length!==schedPast) renderSched();
+}, 60000);
 setInterval(()=>{ if(!document.hidden) syncNow(); }, 300000);
-document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) syncNow(); });
+document.addEventListener('visibilitychange', ()=>{
+  if(document.hidden) return;
+  syncNow();
+  if(state.tab==='now') renderNow(); if(state.tab==='all') renderSched();  // a phone that was asleep shows the current state at once
+});
 window.addEventListener('online', syncNow);
 (function init(){
   const n = pragueNow();
