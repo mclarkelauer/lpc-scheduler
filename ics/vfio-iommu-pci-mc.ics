@@ -1,0 +1,257 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: VFIO/IOMMU/PCI MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2522@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T150000
+DTEND;TZID=Europe/Prague:20261005T152500
+SUMMARY:Secure vIOMMU architecture and implementation challenges
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:VFIO/IOMMU/PCI MC · Suravee Suthikulpanit\, Vasant Hegde · ht
+ tps://lpc.events/event/20/contributions/2522/\n\nModern cloud computing in
+ creasingly relies on confidential virtual machines (VMs) - isolated enviro
+ nments\nwhere sensitive workloads run securely\, even from the underlying 
+ hypervisor. A key challenge in this space\nis enabling these confidential 
+ VMs to safely communicate with hardware devices without exposing their dat
+ a\nto the host system or hypervisor.\n\nVirtual IOMMU (vIOMMU) is an exten
+ ded feature of AMD's IOMMU that allows IOMMU hardware to directly access\n
+ and process virtual machine data structures. Building on this foundation\,
+  AMD's Secure vIOMMU extends\nvIOMMU capabilities to support SEV-TIO (Secu
+ re Encrypted Virtualization - Trusted IO) device assignment to\nconfidenti
+ al virtual machines. Specifically\, it enables secure communication channe
+ ls between confidential\nvirtual machine and IOMMU hardware enabling relia
+ ble management of device DMAs including guest TLBs without\nhypervisor int
+ ervention.\n\nThis presentation introduces the Secure vIOMMU architecture 
+ and explains how its components work together\n-- including the IOMMU\, AM
+ D's Security Processor\, the hypervisor\, Virtual Machine Manager (VMM) an
+ d\nconfidential VMs. We will also cover supported operational modes (vTOM 
+ and Guest Page Table) for secure\ndata transmission between Trusted I/O de
+ vices and confidential VM.\n\nFinally\, we will discuss the interface chal
+ lenges that arise across various kernel modules including IOMMU\,\nccp\, K
+ VM\, SEV-TIO\, etc\, and explore potential approaches to address them.\n\n
+ SEV-TIO specification: https://docs.amd.com/v/u/en-US/58271_0.91\nSecure v
+ IOMMU initial code: https://github.com/AMDESE/linux-iommu/tree/sviommu/tsm
+ 0407_v619_v0
+URL:https://lpc.events/event/20/contributions/2522/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2624@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T152500
+DTEND;TZID=Europe/Prague:20261005T154500
+SUMMARY:IOMMU Page Table Observability and Reclamation
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:VFIO/IOMMU/PCI MC · Logan Odell\, Pranjal Shrivastava · https
+ ://lpc.events/event/20/contributions/2624/\n\nThe current Linux memory man
+ agement framework lacks the mechanism for tracking IOMMU page table (IOPT)
+  consumption across sparse virtualization workloads. By utilizing the IOMM
+ UFD and VFIO frameworks\, hypervisors dynamically map and unmap massive IO
+ VA regions\, often leaving intermediate page table directories stranded an
+ d invisible to the core  kernel. This session talks about the current stat
+ e of IOPT observability and attempts to propose new features and enhanceme
+ nts for IOPT memory reclamation.\n\nThe session proposes a design for an I
+ OMMU Page Table Shrinker that allows lockless and lazy reclamation of stra
+ nded IOPT memory\, specifically by the intermediate tables while employing
+  the generic_pt to keep the shrinker arch-agnostic. We invite a discussion
+  to explore strategies for lockless tracking\, page table branch severance
+ \, and lifecycle management using RCU state machines to ensure that the co
+ re kernel can harvest stranded memory under pressure without penalizing th
+ e IOMMU mapping paths.
+URL:https://lpc.events/event/20/contributions/2624/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2520@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T154500
+DTEND;TZID=Europe/Prague:20261005T161000
+SUMMARY:IOMMUFD Support for Microsoft Hypervisor Hosts
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:VFIO/IOMMU/PCI MC · Jacob Pan · https://lpc.events/event/20/c
+ ontributions/2520/\n\nDevice assignment in Microsoft Hypervisor (/dev/mshv
+ ) host environments has requirements beyond existing KVM-oriented workflow
+ s\, including direct HWPT attachment for assigning a device to a guest whi
+ le preserving existing Stage-2 page tables\, and VMM-assigned virtual devi
+ ce information to facilitate hypercall-based device operations.\n\nWe plan
+  to publish an RFC before LPC describing the proposed iommufd/VFIO plumbin
+ g for MSHV device assignment. At LPC\, we would like to discuss the remain
+ ing design questions and potential follow-on work\, including alignment wi
+ th Xen and how the same model could support future use cases such as TDISP
+  or page table sharing in general.
+URL:https://lpc.events/event/20/contributions/2520/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2625@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T161000
+DTEND;TZID=Europe/Prague:20261005T163000
+SUMMARY:arm-smmu contig hint support and performance impact
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:VFIO/IOMMU/PCI MC · Prakash Gupta\, Vijayanand Jitta · https:
+ //lpc.events/event/20/contributions/2625/\n\nThis talk covers ARM SMMU con
+ tiguous-hint support in Linux stage-1 page tables and the ARM-SMMU PMU sup
+ port used to measure its impact. The work enables larger effective mapping
+ s\, including 64K regions built from 16 adjacent 4K entries\, and extends 
+ IOMMU map/unmap support for mixed and larger mapping sizes. In parallel\, 
+ ARM-SMMU PMU integration exposes TBU and TCU counters through perf\, inclu
+ ding access\, TLB allocate/read/write\, cache-hit\, and page-table-walk ev
+ ents\, with StreamID-based filtering for workload attribution.\n\nWe prese
+ nt page-table behavior observed in tracing alongside translation-side meas
+ urements from PMU counters. Early measurements show measurable gains from 
+ mixed 4K/64K mappings with contiguous hint enabled: lower TLB allocation p
+ ressure and lower elapsed time versus a 4K-only baseline.\n\nThe talk also
+  highlights different pmu counters used\, invalidation effects\, and how w
+ e can evaluate real SMMU translation performance.
+URL:https://lpc.events/event/20/contributions/2625/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2623@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T170000
+DTEND;TZID=Europe/Prague:20261005T172000
+SUMMARY:VFIO PCIe TPH Userspace API & Progressive Security Policy
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:VFIO/IOMMU/PCI MC · Chengwen Feng · https://lpc.events/event/
+ 20/contributions/2623/\n\nPCIe TPH enables cache steering for high-perform
+ ance P2PDMA\, RDMA and SDXI workloads. Today Linux only supports TPH opera
+ tions within host kernel space\; userspace/VFIO passthrough environments l
+ ack a standard interface to resolve and program steering tags.\nI’ve pos
+ ted a complete patch series adding native VFIO TPH support\, aligned with 
+ community incremental security policy design. The series provides unified 
+ handling for CPU memory (via root port ACPI _DSM)\, dma-buf\, zero-tag and
+  literal raw ST sources\, supporting cross-device P2P DMA scenarios. Three
+  new VFIO_DEVICE_FEATURE ioctls cover feature opt-in\, multi-source tag re
+ solution and batch ST table programming.\nCurrent upstream challenges incl
+ ude:\nAutomated selftest coverage without physical TPH hardware\;\nLock gr
+ anularity performance tradeoffs for batch ST programming\;\nSecurity bound
+ ary definition for cross-device dma-buf TPH metadata access.\nThe core uAP
+ I and security logic are stable and targeted for v7.3 merge window in late
+  August. Post-merge follow-up plans include extending QEMU to emulate TPH 
+ capabilities and implementing full guest passthrough support with VMM-mana
+ ged _DSM emulation.\nThis session will briefly introduce the design\, then
+  focus on resolving the outstanding upstream challenges and aligning on VM
+  passthrough roadmap.
+URL:https://lpc.events/event/20/contributions/2623/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2519@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T172000
+DTEND;TZID=Europe/Prague:20261005T174500
+SUMMARY:Two Years of Making PCIe Hotplug Reliable: What Landed\, What Didn'
+ t\, and Where Do We Go
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:VFIO/IOMMU/PCI MC · Maciej Grochowski · https://lpc.events/ev
+ ent/20/contributions/2519/\n\nIn 2024\, hotplug on our NVMe storage fleet 
+ — NTB behind Microchip/Switchtec switches — was\nnot stable on mainlin
+ e\, so we ran Keith Busch's out-of-tree bus-locking series on a private\nb
+ ranch. It held. Then a new hardware generation arrived\, we needed a kerne
+ l we could\nvalidate against\, and that meant mainline: 6.8\, now 6.17. Go
+ ing upstream meant giving up the\nstructural work that had been keeping us
+  alive\, and we started hitting problems again. This\nis the story of that
+  round trip\, and where I think it should go next.\n\nThe good news is rea
+ l\, so I lead with it: since Keith Busch's ALPSS 2024 talk "The Problem\nw
+ ith PCI Subsystems\," the subsystem has closed most of what bit us. The ch
+ ild use-after-free\nat `pci_dev_wait` is fixed (`11a1f4bc4736`\, v6.11). p
+ ciehp suppresses reset- and DPC-induced\nlink events (v6.16). DPC recovery
+  holds a port reference (`a1ed752bc7cb`\, v7.1).\n`reset_subordinate` is h
+ otplug-safe (`8238cb69c01f`\, v7.1). DPC is decoupled from per-device\nAER
+  binding for v7.3 (`97ca178c899d`)\, which resolves — properly — a lay
+ ering hack I had\nbeen carrying in production. The point fixes landed.\n\n
+ The structural work did not come with us\, and its absence is where the ne
+ w problems live.\nHierarchy mutation still sits behind one global `pci_res
+ can_remove_lock`\; Keith's per-bus\nlocking and subordinate-bus refcountin
+ g are still unmerged\, two years on. Where exclusion\nbecame coordination\
+ , the budgets do not match: `pci_dpc_recovered()` waits 4 s for a\nrecover
+ y bounded at roughly 62 s. And a failure nobody was watching turned up —
+  after a\nswitch-subtree reset\, 3 of 8 endpoints cannot place a 1 GiB BAR
+  that boot places without\ncomplaint.\n\nI am not here to complain\; my cr
+ ash was fixed and I will say so. I bring crash dumps\, source\nanalysis\, 
+ a reproducible switch topology\, and fleet-scale test capacity — the val
+ idation\nbandwidth the subsystem said it was short on — and three questi
+ ons about the way forward. I\nwant to leave the room agreeing on which one
+  is worth fixing next\, and who validates it.
+URL:https://lpc.events/event/20/contributions/2519/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2508@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T174500
+DTEND;TZID=Europe/Prague:20261005T181000
+SUMMARY:Describing P2PDMA capabilities in ACPI
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:VFIO/IOMMU/PCI MC · Leon Romanovsky\, Lukas Wunner · https://
+ lpc.events/event/20/contributions/2508/\n\nThe kernel uses a [whitelist][1
+ ] do determine whether peer-to-peer DMA is supported between devices. But 
+ constantly amending the whitelist is a maintenance burden.\n\nWe are propo
+ sing to extend the ACPI HMAT table with bandwidth and latency characterist
+ ics for P2PDMA traffic between PCI host bridges (and between devices below
+  the same host bridge).\n\nThis will remove the need for a whitelist.\n\nI
+ t also closes a gap in virtualization: VMs have no visibility of the physi
+ cal PCI topology and thus cannot determine P2PDMA reachability. The propos
+ ed HMAT extension solves this: VMMs such as qemu may present a synthesized
+  HMAT table to VMs which reflects the physical capabilities. This replaces
+  prior proposals such as Nvidia's [Virtual Peer-to-Peer Approval Capabilit
+ y][2].\n\nLast not least\, the proposed HMAT extension allows users to pop
+ ulate PCI slots for optimal P2PDMA performance.\n\nWe will briefly present
+  the draft of this ACPI Code First ECN and explain how it fits into the Li
+ nux P2PDMA model and path-selection algorithm. Afterwards we hope for a li
+ vely discussion on its merits.\n\n  [1]: https://elixir.bootlin.com/linux/
+ v7.2-rc1/source/drivers/pci/p2pdma.c#L535\n  [2]: https://lists.gnu.org/ar
+ chive/html/qemu-devel/2017-08/pdfUda5iEpgOS.pdf
+URL:https://lpc.events/event/20/contributions/2508/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2384@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T181000
+DTEND;TZID=Europe/Prague:20261005T183000
+SUMMARY:Testing the Untestable: Using QEMU for Testing PCI Endpoint Framewo
+ rk
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:VFIO/IOMMU/PCI MC · Manivannan Sadhasivam · https://lpc.event
+ s/event/20/contributions/2384/\n\nThe Linux PCI Endpoint Framework provide
+ s the software infrastructure for a Linux system to present itself as a PC
+ Ie Endpoint device to an external Host. It consists of an Endpoint Control
+ ler layer that abstracts the hardware\, an Endpoint Function layer that im
+ plements device behavior\, and a ConfigFS interface for userspace to bind 
+ them together. For testing\, the upstream pci_endpoint kselftests are used
+ . But running this kselftest has always required two physical machines con
+ nected by a physical PCIe link. This makes automated testing impractical a
+ nd limits coverage to whoever has the right hardware.\n\n  This talk prese
+ nts a software only test setup that removes the hardware requirement entir
+ ely. Two QEMU instances communicate over a Unix socket\, one acting as the
+  Endpoint Controller and the other as the Root Complex. A new generic EPC 
+ driver on the Endpoint side talks to a virtual Endpoint Controller device 
+ emulated by QEMU\, which forwards commands over the socket to the RC side 
+ where QEMU emulates a PCIe Endpoint Function that the Host kernel enumerat
+ es and tests against. The existing kselftests run unmodified against this 
+ setup.\n\nThis talk will walk through how the two VM design works\, what t
+ rade-offs were made in the socket protocol and what remains to be done for
+  full CI integration.
+URL:https://lpc.events/event/20/contributions/2384/
+END:VEVENT
+END:VCALENDAR

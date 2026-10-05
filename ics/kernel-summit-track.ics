@@ -1,0 +1,215 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Kernel Summit Track
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2373@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T100000
+DTEND;TZID=Europe/Prague:20261006T104500
+SUMMARY:Kernel CVEs at AWS Scale: Two Years of Empirical Findings
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Kernel Summit Track · Dylan Johnson\, Justinien Bouron · http
+ s://lpc.events/event/20/contributions/2373/\n\nSince the Linux kernel proj
+ ect became a CVE Numbering Authority (CNA) in February 2024\, organization
+ s maintaining custom kernels have faced a flood of CVE disclosures.\n\nWe 
+ present empirical findings\, lessons learned\, and the key challenges that
+  the kernel team responsible for Amazon Web Services fleet infrastructure 
+ encountered over the following two years while handling the steady flow of
+  kernel CVEs.\n\nWe summarize our approach to assessing kernel CVEs in a w
+ arehouse-scale environment\, pruning our code base to reduce the attack su
+ rface\, along with quantitative results from field data. Specifically\, we
+  examine\n\n - how NVD/CVSS scores and third-party assessments correlate w
+ ith our final in-house ratings\;\n - how community guidance\, including st
+ able tree tracking and domain-specific risk assessment\, measurably improv
+ ed our development velocity\, kernel maintenance\, and kernel adoption str
+ ategy\; and\n - how backporting practices introduce regressions and compou
+ nd risk.\n\nWe then present data on patching velocity and CVE-related tren
+ ds across LTS versions. Although our data comes from a single environment\
+ , we believe these findings generalize to any organization that maintains 
+ in-house or custom kernels.\n\nWe will close with an open discussion on em
+ erging developments (including where AI-assisted tooling fits into the CVE
+  triage and patching pipeline) and invite attendees to challenge\, extend\
+ , or contradict our findings with their own data.
+URL:https://lpc.events/event/20/contributions/2373/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2372@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T104500
+DTEND;TZID=Europe/Prague:20261006T113000
+SUMMARY:Regressions & tracking them: current state\, plans\, and what do yo
+ u want?
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Kernel Summit Track · Thorsten Leemhuis · https://lpc.events/
+ event/20/contributions/2372/\n\nProvide a quick "state of the union" about
+  the Linux kernel regression ecosystem in the first part of the session be
+ fore spending the second discussing what improvement the members of the au
+ dience wish for in this area.\n\nThe first part is meant to take less then
+  half of the allotted time and will cover things like:\n\n* KernelCI and r
+ egzbot joined forces -- what this means for the future.\n* Tracking regres
+ sions with regzbot\, the regression tracking bot: status and future plans.
+ \n* Linux development workflow patters that lead to regressions or delay r
+ esolving them.\n\nThe second half will be audience driven and might discus
+ s details in the areas raised earlier\, things like the following\, or wha
+ tever the audience is interested it:\n\n* Regression tracking with regzbot
+  still useful in the age of AI?\n* How to improve interaction with parties
+  interested in the space of CI\, regressions\, and tracking them – like 
+ kernel maintainers of distros that regularly update their kernels to lates
+ t stable or longterm series.\n* Is there interest in trees with "pending" 
+ and "wip" regression fixes?\n\nIn case I'm invited to the kernel maintaine
+ rs summit I'll also collect topics with regards to regressions the audienc
+ e wants me to bring up at kernel maintainer summit a few days later.
+URL:https://lpc.events/event/20/contributions/2372/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2375@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T120000
+DTEND;TZID=Europe/Prague:20261006T124500
+SUMMARY:Challenges in multi-tenant GPU sharing
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Kernel Summit Track · Boqun Feng\, Gregoire Pean\, Jatin Katar
+ ia · https://lpc.events/event/20/contributions/2375/\n\nWe would like to 
+ share some of the challenges we have encountered in a multi-tenant GPU env
+ ironment\, discuss the solutions we have explored\, and gather feedback fr
+ om the community.\n\nTo provide context for the audience\, we will start b
+ y giving an overview of our multi-tenant architecture. We then plan to dis
+ cuss several areas where we have encountered challenges\, including:\n\n  
+ - GPU reset and debugging\n  - Identifying the problematic tenant session 
+ among many concurrent sessions\n  - Missing resource management capabiliti
+ es\, especially around memory cgroups\n  - Lock contention in drivers\n  -
+  Power distribution across different system components\n\nWe would like to
+  close the session with an open discussion on the issues and solutions pre
+ sented. If the right audience is present\, we would also like to discuss w
+ hat a reasonable roadmap could look like for improving Linux support for m
+ ulti-tenant GPU platforms.
+URL:https://lpc.events/event/20/contributions/2375/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2370@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T124500
+DTEND;TZID=Europe/Prague:20261006T133000
+SUMMARY:Maintainer-oriented features of b4
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Kernel Summit Track · Konstantin Ryabitsev · https://lpc.even
+ ts/event/20/contributions/2370/\n\nB4 is already a well-known tool for ret
+ rieving and applying series from lore.kernel.org. Recently\, it gained sev
+ eral new features that can make the life of a maintainer a bit easier:\n\n
+ - b4 review - helps with code review and full series lifecycle management\
+ n- b4 bugs - integrates distributed bug tracking into your workflow\n\nThi
+ s session will go over the new features and how they can assist overloaded
+  maintainers in keeping a handle on the stream of incoming changes.
+URL:https://lpc.events/event/20/contributions/2370/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2371@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150000
+DTEND;TZID=Europe/Prague:20261006T154500
+SUMMARY:Rust for Linux
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Kernel Summit Track · Miguel Ojeda · https://lpc.events/event
+ /20/contributions/2371/\n\n[Rust for Linux](https://rust-for-linux.com) is
+  the project adding support for the Rust language to the Linux kernel. Thi
+ s talk will give a high-level overview of the status and the latest news a
+ round Rust in the kernel since LPC 2025.
+URL:https://lpc.events/event/20/contributions/2371/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2376@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T154500
+DTEND;TZID=Europe/Prague:20261006T163000
+SUMMARY:Leveraging Rust's Field Projections in the Kernel and Beyond
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Kernel Summit Track · Benno Lossin · https://lpc.events/event
+ /20/contributions/2376/\n\nSeveral Rust contributors and I have been colla
+ borating on a novel language feature called "Field Projections". The featu
+ re is still being designed and implemented\, so now is a good opportunity 
+ to experiment with it to see what new APIs it unlocks for the Kernel and o
+ ther projects. We also want to investigate any gaps in our current design 
+ that prevent important use-cases from being supported.\n\nRust makes heavy
+  use of custom pointers filling the gap (& going beyond) between reference
+ s (`&T` and `&mut T`) and raw pointers (`*const T` and `*mut T`). Currentl
+ y\, they have two major issues: ergonomics and feature parity with builtin
+  references and `Box<T>`. Raw pointers and their extensions (e.g. `NonNull
+ <T>`) have especially bad ergonomics. Our Field Projection language featur
+ e aims to remedy these shortcomings of custom (dumb & smart) pointers\; ou
+ r current approach is an ambitious generalization of `Deref` that supports
+  a plethora of custom pointers from `MyBox<T>` (that has all the propertie
+ s of `Box<T>`) to `VolatilePtr<T>` (which is only using `{read\,write}_vol
+ atile` to access the pointee). Our proposal integrates tightly with existi
+ ng features such as place expressions\, operations on places\, the borrow-
+ checker\, and autoref.
+URL:https://lpc.events/event/20/contributions/2376/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2374@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T170000
+DTEND;TZID=Europe/Prague:20261006T174500
+SUMMARY:DRM: handling runtime requirements for device components.
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Kernel Summit Track · Dmitry Baryshkov · https://lpc.events/e
+ vent/20/contributions/2374/\n\nThe DRM susbsytem grew up from the desktop 
+ GPUs\, where the device is a single unit\, powered on and off only at the 
+ important runtime points. For the embedded display controllers it's no lon
+ ger true. The display pipeline can consist of several different devices\, 
+ each having its own runtime power up and down code points. Handling device
+  power on and off in the existing atomic callbacks makes the code fragile:
+  it's too easy to create a disbalance of calls or to miss a register acces
+ s from one of the points.\n\nIn this talk I would like to point out these 
+ issues and trigger a discussion about possible ways to solve the issue.
+URL:https://lpc.events/event/20/contributions/2374/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2377@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T174500
+DTEND;TZID=Europe/Prague:20261006T183000
+SUMMARY:Bringing Linux DRM Display Panel support in the modern age
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Kernel Summit Track · Neil Armstrong · https://lpc.events/eve
+ nt/20/contributions/2377/\n\nSince the introduction of the first Samsung D
+ SI panel\, the Linux DRM panel API has been a crucial piece of software fo
+ r enabling displays across diverse architectures\, but it has not evolved 
+ alongside modern graphics stacks. Currently\, the API lacks atomic DRM API
+  support and the ability to adapt power setups during mode changes. Furthe
+ rmore\, it fails to support advanced Display Driver IC (DDIC) features tha
+ t modern hardware heavily relies on\, including:\n- Standby and advanced p
+ ower states\n- Advanced color management\n- Dynamic rate switching\n- Comm
+ and mode self-refresh\n\nThis lack of evolution has led to severe fragment
+ ation between upstream and vendor downstream trees for advanced devices su
+ pport\, creating a heavy maintenance burden and making native hardware sup
+ port incredibly difficult.\n\nThe goal would be to outline these architect
+ ural limitations and trigger a discussion on how to collaboratively modern
+ ize the panel API. By standardizing advanced DDIC capabilities and fully e
+ mbracing the atomic DRM API\, we hope to establish a unified path forward 
+ for the entire Linux community.
+URL:https://lpc.events/event/20/contributions/2377/
+END:VEVENT
+END:VCALENDAR

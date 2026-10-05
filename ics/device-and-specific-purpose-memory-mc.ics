@@ -1,0 +1,288 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Device and Specific Purpose Memory MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2628@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100000
+DTEND;TZID=Europe/Prague:20261005T100500
+SUMMARY:Intro/Welcome
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Device and Specific Purpose Memory MC · https://lpc.events/eve
+ nt/20/contributions/2628/
+URL:https://lpc.events/event/20/contributions/2628/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2424@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100500
+DTEND;TZID=Europe/Prague:20261005T103500
+SUMMARY:A Compressed RAM Service
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Device and Specific Purpose Memory MC · Gregory Price · https
+ ://lpc.events/event/20/contributions/2424/\n\nCompressed RAM (where hardwa
+ re offloads compression) presents a particularly novel problem for the ker
+ nel: the device fundamentally lies about its true capacity - while the ker
+ nel is written to assume any `struct page` it can get will always be backe
+ d by real capacity.\n\nUnlike zswap/zram - these devices provide cacheline
+ /byte access to compressed memory\, their memory can remain page-table map
+ ped and page-cache present without generate faults on read-access (no COW\
+ , no software decompression step etc).\n\nLets discuss what it would take 
+ to formalize support for a compressed RAM service that otherwise "looks li
+ ke" normal memory (migratable\, mappable\, page-cache-able - but maybe not
+  directly writable).\n\nAll but one feature required to achieve support al
+ ready exists in the kernel (or has existed at one time).\n\n 1. Anon Memor
+ y support: Page Table Write Protection (COW\, KSM)\n 2. Page Cache support
+ : Clean Cache (clean page eligible only)\n 3. Reclaim and Demotion\n 4. Me
+ mory Ballooning (dynamic sizing)\n 5. Free Page Reporting (stale data trim
+ ming)\n 6. Memory Tiering (Hotness / NUMA Balancing)\n 7. Strictly control
+ led NUMA memory allocation (private nodes)\n\nI will present a tested comp
+ ressed ram service (mm/cram.c) that achieves near-native performance to DR
+ AM under TAOBench and FIO benchmarks\, and has been tested under most in-t
+ ree filesystems for pagecache correctness.
+URL:https://lpc.events/event/20/contributions/2424/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2468@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T103500
+DTEND;TZID=Europe/Prague:20261005T110500
+SUMMARY:Unordered I/O (UIO) support and P2P paths
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Device and Specific Purpose Memory MC · Arun George · https:/
+ /lpc.events/event/20/contributions/2468/\n\nThe PCIe Unordered I/O (UIO) f
+ eature (introduced in v6.1) relaxes the strict ordering rules of the PCIe 
+ fabric\, providing benefits such as the avoidance of head-of-line (HOL) bl
+ ocking. CXL v3.2 specification incorporates P2P UIO access into the HDM sp
+ ace\, enabling the peer access from non-CXL capable accelerators (e.g.\, G
+ PUs) over the PCIe bus.\n\nEnabling UIO in the Linux kernel involves certa
+ in considerations:\n - Coherency management while allowing CXL HDM space f
+ or both normal and P2P accesses (Ex: coupling with back-invalidation).\n -
+  Managing a UIO capable P2P route between a provider (e.g.\, CXL HDM) and 
+ requester (e.g\, PCIe GPU).\n\nThis session will discuss:\n - Enumeration 
+ of UIO within the PCI and CXL layers.\n - CXL-side aspects of a P2P UIO ca
+ pable memory region (including HDM-DB).\n - PCI driver design for UIO and 
+ associated P2P-DMA considerations.\n - Potential race conditions during en
+ umeration and the mapping P2P routes.
+URL:https://lpc.events/event/20/contributions/2468/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2521@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T110500
+DTEND;TZID=Europe/Prague:20261005T112500
+SUMMARY:CXL Performance Monitoring - Status and Outlook
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Device and Specific Purpose Memory MC · Robert Richter · http
+ s://lpc.events/event/20/contributions/2521/\n\nThe CXL specification defin
+ es a Component Performance Monitoring Unit (CPMU) register interface for p
+ erformance monitoring of CXL devices. The Linux kernel includes a CPMU dri
+ ver that exposes an interface to collect hardware events from CXL memory d
+ evices through the perf subsystem.\n\nThe current driver supports poll-bas
+ ed event counting using perf stat \, providing events such as clock ticks\
+ , DDR CAS read/write counts\, and CXL M2S/S2M protocol events. However\, i
+ nterrupt-based sampling is not implemented — the CPMU capability registe
+ r defines interrupt support in the CXL spec\, but the kernel driver does n
+ ot utilize it. As a result\, perf top and other sampling-based tools are n
+ ot available.\n\nThis talk gives an overview of the current CPMU driver im
+ plementation\, its usage with the perf tool\, and the limitations encounte
+ red. We also look at how CPMUs relate to standard DRAM profiling with unco
+ re PMUs and EDAC. We discuss adding interrupt support and extending CPMU d
+ iscovery beyond CXL endpoint devices to root ports and switch ports.
+URL:https://lpc.events/event/20/contributions/2521/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2425@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T120000
+DTEND;TZID=Europe/Prague:20261005T122500
+SUMMARY:Using Platform-provided Hints for Hot Page Detection and Promotion
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Device and Specific Purpose Memory MC · Bharata Bhasker Rao ·
+  https://lpc.events/event/20/contributions/2425/\n\nHardware platforms con
+ tinue to expose useful and actionable memory access information to the OS 
+ in various ways. Sources of such information include CPU-level instruction
+ /op sampling mechanisms (like AMD IBS and ARM SPE)\, PMU-based precise sam
+ pling (like Intel PEBS)\, and device-side facilities such as the CXL Hotne
+ ss Monitoring Unit (HMU). These platform-provided hints can be used by sub
+ -systems like NUMA balancing\, reclaim and hot page promotion in tiered me
+ mory systems to make better placement decisions\, especially on systems wi
+ th CXL-attached or accelerator memory where the cost of a bad placement is
+  high.\n\nThe IBS Memory Profiler [1] on future AMD processors is one conc
+ rete example of such a hint source. It is a second\, lightweight IBS insta
+ nce on the chip\, dedicated to memory access profiling\, and provides per-
+ access information (virtual/physical address\,  source/target NUMA node) a
+ t low overhead. This talk intends to share the experience of working with 
+ the IBS Memory Profiler and to look at the ways and challenges in making s
+ uch a hardware source usable by the kernel in general.\n\nFor any such pla
+ tform-provided hint to be useful\, a sub-system that can collate and act o
+ n hotness information from multiple sources in a producer-agnostic manner 
+ is needed. The pghot subsystem [2] is being developed for this purpose. It
+  moves the hot page promotion engine out of NUMA balancing into a sub-syst
+ em of its own and exposes a uniform interface so that multiple producers (
+ NUMA hint faults\, AMD IBS\, CXL HMU\, etc.) can feed into a single promot
+ ion policy. pghot has been discussed at LPC 2023 [3]\, LSF/MM/BPF 2025 [4]
+  and LPC 2025\, and is a recurring topic on the biweekly Linux Memory Hotn
+ ess and Promotion community call. In this talk\, pghot is treated as the e
+ nabling base infrastructure and not as the main subject.\n\nThe talk will 
+ also touch upon the producer-side ABI that pghot should commit to\, where 
+ filtering and aging of the access information should reside\, the coexiste
+ nce with NUMA balancing-driven sampling on capable hardware\, and a set of
+  workloads and metrics for fairly comparing different hotness sources.\n\n
+ [1] AMD IBS Memory Profiler documentation: https://docs.amd.com/v/u/en-US/
+ 69205_1.00_AMD64_IBS_PUB\n[2] pghot v7 patchset: https://lore.kernel.org/l
+ inux-mm/20260504060924.344313-1-bharata@amd.com/\n[3] Using hardware hints
+  for optimal page placement\, LPC 2023: https://lpc.events/event/17/contri
+ butions/1513/\n[4] Unifying sources of page hotness information\, LSF/MM/B
+ PF 2025: https://lore.kernel.org/linux-mm/20250319124552.0000344a@huawei.c
+ om/
+URL:https://lpc.events/event/20/contributions/2425/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2518@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T122500
+DTEND;TZID=Europe/Prague:20261005T125000
+SUMMARY:DAMON (Data Attributes Monitoring/Operations Engine)-based {C\,G\,X
+ }PU [un]attached NUMA Pages Migration
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Device and Specific Purpose Memory MC · SJ Park · https://lpc
+ .events/event/20/contributions/2518/\n\nIn the last LPC\, we introduced a 
+ plan to extend DAMON (Data Access MONitor) for migrating pages around NUMA
+  nodes based on their access pattern.  Based on on/offline feedback\, we c
+ ontinued discussions and development in the upstream community.\n\nAs a re
+ sult of the collaborations\, we made a concrete plan and a roadmap for the
+  goal\, including support of extensions for h/w features such as AMD IBS\,
+  Intel PEBS and ARM SPE. Major stakeholders agreed on the roadmap that cur
+ rently planned to deliver the first working version by mid 2027. By the ti
+ me\, it will no longer be called DAMON (Data Access MONitor) but DAMON (Da
+ ta Attributes Monitoring/Operation eNgine).\n\nIn this session\, we will i
+ ntroduce the evolved design of the in-kernel framework and user interface.
+  We will share the entire roadmap with the expected timeline and the statu
+ s as of the time of the session. We will discuss pros and cons of the desi
+ gns and possible adjustments on roadmap\, timeline\, and priorities of sho
+ rt term future works.\n\nQuestions we will discuss include but not limited
+  to below:\n\n- What is the plan and the current status of DAMON for NUMA 
+ system memory optimizations?\n  - Does the plan makes sense?\n  - Any of p
+ lanned work items need [de]prioritizations?\n    - Monitoring extension fo
+ r AMD IBS\, Intel PEBS\, ARM SPE\, and/or page faults.\n    - DAMOS integr
+ ation with new monitoring framework.\n- Can we make it just works without 
+ any user inputs?\n- Is there a plan to use it in real products?\n- Will th
+ e classical page table accessed bit based access monitoring be deprecated?
+   What is the plan and the status?\n- What is the current and future test 
+ plan?\n- Myths and truths of DAMON for NUMA and general use cases.
+URL:https://lpc.events/event/20/contributions/2518/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2516@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T125000
+DTEND;TZID=Europe/Prague:20261005T131000
+SUMMARY:XMFS: A Cross-node Express Memory File System
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Device and Specific Purpose Memory MC · Yifan Qiao · https://
+ lpc.events/event/20/contributions/2516/\n\n**Cross-node Memory as a Linux 
+ Storage Tier：Exploring POSIX-based Shared Memory**\n\n**Background & Mot
+ ivation**\nMemory-semantic interconnects such as CXL 3.0 and Huawei United
+  Bus make remote memory directly addressable. This raises a question for L
+ inux: should cross-node memory become another storage tier that can be exp
+ osed through existing POSIX filesystem interfaces?\n\n**Our Exploration: X
+ MFS**\nTo explore this question\, we built XMFS\, an in-kernel prototype t
+ hat exports cross-node shared memory through a standard POSIX filesystem i
+ nterface. Initial experiments with metadata-intensive workloads and contai
+ ner image sharing suggest the approach is practical.\n\n**Engineering Chal
+ lenges Encountered**\nDuring development we repeatedly encountered four ar
+ eas where existing kernel abstractions are either missing or insufficient:
+ \n• Metadata synchronization: Current VFS and filesystem metadata manage
+ ment assume a single kernel instance coordinating namespace and inode upda
+ tes. What generic kernel mechanisms are needed to efficiently synchronize 
+ metadata across multiple kernels without introducing centralized bottlenec
+ ks?\n• Software cache coherence: The Linux page cache and MM subsystem r
+ ely on hardware cache coherence within a machine. When memory is shared ac
+ ross nodes without hardware coherence\, should software cache-coherence po
+ licies live inside individual filesystems\, the MM subsystem\, or new gene
+ ric kernel infrastructure?\n• Integrating hybrid transports: Linux curre
+ ntly exposes memory-semantic interconnects and RDMA through different subs
+ ystems and programming models. How should these be integrated so that file
+ systems can transparently use both without exposing transport-specific beh
+ avior to applications?\n• Capacity management & Tiering: Linux already p
+ rovides memory tiering\, page migration\, and NUMA-aware memory management
+ . Should cross-node shared memory participate in these mechanisms\, and wh
+ at interfaces are needed between filesystems and MM to support it?\n\n**To
+ pics for Discussion**\nRather than presenting XMFS as a finished filesyste
+ m\, we hope to discuss whether Linux should treat cross-node memory as a f
+ irst-class storage tier\, which abstractions belong in VFS/MM rather than 
+ individual filesystems\, and what a practical upstream path could look lik
+ e. We believe these questions will become increasingly relevant as memory-
+ semantic interconnects become more widely available.
+URL:https://lpc.events/event/20/contributions/2516/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2517@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T131000
+DTEND;TZID=Europe/Prague:20261005T133000
+SUMMARY:DAXFS: What Does Shared-Memory Storage Need from DAX\, VFS\, and CX
+ L Memory Management?
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Device and Specific Purpose Memory MC · Cong Wang · https://l
+ pc.events/event/20/contributions/2517/\n\nWhen multiple kernels or CXL-con
+ nected hosts share byte-addressable memory\, every existing filesystem opt
+ ion pays a copy per participant: tmpfs replicates content N times\, erofs 
+ and fscache keep a private page cache per kernel. To ground the discussion
+  we bring DAXFS\, a prototype filesystem that runs directly on DAX memory 
+ with no block layer: one shared namespace\, a cooperative page cache in th
+ e shared region\, and mounts backed by a raw physical range or a dma-buf\,
+  so GPUs reach file data zero-copy through the backing buffer. Unlike famf
+ s\, where a userspace master preallocates files and distributes metadata t
+ o read-only clients out of band\, DAXFS is masterless: metadata lives in t
+ he shared region itself and any participant can create files and COW-write
+  pages concurrently through lock-free CAS updates\, no metadata server\, n
+ o out-of-band log.\n\nThe killer use case we are building toward is checkp
+ oint and restore of AI agent sandboxes. Thousands of short-lived agent ins
+ tances share one mapping of the base rootfs and model weights\, with writa
+ ble state as COW overlay pages in shared memory. Today the image carries a
+  single shared overlay\; giving each sandbox its own sealable overlay woul
+ d make checkpoint a seal operation and restore (or forking N agents from o
+ ne checkpoint) just a map: no gigabytes serialized through a block device\
+ , cold start drops from minutes to seconds.\n\nBuilding it surfaced gaps b
+ igger than one filesystem\, and we want the MC to weigh in:\n\n* DAXFS byp
+ asses fs/dax entirely (memremap plus raw PFN mappings) because fs/dax assu
+ mes a filesystem privately owns its dax_device. How do shared multi-writer
+  DAX mappings become supported\, not a special case?\n\n* Is a filesystem 
+ the right ABI for pooled memory carved into named shareable objects\, or s
+ hould this be device-dax\, a sparse memfd (per the DCD discussions)\, or g
+ uest_memfd-shaped?\n\n* DAXFS mounts from an imported dma-buf today\; expo
+ rting per-file extents as dma-bufs is the natural next step. What are the 
+ lifetime and coherence rules when the exporter is a filesystem over shared
+  device memory\, with P2P DMA targeting it?\n\n* Who owns allocation when 
+ N hosts share a Dynamic Capacity Device\, and how does DCD extent release 
+ interact with live filesystem data?\n\n* Where is the line between memory 
+ core MM manages and memory a cross-kernel service manages\, and how do hot
+ ness tracking and migration see pages no single kernel owns?
+URL:https://lpc.events/event/20/contributions/2517/
+END:VEVENT
+END:VCALENDAR

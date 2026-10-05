@@ -8,8 +8,9 @@
 .github/workflows/refresh.yml runs this on a schedule and commits the result.
 
 Three parts of the page are regenerated: the SESSIONS array, the BREAKS array and
-the footer note. The data comes from the two public Indico exports of the event
-(no API key needed):
+the footer note. Next to the page, ics/ gets a calendar feed of the whole programme
+(all.ics) and one per track, which the page links to for calendar apps to subscribe to.
+The data comes from the two public Indico exports of the event (no API key needed):
 
     https://lpc.events/export/event/20.json?detail=contributions   titles, speakers, abstracts
     https://lpc.events/export/timetable/20.json                    times, rooms, breaks
@@ -250,6 +251,65 @@ def sessions_js(sessions):
     return '[\n' + ',\n'.join(enc(s) for s in sessions) + '\n]'
 
 
+def slug(track):
+    """File name of a track's calendar feed; the page builds the same name to link to it."""
+    return re.sub(r'[^a-z0-9]+', '-', track.lower()).strip('-')
+
+
+def ics_text(v):
+    return str(v or '').replace('\\', '\\\\').replace(';', '\\;').replace(',', '\\,').replace('\r\n', '\n').replace('\n', '\\n')
+
+
+def ics_fold(line):
+    """Calendar lines may be at most 75 bytes; longer ones continue on lines that start with a space."""
+    raw = line.encode('utf-8')
+    if len(raw) <= 75:
+        return line
+    parts, i, room = [], 0, 75
+    while i < len(raw):
+        j = min(i + room, len(raw))
+        while j < len(raw) and (raw[j] & 0xC0) == 0x80:   # do not split a UTF-8 character
+            j -= 1
+        parts.append(raw[i:j].decode('utf-8'))
+        i, room = j, 74
+    return '\r\n '.join(parts)
+
+
+def calendar(name, sessions, taken):
+    stamp = taken.astimezone(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    local = lambda date, time: date.replace('-', '') + 'T' + time.replace(':', '') + '00'
+    lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//lpc-scheduler//LPC 2026 schedule//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+             'X-WR-CALNAME:' + ics_text(name), 'X-WR-TIMEZONE:' + TZ, 'REFRESH-INTERVAL;VALUE=DURATION:PT1H', 'X-PUBLISHED-TTL:PT1H',
+             'BEGIN:VTIMEZONE', 'TZID:' + TZ,
+             'BEGIN:DAYLIGHT', 'TZOFFSETFROM:+0100', 'TZOFFSETTO:+0200', 'TZNAME:CEST', 'DTSTART:19700329T020000',
+             'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU', 'END:DAYLIGHT',
+             'BEGIN:STANDARD', 'TZOFFSETFROM:+0200', 'TZOFFSETTO:+0100', 'TZNAME:CET', 'DTSTART:19701025T030000',
+             'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU', 'END:STANDARD',
+             'END:VTIMEZONE']
+    for s in sessions:
+        about = ' · '.join(x for x in (s['track'], ', '.join(s['speakers']), s['url']) if x)
+        lines += ['BEGIN:VEVENT', 'UID:lpc2026-%s@lpc.events' % s['id'], 'DTSTAMP:' + stamp,
+                  'DTSTART;TZID=%s:%s' % (TZ, local(s['date'], s['start'])), 'DTEND;TZID=%s:%s' % (TZ, local(s['date'], s['end'])),
+                  'SUMMARY:' + ics_text(s['title']),
+                  'LOCATION:' + ics_text(('TBA' if s['room'] == 'TBD' else s['room']) + ', Prague Congress Centre'),
+                  'DESCRIPTION:' + ics_text(about + ('\n\n' + s['abstract'] if s['abstract'] else ''))]
+        if s['url']:
+            lines.append('URL:' + s['url'])
+        lines.append('END:VEVENT')
+    lines.append('END:VCALENDAR')
+    return '\r\n'.join(ics_fold(ln) for ln in lines) + '\r\n'
+
+
+def build_feeds(sessions, taken):
+    """{file name: text} for ics/: the whole programme and one calendar per track."""
+    feeds = {'all.ics': calendar('LPC 2026', sessions, taken)}
+    for track in sorted({s['track'] for s in sessions if s['track']}):
+        name = slug(track) + '.ics'
+        assert name not in feeds, 'two tracks share the feed name %s' % name
+        feeds[name] = calendar('LPC 2026: ' + track, [s for s in sessions if s['track'] == track], taken)
+    return feeds
+
+
 def footer_text(sessions, taken):
     rooms = {s['room'] for s in sessions if s['room'] != 'TBD'}
     tracks = {s['track'] for s in sessions if s['track']}
@@ -335,17 +395,28 @@ def main():
     assert n == 1, 'BREAKS block not found'
     out, n = FOOTER_RE.subn(lambda m: m.group(1) + footer_text(sessions, taken) + m.group(2), out, count=1)
     assert n == 1, 'footer note not found'
+    feeds = build_feeds(sessions, taken)
+    ics_dir = os.path.join(os.path.dirname(os.path.abspath(args.page)), 'ics')
+    have = {f for f in os.listdir(ics_dir) if f.endswith('.ics')} if os.path.isdir(ics_dir) else set()
     if args.dry_run:
         print('Dry run: %s not written.' % args.page)
         return
-    if not changes and not args.force:
+    if not changes and not args.force and have == set(feeds):
         print('%s left as it is (--force rewrites it with the new snapshot time).' % args.page)
         return
-    tmp = args.page + '.tmp'
-    with open(tmp, 'w', encoding='utf-8') as f:
-        f.write(out)
-    os.replace(tmp, args.page)
-    print('Wrote %s (%d bytes).' % (args.page, len(out.encode('utf-8'))))
+    if changes or args.force:
+        tmp = args.page + '.tmp'
+        with open(tmp, 'w', encoding='utf-8') as f:
+            f.write(out)
+        os.replace(tmp, args.page)
+        print('Wrote %s (%d bytes).' % (args.page, len(out.encode('utf-8'))))
+    os.makedirs(ics_dir, exist_ok=True)
+    for name, text in feeds.items():
+        with open(os.path.join(ics_dir, name), 'w', encoding='utf-8', newline='') as f:
+            f.write(text)
+    for name in have - set(feeds):
+        os.remove(os.path.join(ics_dir, name))      # a track that no longer exists
+    print('Wrote %d calendar feeds to %s.' % (len(feeds), ics_dir))
 
 
 if __name__ == '__main__':

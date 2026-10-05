@@ -1,0 +1,267 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Devicetree MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2388@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T100000
+DTEND;TZID=Europe/Prague:20261006T102000
+SUMMARY:DT bindings and sources shared with U-Boot: current status and ongo
+ ing work
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Devicetree MC · Neil Armstrong · https://lpc.events/event/20/
+ contributions/2388/\n\nSince early 2024\, U-Boot has been synchronizing th
+ e DTS and bindings of each Linux release into the U-Boot source tree using
+  git subtree functionality. Since this transition\, some platforms like Am
+ logic or Qualcomm have immediately switched\, and some older platforms hav
+ e been actively migrating to upstream Linux DT sources and bindings while 
+ maintaining minimal local U-Boot DTS modifications.\n\nNeil will summarize
+  the current state of U-Boot's integration of these upstream DTS\, provide
+  an update on ongoing migrations\, and outline the remaining work required
+  to fully eliminate local U-Boot DTS modifications.
+URL:https://lpc.events/event/20/contributions/2388/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2390@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T102000
+DTEND;TZID=Europe/Prague:20261006T104000
+SUMMARY:Status of the DTS Validation in the Linux Kernel
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Devicetree MC · Krzysztof Kozlowski · https://lpc.events/even
+ t/20/contributions/2390/\n\nThe great benefit of Devicetree bindings in th
+ e current DT schema format is the ability to validate the correctness of D
+ TS (Devicetree sources) against those bindings. However\, once validation 
+ was introduced\, we discovered that many in-kernel DTS files simply did no
+ t pass.\n\nContinuing such summary from 2025\, what is the status of dtbs_
+ check now? Which platforms have the most warnings and which are warning-fr
+ ee? What improved over last year?\n\nThis is a similar talk to one in 2025
+  LPC showing current stage of dtbs_check.
+URL:https://lpc.events/event/20/contributions/2390/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2469@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T104500
+DTEND;TZID=Europe/Prague:20261006T110500
+SUMMARY:SDCA and Devicetrees
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Devicetree MC · Srini Kandagatla · https://lpc.events/event/2
+ 0/contributions/2469/\n\nLast year's LPC discussion explored whether ACPI-
+ defined hardware descriptions could be reused on systems booting with Devi
+ cetree\, and where the boundary should exist between the two firmware ecos
+ ystems.\n\nSince then\, several related efforts have continued across the 
+ kernel community\, having intermediate representation for MIPI DISCO table
+ s for SDCA\, emerging ACPI-DT hybrid approaches. At the same time\, new pl
+ atform requirements—particularly on ARM64 laptops and embedded systems
+ —continue to challenge the traditional "ACPI or DT" model.\n\nThis sessi
+ on will review the current state of these efforts\, How should systems wit
+ hout ACPI tables should work with drivers like SDCA\, discuss practical us
+ e cases where combining ACPI and Devicetree provides value\, examine ongoi
+ ng hybrid firmware work\, and identify remaining technical ad architectura
+ l challenges. The goal is to gather feedback on whether the community shou
+ ld continue evolving hybrid solutions\, standardize common mechanisms\, or
+  pursue alternative directions given that we have more data points.\n\nKey
+  Highligths:\n- Ongoing efforts.\n- Current Status of work on SDCA.\n- ACP
+ I-DT hybrid mode and future.\n- Systems without ACPI tables(mobile devices
+ ).\nHans is covering ACPI-DT Hybrid mode in detail https://lpc.events/even
+ t/20/contributions/2363/
+URL:https://lpc.events/event/20/contributions/2469/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2470@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T111000
+DTEND;TZID=Europe/Prague:20261006T113000
+SUMMARY:Streamlining DT Bindings to Protect Upstreaming Momentum
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Devicetree MC · Amit Kucheria · https://lpc.events/event/20/c
+ ontributions/2470/\n\nCorporate adoption of an "upstream-first" strategy i
+ s gaining traction\, with companies increasingly willing to allocate engin
+ eering bandwidth to contribute hardware support directly to the Linux kern
+ el. However\, integrating these contributions smoothly remains a practical
+  challenge. The review process frequently experiences friction during Devi
+ ce Tree (DT) binding discussions\, which can extend timelines\, consume al
+ located engineering bandwidth\, and occasionally discourage newcomers to t
+ he open-source ecosystem.\n\nThis discussion explores ways to accelerate D
+ T binding adoption so developers can maintain their focus on driver implem
+ entation. We will discuss current friction points and propose solutions to
+  streamline the process. Specifically\, we will evaluate the concept of "e
+ xperimental bindings"—exploring whether provisional bindings could be us
+ ed under certain circumstances to unblock driver development and maintain 
+ contributor momentum without compromising the long-term quality of hardwar
+ e descriptions.
+URL:https://lpc.events/event/20/contributions/2470/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2387@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T120000
+DTEND;TZID=Europe/Prague:20261006T122500
+SUMMARY:Device Tree Addons: Describe hot-pluggable extension boards
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Devicetree MC · Hervé Codina · https://lpc.events/event/20/c
+ ontributions/2387/\n\nDevice Tree has been extremely successful at describ
+ ing non-discoverable hardware in Linux and other embedded systems. However
+ \, it remains fundamentally monolithic: each Device Tree describes a compl
+ ete system\, and reuse across independently developed hardware components 
+ is limited.\n\nThis becomes problematic for modular platforms where expans
+ ion boards\, mezzanines\, daughter cards\, or hot-pluggable hardware are e
+ xpected to work across multiple base boards. While Device Tree Overlays pr
+ ovide a mechanism to modify an existing hardware description\, they requir
+ e detailed knowledge of the target system. They do not offer a robust way 
+ to describe addon boards independently of the base platform nor a way to u
+ se the same addon board description to describe the same board connected o
+ n multiple connectors available on a single base board.\n\nThe recently pr
+ oposed Device Tree Addon format [1] aims to address those limitations. It 
+ allows a single addon DTB to describe an extension board that can be used 
+ on different connectors of a given base board\, or on different base board
+ s\, without requiring board-specific customization.\n\nThe design goal of 
+ Device Tree Addon is illustrated in slides used for a talk given at ELCE 2
+ 025 [2]. The relevant slides sections are the following:\n  - Use case and
+  goals\n  - The connector abstraction.\n\nThe "Connector: current status" 
+ section available in [2] is now obsolete. The Device Tree Addon concept em
+ erged from discussions [3] that followed the ELCE 2025 conference.\n\nThis
+  session will briefly present Device Tree Addon concepts recently\nintrodu
+ ced and available in the RFC implementation [1]. Beyond introducing the fo
+ rmat\, the focus will be on the remaining challenges that must be addresse
+ d before broader adoption.\n\nTopics for discussion include remaining desi
+ gn questions\, integration with\nDevice Tree bindings and validation rules
+ \, standardization efforts in Devicetree Specification (DTSpec). We will a
+ lso examine the work still required in dtc\, libfdt\, bootloaders\, and th
+ e Linux kernel.\n\nThe goal of the session is to gather feedback from Devi
+ ce Tree maintainers\,\nkernel developers\, bootloader developers\, and use
+ rs of modular hardware platforms to help shape the future direction of Dev
+ ice Tree Addons.\n\nA Bootlin blog post about Device Tree addons (based on
+  its current state) is available [4].\n\n[1] https://lore.kernel.org/all/2
+ 0260826094950.1088288-1-herve.codina@bootlin.com/\n[2] https://bootlin.com
+ /pub/conferences/2025/elce/ceresoli-hotplug-status.pdf\n[3] https://lore.k
+ ernel.org/all/20250902105710.00512c6d@booty/\n[4] https://bootlin.com/blog
+ /device-tree-addons-describing-non-discoverable-addon-boards-and-connector
+ s/
+URL:https://lpc.events/event/20/contributions/2387/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2389@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T123000
+DTEND;TZID=Europe/Prague:20261006T125500
+SUMMARY:Using DT overlays to manage a collection of related boards
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Devicetree MC · Doug Anderson · https://lpc.events/event/20/c
+ ontributions/2389/\n\nIt is commonplace that many boards in the real world
+  have many sibling or cousin boards that are 95-99% the same as each other
+ . Some examples:\n\n - During development\, most boards go through several
+  revisions. A board might have proto0\, proto1\, evt0\, evt1\, evt1.1\, dv
+ t1\, pvt\, and mp revisions. These revisions almost the same with just sma
+ ll changes. While only "mp" (mass production) devices should end up in the
+  public's hands\, old prototype devices continue to be used for many years
+  within the companies supporting the hardware.\n - Many boards have severa
+ l small variants that are nearly the same. As an example\, the Pixel 10\, 
+ Pixel 10 Pro\, and Pixel 10 Pro XL are based on the same design and are ne
+ arly the same.\n - Many boards are based on a reference design and only ma
+ ke small changes from that reference design. Chromebooks are one example o
+ f this. "sc7180-trogdor" was a reference design and a pile of different OD
+ Ms took this design and made small changes. Outside of Chromebooks\, many 
+ phones are heavily based on the reference design of the SoC vendor.\n\nPro
+ ducts that are highly similar to each other usually end up sharing a singl
+ e binary image that is shipped out. That single image contains all needed 
+ device trees. Firmware on the product can figure out which specific device
+  it's running on and can pick the correct device tree.\n\nThe common pract
+ ice in the upstream device tree repository today is that each of these ver
+ y similar boards needs its own complete device tree. The device tree is of
+ ten shared using #includes of .dtsi files\, but the final result is a pile
+  of .dtb files that are mostly the same.\n\nThere are a few problems we ha
+ ve today. Two of them that are perhaps the most important:\n\n 1. All of t
+ hose device trees take up a lot of space. It would be nice if we didn't ne
+ ed a whole pile of .dtb files that are nearly the same.\n 2. While firmwar
+ e has all the details about the exact device it's running on\, there is no
+  standard way to mark device tree files so firmware can find the right one
+ .\n\nThe device-tree overlay concept should help with point #1 in reducing
+  the amount of space things take up. Trying to get agreement about how thi
+ s should look has been difficult\, though. One question that came up is if
+  a "base" device tree was required to be a board or not. For supporting Pi
+ xel 10 hardware\, it was most convenient for the base device tree to repre
+ sent the SoC itself since some Pixel 10 devices had a different revision o
+ f the SoC. A second question that came up is how to deal with the top-leve
+ l device-tree "compatible" in this case. It was unclear if we needed some 
+ way to "merge" the compatible based on all the overlays included which the
+ n led into questions about what needed to be in this top-level "compatible
+ " to begin with.\n\nTrying to solve point #2 has come up again and again\,
+  but somehow we never end up with any resolution. The typical refrain is t
+ hat we need a grand unified design that all device-tree loaders will agree
+  to use\, but this always fails to materialize.\n\nBoth problems have down
+ stream solutions. As an example\, Pixel phones ship with devicetree overla
+ ys to avoid some of the duplication. Device trees and their overlays on Pi
+ xel phones have special properties in them that are used to help firmware 
+ pick the right one at boot time. Trying to upstream these solutions has me
+ t with difficulty though.\n\nLet's have a discussion where we look at prio
+ r attempts and see if we can make some more forward progress.\n\nSome thre
+ ads I've been involved in (this is by no means a complete list of threads 
+ about the topic):\n\n - [[PATCH 1/4] dt-bindings: arm: google: Add binding
+ s for frankel/blazer/mustang](https://lore.kernel.org/r/20251111112158.1.I
+ 72a0b72562b85d02fee424fed939fea9049ddda9@changeid)\n - [[PATCH 4/4] arm64:
+  dts: google: Add initial dts for frankel\, blazer\, and mustang](https://
+ lore.kernel.org/r/20251111112158.4.I5032910018cdd7d6be7aea78870d04c0dc381d
+ 6e@changeid)\n - [Proposal: Officially allow "incomplete" trees as a base]
+ (https://lore.kernel.org/all/CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnF
+ S7zoJA@mail.gmail.com/)\n - [Proposal: document where SoC info belongs](ht
+ tps://lore.kernel.org/r/CAD=FV=W+jE_L_LLgAhD8K_4+CtivSD9-9t7Xe63XuKrKjfyfe
+ Q@mail.gmail.com/)
+URL:https://lpc.events/event/20/contributions/2389/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2471@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T130000
+DTEND;TZID=Europe/Prague:20261006T132500
+SUMMARY:OS managed Devicetree overlays through UKI add-ons
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Devicetree MC · Agathe Porte\, Hans de Goede · https://lpc.ev
+ ents/event/20/contributions/2471/\n\nSBCs like the Arduino UNO Q can have 
+ a number of extension boards\, like the UNO Media Carrier or an Arduino sh
+ ield connected. On top of this extra hardware may be connected through e.g
+ . CSI camera connectors and DSI display connectors.\n\nEach of these possi
+ ble hardware addons needs a DT overlay to work. This requires some method 
+ for the user to select which DT overlays to use.\n\nThere have been severa
+ l attempts a decade ago to allow loading DT overlays from Linux userspace 
+ for this\, but non has ever been accepted upstream.\n\nUKI addons can prov
+ ide an updated DTB\, the purpose of this session is to present and discuss
+  a proposal to use this to manage DT overlays from userspace through UKI a
+ ddons:\n\nPhase 1: UKI addons with a replacement DTB file embedded\n------
+ --------------------------------------------------\n\n- For systems bootin
+ g with secureboot\, create DTBs with overlays merged in for popular hardwa
+ re addon combinations and build a signed UKI addon for each such DTB on th
+ e distros build-system.\n\n- For systems without secureboot any overlay co
+ mbination can be supported by building a merged DTB locally and creating a
+ n UKI addon from that DTB.\n\nPhase 2: UKI addons with a DTBO file embedde
+ d\n---------------------------------------------\n\n- For this phase the U
+ KI stub needs to be extended with the capability to merge DTBOs from addon
+ s into an earlier loaded DTB\, allowing any combination of overlays by the
+  distro providing a signed UKI addon for each available overlay.
+URL:https://lpc.events/event/20/contributions/2471/
+END:VEVENT
+END:VCALENDAR

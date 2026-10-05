@@ -51,7 +51,8 @@ jobs:
 
       - name: Commit and push if the snapshot changed
         run: |
-          if git diff --quiet -- index.html; then
+          git add index.html ics
+          if git diff --cached --quiet; then
             echo "Snapshot unchanged, nothing to commit."
             exit 0
           fi
@@ -59,5 +60,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # The commit body lists what changed in the schedule.
           git commit -q -m "Refresh schedule snapshot" \
-            -m "$(grep -v -e '^Fetching ' -e '^Wrote ' "$RUNNER_TEMP/report.txt")" -- index.html
+            -m "$(grep -v -e '^Fetching ' -e '^Wrote ' "$RUNNER_TEMP/report.txt")"
           git push

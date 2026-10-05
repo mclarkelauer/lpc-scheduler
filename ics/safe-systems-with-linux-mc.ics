@@ -1,0 +1,200 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Safe Systems with Linux MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2493@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100000
+DTEND;TZID=Europe/Prague:20261005T101000
+SUMMARY:Aspects of Dependable Linux Systems
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Safe Systems with Linux MC · Kate Stewart\, Philipp Ahmann · 
+ https://lpc.events/event/20/contributions/2493/\n\nIn regulated industries
+ \, Linux is widely used due to its strong software capabilities in areas s
+ uch as dependability\, reliability\, and robustness. These industries foll
+ ow best practices in terms of processes for requirements\, design\, verifi
+ cation\, and change management. These processes are defined in standards t
+ hat are typically not accessible to the open source kernel community.\n\nH
+ owever\, since these standards represent best practices\, they can be inco
+ rporated into structured development environments like the Linux kernel ev
+ en without the knowledge of such standards. The kernel development process
+  is trusted in critical infrastructure systems as it already covers many p
+ rocess elements directly or indirectly.\n\nThe purpose of this session is 
+ to initiate a discussion on what is currently available and what may be mi
+ ssing in order to enhance the dependability and robustness of Linux kernel
+ -based systems. How can the artifacts be connected? Where are the appropri
+ ate places to maintain them? And who is the best responsible for each elem
+ ent of the development lifecycle?
+URL:https://lpc.events/event/20/contributions/2493/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2540@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T101500
+DTEND;TZID=Europe/Prague:20261005T104000
+SUMMARY:Towards Program Verification of the Linux Kernel Library XArray
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Safe Systems with Linux MC · Corinn Tiffany · https://lpc.eve
+ nts/event/20/contributions/2540/\n\nXArray is a data structure used in man
+ y Linux kernel components\, most notably the page cache. Its API contracts
+  are not precisely documented\, making it challenging to understand caller
+  obligations and which invariants any changes to the implementation must m
+ aintain over the structure. Since its integration into the Linux source tr
+ ee in 2019\, errors in the use of the library have caused bugs such as mem
+ ory leaks [1\, 2]\, and the library code itself has suffered from bugs lik
+ e race conditions and null pointer dereferences [3\, 4]. Recent case studi
+ es [5\, 6] suggest that applying program verification to Linux kernel sour
+ ce code is a promising means to make requirements structured\, explicit\, 
+ and machine-checkable against the implementation.\nThis talk presents prog
+ ress verifying the core load and store APIs of the XArray library. So far\
+ , we have verified the xa_load() function and its callees\, and are workin
+ g on the verification of xa_store(). We will discuss how the structured sp
+ ecification of the original library can be used to build confidence in the
+  Rust re-implementation that is under active development [7]. By formalizi
+ ng and checking the API’s precise contracts\, we can validate the parity
+  of the Rust port’s behavior in critical kernel clients.\n\n[1]  Matthew
+  Wilcox. “mm/huge_memory: Fix xarray node memory leak.” url: https://g
+ it.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=v6.19&
+ id=69a37a8ba1b4\n\n[2] Yang Yang. “swap_state: update shadow_nodes for a
+ nonymous page.” url: https://git.kernel.org/pub/scm/linux/kernel/git/tor
+ valds/linux.git/commit/?h=v6.19&id=5649d113ffce\n\n[3] Matthew Wilcox. “
+ XArray: Disallow sibling entries of nodes.” url: https://git.kernel.org/
+ pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=v6.19&id=63b1898fffc
+ d\n\n[4] Matthew Wilcox. XArray: Fix xas_create_range() when multi-order e
+ ntry present. url: https://github.com/torvalds/linux/commit/3e3c658055c002
+ 900982513e289398a1aad4a488\n\n[5] Julia Lawall\, Keisuke Nishimura\, and
+  Jean-Pierre Lozi. 2024. Should We Balance? Towards Formal Verification of
+  the Linux Kernel Scheduler. SAS 2024.\n\n[6] Julia Lawall\, Keisuke Nis
+ himura\, and Jean-Pierre Lozi. 2025. Understanding Linux Kernel Code throu
+ gh Formal Verification: A Case Study of the Task-Scheduler Function select
+ _idle_core. OLIVIERFEST '25.\n\n[7] Daniel Gomez\, "rxarray\," commit 0ae6
+ dd57e31d\, Linux kernel development tree. url:\nhttps://git.kernel.org/pub
+ /scm/linux/kernel/git/da.gomez/linux.git/commit/?id=0ae6dd57e31d9e436ee935
+ 288767f53e118db8c0
+URL:https://lpc.events/event/20/contributions/2540/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2492@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T104500
+DTEND;TZID=Europe/Prague:20261005T113000
+SUMMARY:Common pitfalls and errors\, when using Linux in Safety Application
+ s
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Safe Systems with Linux MC · Igor Stoppa · https://lpc.events
+ /event/20/contributions/2492/\n\nSafety-oriented use of the Linux Kernel p
+ resents a class of obstacles that are normally absent from other types of 
+ use\, and therefore can be easily overlooked. Sometimes what would normall
+ y constitute a strength can actually turn into a weakness. Or aspects that
+  are peculiar of creation of physical products (e.g. cars\, robots) can pr
+ esent unexpected challenges.\nThis talk wants to raise awareness about the
+ se uncommon aspects.
+URL:https://lpc.events/event/20/contributions/2492/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2541@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T120000
+DTEND;TZID=Europe/Prague:20261005T122500
+SUMMARY:Scaling the Design Definition
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Safe Systems with Linux MC · Chuck Wolber · https://lpc.event
+ s/event/20/contributions/2541/\n\nThe fundamental unit of design is a requ
+ irement (i.e. "testable expectation"). All forms of design can be expresse
+ d as a (directed acyclic) knowledge graph of requirements. A software proj
+ ect that documents its design in this manner can derive both source code a
+ nd automated test from the same idea. Without this\, there is no guarantee
+  that test and implementation reliably reflects the same idea.\n\nIn virtu
+ ally all open-source projects\, documenting the design to this level of de
+ tail is rarely (if ever) considered. While the benefits are easy to unders
+ tand\, retrofitting a design on an existing project and then keeping it up
+  to date is a barrier to entry that few are willing to consider.\n\nIn thi
+ s troubleshooting session\, Chuck will describe the problem in more detail
+ \, answer relevant background questions\, and solicit ideas for potential 
+ approaches to retrofitting designs and keeping them updated.
+URL:https://lpc.events/event/20/contributions/2541/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2491@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T123000
+DTEND;TZID=Europe/Prague:20261005T125500
+SUMMARY:Defining Linux Kernel Requirements and Test Specifications out of t
+ he Kernel Tree
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Safe Systems with Linux MC · Gabriele Paoloni\, Kate Stewart 
+ · https://lpc.events/event/20/contributions/2491/\n\nFollowing the [objec
+ tions][1] in having requirements and even code documentation traceable to 
+ Kernel testing as optional part of the Linux Kernel development process\, 
+ the ELISA project decided to start defining requirements and test specific
+ ations in a separate repository.\nThis session will present the current st
+ atus for the requirements and test specifications framework and traceabili
+ ty to upstream code and test case implementations.\n\n  [1]: https://lore.
+ kernel.org/all/2026021207-hatchery-spore-2800@gregkh/
+URL:https://lpc.events/event/20/contributions/2491/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2490@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T130000
+DTEND;TZID=Europe/Prague:20261005T132500
+SUMMARY:From Manual Argument to Machine-Readable Graph: Toward a Safety SBO
+ M for Linux
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Safe Systems with Linux MC · Nicole Pappler · https://lpc.eve
+ nts/event/20/contributions/2490/\n\nA safety case is the structured argume
+ nt that a system is acceptably safe: claims\, the evidence supporting them
+ \, and the assumptions under which the argument holds. Building and mainta
+ ining one is largely manual\, and keeping it consistent as a design evolve
+ s is harder still.\nSPDX 3.1's Functional Safety profile changes the start
+ ing point by giving the safety case a machine-readable form. It models req
+ uirements and their refinement\, verification activities\, pass/fail evalu
+ ations\, evidence\, and assumptions of use—the same structure safety pra
+ ctitioners already reason about\, now expressed as a graph that tools can 
+ produce\, exchange\, and check.\nThis talk introduces the profile and its 
+ data model: what each element means\, and how claims link to the evidence 
+ that supports them and the assumptions they depend on. We show how this re
+ presentation can be used to generate a safety SBOM for Linux—a safety ca
+ se generated and recomputed from project content rather than assembled by 
+ hand—building on the work of the ELISA Architecture working group and it
+ s current efforts on requirements. We argue this graph-based approach is t
+ he foundation for an automated handshake between upstream evidence and dow
+ nstream safety arguments\, enabling the kind of contract-style consumption
+  of Linux components that safety-critical projects need.
+URL:https://lpc.events/event/20/contributions/2490/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2542@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T132500
+DTEND;TZID=Europe/Prague:20261005T133000
+SUMMARY:Wrap up
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Safe Systems with Linux MC · Kate Stewart\, Philipp Ahmann · 
+ https://lpc.events/event/20/contributions/2542/
+URL:https://lpc.events/event/20/contributions/2542/
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,472 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Networking Track
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2456@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T093000
+DTEND;TZID=Europe/Prague:20261007T100000
+SUMMARY:Short-Lived UDP and the Observability Gap: Challenges in Building C
+ omplete Flow Graphs for Identity-Based Policy
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Tarun Shekher · https://lpc.events/event/2
+ 0/contributions/2456/\n\nIdentity-based micro-segmentation depends on buil
+ ding a complete graph of workload-to-workload communication. For TCP\, thi
+ s is tractable: connections have clear lifecycle events observable via soc
+ k_ops and inet_sock_set_state tracepoints\, and conntrack entries persist 
+ long enough for user space collection. UDP has none of this\, and in produ
+ ction Kubernetes environments\, UDP is everywhere: DNS queries\,NTP\,syslo
+ g\,SNMP custom service discovery protocols\, and increasingly\, QUIC.\n\nG
+ enerally in production micro-segmentation deployment\, 15-20% of observed 
+ flows are UDP-based\, and we consistently undercount them by 30-40% compar
+ ed to packet-capture ground truth. This means if you have some ML engine i
+ n place\, then this ML-based policy engine generates policies with blind s
+ pots: it doesn't suggest rules for UDP flows it never observed\, leaving t
+ hem to hit default-deny and break applications after policy enforcement.\n
+ \nWhat I'll cover:\n\n 1. **Why UDP flow observability is structurally har
+ der**- TCP connections:\n    SYN creates conntrack entry -> observable via
+  ctnetlink ->\n    inet_sock_set_state tracepoint marks lifecycle. UDP: fi
+ rst packet\n    creates a conntrack entry with a short timeout (30s defaul
+ t\, 120s\n    for "assured")\, and single-datagram exchanges (DNS request-
+ >response)\n    may age out before user space collects them. I'll present 
+ data from\n    production system showing the correlation between conntrack
+ \n    timeout settings and UDP flow miss rates.\n 2. **Three approaches an
+ d their costs**- (1) Tracing every\n    udp_sendmsg/udp_recvmsg via kprobe
+ /fentry: complete visibility but\n    3-5% throughput overhead on UDP-heav
+ y workloads.\n    (2) Increasing conntrack UDP timeouts: reduces miss rate
+  but bloats\n    conntrack table size (we measured 4x table growth) and in
+ creases\n    memory pressure. (3) BPF socket filter at cgroup level: catch
+ es\n    socket-level events but misses raw UDP (common in legacy workloads
+ \n    that use raw sockets)\n 3. **Proposal**: lightweight UDP flow event 
+ via sock_ops- TCP already has\n    BPF_SOCK_OPS_ACTIVE_ESTABLISHED_CB and\
+ n    BPF_SOCK_OPS_PASSIVE_ESTABLISHED_CB. I propose adding analogous\n    
+ callbacks for UDP- BPF_SOCK_OPS_UDP_FIRST_SEND and\n    BPF_SOCK_OPS_UDP_F
+ IRST_RECV- that fire once per unique (source\,\n    dest\, sport\, dport) 
+ tuple within a configurable window. This gives\n    flow-level visibility 
+ without per-packet tracing overhead. I'll\n    present the proposed semant
+ ics\, the kernel-side implementation\n    sketch\, and the estimated overh
+ ead based on prototype measurements.\n 4. **Conntrack event reliability** 
+ at scale — Even for flows that conntrack\n    does capture\, we lose 5-8
+ % of ctnetlink events under high connection\n    rates (>50K new flows/sec
+ ) due to netlink socket buffer overflow.
+URL:https://lpc.events/event/20/contributions/2456/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2465@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T100000
+DTEND;TZID=Europe/Prague:20261007T103000
+SUMMARY:Networking Performance Regression Testing
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Martin Karsten · https://lpc.events/event/
+ 20/contributions/2465/\n\nThe Linux network stack is a performance-critica
+ l component of the Linux kernel that impacts service delivery\, quality\, 
+ and efficiency. Subtle changes might have far-reaching performance implica
+ tions. In this presentation I describe an emerging project to build a refe
+ rence setup for networking performance and efficiency experiments. The obj
+ ectives for this project are twofold. The immediate goal is establishing a
+  reference software stack and suite of benchmarking experiments that can b
+ e used for automatic regression testing during the regular development cyc
+ le of the Linux networking subsystem (netdev). On the other hand\, having 
+ an established and meaningful reference setup wouldd also be highly benefi
+ cial for academic researchers to compare wider-ranging and ambitious resea
+ rch proposals with a well-known baseline that follows best practices for s
+ ystem and workload configurations. As such\, it is hoped that a secondary 
+ benefit of such an initiative is bringing together Linux developers and ac
+ ademic researchers to benefit the entire open-source operating systems com
+ munity.\n\nThe talk will present existing preliminary work in this project
+  and solicit feedback\, and most importantly it can hopefully serve as a s
+ tarting point for a wider discussion and consultation. Given the diversity
+  of workload scenarios\, potential system configurations\, and possible pe
+ rformance effects\, conversations about the most representative experiment
+ s and metrics are critically important. Aside from fundamental questions\,
+  such as the specific nature of regression detection\, there are practical
+  questions in how to best integrate a test instance with the existing netd
+ ev infrastructure for test automation (NIPA) and how to best facilitate th
+ e replication of test instances for different purposes.\n\nAnother explici
+ t objective for this project is to study system efficiency\, including res
+ ource efficiency\, in additional to pure performance. As computing infrast
+ ructure becomes a more and more significant energy consumer and hardware i
+ mprovements might potentially slow down in the near- to mid-term future\, 
+ it is important to prepare for a potentially resource-constrained future b
+ y being able to understand\, measure\, control\, and reduce the resource o
+ verheads associated with various computing services.
+URL:https://lpc.events/event/20/contributions/2465/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2461@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T103000
+DTEND;TZID=Europe/Prague:20261007T110000
+SUMMARY:BIG TCP for UDP tunnels
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Alice Mikityanska · https://lpc.events/eve
+ nt/20/contributions/2461/\n\nBIG TCP is a kernel feature that allows aggre
+ gating SKBs bigger than 64k\, aiming to reduce per-packet overhead for hig
+ h-throughput network traffic. Until now\, it has mostly been practical for
+  direct-routing deployments. A large class of production environments\, in
+ cluding Kubernetes+Cilium setups\, relies on UDP-based overlay networks\, 
+ such as VXLAN and GENEVE.\n\nThis talk will walk through the challenges of
+  adding BIG TCP support to encapsulated traffic\, such as having to deal w
+ ith multiple variations of IPv6 HBH extension header in every driver\, whi
+ ch resulted in unification with BIG TCP IPv4 and dropping the HBH header f
+ rom IPv6 too. This talk will also walk you through other gaps that prevent
+ ed BIG TCP from working with UDP tunnels out of the box\, as well as other
+  related parts like adding support in tcpdump\, and possible caveats. The 
+ performance numbers on Mellanox NIC will be included\, showing gains with 
+ 1.5k and 8k MTU\, as well as the software GSO paths when tunnel offloads a
+ re unavailable.\n\nThis effort resulted in two patchsets on LKML: "BIG TCP
+  without HBH in IPv6" and "BIG TCP for UDP tunnels". The first part solves
+  the issue with convoluted packet parsing in the fast path on driver level
+ . The second part addresses the remaining gaps to handle encapsulated BIG 
+ TCP SKBs correctly\, and switches to using UDP length = 0 for oversized ag
+ gregated packets and restoring the real length when parsing or segmenting 
+ such packets. It also takes care of checking the length of untrusted ingre
+ ss packets.\n\nThe goal of this session is to gather feedback from users o
+ f overlay networking and driver authors for possible future improvements a
+ nd evolution.
+URL:https://lpc.events/event/20/contributions/2461/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2467@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T110000
+DTEND;TZID=Europe/Prague:20261007T113000
+SUMMARY:TCP Multipath implementation with BPF
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Raman Shukhau · https://lpc.events/event/2
+ 0/contributions/2467/\n\nAs server platforms increasingly ship with multip
+ le frontend NICs\, there is a growing need to utilize all available networ
+ k paths transparently — without application changes. We propose a BPF-ba
+ sed approach that leverages cgroup hooks at connect() time to perform clie
+ nt-side path selection across multiple NICs\, effectively implementing a f
+ orm of TCP multipath at the host level. To avoid the operational complexit
+ y of distributing and synchronizing per-host NIC topology maps across an e
+ ntire fleet\, we further propose encoding the multi-NIC topology informati
+ on directly in TCP Options during the connection handshake. This allows pe
+ ers to dynamically discover available paths and perform load balancing dec
+ isions locally using BPF programs. We will present the design\, discuss ho
+ w it interacts with dynamic container networking environments\, and share 
+ early deployment experience.
+URL:https://lpc.events/event/20/contributions/2467/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2458@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T120000
+DTEND;TZID=Europe/Prague:20261007T123000
+SUMMARY:MPTCP KTLS Support: Bringing TLS to Multipath TCP
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Geliang Tang · https://lpc.events/event/20
+ /contributions/2458/\n\nMultipath TCP (MPTCP) enables a device to simultan
+ eously utilize multiple network interfaces for a single connection\, provi
+ ding enhanced redundancy\, resilience\, and bandwidth aggregation. Current
+ ly\, an increasing number of network applications are beginning to support
+  MPTCP\, and some of them\, such as NVMe over MPTCP and web servers like l
+ ighttpd\, require TLS for MPTCP. However\, MPTCP has historically lacked T
+ LS support due to fundamental conflicts in how both protocols manage the U
+ pper Layer Protocol (ULP) stack within the Linux kernel.\n\nThis proposal 
+ presents a solution to make MPTCP and TLS compatible. The main challenge i
+ s the tight coupling between TLS and TCP\, which hardcodes many TCP-specif
+ ic functions and conflicts over the ULP slot. It implemented MPTCP support
+  on the TLS side by introducing a protocol operations abstraction layer th
+ at decouples TLS from TCP and implements MPTCP-specific functions\, and en
+ abled TLS configuration on the MPTCP side by applying TLS encryption exclu
+ sively at the non-fallback MPTCP socket level\, rather than on individual 
+ subflows (TCP sockets). The implementation resolves this challenge\, passe
+ s the newly added MPTCP TLS selftests\, which mirror the existing TCP TLS 
+ test cases\, and has been validated through extensive selftests and real-w
+ orld use cases\, including NVMe over MPTCP.\n\nLink: https://lore.kernel.o
+ rg/all/cover.1782123118.git.tanggeliang@kylinos.cn/
+URL:https://lpc.events/event/20/contributions/2458/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2463@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T123000
+DTEND;TZID=Europe/Prague:20261007T130000
+SUMMARY:Native AF_VSOCK API for userspace device emulation
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Stefano Garzarella · https://lpc.events/ev
+ ent/20/contributions/2463/\n\nSeveral userspace VMMs emulate virtio-vsock 
+ devices entirely in userspace\, and vhost-user-vsock provides a similar ca
+ pability through the vhost-user protocol\, to reduce the kernel attack sur
+ face or to run on platforms where vhost-vsock is not available. However\, 
+ only the vhost-vsock kernel module\, which emulates the virtio-vsock devic
+ e in the host kernel\, integrates directly with `AF_VSOCK`\, so these back
+ ends expose Unix domain sockets to host applications\, following the hybri
+ d-vsock model introduced by Firecracker.\n\nIn the hybrid-vsock model\, to
+  connect to a guest\, a host application opens a Unix socket and sends a t
+ ext command like `"CONNECT <port>\\n"`. To receive connections from a gues
+ t\, it listens on a separate Unix socket named `/path/to/uds_<port>`. This
+  works\, but it requires every host application to implement this ad-hoc p
+ rotocol instead of using standard `AF_VSOCK` sockets\, and the guest CID i
+ s not visible to the host kernel at all.\n\nThis talk explores a kernel in
+ terface that would let any process emulating a vsock device in userspace\,
+  such as the VMM itself or a vhost-user backend\, register a guest CID and
+  use `AF_VSOCK` sockets instead of Unix sockets\, keeping the same one-soc
+ ket-per-connection model that hybrid-vsock already uses. One possible appr
+ oach is to introduce a new protocol type for `AF_VSOCK` (or a socket optio
+ n) that allows a process to claim a CID through `bind()` and inject guest 
+ connections into the host's `AF_VSOCK` stack through the standard `accept(
+ )` and `connect()` calls\, while the device emulation remains entirely in 
+ userspace. Host services would then reach these guests with a simple `conn
+ ect(AF_VSOCK\, guest_cid\, port)`\, exactly as they do with kernel vhost-v
+ sock\, and VMMs would need minimal changes to switch from `AF_UNIX` to `AF
+ _VSOCK`. Because this interface operates at the `AF_VSOCK` level\, it is n
+ ot tied to virtio and could serve any existing or future vsock transport.\
+ n\nTopics for discussion include: the right kernel API design\, whether th
+ ere are existing interfaces to follow or reuse\, and how it should interac
+ t with network namespaces recently supported by `AF_VSOCK`.
+URL:https://lpc.events/event/20/contributions/2463/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2466@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T130000
+DTEND;TZID=Europe/Prague:20261007T133000
+SUMMARY:Possibility of Userspace Networking Drivers: TUNTAP\, VDUSE and Wha
+ t's More?
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Toshiaki Makita · https://lpc.events/event
+ /20/contributions/2466/\n\nBuilding a driver for a new NIC normally means 
+ writing a kernel module. Whether you upstream it or maintain it out of tre
+ e\, it requires a lot of effort. Isn't there a lighter-weight approach?\n\
+ nThis talk shows one way to write the driver logic in userspace\, without 
+ writing a kernel module\, while the device still shows up as a Linux netwo
+ rk device like "eth0". This is possible with existing in-kernel mechanisms
+  today\, but it is not yet a complete solution. Let's discuss what is requ
+ ired for a userspace driver mechanism.\n\nMoving driver logic to userspace
+  reduces the pain of maintaining out-of-tree kernel modules: you stop keep
+ ing up with kernel version changes and a critical bug in the driver does n
+ ot crash the kernel. Other subsystems have similar concepts: FUSE for file
+ systems\, ublk for block devices. The networking subsystem also has buildi
+ ng blocks for processing networking in userspace\, and they are divided in
+ to two groups.\n\nOne group keeps the network stack in kernel and hands pa
+ ckets off to userspace below the driver. TUNTAP is a classic example. It's
+  a virtual device used for tunneling and virtual machines\, and exchanges 
+ packets with userspace rather than with a wire. VDUSE is another example: 
+ it lets you implement a vDPA device in userspace\, intended as a userspace
+  backend for virtual networks of virtual machines and containers\; combine
+ d with virtio-vdpa\, it provides a function similar to TUNTAP.\n\nThe othe
+ r group does the opposite: VFIO and UIO provide only a thin device-handlin
+ g layer in the kernel and move the implementation above the driver\, inclu
+ ding the network stack\, out to userspace.\n\nBy combining the two groups\
+ , and placing the actual driver logic in a userspace daemon between them\,
+  we can realize a NIC driver in userspace. One of its use cases is an FPGA
+ -based NIC\, which acts as a fully programmable NIC. Because its CPU-facin
+ g interface -- descriptor formats\, register layouts\, and so on -- is ent
+ irely up to the FPGA programmer\, the driver variations are virtually unli
+ mited.\n\nI have been experimenting with building userspace NIC drivers wi
+ th TUNTAP/VDUSE and VFIO. For testing\, I used an e1000e device emulated i
+ n a VM as a common simple device rather than special hardware. Unsurprisin
+ gly\, there is a performance penalty due to packet copies\, high CPU load 
+ of the userspace daemon\, and so on. Both TUNTAP and VDUSE are also limite
+ d by their specific interfaces\, such as statistics and netdev features. I
+ 'll introduce the various difficulties I faced and discuss how userspace n
+ etwork drivers should be built. Are TUNTAP/VDUSE and VFIO the right shape\
+ , or does Linux networking want its own dedicated mechanism? Is it possibl
+ e to implement a driver's data path in BPF?
+URL:https://lpc.events/event/20/contributions/2466/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2457@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T150000
+DTEND;TZID=Europe/Prague:20261007T153000
+SUMMARY:Modernizing NFS Direct I/O for PCI Peer-to-Peer DMA
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Pranjal Shrivastava\, Shivaji Kant · https
+ ://lpc.events/event/20/contributions/2457/\n\nHigh-performance storage env
+ ironments increasingly rely on direct data movement between PCIe  endpoint
+ s\, such as NVMe Controller Memory Buffers (CMB) or BAR memory. Today\, NF
+ S relies on standard page references (get_page) and doesn't support pinnin
+ g pages for DMA\, making the subsystem  pin-unaware. Furthermore\, the leg
+ acy iterator APIs used in NFS are incapable of passing the required capabi
+ lity flags mandated by the GUP subsystem. Thus\, NFS remains incompatible 
+ with P2PDMA due to this lack of pin-awareness.\n\n This talk walks through
+  the design challenges in enabling P2PDMA for the NFS Direct I/O path usin
+ g a two-phased approach. The first phase involves an architectural moderni
+ zation\, i.e. migrating the Direct I/O path to use the modern iov_iter_ext
+ ract_pages API. This transition introduces pin-awareness to the NFS reques
+ t lifecycle. Additionally\, it migrates the NFS Direct I/O from pages to f
+ olios. We have an on-going series posted upstream for the first phase:\n[h
+ ttps://lore.kernel.org/all/20260603053033.3300318-1-praan@google.com][1]\n
+ \n**Plumber's Discussion: Transport-Level P2PDMA Capability Detection**\nT
+ he second phase of this modernization addresses the detection and propagat
+ ion of P2PDMA capabilities based on the underlying transport. Since NFS co
+ nnections can dynamically migrate across different hardware interfaces or 
+ utilize multipathing (nconnect)\, P2PDMA support is a property of the acti
+ ve connection rather than a static server capability. This session focuses
+  on the following architectural challenges:\n\n - **Detection & Propagatio
+ n:** Discuss & align on the proposed design for transport-level capability
+  discovery. This would allow NFS to conditionally signal hardware P2PDMA s
+ upport (via `ITER_ALLOW_P2PDMA`) to the GUP subsystem\, potentially on a p
+ er-request basis.\n\n - **Architectural Implications:** Discuss the cross-
+ subsystem impact of this transport-centric approach. Key areas include man
+ aging state consistency across transport failover\, the implications of dy
+ namic device rebinding during re-connections\, and the challenge of transp
+ ort selection in multipath (nconnect) environments.\n\nThe talk is backed 
+ by the ongoing NFS Modernization and P2PDMA series upstream:\n- RFC: [http
+ s://lore.kernel.org/all/20260401194501.2269200-1-praan@google.com/][2]\n- 
+ On-going Series: [https://lore.kernel.org/all/20260616134000.2733403-1-pra
+ an@google.com/][1]\n\n  [1]: https://lore.kernel.org/all/20260616134000.27
+ 33403-1-praan@google.com/\n  [2]: https://lore.kernel.org/all/202604011945
+ 01.2269200-1-praan@google.com/
+URL:https://lpc.events/event/20/contributions/2457/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2464@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T153000
+DTEND;TZID=Europe/Prague:20261007T160000
+SUMMARY:swiotlb Under Pressure: High-Speed NICs in Confidential VMs
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Dragoș Tătulea · https://lpc.events/even
+ t/20/contributions/2464/\n\nSystems that treat devices as untrusted protec
+ t themselves using confidential computing memory protection. Linux uses sw
+ iotlb to handle the necessary buffer bouncing transparently to drivers. Fo
+ r high-performance NICs operating at scale\, however\, the overhead of all
+ ocating and managing bounce buffers can substantially exceed the cost of t
+ he memory copies themselves.\n\nReceive queues create long-lived pressure 
+ on the swiotlb pool. Pages are DMA-mapped when they enter a page_pool and 
+ normally remain mapped while they are recycled\, often until they leave th
+ e pool or the queue is destroyed. Across many receive queues\, these mappi
+ ngs can retain a substantial portion of the available bounce-buffer memory
+ \, even after the pool has been increased to the largest practical size fo
+ r the system. As occupancy increases\, allocations search additional swiot
+ lb areas and contend on their per-area locks. This primarily affects trans
+ mission\, where an SKB’s linear area and fragments can each require a se
+ parate bounce-buffer allocation\, copy\, synchronization\, and reclamation
+  sequence.\n\nTo evaluate an alternative to per-mapping swiotlb bouncing\,
+  we implemented a prototype mlx5e datapath based on preallocated DMA-coher
+ ent staging memory. With 16 transmit-heavy TCP streams\, one per queue\, t
+ he swiotlb datapath reduced throughput by 70% relative to a baseline witho
+ ut buffer bouncing. The explicit staging datapath reduced this loss to 10
+ –20%.\n\nIn this talk\, we will compare the generic swiotlb approach wit
+ h the driver-managed bounce buffers\, present detailed measurements\, and 
+ analyze the bottlenecks we identified. We will conclude by discussing what
+  an upstream solution should look like: driver-specific staging buffers\, 
+ a generic networking abstraction or improvements to swiotlb scalability.
+URL:https://lpc.events/event/20/contributions/2464/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2462@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T160000
+DTEND;TZID=Europe/Prague:20261007T163000
+SUMMARY:KNOD: In-Kernel GPU Offload for Packet Processing
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Hoyeon Lee\, Taehee Yoo · https://lpc.even
+ ts/event/20/contributions/2462/\n\nAt LPC 2025\, we presented an early pro
+ totype for running XDP programs directly on an AMD GPU from within the Lin
+ ux kernel\, without CUDA\, ROCm\, or any userspace component in the data p
+ ath.[1]\n\nSince then\, the project has evolved into knod\, an in-kernel n
+ etwork offload device\, and an RFC patch set has been posted.[2] knod uses
+  the GPU as a kernel-managed packet-processing accelerator: the kernel JIT
+ -compiles an XDP program into GPU machine code\, the NIC places packets di
+ rectly in GPU-accessible memory\, and the GPU processes them in parallel a
+ nd returns XDP verdicts. The RFC extends the original XDP prototype into a
+  generic offload-device model\, with RX IPsec as an additional use case.\n
+ \nMajor changes since LPC 2025 include a redesigned NIC-to-GPU path that a
+ llows the GPU to consume packets directly\, support for divergent control 
+ flow in GPU-offloaded BPF programs\, RDNA2 support\, and optimizations to 
+ batching\, dispatch\, occupancy\, and memory transfers. The current RFC re
+ ports up to 70 Mpps for a Katran-derived XDP workload and 80 Gbit/s for RX
+  IPsec.\n\nThis talk will walk through how knod has evolved since LPC 2025
+  and discuss the remaining design and implementation challenges: the bound
+ aries among the networking core\, bpf\, drm\, and accelerator drivers\; pe
+ r-CPU map and queue-affinity semantics on accelerators\; further performan
+ ce optimization\; support for additional GPU architectures\; and the Gener
+ ic Netlink/YNL control plane and its integration with existing tools.\n\n[
+ 1]: https://lpc.events/event/19/contributions/2267/\n[2]: https://lore.ker
+ nel.org/netdev/20260719175857.4071636-1-ap420073@gmail.com/
+URL:https://lpc.events/event/20/contributions/2462/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2460@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T170000
+DTEND;TZID=Europe/Prague:20261007T173000
+SUMMARY:PCI data path optimization with CQE coalescing and new ethtool para
+ meters
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Haiyang Zhang · https://lpc.events/event/2
+ 0/contributions/2460/\n\nTo optimize the PCI data path on the Azure MANA N
+ IC\, we implemented support for Completion Queue Entry\, or CQE\, coalesci
+ ng. In the regular receive path\, each packet can generate a separate CQE 
+ that must be processed by the driver\, increasing interrupt pressure and C
+ PU & PCI overhead. CQE coalescing reduces this cost by **merging multiple 
+ CQEs into one aggregated completion** that represents several received net
+ work packets. This allows the driver to process more packets per interrupt
+  and reduces the amount of per-packet overhead required in the fast path. 
+ The improvement is especially important on ARM64 platforms\, where interru
+ pt handling cost and cache efficiency can strongly affect networking throu
+ ghput. In our measurements\, CQE coalescing provided a throughput enhancem
+ ent ranging from 33% to 62% while also increasing the number of packets ha
+ ndled per interrupt.\n\nWe also added **two new parameters to both the eth
+ tool kernel API and the ethtool command line: ETHTOOL_A_COALESCE_RX_CQE_FR
+ AMES and ETHTOOL_A_COALESCE_RX_CQE_NSECS** as suggested by netdev maintain
+ ers. These parameters expose CQE coalescing through the standard Linux net
+ working configuration model instead of relying on a driver-specific privat
+ e flag. The frame-based setting controls how many packet completions may b
+ e combined before a coalesced CQE is generated\, while the time-based sett
+ ing controls how long the device may wait before reporting the aggregated 
+ completion. Together\, they allow administrators to tune the balance betwe
+ en throughput\, CPU utilization\, interrupt rate\, and receive latency for
+  different workloads. Other NIC drivers that support similar CQE coalescin
+ g behavior can adopt the same interface\, improving consistency across Lin
+ ux networking devices.
+URL:https://lpc.events/event/20/contributions/2460/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2459@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T173000
+DTEND;TZID=Europe/Prague:20261007T180000
+SUMMARY:Coroutines for Linux kernel
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:Networking Track · Marek Behún · https://lpc.events/event/20
+ /contributions/2459/\n\nThere are multiple kernel drivers which could bene
+ fit were it possible to somehow do coroutines in C. Coroutines would make 
+ these drivers easier to comprehend\, extend with new code paths\, and debu
+ g.\n\nThe most common use case lies in simplifying complex state machines.
+  For example consider the main state machine `sfp_sm_main()` in `drivers/n
+ et/phy/sfp.c`. Each invocation executes code for a specific state\, update
+ s the state\, and returns. The current implementation even relies on goto 
+ statements to jump between cases. As a result\, understanding the control 
+ flow requires tracking disjointed code paths or drawing manual state diagr
+ ams.\n\nUsing coroutines\, this logic can be transformed into a straightfo
+ rward\, linear sequence using standard loop and conditional structures (`i
+ f`\, `for`\, `while`). By leveraging GNU C computed gotos\, we can impleme
+ nt mechanics similar to C++20's `co_await` and `co_return`. With some tric
+ kery\, it is even possible to preserve variable values across suspension p
+ oints.\n\nLet's explore hiding this underlying complexity behind clean\, m
+ aintainable macros and discuss whether this approach can be safely impleme
+ nted for production code.
+URL:https://lpc.events/event/20/contributions/2459/
+END:VEVENT
+END:VCALENDAR

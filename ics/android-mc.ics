@@ -1,0 +1,371 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Android MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2627@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100000
+DTEND;TZID=Europe/Prague:20261005T100100
+SUMMARY:Android MC Intro
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · https://lpc.events/event/20/contributions/2627/
+URL:https://lpc.events/event/20/contributions/2627/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2556@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100100
+DTEND;TZID=Europe/Prague:20261005T101500
+SUMMARY:Vendor hooks in Android kernels? Why? What do vendors do with them?
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Todd Kjos · https://lpc.events/event/20/contribu
+ tions/2556/\n\nAndroid’s Generic Kernel Image (GKI) enforces a single bi
+ nary kernel\, restricting Android ecosystem partners from modifying core k
+ ernel code. To allow partner-specific optimizations\, Google introduced "v
+ endor hooks"\, based on Linux tracepoints\, to act as in-kernel callback r
+ egistration points. Partners use loadable kernel modules to register handl
+ ers for these hooks to implement partner-specific features.\n\nBut what ar
+ e they actually used for?\n\nIn this session we'll discuss the motivation 
+ behind providing vendor hooks and some of the common optimization patterns
+  implemented by partners across various kernel subsystems including schedu
+ ler and mm. The discussion will be based on the actual usage of these hook
+ s across major Android partners.
+URL:https://lpc.events/event/20/contributions/2556/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2565@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T101500
+DTEND;TZID=Europe/Prague:20261005T103000
+SUMMARY:Kernel Lock Contention Hotspots Causing Frame Drops on Android Main
+ line
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Barry Song\, Bo Zhang\, Hongru Zhang · https://l
+ pc.events/event/20/contributions/2565/\n\n## Problem Statement\n\nAndroid 
+ UI rendering is latency-sensitive — at 90Hz\, each frame has only ~11ms 
+ time budget. When a UI-critical thread (e.g.\, RenderThread) is blocked in
+  the kernel\, the frame is likely to be dropped.\n\nWe profiled 40 popular
+  Android applications on a Pixel 6 (kernel 6.18.0-mainline\, 90Hz refresh 
+ rate)\, using ftrace lock_contention events correlated with Perfetto Frame
+ Timeline data\, to confirm causal links between lock contention and droppe
+ d frames.\n\nThe results show that approximately 14% of all dropped frames
+  are causally attributable to kernel lock contention. The contention conce
+ ntrates in 5 subsystems that account for over 90% of all lock-caused frame
+  drops.\n\nWe would like to present these findings and discuss optimizatio
+ n directions with the community.\n\n## Top 5 Problems\n\n### 1. Mali GPU D
+ river\n\nThe Mali GPU kernel driver uses multiple locks in its internal pa
+ ths such as job submission and scheduling\, and the RenderThread is observ
+ ed to be occasionally blocked on these locks\, causing frame drops.\n\n**T
+ o discuss:** What optimization approaches are available for reducing lock 
+ contention in the Mali GPU driver? Is this a known issue?\n\n### 2. mmap_l
+ ock\n\nSeveral mm paths contend on the same per-process mmap_lock on both 
+ write side (e.g.\, mmap\, mprotect) and read side (page faults).\n\nRFC PA
+ TCH: https://lore.kernel.org/lkml/20260804095135.45897-1-zhanghongru@xiaom
+ i.com/\n\n**To discuss:** We have frame-drop causation data showing mmap_l
+ ock contention still impacts Android UI performance on 6.18. How effective
+  are current mitigations in practice? What remains to be addressed?\n\n###
+  3. ZRAM Compression\n\nWe observed priority inversion in the ZRAM swap-in
+  path with durations exceeding 20ms. Threads such as RenderThread\, Blueto
+ oth\, and SystemUI are observed to be blocked on this lock.\n\nRFC PATCH: 
+ https://lore.kernel.org/all/20260805005545.66112-1-baohua@kernel.org/\n\n*
+ *To discuss:** Possible approaches to avoid priority inversion in the ZRAM
+  swap-in path\n\n### 4. Binder IPC Allocator\n\nWe observed lock contentio
+ n in the Binder buffer allocation path with durations exceeding 8ms. Threa
+ ds such as RenderThread\, SystemUI\, and app main threads are observed to 
+ be blocked on this lock.\n\nRFC PATCH: https://lore.kernel.org/all/2026080
+ 5152752.1924434-1-zhangbo56@xiaomi.com/\n\n**To discuss:** Is this a known
+  issue? What approaches can reduce lock contention in the Binder allocatio
+ n path?\n\n### 5. cgroup threadgroup rwsem\n\nWe observed lock contention 
+ in the process fork and exit paths (cgroup_threadgroup_rwsem) with duratio
+ ns exceeding 11ms. The RenderThread is observed to be blocked on this lock
+ .\n\n**To discuss:** Is this a known issue? What approaches can reduce loc
+ k contention on cgroup_threadgroup_rwsem?
+URL:https://lpc.events/event/20/contributions/2565/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2561@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T103000
+DTEND;TZID=Europe/Prague:20261005T104500
+SUMMARY:RT tasks in sched-ext support
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Aiqun Yu\, Tengfei Fan · https://lpc.events/even
+ t/20/contributions/2561/\n\nThe upstream Linux kernel explicitly excludes 
+ real-time (RT) tasks from the sched-ext extensible scheduler framework\, r
+ estricting sched-ext BPF schedulers to only manage SCHED_NORMAL/SCHED_BATC
+ H/SCHED_IDLE tasks. However\, Android's production workloads present a fun
+ damentally different reality: many performance-critical scenarios — incl
+ uding audio pipelines\, camera capture\, display composition\, and game re
+ ndering — depend on tight co-scheduling of RT and non-RT tasks to meet l
+ atency and throughput targets simultaneously. Optimizing only the CFS port
+ ion of the scheduler in isolation leaves significant headroom on the table
+ .\n\nA concrete example is pipeline scheduling identifying related task ch
+ ains and placing critical tasks onto specific pipeline CPUs to improve loc
+ ality and predictability. The problem is that RT tasks remain outside sche
+ d-ext control — even when sched-ext builds and protects such a pipeline\
+ , an uncoordinated RT task can land on a pipeline CPU\, break the intended
+  task-to-core layout\, and degrade performance. The same blind spot appear
+ s in load tracking\, where per-CPU utilization and frequency selection mus
+ t account for RT load that a BPF scheduler managing only fair-class\ntasks
+  cannot see.\n\nThis talk explores the gap between upstream's conservative
+  stance and Android's practical needs — including why upstream currently
+  draws this line — surveys the combined RT+sched-ext scheduling scenario
+ s that matter most on Android\, and discusses what vendor hook infrastruct
+ ure is currently required from the Android Common Kernel (ACK) to bridge t
+ his gap safely and\nmaintainably in the short term. Beyond that immediate 
+ step\, the session aims to align customers\, Google\, and Qualcomm\, and t
+ o open a discussion with the upstream community on a possible long-term di
+ rection in mainline.
+URL:https://lpc.events/event/20/contributions/2561/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2557@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T104500
+DTEND;TZID=Europe/Prague:20261005T110000
+SUMMARY:BPF FD Loader: Integrity-Verified BPF on Android
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Siddharth Nayyar · https://lpc.events/event/20/c
+ ontributions/2557/\n\nOn modern Android devices\, eBPF loading is strictly
+  confined to early boot by a privileged loader alongside SELinux lockdown 
+ of BPF_PROG_LOAD. While this protects the kernel attack surface\, it leave
+ s the platform fundamentally rigid: platform services and hardware partner
+ s cannot deploy or activate BPF programs on demand. Furthermore\, the appr
+ oach of individual cryptographic signature verification fails in a decentr
+ alised client ecosystem comprising several SoC vendors\, OEMs\, and partne
+ rs\, where managing runtime key-rings in the Generic Kernel Image (GKI) im
+ poses an unsustainable operational burden.\n\nTo address this\, we introdu
+ ce the BPF FD Loader driver in Android. Inspired by finit_module()\, it al
+ lows the kernel to load BPF programs directly from verified file descripto
+ rs rather than untrusted userspace memory.\n\nBecause BPF lacks an in-kern
+ el linker\, our solution leverages upstream BPF Light Skeletons. At runtim
+ e\, an authorised userspace daemon simply passes an open file descriptor o
+ f this ELF to the Android driver via ioctl(). The kernel driver reads the 
+ backing file directly before executing the loader\, verifying that it orig
+ inates from an authenticated\, read-only partition sealed by Android Verif
+ ied Boot (AVB) and dm-verity.\n\nIn this talk\, we present the end-to-end 
+ architecture and discuss our roadmap towards standardising file-based BPF 
+ loading in the Android ecosystem.
+URL:https://lpc.events/event/20/contributions/2557/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2564@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T110000
+DTEND;TZID=Europe/Prague:20261005T111500
+SUMMARY:CPU Power Regression Testing with Wattson
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · William McVicker · https://lpc.events/event/20/c
+ ontributions/2564/\n\nWattson is a trace based power estimation tool desig
+ ned around perfetto to estimate CPU power consumption on ARM64 devices usi
+ ng a statistical per-SoC model. With support of both the Pixel 6 (gs101) a
+ nd SM8750 upstream\, you can now use the Wattson tool to detect CPU power 
+ regressions in the Linux kernel. This talk dives into how Google is using 
+ Wattson to catch CPU power regressions including:\n - What is needed to en
+ able testing.\n - Walk-through of the metrics collected and how to use Wat
+ tson.\n - Examples of regressions Wattson has caught.\n - Expanding into o
+ ther subsystems like GPU and TPU/NPU power estimates.\n\nUltimately\, we
+ ’d like to connect with the Linux community to see who wants to collabor
+ ate on establishing CPU power regression testing upstream.
+URL:https://lpc.events/event/20/contributions/2564/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2559@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T111500
+DTEND;TZID=Europe/Prague:20261005T113000
+SUMMARY:Modernizing Android USB: Userspace AOA\, Multi-UDC\, Type-C\, and F
+ ramework APIs
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · George Chan\, Neill Kapron · https://lpc.events/
+ event/20/contributions/2559/\n\nThe Android USB stack was originally archi
+ tected around the constraints of early smartphones. Initially designed pri
+ marily for phones with a single USB Micro-B device port\, the stack lacks 
+ the modern API surface required for advanced USB applications. While incre
+ mental changes have been implemented out of necessity\, a larger refactori
+ ng is required to better support modern USB features like Type-C and multi
+ ple-UDC topologies.\n\nThis presentation will highlight some of the limita
+ tions of the existing frameworks\, provide an update on current projects\,
+  and solicit feedback on the new architecture plans and API surfaces.\n\nT
+ opics for Discussion:\n\n - Userspace AOA via function_fs: Deprecating the
+  out-of-tree kernel AOA driver and moving protocol handling entirely to us
+ erspace.\n - Upstream Type-C Integration: Hooking the framework directly i
+ nto the Type-C connector class\, allowing applications to query cable capa
+ bilities and provide safe role-swap hints to the TCPC.\n - Multi-UDC & Per
+ -Port Configuration: Refactoring the framework to break the single-UDC ass
+ umption\, allowing for independent per-port configurations on laptop-class
+  devices.\n - Modular Function Provider Patterns: Replacing legacy broadca
+ st mechanisms with strict provider patterns and robust APIs with proper er
+ ror handling.
+URL:https://lpc.events/event/20/contributions/2559/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2560@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T120000
+DTEND;TZID=Europe/Prague:20261005T121500
+SUMMARY:Space sharing between super and data partitions on Android system
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Yangtao Li · https://lpc.events/event/20/contrib
+ utions/2560/\n\nThe Android Super partition relies on static reserved spac
+ e to guarantee OTA upgrade capability. However\, this fixed allocation met
+ hod possesses an inherent defect: if the reserved space is too large\, it 
+ permanently occupies flash memory and cannot be utilized by the data parti
+ tion\; if it is too small\, OTA upgrades will fail due to insufficient spa
+ ce. To address the industry pain points of static partition isolation and 
+ low flash utilization\, we propose a space-sharing mechanism between the s
+ uper and data partitions. Distinct from traditional reserved space schemes
+ \, this technology enables space sharing between the two partitions. The c
+ ore idea is that in daily usage scenarios\, idle physical blocks within th
+ e Super partition are shared with the data partition to expand the storage
+  space available to users\; when the super partition requires expansion fo
+ r OTA upgrades or system maintenance\, it can dynamically requisition idle
+  physical blocks from the data partition without causing any data corrupti
+ on throughout the process.
+URL:https://lpc.events/event/20/contributions/2560/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2562@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T121500
+DTEND;TZID=Europe/Prague:20261005T123000
+SUMMARY:Android GBL + Dynamic Partitions 2.0
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Daniel Zheng · https://lpc.events/event/20/contr
+ ibutions/2562/\n\nHi I'm here to discuss the developments in android GBL +
+  CF support\, and talk about android dynamic partitions 2.0 feature (resiz
+ able super partition) to accommodate large OS updates.\n\n- Quick GBL + Cu
+ ttlefish recap\n- Cuttlefish default booting off GBL\n- New android_esp pa
+ rtition\n- Fastbootd deprecation\n- u-boot implementation\n\nAndroid Dynam
+ ic Partitions 2.0 allow for dynamic resizing of super partition vs. userda
+ ta during OTA to support larger os updates. We will cover the different so
+ lutions proposed and in plans of getting adopted.\n\n- Samsung F2FS patche
+ s to support dynamic data partition\n- bootloader support\n- liblp support
+  in GBL
+URL:https://lpc.events/event/20/contributions/2562/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2558@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T123000
+DTEND;TZID=Europe/Prague:20261005T124500
+SUMMARY:Generic Boot Loader on Android platforms
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Naina Mehta · https://lpc.events/event/20/contri
+ butions/2558/\n\nBootloaders play a vital role in the Android boot process
+ \, but the ecosystem has long been fragmented across silicon vendors and O
+ EM-specific implementations. To address this\, Google introduced the Gener
+ ic Boot Loader (GBL)\, a Rust-based EFI application in AOSP\, with the goa
+ l of standardizing Android boot logic.\nThis session focuses on how Qualco
+ mm is adapting its boot chain to integrate GBL while preserving existing f
+ irmware and platform capabilities. It describes the Qualcomm-specific chan
+ ges required to expose core UEFI services such as block I/O\, memory alloc
+ ation\, RNG\, etc. to GBL\, along with the firmware adjustments needed to 
+ present these services in a clean and consistent way. The session also cov
+ ers Qualcomm’s implementation of device tree selection and fixups throug
+ h GBL-defined interfaces\, as well as the handling of Android-critical boo
+ t data including kernel command line and bootconfig handoff.\nIn addition\
+ , the talk discusses Qualcomm’s support for GBL-specific UEFI protocols 
+ that enable Android requirements such as Verified Boot and Fastboot\, and 
+ how these fit into the existing Qualcomm boot flow. Overall\, the session 
+ provides a practical look at the platform changes needed to bring GBL into
+  the Qualcomm boot chain and move Android boot architecture closer to a mo
+ re maintainable\, upstream-aligned model.
+URL:https://lpc.events/event/20/contributions/2558/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2566@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T124500
+DTEND;TZID=Europe/Prague:20261005T130000
+SUMMARY:Actionable Strategies to mitigate memory footprint on 16kb kernels
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Juan Yescas\, Kalesh Singh · https://lpc.events/
+ event/20/contributions/2566/\n\nWith the release of Android 17\, partners 
+ are required to support the **16 KB developer option** on devices meeting 
+ specific hardware requirements\, such as CPU compatibility and memory conf
+ igurations exceeding 8 GiB. While this transition significantly improves s
+ ystem performance and unlocks hardware efficiencies\, **Android partners**
+  frequently observe a noticeable memory footprint increase\, and they ask 
+ **"How can we reduce this memory footprint?"**. This regression is primari
+ ly driven by internal fragmentation\, mapping more memory than what is nee
+ ded and page-granularity alignment constraints across both userspace and k
+ ernel allocations.\n\nThis presentation provides a concrete\, engineering-
+ focused recipes for Partners to reduce the memory footprint in:\n\n**Users
+ pace**\n\n - Fileback mappings\n - Anonymous Memory\n - Shmem memory\n\n**
+ Kerne memory**\n\n - Kernel modules\n - CMA memory usage\n - Buffer alloca
+ tions in drivers
+URL:https://lpc.events/event/20/contributions/2566/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2593@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T130000
+DTEND;TZID=Europe/Prague:20261005T131500
+SUMMARY:16KB page cache and mTHP on Android
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Barry Song\, Bo Zhang\, nanzhe zhao · https://lp
+ c.events/event/20/contributions/2593/\n\nThis topic proposes exploring the
+  possibility of using 16 KB for both\npage cache and mTHP on Android.\n\nC
+ ollaborating with Kalesh Singh\, Ryan Roberts\, David Hildenbrand and\noth
+ ers\, Xiaomi is exploring the use of 16 KB large folios for both page\ncac
+ he and anonymous memory.\n\nWe have posted an RFC patchset for large folio
+  support in F2FS\, which\nhas been working well on Android devices so far:
+ \n\nhttps://lore.kernel.org/lkml/20260622160830.324455-1-zhaonanzhe@xiaomi
+ .com/\n\nIn this discussion\, we would like to present the data we have co
+ llected\nusing 16 KB page cache and mTHP\, and discuss the following topic
+ s:\n\n1. Pros and cons of using 16 KB large folios with 16 KB base pages.\
+ n\n2. Memory fragmentation and direct reclaim issues observed with 16 KB\n
+    large folios\, along with potential compaction optimizations for a\n   
+ lightweight mechanism targeting 16 KB folios only.\n\n3. Potential Scudo a
+ nd other component optimizations to reduce memory\n   footprint while usin
+ g 16 KB as the management granularity. These\n   optimizations could also 
+ be beneficial when using 16 KB as the base\n   page size.
+URL:https://lpc.events/event/20/contributions/2593/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2630@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T131500
+DTEND;TZID=Europe/Prague:20261005T133000
+SUMMARY:Compatibility for 4KB Applications on Large Page-Sized Systems
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Android MC · Frederick Mayle\, Kalesh Singh · https://lpc.eve
+ nts/event/20/contributions/2630/\n\nAs the ecosystem shifts toward larger 
+ page sizes for enhanced performance\, preserving functionality for legacy 
+ applications remains a significant challenge. This talk will introduce a p
+ er-process 4KB compatibility mode on native 16KB kernel. Primarily for leg
+ acy Android applications\, this approach intentionally prioritizes functio
+ nal correctness over memory efficiency\, allowing legacy software to run s
+ eamlessly while ensuring native 16KB applications experience zero compatib
+ ility overhead.\n\nWe plan to discuss to the design\, current validation s
+ tatus\, and the subsystem integration work required to bridge the gap betw
+ een 4KB legacy user spaces and 16KB native environments\; and outstanding 
+ challenges of ensuring consistency and correctness in a mixed-mode e4KB PT
+ Es --> 16KB Folio environment
+URL:https://lpc.events/event/20/contributions/2630/
+END:VEVENT
+END:VCALENDAR

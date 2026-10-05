@@ -1,0 +1,612 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Birds of a Feather (BoF)
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2635@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100000
+DTEND;TZID=Europe/Prague:20261005T104500
+SUMMARY:AF_XDP BoF
+LOCATION:Club D\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Björn Töpel · https://lpc.events
+ /event/20/contributions/2635/\n\nAF_XDP has grown considerably in function
+ ality and hardware support\, but recent netdev discussions have exposed ga
+ ps in semantics\, queue lifecycle\, offloads\, and cross-driver testing. T
+ his BoF is intended to align on the main pain points and identify concrete
+  next steps.\n\nTopics can\, e.g.\, be:\n\n * AF_XDP semantics: copy vs ze
+ ro-copy\, multi-buffer\, UMEM constraints\n * TX/RX metadata and offloads\
+ n * Queue ownership\, RSS contexts\, netkit queue leasing\n * Driver capab
+ ility discovery and consistency\n * xskxceiver gaps and AF_XDP hardware co
+ mpliance testing\n * Running AF_XDP tests in drivers/net/hw / NIPA CI\n * 
+ Open issues and next steps
+URL:https://lpc.events/event/20/contributions/2635/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2640@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T104500
+DTEND;TZID=Europe/Prague:20261005T113000
+SUMMARY:Attested TLS for Confidential AI Agents: Insights and Lessons Learn
+ t from High- and Critical-severity CVEs on Early Attestation
+LOCATION:Club D\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Muhammad Usama Sardar · https://lp
+ c.events/event/20/contributions/2640/\n\nWe aim to bootstrap some discussi
+ ons on the intersections of the following topics:\n\n - Agentic AI\n - Con
+ fidential Computing (MC on this already exists)\n - Attestation\n - Attest
+ ed TLS\n\nTo initiate discussion\, we will present a few slides to introdu
+ ce the above\, then pose some open questions. We very much welcome present
+ ations by attendees on related topics. If you are interested in presenting
+ \, please email me with the title and expected time.\n\nWe will share insi
+ ghts from the several CVEs and GitHub Security Advisories (GHSAs) on Early
+  Attestation. In particular\, we will share our discovered critical-severi
+ ty CVEs\, such as [CVE-2026-92701][1]\, [CVE-2026-92702][2]\, [CVE-2026-10
+ 0835][3]\, each of CVSS 9.1\, and other [critical- and high-severity secur
+ ity concerns][4] against early attestation\, and discuss with the communit
+ y whether early attestation is really necessary.\n\n  [1]: https://www.cve
+ .org/CVERecord?id=CVE-2026-92701\n  [2]: https://www.cve.org/CVERecord?id=
+ CVE-2026-92702\n  [3]: https://www.cve.org/CVERecord?id=CVE-2026-100835\n 
+  [4]: https://datatracker.ietf.org/doc/draft-intra-handshake-fail/
+URL:https://lpc.events/event/20/contributions/2640/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2641@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T120000
+DTEND;TZID=Europe/Prague:20261005T124500
+SUMMARY:Live Update BoF
+LOCATION:Club D\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Pratyush Yadav · https://lpc.event
+ s/event/20/contributions/2641/\n\nThe primary topic of discussion will be 
+ LUO/KHO ABI and what type of backwards and forwards compatibility should b
+ e guarantee for the ABI. There are different opinions from various parts o
+ f the community and this would be a chance to bring out all views and come
+  to an agreement. More context can be found at these mailing list threads:
+  [[0]](https://lore.kernel.org/kexec/2vxzik5f311e.fsf@kernel.org/#r) [[1]]
+ (https://lore.kernel.org/kexec/20260904160009.GV4157646@nvidia.com/#r).\n\
+ nOther list of potential topics\, time permitting:\n\n- TMPFS preservation
+  [[2]](https://lore.kernel.org/kexec/20260923224408.3745689-1-pratyush@ker
+ nel.org/T/#u) [[3]](https://lore.kernel.org/kexec/20260901180713.4185641-1
+ -dmatlack@google.com/T/#u).\n- Getting rid of scratch/bootmem areas.\n- KH
+ O enablement on different architectures like Loongarch or PowerPC.\n- Maki
+ ng KHO work with crash reservations and KASAN.\n\nThis list is open to sug
+ gestions.
+URL:https://lpc.events/event/20/contributions/2641/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2381@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T150000
+DTEND;TZID=Europe/Prague:20261005T154500
+SUMMARY:Debugging CPU isolation / nohz_full
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Frederic Weisbecker · https://lpc.
+ events/event/20/contributions/2381/\n\nInstalling a CPU isolated workload 
+ for extreme low-latency expectations can be challenging. Requirements and 
+ settings have been recently documented upstream but practice is another st
+ ory. Let's discuss that around a live example.
+URL:https://lpc.events/event/20/contributions/2381/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2382@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T154500
+DTEND;TZID=Europe/Prague:20261005T163000
+SUMMARY:Rust for Linux Office Hours
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Alice Ryhl\, Andreas Hindborg\, Ben
+ no Lossin\, Boqun Feng\, Danilo Krummrich\, Gary Guo\, Miguel Ojeda · htt
+ ps://lpc.events/event/20/contributions/2382/\n\nA Rust-related BoF to work
+  together on several topics\, to answer questions or resolve pain points f
+ rom attendees\, to get to know people interested in Rust and Rust for Linu
+ x and generally to have some more time for discussion on top of the Rust M
+ C.\n\nThe list of topics will be developed closer to the conference (and m
+ ore may be added during the conference too)\, but some examples of potenti
+ al topics would be:\n\n  - Review and discussion of particular patch serie
+ s.\n  - Prototyping of a small project\, e.g. implementing a kernel module
+ .\n  - Providing assistance with `pin-init` and Klint.\n\nPlease feel free
+  to join!
+URL:https://lpc.events/event/20/contributions/2382/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2383@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T170000
+DTEND;TZID=Europe/Prague:20261005T174500
+SUMMARY:BoF: Memory Efficiency on Modern Linux Systems
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Mykolas Krupauskas · https://lpc.e
+ vents/event/20/contributions/2383/\n\nDiscussion on how organizations are 
+ managing the complex tradeoffs related to efficient use of memory resource
+ s in heterogeneous workload\, large-scale datacenter environments. Especia
+ lly\, as DRAM prices have exploded.\n\nWhat guidance and future feature de
+ velopment should the community provide to support efficient use of this re
+ source?\n\n- zswap\n- proactive reclaim agents\n- DAMON\n- PSI\n- memory t
+ iering\n- memcg\n- etc.
+URL:https://lpc.events/event/20/contributions/2383/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2368@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T174500
+DTEND;TZID=Europe/Prague:20261005T183000
+SUMMARY:Updates and Future Directions for Resctrl RDT/MPAM/PQOS/CBQRI
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Fenghua Yu\, Ben Horgan\, Reinette 
+ Chatre · https://lpc.events/event/20/contributions/2368/\n\nSignificant p
+ rogress has been made on the resctrl subsystem recently\, driven by archit
+ ectural evolutions across multiple hardware vendors. Key developments incl
+ ude Intel's separate control and monitor domains\, ARM's IOMMU\, NVIDIA's 
+ CPU-less MPAM support and MBW MAX hard limits\, AMD's monitor counter assi
+ gnment\, and initial RISC-V inclusion.\n\nFollowing last year's highly pro
+ ductive BoF\, which successfully guided upstream development over the past
+  several months\, this session will bring the broader resctrl ecosystem to
+ gether again—including maintainers and developers from Intel\, ARM\, NVI
+ DIA\, AMD\, RISC-V\, Google\, Fujitsu\, and Alibaba. While we will briefly
+  review recent milestones\, the primary focus of this session will be face
+ -to-face discussion to address current architectural bottlenecks\, maintai
+ n a clean cross-architecture abstraction layer\, and reach consensus on fu
+ ture upstream design paths.
+URL:https://lpc.events/event/20/contributions/2368/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2409@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T100000
+DTEND;TZID=Europe/Prague:20261006T104500
+SUMMARY:Kernel Sanitizers Office Hours
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Aleksandr Nogikh\, Alexander Potape
+ nko\, Dmitry Vyukov\, Justin Stitt\, Kees Cook\, Marco Elver\, Pimyn Girgi
+ s · https://lpc.events/event/20/contributions/2409/\n\nThe Linux kernel h
+ as numerous tools to detect bugs\, among them a family of dynamic program 
+ analysis called "sanitizers": Kernel Address Sanitizer (KASAN)\, Kernel Me
+ mory Sanitizer (KMSAN)\, Kernel Concurrency Sanitizer (KCSAN)\, and the Un
+ defined Behaviour Sanitizer (UBSAN). Although not a bug-detecting sanitize
+ r itself\, we will also cover Kernel Coverage (KCOV)\, which utilizes simi
+ lar compiler instrumentation to collect and expose execution feedback.\n\n
+ Knowing when to apply which sanitizer in the kernel development process ma
+ y not always be obvious: each sanitizer is dedicated to finding a differen
+ t class of bugs\, and each introduces some amount of performance and/or me
+ mory overhead. Not only that\, each sanitizer also provides a range of opt
+ ions to tweak their abilities.\n\nThis session is dedicated to briefly int
+ roducing each kernel sanitizer\, the bug classes they help detect\, and im
+ portant gotchas when using them.\n\nThe rest of the session is dedicated t
+ o answering questions around each of the sanitizers\, KASAN\, KMSAN\, KCSA
+ N\, and UBSAN. Feel free to also share success stories that may give other
+  attendees only starting out with some of the sanitizers ideas how to best
+  apply them.
+URL:https://lpc.events/event/20/contributions/2409/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2410@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T104500
+DTEND;TZID=Europe/Prague:20261006T113000
+SUMMARY:Linux CVEs\, vulnerability management and agentic security workflow
+ s
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Damiano Melotti · https://lpc.even
+ ts/event/20/contributions/2410/\n\nThis year has been marked by the rise o
+ f cyber-capable AI models\, flooding maintainers with increasingly better 
+ vulnerability reports. More vulnerabilities have been reaching the headlin
+ es\, resulting in emergency mitigations across different deployments. In r
+ esponse\, many organizations have adopted agentic solutions to scan\, tria
+ ge\, reproduce\, and patch vulnerabilities.\n\nDuring this year's BoF\, we
+  plan to not only update the community on our ongoing efforts with CVE tri
+ aging (https://github.com/cloud-lts/linux-cve-analysis)\, but also to disc
+ uss these common agentic efforts. Our objective is to boost cross-organiza
+ tional collaboration and support the security community in navigating thes
+ e new challenges.
+URL:https://lpc.events/event/20/contributions/2410/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2633@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T120000
+DTEND;TZID=Europe/Prague:20261006T124500
+SUMMARY:x86 BoF
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Dave Hansen · https://lpc.events/e
+ vent/20/contributions/2633/\n\nThis will be an x86-focused session. Broadl
+ y speaking\, anything that might affect arch/x86 is on topic\, except wher
+ e there may be a more focused discussion occurring\, like around Confident
+ ial Computing or KVM.\n\nWe'll talk about new ISA\, hardware security proc
+ esses and structural issues affecting arch/x86.
+URL:https://lpc.events/event/20/contributions/2633/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2412@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T124500
+DTEND;TZID=Europe/Prague:20261006T133000
+SUMMARY:DRM Fabric: Vendor-Neutral Topology Infrastructure for Scale-Up Acc
+ elerator Interconnects
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Konstantin Sinyuk · https://lpc.ev
+ ents/event/20/contributions/2412/\n\nModern GPUs and dedicated AI accelera
+ tors are increasingly connected through scale-up interconnect fabrics such
+  as AMD xGMI today and [UALink](https://ualinkconsortium.org/about-ualink/
+ ) in the near future. Yet Linux lacks common topology infrastructure for r
+ eporting\, vendor-neutrally\, which accelerators are directly connected\, 
+ through which ports\, and in what state. Vendors expose fragments privatel
+ y — e.g. `amdgpu`'s xGMI sysfs — and prior per-driver proposals\, such
+  as XeLink\, never became shared Linux infrastructure. As a result\, topol
+ ogy semantics are being defined by vendor-private uAPIs rather than by a s
+ hared Linux control-plane contract for monitoring and fabric management.\n
+ \nBuilding on the LPC 2025 ["Toward Mainline Linux Support for UALink"](ht
+ tps://lpc.events/event/19/contributions/2308/) BoF\, we propose DRM Fabric
+ : a vendor-neutral\, protocol-agnostic DRM topology infrastructure for sca
+ le-up interconnects\, using the model:\n\n`fabric → endpoint → port 
+ → peer`\n\nVendor drivers populate it through a thin provider API\; user
+ space queries it through `drm-fabric`\, a YAML-defined generic-netlink fam
+ ily consumed through `ynl` tooling\, following the netlink uAPI pattern `d
+ rm_ras` introduced to DRM. No data path: load/store traffic and memory sem
+ antics remain in the vendor driver\, so the infrastructure remains valid a
+ cross vendors and fabrics.\n\nThe implementation is split into two RFC ser
+ ies. Phase 1 targets provider-owned fabrics\, such as an xGMI-like impleme
+ ntation\, where the driver discovers topology and reports it read-only to 
+ userspace\, including notifications\, optional port statistics\, and consi
+ stent multipart enumeration. Phase 2 adds privileged provisioning for soft
+ ware-defined\, UALink-style fabrics: creating fabric containers\, attachin
+ g orphan endpoints\, setting administrative state\, and provisioning peers
+  on userspace-managed ports\, while providers continue to report actual ha
+ rdware state. The RFCs include the core infrastructure\, an in-tree synthe
+ tic provider (`fabricsim`\, modeled on `netdevsim`)\, and KUnit plus `pyyn
+ l`/kselftests exercising the infrastructure and uAPI end-to-end without ha
+ rdware. The next step is a hardware-backed provider for an already-shippin
+ g scale-up fabric.\n\nWe want LPC feedback on the DRM representation\, the
+  boundary between provider-owned topology and privileged userspace provisi
+ oning\, whether the proposed provisioning primitives are sufficient\, and 
+ how AMD\, Intel\, UALink Consortium members\, and other accelerator vendor
+ s should co-develop the common infrastructure and provider interfaces.
+URL:https://lpc.events/event/20/contributions/2412/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2413@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150000
+DTEND;TZID=Europe/Prague:20261006T154500
+SUMMARY:Bridging the Linux Tux and the FreeBSD Beastie – Linuxulator\, Li
+ nuxKPI\, and LLM-Assisted Porting Challenges on License Issue
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · "Ruinland" ChuanTzu Tsai\, Ed Maste
+ \, Li-Wen Hsu · https://lpc.events/event/20/contributions/2413/\n\nThe bo
+ undary between the Linux and FreeBSD ecosystems is often loose and porous\
+ ,while developers continuously building bridges to maximize hardware suppo
+ rt and software availability across both platforms.\n\nTwo mechanisms carr
+ y that weight on shoulders: the Linuxulator\, a native\nimplementation of 
+ the Linux syscall ABI that runs unmodified Linux binaries\,\nand LinuxKPI\
+ , a shim layer that lets FreeBSD build largely unmodified Linux\ndrivers -
+ - the DRM drivers via drm-kmod\, mac80211-based wireless drivers\, and a g
+ rowing set of others -- against a subset of the Linux in-kernel API.\n\nDe
+ pending directly on the ripples from Linux's advancements\, Linuxulator tr
+ acks syscall\, vDSO\, /proc\, netlink and seccomp behaviors and LinuxKPI t
+ racks an in-kernel API that is explicitly not stable\, which makes every D
+ RM or wireless driver during release cycle into an aerobics workout.\n\nHe
+ nce\, this Birds of a Feather (BoF) session is then hereby proposed to ser
+ ve as an information exchange hub for developers working at the intersecti
+ on of Linux and FreeBSD kernel mechanisms.\n\nFurthermore\, FreeBSD is not
+  the only Frankenstein here: Fuchsia's starnix and illumos LX zones reimpl
+ ement parts of the exposed surface of Linux userspace\, and several BSDs h
+ ave maintained downstream of DRM shims of their own. So if you are also an
+  amphibian developer other operating systems. Don't hesitate to join us :-
+ )\n\nDuring this session\, we may discuss topics including but not limited
+  to :\n\n- Linuxulator (Linux Emulation Layer): The current state\, limita
+ tions\, and future enhancements of running unmodified Linux binaries on Fr
+ eeBSD. E.g. RISC-V architecture.\n- LinuxKPI: The compatibility framework 
+ designed to ease the porting of complex Linux kernel drivers (such as DRM 
+ and wireless drivers) to FreeBSD. We will discuss the friction points driv
+ er maintainers face and how the Linux community's API changes impact downs
+ tream compatibility.\n- The LLM Porting and License Issues: With the rise 
+ of Large Language Models (LLMs)\, developers are actively experimenting wi
+ th AI to assist in translating or porting drivers from Linux to FreeBSD. H
+ owever\, this introduces complex license compatibility questions i.e. GPLv
+ 2 vs. BSD. And thus shall deserve a chat with beers in my humble opinion. 
+ And here's the living witness of such kind of work : [aqtion-freebsd-aq2 w
+ ork][1].\n\nRelated discussions could be found in [AsiasBSDCon 2026][2]\n\
+ n  [1]: https://wiki.freebsd.org/DevSummit/202603?action=AttachFile&do=vie
+ w&target=aq2.pdf\n  [2]: https://wiki.freebsd.org/DevSummit/202603
+URL:https://lpc.events/event/20/contributions/2413/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2634@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T154500
+DTEND;TZID=Europe/Prague:20261006T163000
+SUMMARY:F2FS update
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Jaegeuk Kim · https://lpc.events/e
+ vent/20/contributions/2634/\n\nTouch F2FS topics:\n - Large folio\n - Sub-
+ page block support (16KB page on 4KB block)\n - Device Aliasing for Androi
+ d
+URL:https://lpc.events/event/20/contributions/2634/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2452@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T170000
+DTEND;TZID=Europe/Prague:20261006T174500
+SUMMARY:Improving THP placement policies
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Pedro Falcato · https://lpc.events
+ /event/20/contributions/2452/\n\nTransparent Huge Page placement has histo
+ rically been (and is) quite simplistic and overeager. This normally result
+ s in users turning off THP completely\, or for selected workloads using an
+ y number of available toggles.\n\nI'd like to discuss realistic ways in wh
+ ich we could meaningfully improve this\, including past ideas such as thp=
+ auto.\n\nSeveral relevant aspects would include:\n - adapting THP placemen
+ t based on filesystem/storage needs\n - adapting THP placement based on us
+ erspace memory accesses\n - adjusting and improving expectations on MADV_C
+ OLLAPSE\n - getting rid of hard-to-tune heuristics like max_ptes_none & ot
+ hers
+URL:https://lpc.events/event/20/contributions/2452/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2364@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T174500
+DTEND;TZID=Europe/Prague:20261006T183000
+SUMMARY:Camera & ISP BoF
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Laurent Pinchart · https://lpc.eve
+ nts/event/20/contributions/2364/\n\nWhile cameras have been ubiquitous in 
+ Linux systems for more than a decade\, vendors have historically been very
+  reluctant to disclose any information about Image Signal Processors (ISP)
+ \, leading to the proliferation of out-of-tree kernel drivers and closed-s
+ ource userspace stacks. The situation started to change with the launch of
+  the libcamera project at the end of 2018\, and progress has accelerated o
+ ver the past couple of years with more and more vendors jumping on board. 
+ Even Qualcomm recently posted an initial [ISP driver][1] in a timid but ve
+ ry real first step\, a move that was unthinkable just a couple of years ag
+ o.\n\nThere is plenty of work left to do\, as the increased interest from 
+ vendors lays bare the lack of investment of the previous decade that leave
+ s many technical issues unsolved. This BoF brings representatives of kerne
+ l subsystems (mainly V4L2\, but also DRM)\, userspace frameworks (libcamer
+ a\, GStreamer\, PipeWire\, ...)\, image sensor vendors and ISP vendors in 
+ the same room to discuss and solve open issues.\n\n# Discussion Topics\n\n
+ Two discussion topics have been scheduled for the BoF. Additional topics m
+ ay be discussed if time permits.\n\n## RGB-IR Support in V4L2 and libcamer
+ a\n\nby Rishikesh Donadkar and Devarsh Thakkar\, Texas Instruments\n\nThe 
+ Linux kernel V4L2 API does not support RGB-IR image sensors. While buildin
+ g blocks necessary to handle those devices are slowly being merged\, RGB-I
+ R support itself hasn't been tackled yet.\n\nRishikesh has posted an [API 
+ RFC][2]. Along with Devarsh\, he will also present this topic at the [OSS 
+ Europe conference][3].\n\n## Camera Module Identification\n\nby Stefan Klu
+ g\, Ideas on Board\n\nCamera tuning and calibration depend not only on the
+  image sensor\, but also on the lens and other characteristics of camera m
+ odules. While Linux supports identifying image sensors\, it completely lac
+ ks the concept of camera modules.\n\nIdentification of camera modules requ
+ ires coordination between platform firmware (DT or ACPI)\, the kernel and 
+ userspace. Discussions will benefit from the presence of DT maintainers.\n
+ \nStefan has detailed the issue and started a [public dicussion on the lin
+ ux-media mailing list][4].\n\n# Additional Topics\n\nThe following additio
+ nal topic has been proposed.\n\n## Advanced Camera Use Cases\n\nGjorgji Ro
+ sikopulos proposed discussing [advanced camera use cases][5] found in prop
+ rietary camera stacks that lack upstream kernel and userspace support.\n\n
+ [1]: https://lore.kernel.org/linux-media/20260323125824.211615-1-loic.poul
+ ain@oss.qualcomm.com/T/#m6c84ea571355ef41f3dbe203bbb1ffb652932f76\n[2]: ht
+ tps://lore.kernel.org/linux-media/20260925133001.2780868-1-r-donadkar@ti.c
+ om/\n[3]: https://osselceu2026.sched.com/event/2RaZj/enabling-multi-stream
+ -camera-sensors-in-linux-rgb+ir-streams-and-embedded-metadata-rishikesh-do
+ nadkar-devarsh-thakkar-texas-instruments\n[4]: https://lore.kernel.org/lin
+ ux-media/20261001210838.GR944070@killaraus.ideasonboard.com/T/#m30bab686ff
+ b74d19a28ffcc51600a7726183ed0b\n[5]: https://lists.libcamera.org/pipermail
+ /libcamera-devel/2026-September/062157.html
+URL:https://lpc.events/event/20/contributions/2364/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2453@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T174500
+DTEND;TZID=Europe/Prague:20261006T183000
+SUMMARY:DAMON Nano Conference
+LOCATION:Club B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · SJ Park · https://lpc.events/event
+ /20/contributions/2453/\n\nDAMON is a kernel subsystem for efficient data 
+ access/attributes monitoring and memory operations. It received many updat
+ es last year. Many more updates are in progress. Multiple ideas for future
+  works are flooding. In this session\, multiple people who work on DAMON w
+ ill present and discuss what changes have recently been made\, what change
+ s are ongoing\, and what should be the next work.\n\n# Schedule\n\nNote th
+ at the schedule could be updated until the last minute.\n\n17:45-17:48 _Op
+ ening_\n17:48-17:55 _Breaking through Accessed Bit Limits of DAMON_\, SJ P
+ ark\, Ravi Jonnalagadda\, Akinobu Mita\n17:55-18:05 _Beyond Weighted Inter
+ leaving: Bandwidth-Driven Memory Tiering with DAMON_\, Ravi Jonnalagadda. 
+  [Slides](https://lpc.events/event/20/contributions/2453/attachments/2032/
+ 4675/beyond-weighted-interleaving.pdf)\n18:05-18:15 DAMON for Huge Pages\n
+ - _Guiding THP Decisions with DAMON Memory Monitoring_\, Asier Gutierrez. 
+ [Slides](https://lpc.events/event/20/contributions/2453/attachments/2032/4
+ 727/LPC-DAMON-THP.pdf)\n- _Host-side DAMON Hotness under KVM/THP: Granular
+ ity Gaps and Evidence for Demotion_\, Lian Wang\, Kunwu Chan. [Slides](htt
+ ps://lpc.events/event/20/contributions/2453/attachments/2032/4723/LPC2026_
+ Host-side_DAMON_Hotness_under_KVM_THP_v4.pptx.pdf)\n18:15-18:25 _DAMON in 
+ the AI Cloud: Monitoring Real-World GPU Workloads_\, Krishna Iyer. [Slides
+ ](https://lpc.events/event/20/contributions/2453/attachments/2032/4571/DAM
+ ON%20in%20the%20AI%20Cloud.pdf)\n18:25-18:30 _Joint QnA and Closing_\n\n# 
+ Authors (Alphabetically sorted)\n\n_Akinobu Mita_\nSoftware engineer at Fi
+ xstars Corporation.\n\n_Asier Gutierrez_\nSenior Software Engineer at Huaw
+ ei.  Experienced Senior Software Developer specializing in Linux developme
+ nt\, kernel-level debugging\, and high-load\, high-availability systems. I
+  currently work for Huawei. I have worked for Intel\, IBM and Yandex in th
+ e past.\n\n_Krishna Iyer_\nKrishna Iyer is a Software Engineer at Crusoe s
+ pecializing in low-level systems\, driver development\, and Linux build sy
+ stems. Previously at Cisco-Meraki\, he now focuses on researching memory a
+ ccess patterns using DAMON for AI workloads on GPU infrastructure.\n\n_Kun
+ wu Chan_\nKunwu Chan is a Linux kernel developer with experience in kernel
+  performance analysis and tuning\, subsystem design\, and memory safety. H
+ e works on DAMON\, memory management\, swap\, MGLRU\, and RCU.\n\n_Lian Wa
+ ng_\nLian Wang is a Linux kernel developer working on memory management\, 
+ with a focus on DAMON\, huge pages\, swap\, and virtualized and large-memo
+ ry systems.\n\n_Ravi Jonnalagadda_\nRavi Jonnalagadda is a Sr Manager at M
+ icron working on Linux kernel memory management for CXL and tiered-memory 
+ systems. He co-developed the weighted interleaving memory policy and added
+  the node_eligible_mem_bp DAMOS quota goal. His current work lets DAMON ta
+ ke access samples from hardware sampling units.\n\n_SJ Park_\nSJ is a kern
+ el programmer with a strong focus on memory management. He develops and ma
+ intains DAMON\, a Linux kernel subsystem designed for efficient data acces
+ s monitoring and access-aware system operations.
+URL:https://lpc.events/event/20/contributions/2453/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2367@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T154500
+DTEND;TZID=Europe/Prague:20261007T163000
+SUMMARY:FUSE mostly-passthrough filesystems
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Amir Goldstein · https://lpc.event
+ s/event/20/contributions/2367/\n\nMany production FUSE filesystems do not 
+ need to reimplement the full filesystem stack.  They need to mirror an exi
+ sting directory with full fidelity while intercepting only a small subset 
+ of operations for caching\, tiering\, HSM stub manifestation\, or auditing
+ .\n\nTo make these filesystems easier to build\, we introduce [libfuse_pas
+ sthrough][1] - a C++ library that handles all FUSE plumbing and exposes a 
+ lightweight module API where only the intercepted operations need to be im
+ plemented where everything else passes through automatically.\n\nThe libra
+ ry makes use of upstream kernel FUSE read/write passthrough\, which allows
+  open files to bypass the FUSE daemon entirely\, and provides an experimen
+ tal playground for the development of [more FUSE kernel passthrough operat
+ ions][2].\n\nWe invite contributors and users with FUSE passthrough worklo
+ ads to learn about our experience\, discuss open problems\, kernel interfa
+ ce requirements\, and help shape the future of FUSE.\n\n  [1]: https://git
+ hub.com/amir73il/libfuse/tree/libfuse_passthrough/passthrough\n  [2]: http
+ s://lore.kernel.org/fuse-devel/20260420221637.2631478-1-joannelkoong@gmail
+ .com/
+URL:https://lpc.events/event/20/contributions/2367/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2366@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T170000
+DTEND;TZID=Europe/Prague:20261007T174500
+SUMMARY:Defining the pkeys ABI
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Kevin Brodsky · https://lpc.events
+ /event/20/contributions/2366/\n\nWe have been supporting pkeys [1] on Linu
+ x for 10 years now\, and they\nare no longer specific to x86: arm64 and po
+ werpc support them too.\nUnfortunately\, important gaps remain in the kern
+ el-user ABI\, making it\ndifficult to deploy pkeys robustly for key use-ca
+ ses.\n\npkeys work in a fairly simple way: the user allocates a new pkey a
+ nd\nthen assigns that pkey to a VMA. Access to that VMA is then restricted
+ \nby a user-controlled register\, which defines RWX permissions for every\
+ npkey.  The restrictions apply to both user and kernel accesses (uaccess\n
+ and GUP).\n\nDifficulties arise when the kernel interrupts a user thread a
+ nd then\naccesses its memory\, or invokes a signal handler. In those cases
+ \, it is\nunclear which pkeys authority the kernel should use\, whether us
+ erspace\nshould be able to configure it\, and how to avoid spurious crashe
+ s or\nconfused deputy situations. This is what the current ABI is lacking.
+ \n\nThis BoF is especially intended for arch/mm maintainers\, libc/runtime
+ \ndevelopers\, and userspace developers already familiar with pkeys or\nde
+ ploying pkey-based isolation. The goal is not to present a finished\ndesig
+ n\, but to agree on the programming model that future ABI work\nshould fol
+ low.\n\nA few important use-cases are currently difficult or impossible to
+ \nimplement robustly:\n\n* Isolating the alternate signal stack: mapping i
+ t with a non-default\n  pkey that only signal handlers are allowed to acce
+ ss.\n\n* Sandboxing with pkeys: preventing some context from accessing\n  
+ even the default pkey (0).\n\nProblematic situations include:\n\n* Signal 
+ delivery [2]: signal handlers may be called asynchronously and\n  are conc
+ eptually independent of the interrupted context.\n  Userspace may need the
+  pkey register to be reset to a specific value\n  both for writing the sig
+ nal frame and invoking the signal handler.\n\n* rseq [3]: the kernel write
+ s to the registered struct rseq when context\n  switching\, which can happ
+ en at any point. This is again independent of\n  the interrupted context\,
+  which may not be allowed to write to that\n  struct.\n\n* io_uring worker
+  threads: these are kernel threads that access user\n  memory asynchronous
+ ly. They have their own pkey register value\n  restricting those accesses\
+ , but userspace is not currently able to\n  configure it.\n\n* Other cases
+ \, such as BPF helpers accessing user memory and\n  process_vm_readv(self)
+  bypassing pkeys completely.\n\nAll these issues lead to a set of question
+ s that we need to answer to\ncreate a consistent and unsurprising ABI:\n\n
+ * Which contexts need a dedicated or userspace-configurable pkey\n  regist
+ er value?\n\n* Are there accesses that should intentionally bypass pkeys\,
+  and if so\,\n  how should that be documented?\n\n* Can these issues be ha
+ ndled with targeted fixes\, or do we need a more\n  unified ABI design for
+  asynchronous kernel access to pkey-protected\n  memory?\n\nAs Thomas Glei
+ xner put it:\n\n> We really need to sit down and actually define a proper 
+ programming\n> model first instead of trying to duct tape the current ill 
+ defined\n> mess forever.\n\nThe intended outcome of this BoF is a shared d
+ irection for documenting\nand extending the pkeys ABI\, so that pkeys can 
+ be used reliably as\nintra-process privilege boundaries rather than only a
+ s a best-effort\nhardening mechanism.\n\n[1] https://docs.kernel.org/core-
+ api/protection-keys.html\n[2] https://inbox.sourceware.org/libc-alpha/fc31
+ e639-f1eb-42d6-9dea-3665d9507f12@arm.com/\n[3] https://lore.kernel.org/all
+ /87ikexhbah.ffs@tglx/
+URL:https://lpc.events/event/20/contributions/2366/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2365@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T174500
+DTEND;TZID=Europe/Prague:20261007T183000
+SUMMARY:Virtio and Vhost-User Ecosystem for Production and Automotive Syste
+ ms
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Birds of a Feather (BoF) · Dorinda Bassey\, Albert Esteve\, St
+ efano Garzarella · https://lpc.events/event/20/contributions/2365/\n\nThe
+  vhost-user protocol started as a simple QEMU feature\, but it has grown i
+ nto a standard used across the entire Linux virtualization community. Toda
+ y\, it powers production workloads in the cloud (e.g. QEMU and cloud-hyper
+ visor)\, lightweight environments like libkrun\, and modern automotive sys
+ tems.\n\nHowever\, as the ecosystem expands\, we are hitting new "plumbing
+ " bottlenecks. For example\, the protocol specification is still stored in
+ side the QEMU documentation\, which makes it harder for other projects to 
+ participate in its growth. At the same time\, automotive deployments are i
+ ntroducing strict new needs\, such as safety certification\, real-time per
+ formance\, and long-term support\, that impact everyone.\n\nThis BoF will 
+ bring developers and users together to address these challenges and other 
+ emerging topics across the ecosystem. Our goal is to establish better coor
+ dination\, align technical roadmaps for both cloud and automotive\, and bu
+ ild shared tests and tools to ensure all implementations work together.\n\
+ nKey Discussion Topics:\n - vhost-user Specification Governance: Discuss o
+ fficial location for the vhost-user specification.\n - Automotive Virtuali
+ zation Requirements & Reference Platforms: Coordinate deployment needs acr
+ oss Automotive platforms [1]\n - Real-time performance needs (camera\, dis
+ play\, CAN)\n - Status Update: Ongoing work on vhost-user device (virtio-M
+ edia\, virtio-can\, virtio-rtc\, etc)[2][3]\n - Graphics Stack Alignment: 
+ on roadmaps for shared dependencies like rutabaga_gfx across libkrun\, cro
+ svm\, vhost-device-gpu [4]\n - Shared Virtio Message-Parsing Crates: Evalu
+ ate creating unified Rust crates for Virtio device specs to share virtqueu
+ e parsing logic across backends and VMMs.\n - Open questions about:\n     
+ vhost-user Specification Refinements: Identify protocol gaps\, missing fea
+ tures\, and necessary standard improvements.\n     New Virtio/vhost-user D
+ evice Proposals.\n\n[1] https://source.android.com/docs/automotive/virtual
+ ization/reference_platform\n[2] https://lore.kernel.org/virtualization/ab2
+ FlQTWUxl0KmlT@fedora/\n[3] https://github.com/rust-vmm/vhost-device/pull/9
+ 44\n[4] https://github.com/magma-gpu/rutabaga_gfx/issues/24\n\nKey Partici
+ pants:\n  - Albert Esteve aesteve@redhat.com\n  - Stefano Garzarella sgarz
+ are@redhat.com\n  - Sergio Lopez slp@redhat.com\n  - Manos Pitsidianakis m
+ anos.pitsidianakis@linaro.org\n  - Alex Bennee alex.bennee@linaro.org\n  -
+  Matej Hrica mhrica@redhat.com\n  - Milan Zamazal mzamazal@redhat.com\n  -
+  Gurchetan Singh gurchetansingh@google.com\n  - Jorge E. Moreira jemoreira
+ @google.com\n  - Matias Vara Larsen mvaralar@redhat.com\n  - Dorinda Basse
+ y dbassey@redhat.com\n  - Alberto Ruiz aruiz@redhat.com\n  - Erico Nunes e
+ rnunes@redhat.com\n  - John Ferlan jferlan@redhat.com\n  - Michael Tsirkin
+  mst@redhat.com\n  - German Maglione gmaglion@redhat.com\n  - Stefan Hajno
+ czi stefanha@redhat.com\n  - Timos Ampelikiotis t.ampelikiotis@virtualopen
+ systems.com\n  - Harald Mommer harald.mommer@oss.qualcomm.com
+URL:https://lpc.events/event/20/contributions/2365/
+END:VEVENT
+END:VCALENDAR

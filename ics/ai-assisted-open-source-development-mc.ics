@@ -1,0 +1,216 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: AI-Assisted Open Source Development MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2645@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T100000
+DTEND;TZID=Europe/Prague:20261006T104500
+SUMMARY:Sashiko current status
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · Roman Gushchin · htt
+ ps://lpc.events/event/20/contributions/2645/\n\nCurrent status of Sashiko.
+  Also in this block: #140 "Citation Needed: Treating the kernel's AI revie
+ w context like code" (Fuad Tabba)\, and Chris Mason and others on review p
+ rompts.
+URL:https://lpc.events/event/20/contributions/2645/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2646@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T104500
+DTEND;TZID=Europe/Prague:20261006T111500
+SUMMARY:Sashiko feedback and feature requests
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · https://lpc.events/ev
+ ent/20/contributions/2646/\n\nOpen discussion with everyone: feedback on S
+ ashiko and feature requests.\n\nRelated talks: #140 Fuad Tabba (Google)\; 
+ #166 Andrea Righi (NVIDIA)\; #298 Konstantin Sinyuk (Intel)
+URL:https://lpc.events/event/20/contributions/2646/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2597@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T111500
+DTEND;TZID=Europe/Prague:20261006T113000
+SUMMARY:Automating Kernel Bug Fixes: Syzbot's AI-Assisted Patching Workflow
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · Aleksandr Nogikh · h
+ ttps://lpc.events/event/20/contributions/2597/\n\n[Syzbot][1] reports arou
+ nd 1\,500 new fuzzer-detected findings in the Linux kernel each year. Even
+  for straightforward bugs where the root cause is obvious\, the manual eff
+ ort of drafting\, testing\, and sending patches constitutes a significant 
+ effort on the kernel developers side.\n\nTo facilitate this process\, we h
+ ave launched an AI-assisted fix generation [workflow][2] in syzbot built a
+ round human-in-the-loop review:\n* **Two-Stage Pipeline**: Candidate patch
+ es are sent to a moderation list where reviewers reply with natural-langua
+ ge feedback or commands (`#syz reject`\, `#syz upstream`). The AI agent in
+ terprets comments\, answers questions\, and iterates on new versions while
+  preserving tags like *Reviewed-by* or *Tested-by*.\n* **Human Accountabil
+ ity**: When approved via the `#syz upstream` command\, the human reviewer'
+ s *Signed-off-by:* tag is attached in compliance with Linux Kernel AI Codi
+ ng Assistants guidelines before forwarding the patch to public mailing lis
+ ts.\n\n**Status & Discussion**: The system is in a POC stage and undergoin
+ g active development. As of September 2026\, 30 of the syzbot AI-assisted 
+ patches have been merged upstream\, more are under review/discussion.\n\nI
+ n this session\, we will focus on:\n* **System Overview**: More detailed w
+ orkflow description and how the system works under the hood.\n* **Lessons 
+ Learned**: Based on the current experience\, what went well and what needs
+  more attention.\n* **Community Discussion**: How to make the tool more us
+ eful and increase review efficiency.\n\n  [1]: https://syzbot.org/upstream
+ \n  [2]: https://github.com/google/syzkaller/blob/master/docs/syzbot_ai_pa
+ tches.md
+URL:https://lpc.events/event/20/contributions/2597/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2599@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T120000
+DTEND;TZID=Europe/Prague:20261006T121500
+SUMMARY:Boro: Do We Need More AI-assisted Kernel Tooling?
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · Andrea Righi · https
+ ://lpc.events/event/20/contributions/2599/\n\nAI-assisted tooling is incre
+ asingly becoming part of Linux kernel development workflows\, particularly
+  for patch review and feedback generation. Sashiko has become the de facto
+  standard for reviewing publicly posted patch series on mailing lists.\n\n
+ While Sashiko can also be used beyond the mailing-list workflow\, its desi
+ gn is primarily optimized around upstream review interactions. This can re
+ sult in a less natural fit when it's applied to more iterative or downstre
+ am-focused development workflows. In particular\, it's not specifically de
+ signed for reviewing backported patch series locally or tracking upstream 
+ follow-ups related to those changes (e.g.\, distro kernel maintenance\, ap
+ plying security fixes\, etc.).\n\nThese gaps motivated the development of 
+ Boro (https://github.com/NVIDIA/boro)\, an AI-assisted kernel development 
+ tool designed for local-first\, interactive usage\, focused on improving r
+ eview and testing iterations before public submission\, and supporting dow
+ nstream workflows such as backporting and distribution kernel development.
+ \n\nThis talk will present Boro's design and open a discussion on whether 
+ some of its functionality could be integrated into Sashiko.
+URL:https://lpc.events/event/20/contributions/2599/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2600@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T121500
+DTEND;TZID=Europe/Prague:20261006T123000
+SUMMARY:Automated kernel CVE backports
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · Jarod Wilson · https
+ ://lpc.events/event/20/contributions/2600/\n\nThe Problem: CVEs\n- CVEs: C
+ ommon Vulnerabilities and Exposures\n- February 2024\, Linux kernel projec
+ t becomes the Linux kernel CVE Numbering Authority (CNA)\n- The number of 
+ Linux kernel CVEs skyrockets\n- Red Hat customers expect CVE fixes/mitigat
+ ions\, with some having Service Level Agreements for delivery within X num
+ ber of days\, depending on severity\n- Red Hat did not get an increase in 
+ kernel developers commensurate with the increase in kernel CVEs\n\nThe Sol
+ ution: Automation\n- Don’t manually do things that can be done by robots
+ ! (*)\n- Assignment of the work to the right team\n- Identification of the
+  patch fixing the CVE\n- Backport of the fix (possibly with AI coding assi
+ stance)\n- Submission of a merge request containing the fix\n- Validation 
+ of the merge request\n- Testing of the fix\n\n(*) This does not necessaril
+ y mean AI\, but it also does now
+URL:https://lpc.events/event/20/contributions/2600/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2601@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T123000
+DTEND;TZID=Europe/Prague:20261006T124500
+SUMMARY:From Findings to Fixes: AI-Assisted Linux Kernel Bug Triage and Rem
+ ediation
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · Yuan Tan · https://l
+ pc.events/event/20/contributions/2601/\n\nKernel maintainers increasingly 
+ receive bug findings from fuzzers and AI-assisted tools. While these tools
+  expand bug-finding coverage\, they also create a growing triage burden. T
+ he quality of both bug reports and patches can vary substantially: finding
+ s may be false positives\, lack a usable reproducer\, duplicate existing i
+ ssues\, or come with patches that are incomplete or incorrect.\n\nWe are d
+ eveloping Vega\, a continuous Linux kernel bug discovery and triage system
+  inspired by syzbot. Vega aggregates findings from multiple sources and gi
+ ves maintainers a view of bugs affecting their subsystems. For each findin
+ g\, it attempts to generate and execute a proof of concept\, helping filte
+ r false positives and turn plausible findings into reproducible bugs. For 
+ confirmed bugs\, Vega further analyzes impact and severity and can generat
+ e a draft patch as a remediation reference.\n\nWe would like to share our 
+ experience triaging over 1\,000 Linux kernel bugs and discuss a practical 
+ question: which bugs are actually worth fixing? AI-assisted tools can surf
+ ace many real but obscure corner cases\, making it increasingly important 
+ to distinguish technically real bugs from bugs that warrant engineering at
+ tention.
+URL:https://lpc.events/event/20/contributions/2601/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2647@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T124500
+DTEND;TZID=Europe/Prague:20261006T130000
+SUMMARY:Open discussion: using fix generation effectively
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · Josef Bacik · https:
+ //lpc.events/event/20/contributions/2647/\n\nOpen discussion led by Josef 
+ with the audience on using AI fix generation effectively.\n\nRelated talks
+ : #447 Aleksandr Nogikh\; #482 Yuan Tan\; #315 Jarod Wilson
+URL:https://lpc.events/event/20/contributions/2647/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2598@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T130000
+DTEND;TZID=Europe/Prague:20261006T131500
+SUMMARY:Talk to Your Crash Dumps: Debugging a Real-Time Kernel Stall with d
+ rgn and AI
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · Wander Costa · https
+ ://lpc.events/event/20/contributions/2598/\n\nAnalyzing kernel crash dumps
+  with drgn is powerful but demands fluency in drgn's Python API\, kernel d
+ ata structure layouts\, and the right helper functions for each subsystem.
+  drgn-mcp is an MCP (Model Context Protocol) server that exposes drgn's de
+ bugging capabilities as structured tools that AI assistants can call\, ena
+ bling kernel developers to investigate crash dumps through natural languag
+ e instead of scripting.\n\nThis talk is a live demo of a real-world invest
+ igation. I will use drgn-mcp to analyze a vmcore from a production RT kern
+ el hang where rtmutex contention leads to a system-wide stall. This is a r
+ eal customer bug affecting RHEL RT kernels. Starting from the vmcore with 
+ no prior analysis\, I will walk through the entire investigation interacti
+ vely\, driven by natural language\, with the LLM choosing which drgn tools
+  to invoke to uncover the root cause live on stage.
+URL:https://lpc.events/event/20/contributions/2598/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2648@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T131500
+DTEND;TZID=Europe/Prague:20261006T133000
+SUMMARY:Wrap-up
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:AI-Assisted Open Source Development MC · Josef Bacik · https:
+ //lpc.events/event/20/contributions/2648/\n\nSession wrap-up and next step
+ s.
+URL:https://lpc.events/event/20/contributions/2648/
+END:VEVENT
+END:VCALENDAR

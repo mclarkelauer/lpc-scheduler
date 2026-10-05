@@ -1,0 +1,291 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Linux System Monitoring and Observability MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2450@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100000
+DTEND;TZID=Europe/Prague:20261005T102000
+SUMMARY:Performance Tools and Prompts
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Linux System Monitoring and Observability MC · Brendan Gregg 
+ · https://lpc.events/event/20/contributions/2450/\n\nA new era is upon pe
+ rformance engineering where we ask AI to do much of our analysis and think
+ ing: we run "performance prompts" (and skills and agents) instead of "perf
+ ormance tools." These can analyze all sources\, including flame graphs\, b
+ cc and bpftrace tools (eBPF)\, Ftrace\, PMCs\, and MSRs\; they can also pr
+ opose new metrics and tools. How well does it currently work\, and what do
+ es this mean for the future of system monitoring and observability\, inclu
+ ding for flame graphs and eBPF tools. There are many questions to ponder (
+ more questions than answers)\, including: Should one day we include prompt
+ s\, skills\, and agents in the kernel tree\, just as we do performance too
+ ls? This talk discusses questions and challenges that we will all likely b
+ e facing\, and new opportunities\, including example performance prompts.
+URL:https://lpc.events/event/20/contributions/2450/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2576@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T102000
+DTEND;TZID=Europe/Prague:20261005T103500
+SUMMARY:Unified collection of kernel bug reports
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Linux System Monitoring and Observability MC · John Harrison 
+ · https://lpc.events/event/20/contributions/2576/\n\n**Debugging end user
+  kernel issues is a problem**\n\nReporting bugs is hard - important inform
+ ation is scattered across many log files\, crash files\, sysfs entries\, e
+ tc. Most end users don't know where or how to file a bug. They might not e
+ ven know that a crash has happened (just a glitch on the screen or a log e
+ ntry somewhere).\n\nWhen a bug is reported\, triage can be difficult. Like
+ ly only one report but is it really a one-off issue\, never to be seen aga
+ in? Was all the important info included? Were the logs collected but two h
+ ours after the bug occurred and have wrapped? ...\n\nBugs can cascade - a 
+ non-fatal issue can sometimes lead to a fatal issue later in time. A timel
+ ine of reports from a single system/boot is needed to identify cause/effec
+ t relationships. Bugs can also cross subsystem boundaries and a bug logged
+  against driver X might really have been caused by module Y but team Y mig
+ ht never get to know about it because team X didn't pass it on properly (o
+ r at all).\n\n**Solution: Remove the user**\n\nAutomatically generate a du
+ mp file - a daemon can ensure it captures all important information (e.g. 
+ devcoredump and other sysfs entries plus dmesg\, syslog\, etc. plus timeli
+ ne info such as boot time\, hashed processor id\, etc.) and immediately at
+  the time of the bug occurrance. Daemon then sends the bug report a server
+ .\n\nFirst level server can be local\, but ultimately bugs are sent to a g
+ lobal server. Server does first step triage - build timeline of bug report
+ s with the same session id\, check for known instability issues earlier in
+  the timeline\, match new bug to existing entries\, etc. It would have plu
+ gins to help analyse driver specific data blocks (e.g. devcoredump files) 
+ for customised triage. Sends notification to driver/module owner when a ne
+ w bug is identified and provides database for investigating bugs - develop
+ ers can see how many times a given bug has really occurred\, what platform
+ s/hardware/kernels are affected\, etc.
+URL:https://lpc.events/event/20/contributions/2576/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2550@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T103500
+DTEND;TZID=Europe/Prague:20261005T105500
+SUMMARY:What Bugs Matter? Continuous Linux Kernel Bug Monitoring
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Linux System Monitoring and Observability MC · Yuan Tan · htt
+ ps://lpc.events/event/20/contributions/2550/\n\nLinux kernel bug reports v
+ ary widely in quality: some are duplicates\nor false positives\, while oth
+ ers describe exploitable vulnerabilities\nor issues with little practical 
+ impact. Maintainers still need to\ndetermine what is real\, what matters\,
+  and what deserves attention\nfirst.\n\nAt the same time\, bug findings ar
+ e increasingly fragmented across\ndifferent tools and workflows\, includin
+ g fuzzers\, static analyzers\,\nhuman analysis\, AI-assisted tools\, and p
+ atch-review systems. For\nexample\, Sashiko may uncover pre-existing bugs 
+ while reviewing\npatches\, but those findings can remain scattered across 
+ individual\nreview reports rather than being collected and tracked in one 
+ place.\n\nWe are developing a continuous Linux kernel bug monitoring and t
+ riage\nplatform. The platform aggregates findings from multiple sources\, 
+ maps\nthem to kernel subsystems\, and gives maintainers a view of currentl
+ y\nobserved bugs affecting the code they maintain. For each finding\, it\n
+ attempts to generate and execute a reproducer on a KASAN-enabled\nkernel t
+ o help validate the report. It also assesses potential impact.\nFor exampl
+ e\, whether a bug may enable privilege escalation or has\nlimited practica
+ l impact. Confirmed bugs can also include AI-generated\nanalysis and draft
+  patches to help reduce the effort required to\nunderstand and fix the iss
+ ue.\n\nBuilding on the [mailing-list discussion][1]\, we would like to exp
+ lore\nwhat actionable kernel bug observability should look like. How shoul
+ d\nheterogeneous bug signals be validated\, prioritized\, and presented to
+ \nsubsystem maintainers? How can automated analysis help distinguish\nimpo
+ rtant bugs from noise without creating yet another stream of\nlow-quality 
+ reports?\n\n  [1]: https://lore.kernel.org/all/20260830115546.3942129-1-yu
+ antan098@gmail.com/
+URL:https://lpc.events/event/20/contributions/2550/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2547@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T105500
+DTEND;TZID=Europe/Prague:20261005T111500
+SUMMARY:Detecting Unhealthy Kernels at Scale
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Linux System Monitoring and Observability MC · Sam Crossley ·
+  https://lpc.events/event/20/contributions/2547/\n\nThis talk explores Met
+ a's approaches to identifying production issues rooted in the Linux kernel
+ . Our investigation process\, spanning detection\, correlation\, and deep 
+ triage\, relies on a unified framework of telemetry and monitoring tools. 
+ A common challenge arising in hyperscale kernel releases is that of robust
+ ly comparing kernel performance across lifecycle phases\, despite vast var
+ iations in deployment size. Our findings highlight the efficacy of combini
+ ng flexible data aggregation with statistically grounded analysis\, to str
+ eamline and automate the release process.
+URL:https://lpc.events/event/20/contributions/2547/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2548@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T111500
+DTEND;TZID=Europe/Prague:20261005T113000
+SUMMARY:We don't know what we're looking for until we find what we're looki
+ ng for
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Linux System Monitoring and Observability MC · David Dai\, Sha
+ keel Butt · https://lpc.events/event/20/contributions/2548/\n\nWhat start
+ ed out as an investigation for potential isolation issues in the fleet led
+  us down into a few different rabbit holes. We started with trying to find
+  patterns where the kernel lock holders are unable to run\, causing other 
+ tasks to wait on said locks. We'll discuss ways to monitor said patterns a
+ cross the fleet at a broader scale and then zoom into some interesting cas
+ e studies to see what we found including:\n\n- OOM killer prints to the co
+ nsole while holding a lock\n- Act of monitoring causes isolation issues in
+  the fleet for sensitive services\n- Hard partitioning from CPUSETS causes
+  lock holder unable to get CPU time\n- Chain of lock waiters -> Lock holde
+ r sleeping on synchronize_rcu -> CPU holding up grace period\n\nAlso we'll
+  discuss how to expand on monitoring for scheduling issues and/or issues i
+ n the fleet that causes stalls that prevent system wide progress
+URL:https://lpc.events/event/20/contributions/2548/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2549@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T120000
+DTEND;TZID=Europe/Prague:20261005T122000
+SUMMARY:Following the bread crumbs: Tracing packets through the kernel with
+  per-skb BPF metadata
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Linux System Monitoring and Observability MC · Jakub Sitnicki 
+ · https://lpc.events/event/20/contributions/2549/\n\nOperating a network 
+ at scale\, we routinely need to answer a deceptively simple question: what
+  path did *this* packet take through the kernel\, and where did it get dro
+ pped? On our edge\, a single packet can cross several network namespaces\,
+  get encapsulated in GRE or IPIP\, be encrypted with IPsec\, and pass thro
+ ugh multiple nftables chains before it leaves the box. Tagging the payload
+  the way we tag L7 requests is not an option here: it's opaque\, encrypted
+ \, and rewritten along the way.\n\nWe'll walk through our attempt to build
+  an `mtr`-like tool that\, instead of a list of hosts\, shows the *kernel 
+ waypoints* a packet hits — interfaces\, netns boundaries\, tunnel encap/
+ decap\, IPsec encrypt/decrypt\, nftables verdicts\, and drops — each wit
+ h a timestamp.\n\nWe started with [Retis](https://github.com/retis-org/ret
+ is)\, Red Hat's eBPF-based packet tracer\, which already does most of the 
+ heavy lifting. We'll cover what worked out of the box and where we hit its
+  limits:\n\n- It correlates events by hashing the skb data area (`skb->hea
+ d`)\; we found\n  tracking by `skb` address to be both cheaper (~15% fewer
+  trigger events on a busy box) and a better fit.\n- The "tcpdump model" mi
+ smatch: Retis filters at every probe\, capturing many\n  flows. For a trac
+ eroute-like UX we instead want to *lock on* to a packet once\,\n  then hav
+ e downstream probes fire purely on identity.\n\nThis is where the observab
+ ility problem becomes a kernel interface problem. To follow a packet acros
+ s transformations\, and to let BPF programs annotate a packet at one hook 
+ and read it back at another\, we need per-packet state that lives and dies
+  with the `sk_buff`. The BPF-map "side-stash" works today but is costly: t
+ o avoid leaking entries it has to hook the `consume_skb` release path\, wh
+ ich fires for every one of the hundreds of thousands of packets passing th
+ rough the system each second\, even when we only care about a handful of t
+ hem. So we started an upstream effort to add a better building block: **a 
+ BPF metadata buffer embedded in an skb extension chunk**.\n\nWe'll update 
+ the audience on where that work has moved since we [last presented](https:
+ //netdevconf.info/0x1A/sessions/talk/thrice-the-charm-an-skb-extension-for
+ -bpf-metadata.html) it at Netdev 0x1A in July\, and on the challenges we f
+ aced wiring Retis up to use it.\n\nWe'd like to hear whether others have f
+ elt the same gap in production\, and if not\, how they observe a packet's 
+ journey through their systems today.
+URL:https://lpc.events/event/20/contributions/2549/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2386@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T122000
+DTEND;TZID=Europe/Prague:20261005T124000
+SUMMARY:Crash Dumps at a Bare-Metal Cloud Provider - Capture\, Dedup\, and 
+ AI-Assisted Analysis.
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Linux System Monitoring and Observability MC · Serapheim Dimit
+ ropoulos · https://lpc.events/event/20/contributions/2386/\n\nCoreWeave i
+ s a bare-metal cloud provider. A typical machine in our fleet has at least
+  2TB of RAM\, and customers tend to run close to that limit. That has two 
+ immediate consequences: the crash-kernel memory reservation matters a lot 
+ (every GB we reserve is a GB the customer doesn't get)\, and when a machin
+ e panics the resulting crash dump is huge. Because it's so big\, the downt
+ ime during a crash\, and how soon we can hand the machine back to the cust
+ omer\, ends up gated almost entirely on makedumpfile. At the fleet level i
+ t gets even more challenging as bugs triggered by a bad kernel upgrade or 
+ some fancy customer workload lead to getting tons of crash dumps at once a
+ nd all of them are due to the same bug. Finally there’s us\, a lean team
+  of 2 kernel engineers at CoreWeave that have to look at all the incoming 
+ crash dumps. We lean on AI a lot\, at least for triaging failures and knoc
+ king out the easy RCAs. That field has progressed and gotten more accurate
+  over time but we still get the occasional confident hallucination.\n\nOur
+  ideas and projects so far:\n\n- (Project in-progress at the time of submi
+ ssion) Fingerprint the failure before we even try to capture a dump. Compu
+ te a cheap signature of the crash from within the crash kernel\, compare i
+ t against what we've already seen\, and if it's a known one\, skip collect
+ ion altogether. (This probably needs a network connection out of the crash
+  kernel to check against a central store\, and we're not sure yet how pain
+ ful that is to pull off)\n\n- (Idea) Decouple capturing the crashed memory
+  from turning it into a proper dump. Instead of running makedumpfile to co
+ mpletion before we reboot\, grab the crashed memory (maybe with some very 
+ light filtering)\, reboot early to give the machine back\, and do the heav
+ y transform/filter later. (There may be Kexec HandOver-related discussion 
+ here).\n- (Idea) An alternative on the above that we're weighing is to ski
+ p the general-purpose dump entirely and use drgn+sdb to take ultra-filtere
+ d dumps on the spot\, driven by a preconfigured list of data structures we
+  care about.\n\n- (Project in-progress at the time of submission) Use out-
+ of-band kernel introspection from the DPU to grab ultra-filtered dumps the
+  moment we know a panic happened\, without even waiting for the crash kern
+ el to come up (we got drgn+sdb on the DPU reading host memory over RDMA).\
+ n\n- (Implemented) For the AI triaging/RCA side\, hand the agent a Docker 
+ container preloaded with the crash dump plus matching debug info\, the ker
+ nel source for that exact version\, and some hints on where to look for ex
+ isting issues (bug trackers\, the mailing list\, etc.). We also drop in a 
+ small agents.md whose main job is to keep the agent from spinning in endle
+ ss loops.\n\nTopics we'd like to discuss:\n\n- How do folks capture dumps 
+ on multi-TB hosts at fleet scale? Full vs. aggressively filtered\, local N
+ VMe vs. a network target\, and what capture times are people living with? 
+ And how do you settle on the crash-kernel memory reservation?\n\n- Is anyo
+ ne else deduplicating crash dumps? If so\, what crash-signature/dedup sche
+ mes are you using\, and is there any appetite for converging on a shared\,
+  drgn-based triage library instead of everyone rolling their own?\n\n- How
+  are people using AI tools for crash dump analysis\, and which setups have
+  worked best? How do you keep the confident hallucinations in check?\n\n- 
+ Is anyone else doing out-of-band introspection of production hosts (DPU\, 
+ BMC\, PCIe P2P\, RDMA)? How do you handle it\, and do you use drgn?\n\n- H
+ ow do you keep historical crash dump data around? Jira and/or database plu
+ s Grafana? Something else?
+URL:https://lpc.events/event/20/contributions/2386/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2546@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T124000
+DTEND;TZID=Europe/Prague:20261005T130000
+SUMMARY:Breakpoints in drgn
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Linux System Monitoring and Observability MC · Omar Sandoval 
+ · https://lpc.events/event/20/contributions/2546/\n\nBreakpoint support f
+ or drgn is currently underway (https://github.com/osandov/drgn/issues/626)
+ . Support is planned for:\n\n* KGDB\n* Linux kernel QEMU guests\n* Live ke
+ rnels in production (a sequel to my [2023 LPC session](https://lwn.net/Art
+ icles/952942/)).\n* Userspace processes (ptrace)\n\nEach of these targets 
+ has its challenges and deficiencies. I will discuss these problems as well
+  as next steps.
+URL:https://lpc.events/event/20/contributions/2546/
+END:VEVENT
+END:VCALENDAR

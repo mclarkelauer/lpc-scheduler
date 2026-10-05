@@ -1,0 +1,288 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Live Patching MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2602a1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T150000
+DTEND;TZID=Europe/Prague:20261007T152000
+SUMMARY:Backward Compactiliblity of Kernel Livepatching API
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Live Patching MC · Petr Mladek · https://lpc.events/event/20/
+ contributions/2530/\n\nKernel livepatches are kernel modules which are abl
+ e to modify the kernel behavior by redirecting kernel functions\, calling 
+ pre/post patch callbacks\, and allocating shadow variables.\n\nThe interfa
+ ce between the kernel and the kernel livepatch module is defined in `inclu
+ de/linux/livepatch.h`.\n\nThe API has evolved over the years. But it has s
+ tayed backward compatible since the commit 958ef1e39d24d6cb8bf ("livepatch
+ : Simplify API by removing registration step") which was added in v5.1-rc1
+  back in Jan 2019. This change was part of a patchset adding an **atomic r
+ eplace** feature.\n\nThere are two patchsets which would want to break the
+  backward compatibility again:\n\n - [Better integrate callbacks\, shadow 
+ variables\, and states APIs][1]\n - [Replace set support][2]\n\nIt has bee
+ n acceptable to break the API back in 2019. But the kernel livepatching ha
+ s been a pretty new feature and had only few users back then.\n\nIt might 
+ be more acceptable when the tools for creating livepatches can deal with i
+ t. But is it enough?\n\nQuestion for discussion:\n\n - Is is possible to b
+ reak the kernel livepatching API in 2026?\n - Is it enough to update tools
+  for creating livepatches?\n - Is it needed and enough to update klp-build
+ ?\n - How many old code streams people still support?\n - Should selftests
+  stay backward compatible?\n\n  [1]: https://lore.kernel.org/all/202501150
+ 82431.5550-1-pmladek@suse.com/\n  [2]: https://lore.kernel.org/all/2026060
+ 7131659.29281-1-laoar.shao@gmail.com/
+URL:https://lpc.events/event/20/contributions/2530/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602b1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T152000
+DTEND;TZID=Europe/Prague:20261007T154500
+SUMMARY:livepatch: Introduce replace set support
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Live Patching MC · Petr Mladek\, Yafang Shao · https://lpc.ev
+ ents/event/20/contributions/2526/\n\nMy employer relies heavily on livepat
+ ch to rapidly experiment with new kernel features without interrupting pro
+ duction workloads. Our use cases include:\n\n- Case 1: Deploying a livepat
+ ch function as a stable BPF hook.\n   For example\, some proposals for suc
+ h a use case has already been submitted upstream but has not yet been acce
+ pted:\n  https://lwn.net/Articles/1054030/\n  https://lwn.net/Articles/104
+ 3548/\n  We also have another internal use case that we do not plan to ups
+ tream:\n  https://lore.kernel.org/live-patching/CALOAHbDnNba_w_nWH3-S9GAXw
+ 0+VKuLTh1gy5hy9Yqgeo4C0iA@mail.gmail.com/\n\n- Case 2: Combining fleet-wid
+ e cumulative livepatches with workload-specific livepatches.\n  For exampl
+ e\, consider the VFS cache adjustment feature that we previously upstreame
+ d:\n  https://lore.kernel.org/linux-fsdevel/20250511083624.9305-1-laoar.sh
+ ao@gmail.com/\n  We initially deployed this feature as a livepatch before 
+ upstreaming it. In the livepatch version\, we could not introduce a sysctl
+  interface for per-workload tuning\, so we used a hard-coded default value
+  and deployed it only to specific servers.\n\nIn Case 1\, the livepatched 
+ BPF hook must remain stable. Otherwise\, existing BPF programs may become 
+ invalid and need to be reloaded\, which could introduce operational risks.
+ \n\nIn Case 2\, we currently need to release different cumulative livepatc
+ hes for different workloads. However\, we would like to have a generic cum
+ ulative livepatch combined with individual workload-specific livepatches. 
+ This approach would significantly reduce the maintenance burden of managin
+ g multiple livepatch variants.\n\nBased on these requirements\, we propose
+ d a hybrid livepatch mode\, which allows multiple livepatches to coexist w
+ ith different scopes. This proposal was later refined into the replace_set
+  support proposal\, which has already been discussed on the livepatch mail
+ ing list:\n\n  https://lore.kernel.org/live-patching/20260607131659.29281-
+ 1-laoar.shao@gmail.com/\n\nHowever\, several implementation details and de
+ sign decisions remain open. We would like to discuss them at LPC and deter
+ mine the best path forward.\n\nIn this presentation\, I will describe how 
+ we use livepatch across our large fleet of production servers and discuss 
+ the improvements needed to make livepatch suitable for a broader range of 
+ use cases.
+URL:https://lpc.events/event/20/contributions/2526/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602c1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T154500
+DTEND;TZID=Europe/Prague:20261007T163000
+SUMMARY:A Common Coexistence Model for Live Patching and Production Observa
+ bility
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Live Patching MC · Kris Van Hees\, Song Liu\, Yi Zhu · https:
+ //lpc.events/event/20/contributions/2523/\n\n**Abstract**\nLarge Linux fle
+ ets increasingly depend on always-on observability: BPF programs\, ftrace\
+ , kprobes\, kretprobes\, and continuous profiling agents are part of the c
+ ore production control plane. Kernel livepatching depends on some of the s
+ ame low-level mechanisms\, especially dynamic ftrace-based redirection at 
+ function entry. In large production environments\, we routinely observe fl
+ eet rollout delays because critical security livepatches conflict with sys
+ tem-wide tracing tools anchored to the same target functions.\n\nThe curre
+ nt kernel documentation notes that kprobes\, ftrace\, and livepatch must n
+ ot step on each other\, citing limitations like kretprobe conflicts. At fl
+ eet scale\, these are not just corner cases\; they become rollout blockers
+ \, visibility gaps\, or sources of dangerous runtime uncertainty.\n\nThis 
+ session proposes an upstream discussion to define a predictable\, common c
+ oexistence model. The goal is to identify the minimum kernel and tooling i
+ nterfaces needed by livepatch builders\, BPF/tracing tool authors\, and fl
+ eet rollout systems to gracefully handle instrumentation occupancy.\n\n**D
+ iscussion Topics**\n\n 1. **Conflict Inventory:** Documenting attach-point
+  collisions among livepatch\, ftrace\, kprobes\, and BPF trampolines.\n 2.
+  **Occupancy Reporting:** Designing a per-function "patchability" report f
+ or tools like klp-build and rollout agents.\n 3. **Deterministic Failures:
+ ** Returning explicit conflict reasons when an attachment is rejected inst
+ ead of opaque errors.\n 4. **Transition Progress:** Exposing standard trac
+ epoints or counters for stuck tasks\, forced transitions\, and instrumenta
+ tion blocks.\n 5. **Test Coverage:** Expanding kselftest to include negati
+ ve tests for rejected\, unsafe instrumentation combinations.\n 6. **Policy
+  & Chaining:** Debating safe chaining semantics and deciding if observabil
+ ity should redirect to replacement functions.\n\n**Desired Outcome**\nAgre
+ ement on where these mechanisms belong (kernel ABI\, sysfs/debugfs reporti
+ ng\, kselftest\, or klp-build metadata). The discussion will involve livep
+ atch\, ftrace\, kprobe\, and BPF maintainers alongside large-fleet operato
+ rs.
+URL:https://lpc.events/event/20/contributions/2523/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602d1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T170000
+DTEND;TZID=Europe/Prague:20261007T173000
+SUMMARY:SFrame for Arm64 Reliable Stacktrace
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Live Patching MC · Dylan Hatch · https://lpc.events/event/20/
+ contributions/2529/\n\nThe Livepatch consistency model [1] requires the ke
+ rnel to provide reliable stacktrace in order to be fully supported. On x86
+ \, the ORC unwinder provides these reliable stacktraces. However\, arm64 m
+ isses the required support from objtool: it cannot generate ORC unwind tab
+ les for arm64. Prior RFCs have proposed to add this support to objtool\, b
+ ut feedback from the upstream community has indicated that a solution usin
+ g data produced directly from the compiler would be preferred [2]\, [3].\n
+ \nIn the v6.17 release\, the Arm64 kernel gained livepatch support\, but w
+ ithout fully reliable stacktrace [4]. With this partial solution\, interru
+ pt stacks cannot be reliably traced because the unwinder cannot tell if th
+ e Link Register was current at the time the exception was taken.\n\nSFrame
+  provides a generalized\, compiler-based solution\, inspired by the ORC un
+ winder [5]\, [6]. Currently\, there's already an SFrame unwinder proposed 
+ for userspace: [7].\n\nWe would like to propose similar functionality to p
+ rovide reliable stacktraces within the Arm64 kernel: [8]. This patch serie
+ s adds to and depends upon the exising userspace patches by factoring out 
+ a common SFrame-lookup library which supports both kernel and userspace SF
+ rame sections. Previous versions of this series implemented an SFrame-only
+  kernel unwinder to replace frame-pointer unwinding entirely. However\, af
+ ter receiving feedback\, the kernel unwinder now relies on SFrame only whe
+ n unwinding across an exception boundary\, and uses frame pointers everywh
+ ere else. This combined strategy enables the best of both worlds: the supe
+ rior performance of frame-pointer unwinding is kept whenever possible\, wh
+ ile the SFrame table allows for fully reliable unwind of a stack with inte
+ rrupts.\n\nOngoing mailing list discussion draws into question SFrame's vi
+ ability as a userspace unwinding solution [9]. This raises several questio
+ ns around the in-kernel approach\, which we would like to bring forward fo
+ r discussion:\n\n- What is the current pathway for support for SFrame gene
+ ration within the LLVM toolchain?\n\n- The kernel unwind patches continue 
+ to have a dependency on the userspace patches. From a development velocity
+  perspective\, does this dependency make sense to keep in future versions?
+ \n\n- For the purpose of unwinding across interrupt boundaries\, are there
+  alternatives to SFrame that should be considered?\n\n[1]: https://docs.ke
+ rnel.org/livepatch/livepatch.html#consistency-model\n[2]: https://lore.ker
+ nel.org/live-patching/ZXxO43Xwn5GHsrO8@FVFF77S0Q05N/\n[3]: https://lpc.eve
+ nts/event/17/contributions/1540/attachments/1356/2713/lpc2023-arm64-livepa
+ tching.pdf\n[4]: https://lore.kernel.org/live-patching/20250320171559.3423
+ 224-1-song@kernel.org/\n[5]: https://sourceware.org/binutils/docs/sframe-s
+ pec.html\n[6]: https://lwn.net/Articles/1029189/\n[7]: https://lore.kernel
+ .org/all/20260505121718.3572346-1-jremus@linux.ibm.com/\n[8]: https://lore
+ .kernel.org/lkml/20260519064950.493949-1-dylanbhatch@google.com/\n[9]: htt
+ ps://lore.kernel.org/all/CAN30aBFVDxeoXApn_g_Hw0Ayhi4V=m7CcX8UDO6ZDTi6xA-3
+ Pg@mail.gmail.com/
+URL:https://lpc.events/event/20/contributions/2529/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602e1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T173000
+DTEND;TZID=Europe/Prague:20261007T180000
+SUMMARY:Bringing klp-build to LoongArch: toolchain lessons for the next arc
+ hitecture
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Live Patching MC · dongtai guo · https://lpc.events/event/20/
+ contributions/2525/\n\nA series adding LoongArch support to objtool's `klp
+  diff` subcommand (the\ndiffing engine klp-build invokes to generate a pat
+ ch module) is under\nreview (v4:\nhttps://lore.kernel.org/all/202607241141
+ 28.31451-1-dongtai.guo@linux.dev).\nA v5\, with a reordering requested by 
+ the LoongArch maintainer\, is in\npreparation. Most of the effort went int
+ o the interaction between this\ntooling and the LoongArch toolchains\, and
+  several findings generalize to\nany future architecture with aggressive l
+ inker relaxation.\n\nThis topic walks through the klp-diff issues surfaced
+  across the review\nrounds. They are not one bug but a family of toolchain
+ -interaction\nfailures:\n\n- *PC-relative reachability.* A livepatch modul
+ e maps farther than the\n  +-2GB a `pcalau12i/addi.d` pair can express\, s
+ o a klp relocation\n  resolving to a vmlinux symbol overflows. Far calls a
+ re already\n  redirected through a PLT stub by the module loader\, but fil
+ e-local\n  static data is materialized inline\; a new arch hook rewrites t
+ hose\n  PC-relative data references to GOT-indirect loads. This is not\n  
+ Clang-specific: GCC emits the same form.\n- *Local-label anchors.* GCC/GAS
+  on LoongArch anchor relocations to `.L*`\n  local labels to keep them rel
+ axable\, where klp diff assumed a function\n  or section symbol plus adden
+ d (LLVM folds these labels\, so this one is\n  toolchain-specific). Fix: n
+ ormalize `.L*`-anchored relocations back to\n  their containing function\,
+  fix annotation offsets in\n  `create_fake_symbols`\, and collapse `R_LARC
+ H_ADD64/SUB64` pairs into one\n  PC-relative relocation via `arch_normaliz
+ e_paired_reloc`.\n- *Section pairing and inline alternatives.* Keep both w
+ ords of each\n  `-mannotate-tablejump` annotation entry\, and define\n  `A
+ RCH_HAS_INLINE_ALTS` so the `.subsection 1` ALTERNATIVE() replacement\n  i
+ s cloned\, mirroring arm64.\nOn the compiler side\, livepatch modules on L
+ oongArch require -fPIC\n(GOT-indirect access instead of absolute addressin
+ g)\, which collides\nwith the kernel's -fno-PIE defaults in non-obvious wa
+ ys (last-one-wins\nflag ordering vs KBUILD_CFLAGS_KERNEL)\, and Clang reje
+ cts GCC-style\n"awM" special-section flags\, requiring ANNOTATE_DATA_SPECI
+ AL.
+URL:https://lpc.events/event/20/contributions/2525/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602f1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T180000
+DTEND;TZID=Europe/Prague:20261007T183000
+SUMMARY:Testing klp-build: from unit tests to CI
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Live Patching MC · Joe Lawrence\, Song Liu · https://lpc.even
+ ts/event/20/contributions/2528/\n\n## Abstract\n\nWith klp-build now merge
+ d into mainline\, establishing an automated test\nsuite is the logical nex
+ t step.  Historically\, maintenance of\nkpatch-build\, a similar livepatch
+ ing creation tool\, has shown that the\nobject diff and correlation layer 
+ accounts for the vast majority of\nregressions.  Variations across compile
+ r versions\, optimization levels\,\nLTO modes\, CFI\, and architecture-spe
+ cific handling in objtool's klp-diff\nengine introduce a broad surface are
+ a where regressions can easily go\nundetected.\n\nThe existing livepatch k
+ selftests provide a proven model within the\nsubsystem.  Developed alongsi
+ de core livepatching functionality\, they\nhave caught real bugs\, e.g. co
+ vering shadow variables\, callbacks\, and state\ntransitions. All while re
+ maining maintainable over time.  klp-build\nwarrants a similar testing dis
+ cipline\, tailored to the toolchain layer.\n\nWe propose a two-tier testin
+ g strategy designed for both local developer\nworkflows and continuous int
+ egration:\n\n**Unit tests:** Directly exercise `objtool klp diff` against 
+ minimal\n`.orig.o` / `.patched.o` object pairs.  Scripted assertions verif
+ y\nsymbol correlation\, demangling\, checksumming\, special-section handli
+ ng\,\nand relocations in seconds without requiring a full kernel build.  T
+ o\nadhere to kernel repository standards and avoid committing binary\narti
+ facts\, a CLI-driven runner regenerates test object pairs on demand\nfrom 
+ module source and a kernel tree using the host/target toolchain.\n\n**Inte
+ gration tests:** Execute the complete klp-build pipeline against\ndedicate
+ d in-tree test infrastructure (`CONFIG_KLP_BUILD_TEST`)\,\nvalidating modu
+ le post-linking and runtime livepatch loading on target\narchitectures.\n\
+ nBoth tiers target a comprehensive architecture (x86_64\, arm64\,\nLoongAr
+ ch) and toolchain matrix (GCC\, Clang\, ThinLTO\, CFI).  Our goal is\nto i
+ ntegrate these test suites into upstream CI infrastructure (e.g.\,\nCKI\, 
+ KernelCI) to provide continuous regression testing across\nconfigurations.
+ \n\nWe invite discussion with the community on several key architectural a
+ nd\nintegration questions:\n\n**Unit test granularity:** Should tests targ
+ et individual objtool\ncomponents (e.g.\, checksumming\, correlation) inde
+ pendently\, or is a\nsingle `objtool klp diff` invocation per test case th
+ e appropriate\nabstraction level?\n\n**In-tree vs. out-of-tree structure:*
+ * Should integration tests reside\nin-tree within kselftests while unit te
+ sts remain out-of-tree -- and\nwhere should the test corpus generation too
+ ling live?\n\n**Cross-version maintenance:** How can in-tree integration t
+ est code be\nstructured to remain stable across kernel releases without in
+ curring\nunnecessary maintenance overhead?\n\n**CI pipeline integration:**
+  Should we integrate this this multi-arch\,\nmulti-toolchain matrix into c
+ ontinuous integration platforms like CKI\nand KernelCI?
+URL:https://lpc.events/event/20/contributions/2528/
+END:VEVENT
+END:VCALENDAR

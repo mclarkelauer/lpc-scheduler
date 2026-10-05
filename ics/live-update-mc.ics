@@ -1,0 +1,339 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Live Update MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2609@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150000
+DTEND;TZID=Europe/Prague:20261006T151500
+SUMMARY:LUO support in systemd
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · Luca Boccassi · https://lpc.events/event/20/
+ contributions/2609/\n\nsystemd v261 added native support for LUO. System s
+ ervices\, user services and nspawn containers can preserve data across kex
+ ec in a simple and transparent manner\, using the existing File Descriptor
+  Store API.\n\nThis talk will explore what is implemented and how to use i
+ t\, and what are the next steps.
+URL:https://lpc.events/event/20/contributions/2609/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2617@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T151500
+DTEND;TZID=Europe/Prague:20261006T153000
+SUMMARY:Resolving Complex FD Dependencies for Live Update
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · Samiullah Khawaja · https://lpc.events/event
+ /20/contributions/2617/\n\nPreserving subsystem state across a live update
+  introduces a complex challenge: managing the dependencies of File Descrip
+ tors. Interconnected subsystems—such as VFIO and IOMMUFD with a lot of s
+ hared state\, IOMMUFD's dependency on memory providers memfd/guest_memfd o
+ r KVMfd/guest_memfd dependency requires preservation ordering to guarantee
+  state immutability and performance.\n\nCurrently\, the burden of orchestr
+ ating this dependency falls on userspace (VMMs)\, which must navigate comp
+ lex API contracts\, which will become much more complex with circular depe
+ ndencies between subsystems down the road.\n\nThis session talks about FD 
+ dependencies with examples and it proposes a unified\, kernel-driven depen
+ dency resolution architecture that is handled by Live Update Orchestrator 
+ by introducing some extensions.\n\nLooking forward to your feedback on thi
+ s.
+URL:https://lpc.events/event/20/contributions/2617/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2614@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T153000
+DTEND;TZID=Europe/Prague:20261006T155000
+SUMMARY:Extending Memory State Preservation Across Warm Reboots Using KHO/L
+ UO/memfd
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · Prasanna Kumar T S M\, Srivatsa Bhat · https
+ ://lpc.events/event/20/contributions/2614/\n\n**Motivation:**\n\nKexec Han
+ d-Over (KHO) helps minimize downtime during kernel updates by preserving s
+ tate across the kexec reboot. However\, there are some scenarios which nee
+ d a deeper form of reboot to be effective -- for example\, performing a fi
+ rmware update or a device-tree refresh\, or even to avoid known hardware/p
+ latform bugs that make the kexec path itself unreliable. In such cases\, t
+ he kernel's "warm reboot" facility could be leveraged\, which performs a f
+ ull reboot (Firmware + Bootloader + OS/kernel init)\, but with the guarant
+ ee that this entire flow leaves DRAM contents intact (distinct from a "col
+ d reboot"\, where DRAM is also cleared). We would like to extend KHO (and 
+ its memory state preservation feature via LUO & memfd\, in particular) to 
+ also work across warm reboots\, so as to minimize downtime during update s
+ cenarios that necessitate a warm reboot.\n\n**Key Challenges:**\n\nWhen tr
+ ying to extend KHO/LUO/memfd to warm reboots\, we ran into 2 key technical
+  challenges\, described below. We were able to solve the first one (suppor
+ ted by a working prototype)\, but we need the community's insights & feedb
+ ack to help solve the second challenge (our proposed solution approaches a
+ re outlined below).\n\n**Challenge 1: Discovering preserved KHO state in t
+ he next kernel (without passing an FDT)**\n\nDuring a kexec\, the handover
+  from the first kernel to the second one is explicit -- by passing an FDT 
+ with info embedded as to where to find the preserved KHO state in memory. 
+ However\, in the case of a warm reboot\, there is no opportunity for the f
+ irst kernel to do a similar hand-off\, and yet\, the second kernel should 
+ be able to discover where the KHO state was preserved\, in order to restor
+ e it.\n\nWe solved this problem by using a classic Computer Science techni
+ que -- i.e.\, by adding a level of indirection :-). While the KHO state ca
+ n be allocated & preserved anywhere in memory\, the KHO metadata info is k
+ ept in a small header and it is passed to the next kernel. On UEFI platfor
+ ms an EFI variable can be used for this purpose\, whereas on DT based plat
+ forms\, the header can be kept in a pre-determined location\, and a DT nod
+ e added to inform the kernel about it. This retains the KHO allocation fle
+ xibility. We also added checksums to verify the integrity of the preserved
+  metadata to make this mechanism robust against stale/circumstantial data 
+ left in that fixed location.\n\n**Challenge 2: Preventing firmware from cl
+ obbering preserved KHO state across a warm reboot**\n\nThe warm reboot flo
+ w includes all the usual init sequence across components like firmware and
+  bootloader\, leading up to launching the Linux kernel. The memory used by
+  these components before Linux is launched can be termed as "FW-Transient"
+ \, as they are only needed during that transition period. One common optim
+ ization technique used on memory-constrained systems is to allow firmware 
+ to temporarily re-use the same memory region that Linux has access to\, bu
+ t only when the kernel isn't running. Thus\, FW-Transient memory during a 
+ warm reboot transition intentionally overlaps with Linux's usable memory\,
+  to avoid wasted permanent memory carveouts for firmware's temporary use. 
+ However\, this introduces a problem for KHO\, where the firmware can tramp
+ le on memory regions that the kernel expects to pass unmodified to the nex
+ t kernel across a warm reboot.\n\nDelving deeper into the platform/firmwar
+ e constraints around the use of FW-Transient memory\, we found that while 
+ the memory maps vary widely between platforms\, they do remain fixed (pre-
+ determined at design time) for a given platform. This implies that while w
+ e can't move FW-Transient memory to cooperate with KHO\, KHO can instead d
+ iscover the boundaries of this region to avoid saving state-to-be-preserve
+ d in that region. But the exact mechanism for how to demarcate and export 
+ that FW-Transient region info from the firmware to the kernel across a var
+ iety of platforms (UEFI vs DT) remains an open question.\n\nUsing this ins
+ ight\, we have 2 solution approaches that we would like to propose to solv
+ e this challenge. The first one is to influence the sizing and placement o
+ f the kho-scratch region such that it fully overlaps with FW-Transient mem
+ ory. If feasible\, this would be an elegant solution because KHO won't hav
+ e to do anything else to prevent firmware from clobbering its preserved st
+ ate\, as the kho-scratch region is meant for non-preserved allocations -- 
+ by definition. However\, if there are any memory-management constraints th
+ at prevent kho-scratch placement in this way\, we could also explore migra
+ ting preserved KHO state out of the FW-Transient region just before the fi
+ rst kernel's shutdown. This latter approach has its own potential pitfalls
+ \, such as difficulties in maintaining KHO state integrity post page migra
+ tion and the cost of migrating pages in a performance sensitive path (i.e.
+ \, the need for fast reboot to minimize downtime).\n\nWe would like to pre
+ sent these challenges and solution approaches and brainstorm with the Linu
+ x kernel\, Firmware\, and Bootloader communities at LPC on the best approa
+ ch to solve this problem to enable KHO across warm reboots.
+URL:https://lpc.events/event/20/contributions/2614/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2613@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T155000
+DTEND;TZID=Europe/Prague:20261006T161000
+SUMMARY:Live Update Compatibility
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · Logan Odell\, Pratyush Yadav · https://lpc.e
+ vents/event/20/contributions/2613/\n\nData that is serialized and preserve
+ d through a live update may have formatting differences between two kernel
+ s. This can affect the compatibility between two kernels when trying to pe
+ rform a Live Update. Current efforts have been to use compatibility string
+ s with implicit version numbers\, like "memfd-v2" to help provide compatib
+ ility data. Changes to the formatting of the preserved data may not affect
+  the compatibility if the new kernel understands the format of the old ver
+ sion. For example\, an optional feature may be available on a new kernel t
+ hat is not strictly needed. If the old kernel does not support that featur
+ e and the new kernel does\, we still want to allow a Live Update between t
+ hese versions.\n\nThis discussion is for a proposed method of serializing 
+ all supported versions of a component and having the new kernel negotiate 
+ the version to deserialize. The current proposal uses file handlers as the
+  first user of this scheme\, but this will apply to any component that nee
+ ds to preserve and restore serialized data.
+URL:https://lpc.events/event/20/contributions/2613/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2610@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T161000
+DTEND;TZID=Europe/Prague:20261006T163000
+SUMMARY:Guest_Memfd Preservation For Live Update
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · Tarun Sahu · https://lpc.events/event/20/con
+ tributions/2610/\n\nGuest_memfd is a specialized\, guest-first memory subs
+ ystem within the Linux kernel\, specifically designed for KVM. It provides
+  an isolated file-descriptor-based approach to managing Virtual Machine me
+ mory.\n\nFor this MC\, I want to propose the topic on Preservation of gues
+ t_memfd with LUO.\n\nI will discuss the current development on guest_memfd
+  preservation during kernel Liveupdate and (If time permits) future topics
+  like supporting preservation for guest_memfd with private memory.\nLink t
+ o patches: [Here][1]\n\n  [1]: https://lore.kernel.org/all/20260728121138.
+ 1103610-1-tarunsahu@google.com/
+URL:https://lpc.events/event/20/contributions/2610/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2611@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T170000
+DTEND;TZID=Europe/Prague:20261006T171500
+SUMMARY:Performance improvements for live-update reboots
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · Michał Cłapiński · https://lpc.events/eve
+ nt/20/contributions/2611/\n\nMany use-cases of live-update require it to b
+ e fast. For cloud providers\, executing host kernel updates without impact
+ ing guest workloads demands low-downtime live-update reboots.\n\nWe will d
+ iscuss what improvements were already done to the Linux kernel\, the ongoi
+ ng work and future plans. This talk will also explain to developers how to
+  configure their systems to achieve the best reboot performance.
+URL:https://lpc.events/event/20/contributions/2611/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2618@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T171500
+DTEND;TZID=Europe/Prague:20261006T173000
+SUMMARY:Preserving tmpfs Files Across Live Update
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · David Matlack · https://lpc.events/event/20/
+ contributions/2618/\n\nThe Live Update Orchestrator (LUO) can preserve mem
+ fds across kexec. But a memfd has no path\, so it can't replace a file on 
+ tmpfs\, such as VMM binaries on hosts without local storage. Preserving a 
+ tmpfs file's contents is easy. Retrieving it is hard: LUO always returns a
+  new anonymous file\, with no way to give it a mount\, path or mount optio
+ ns.\n\nThis talk compares three proposals:\n\n1. RETRIEVE_INTO_FD: userspa
+ ce recreates the mount and directories\, and the kernel fills an empty fil
+ e.\n2. tmpfs mount and file handlers: the kernel preserves and recreates t
+ he mount and the files in its root directory.\n3. Retrieve as memfd\, then
+  move: retrieve a memfd and move its folios into tmpfs with an extended sp
+ lice(SPLICE_F_MOVE).\n\nWe weigh the new uAPI\, ABI and kernel code each o
+ ne needs against what it supports. The goal is to agree on a direction for
+  upstream.
+URL:https://lpc.events/event/20/contributions/2618/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2612@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T173000
+DTEND;TZID=Europe/Prague:20261006T175000
+SUMMARY:Live Update IOMMU (vIOMMU with Arm SMMUv3)
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · Pranjal Shrivastava\, Samiullah Khawaja · ht
+ tps://lpc.events/event/20/contributions/2612/\n\nThe current IOMMU Live Up
+ date framework establishes the mechanism for preserving IOMMU hardware sta
+ te and translation units (HWPTs) across a live update. By utilizing the IO
+ MMUFD and Kernel Handover (KHO) framework. This session talks about the cu
+ rrent state of Liveupdate IOMMU and the upcoming features\, challenges and
+  enhancements.\n\nThe session dives deeper into the design challenges for 
+ enabling vIOMMU preservation to allow preserving the nested translation st
+ ate\, specifically guest-owned Stage 1 tables and metadata\, with a focus 
+ on the ARM SMMUv3 nested translation architecture. We explore strategies f
+ or preservation\, restoration\, and lifecycle management of nested transla
+ tion structures and associated metadata to ensure that the incoming kernel
+  can resume Stage 1 + Stage 2 translation without guest-side disruption.\n
+ \nLooking forward to your feedback and participation.
+URL:https://lpc.events/event/20/contributions/2612/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2616@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T175000
+DTEND;TZID=Europe/Prague:20261006T181000
+SUMMARY:VFIO Live Update Road to Continuous DMA
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · Vipin Sharma · https://lpc.events/event/20/c
+ ontributions/2616/\n\nLive Update enables hypervisor updates with minimal 
+ guest downtime by preserving VM state across `kexec`. While memory preserv
+ ation (via KHO/LUO) covers VM RAM\, pass-through PCIe devices assigned to 
+ VMs (e.g.\, GPUs\, NICs\, NVMe\, accelerators) require kernel support to m
+ aintain device state across the reboot boundary.\n\nThis talk presents the
+  design of VFIO Live Update (Phase 1\, recently posted in v5 [1]) and our 
+ roadmap toward continuous DMA [2]. Phase 1 establishes base support for pr
+ eserving VFIO `cdev` device file descriptors across `kexec` using the Live
+  Update Orchestrator (LUO) and Kexec Handover (KHO).\n\nWe will discuss:\n
+ \n1. **Architecture & Current Phase**: How VFIO `cdev` device FDs are pres
+ erved across `kexec`\, enforced retrieval through `LIVEUPDATE_SESSION_RETR
+ IEVE_FD`\, and safe quiescing/reset in `freeze()` in Phase 1.\n2. **Failur
+ e Handling & Recovery**: How VFIO devices handle failures if a Live Update
+  session is cancelled before `kexec` (unfreezing/unpreserving) or fails af
+ ter `kexec` (cleanup of unretrieved devices).\n3. **Subsystem Interactions
+ **: Handoff ordering\, dependencies\, and recovery semantics between VFIO\
+ , PCI core\, and IOMMUFD.\n4. **The Road to Continuous DMA**: Future phase
+ s extending beyond device reset toward preserving running devices with act
+ ive DMA/interrupts (noiommu -> iommufd -> SR-IOV VFs).\n5. **VF and SR-IOV
+  Live Update (Phase 5)**: Unique challenges of preserving Virtual Function
+ s (VFs) when the Physical Function (PF) driver or host PCI core initialize
+ s post-`kexec`\, and managing PF/VF dependency trees across Live Update.\n
+ 6. **Testing & Tooling**: How to test active DMA in QEMU environments when
+  DMA-capable physical hardware is absent\, and how to simplify/standardize
+  VFIO Live Update selftests for developers and CI.\n\nWe hope to get commu
+ nity feedback on our approach and align on the future direction of VFIO Li
+ ve Update.\n\n---\n\n### References\n* [1] [v5 Patch Series on Lore](https
+ ://lore.kernel.org/kvm/20260714151505.3466855-1-vipinsh@google.com)\n* [2]
+  [VFIO PCI Live Update Presentation](https://docs.google.com/presentation/
+ d/1XVVL-oeSHp-Y-uBrhRVwz-Bm0lGFdGCKWELR8JamPp4/edit?usp=sharing&resourceke
+ y=0-b7I6ZPRcal0sLhK8woByEw)
+URL:https://lpc.events/event/20/contributions/2616/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2615@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T181000
+DTEND;TZID=Europe/Prague:20261006T183000
+SUMMARY:Challenges in Preserving Virtual Networking State and dmabuf across
+  Kexec Live Updates
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Live Update MC · yanjun zhu · https://lpc.events/event/20/con
+ tributions/2615/\n\nAs cloud infrastructure scales and Confidential Comput
+ ing adoption increases\, host-level Live Update via kexec has become vital
+  for maintaining zero-downtime operations. While progress has been made in
+  preserving guest memory (guest_memfd\, hugetlb) and hardware device state
+ s (VFIO)\, a critical gap remains in the network stack: preserving virtual
+  networking topologies and stateful software-defined networking (SDN) back
+ ends\, as well as high-performance memory buffers like dmabuf and devmem.\
+ n\nWhen a host undergoes a kexec warm reboot\, virtual devices (such as ne
+ tkit\, veth\, netkit\, bonding) and software transport layers (RXE for Sof
+ t-RoCE\, SIW for Soft-iWARP) lose their underlying kernel configurations\,
+  ring buffer indices\, and state machines. Concurrently\, zero-copy perfor
+ mance mechanisms like dmabuf and TCP devmem face the challenge of memory l
+ ifecycle decoupling—how to safely hand over page references and page tab
+ les across the kexec boundary without freeing the buffers or causing in-fl
+ ight DMA corruption.\n\nThis interactive session aims to pinpoint the arch
+ itectural constraints of virtual network state preservation and explore ho
+ w to extend the Kexec HandOver (KHO) framework or complementary Live Updat
+ e Orchestrators (LUO) to solve these stateful handover and high-performanc
+ e memory recycling dilemmas.\n\n**Key Questions / Discussion Topics:**\n\n
+ **1. Generic State Management**\nCan we provide a generic state-management
+  framework for Live Update\, so individual drivers do not need to implemen
+ t the full LUO/KHO callback lifecycle independently?\n\n**2. Preservation 
+ Ordering & Quiescence**\nHow should Live Update coordinate the preservatio
+ n of DMA-BUF with PCI\, VFIO\, and IOMMU\, especially when fence cleanup a
+ nd DMA quiescence require these components to remain operational?\n\n**3. 
+ State Synchronization**\nHow can we synchronize restored DMA-BUF kernel st
+ ate with hardware state\, including IOMMU mappings\, device contexts\, rin
+ gs\, interrupts\, and doorbells\, without causing data corruption or IOMMU
+  faults?\n\n**4. Dependency & Recovery Ordering**\nHow can Live Update enf
+ orce dependencies and restore ordering across components\, such as PCI →
+  VFIO → IOMMU and NIC → Netkit → RXE?\n\n**5. Failure Handling & Dep
+ endency Status**\nHow should DMA-BUF Live Update determine whether its dep
+ endencies are successfully preservable\, and what should happen if PCI\, V
+ FIO\, or IOMMU Live Update cannot be preserved?
+URL:https://lpc.events/event/20/contributions/2615/
+END:VEVENT
+END:VCALENDAR

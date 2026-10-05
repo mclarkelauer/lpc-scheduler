@@ -1,0 +1,210 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Rust MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2602i@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T100000
+DTEND;TZID=Europe/Prague:20261007T103000
+SUMMARY:Creating self references safely
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Rust MC · Gary Guo · https://lpc.events/event/20/contribution
+ s/2498/\n\nSelf-reference is a common need in kernel code. In fact\, this 
+ is what motivates the development of `pin-init`. So far\, self-references 
+ can only be created with unsafe code with explicit use of `Opaque`. This i
+ s a discussion about on-going working to support safe creation of self ref
+ erences in the `pin-init` crate.
+URL:https://lpc.events/event/20/contributions/2498/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602j@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T103000
+DTEND;TZID=Europe/Prague:20261007T110000
+SUMMARY:Reworking `Request` reference counting in the Rust block device dri
+ ver API
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Rust MC · Andreas Hindborg · https://lpc.events/event/20/cont
+ ributions/2494/\n\nThe `kernel::block::mq::Request` type [1] sits on the I
+ /O hot path of every Rust block device driver. A `Request` is jointly refe
+ renced by the block layer and the driver\, with completion arriving on mul
+ tiple asynchronous paths\, so the type has to encode a non-trivial sharing
+  and lifecycle model with minimal runtime cost.\n\nThe introduction of `Ow
+ nable` [2] gave us a general mechanism for types that oscillate between ow
+ ned and reference-counted forms\, and applying it to `Request` cleaned up 
+ parts of the API [3]. However\, the resulting scheme remains hard to reaso
+ n about for reviewers [4]. We would like to use an LPC session to walk thr
+ ough the proposed changes with the wider Rust-for-Linux audience to furthe
+ r the review process.\n\nTo anchor the discussion\, we plan to bring the f
+ ollowing content to the session:\n\n - A walk-through of the reworked refe
+ rence counting scheme.\n - Benchmark results from `rnull` that quantify th
+ e cost of the scheme on representative I/O workloads.\n\nThe goal of the s
+ ession is to surface concerns from the community\, iron out pain points in
+  the API shape\, and build shared understanding of why the scheme looks th
+ e way it does — so that when the next version hits the list\, the basic 
+ design is already broadly understood and accepted.\n\n[1] https://git.kern
+ el.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/rust/kernel/block/
+ mq/request.rs?h=v7.1-rc5#n24\n[2] https://lore.kernel.org/r/20260224-uniqu
+ e-ref-v16-0-c21afcb118d3@kernel.org\n[3] https://lore.kernel.org/r/2026021
+ 6-rnull-v6-19-rc5-send-v1-5-de9a7af4b469@kernel.org\n[4] https://lore.kern
+ el.org/r/87qzopwttw.fsf@kernel.org
+URL:https://lpc.events/event/20/contributions/2494/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602k@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T110000
+DTEND;TZID=Europe/Prague:20261007T113000
+SUMMARY:dma_fence abstractions: Design and Challenges
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Rust MC · Philipp Stanner · https://lpc.events/event/20/contr
+ ibutions/2495/\n\nThe kernel's dma_fence subsystem lays at the heart of ev
+ ery graphics processing unit (GPU) driver. It is a primitive for synchroni
+ zing the state of jobs running on GPUs with receiver parties\, notably use
+ rspace. A number of circumstances make the correct implementation and usag
+ e of both C and Rust dma_fence very challenging:\n\n - The highly asynchro
+ nous nature of GPUs\, including the fact that they can hang and need to be
+  reset.\n - The fact that fences can have an arbitrary number of consumers
+ \, both in other drivers and in userspace.\n - Various\, partially optiona
+ l\, callbacks exist\, with which a consumer can run into the code of a pro
+ ducer\, whose module might unload at any time.\n\nSince GPUs can directly 
+ access system memory\, an incorrect or racing representation of GPU job st
+ ate by DmaFence could result in memory corruption regardless of Rust's mem
+ ory safety guarantees.\n\nMoreover\, dma_fences have so far not only been 
+ involved in various UAF and refcounting bugs\, but are also often involved
+  in deadlock conditions. While making memory bugs impossible was the prima
+ ry design goal for the Rust abstractions\, much attention was also paid to
+  preventing deadlock.\n\nIn 2026\, a shared design\, development and upstr
+ eaming effort by various parties\, notably the Nova and Tyr GPU drivers\, 
+ has seen much progress. This talk shall give an overview over the general 
+ design\, solved and persisting problems\, and special challenges with Rust
+  regarding these abstractions.
+URL:https://lpc.events/event/20/contributions/2495/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602l@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T120000
+DTEND;TZID=Europe/Prague:20261007T122500
+SUMMARY:Tyr: A Status Update
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Rust MC · Daniel Almeida · https://lpc.events/event/20/contri
+ butions/2497/\n\nBriefly cover the status of the Tyr project and discuss t
+ he current blockers in upstream\, specially those related to missing Rust 
+ abstractions. This presentation intends to discuss and validate the job su
+ bmission model\, including the proposed GPUVM/JobQueue Rust abstractions a
+ nd their current upstream status\, showcasing the different designs betwee
+ n Tyr's initial implementation and what is actually likely to land on main
+ line.
+URL:https://lpc.events/event/20/contributions/2497/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602m@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T122500
+DTEND;TZID=Europe/Prague:20261007T124500
+SUMMARY:Using Rust for out-of-tree kernel drivers
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Rust MC · Alice Ryhl · https://lpc.events/event/20/contributi
+ ons/2496/\n\nRust is expanding into more and more places\, and it's becomi
+ ng clear that Rust creates some unique challenges when it comes to drivers
+  that are out-of-tree.\n\nLike all other Rust drivers\, out-of-tree driver
+ s written in Rust require abstractions for the subsystems they interact wi
+ th. If the driver requires a subsystem that does not yet have abstractions
+ \, or if the abstractions exist but are missing some part of the API\, the
+ n the driver may have to implement the abstraction directly within the dri
+ ver. However\, it can be tricky to implement abstractions (or extend exist
+ ing abstractions) from outside of the kernel crate.\n\nIn this topic I wou
+ ld like to discuss approaches for tackling these issues\, and also discuss
+  ways in which we are unnecessarily making it more difficult to extend abs
+ tractions from drivers.
+URL:https://lpc.events/event/20/contributions/2496/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2500@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T124500
+DTEND;TZID=Europe/Prague:20261007T130500
+SUMMARY:Bridging the C/Rust Divide: Replicating the PWM Subsystem's Success
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Rust MC · Michał Wilczyński · https://lpc.events/event/20/c
+ ontributions/2500/\n\nProblem Statement:\nIndependent developers driving n
+ ew Rust bindings often face a major bottleneck: getting their work mainlin
+ ed by hesitant C subsystem maintainers\, and just as importantly\, sustain
+ ing that collaboration post-merge. Translating modern Rust architectures t
+ o maintainers who evaluate designs strictly through C paradigms remains a 
+ massive hurdle.\n\nSession Focus:\nThe PWM subsystem recently proved to be
+  a refreshing exception. Using the TH1520 SoC as a hardware target\, I suc
+ cessfully upstreamed new PWM bindings by iterating extensively on RFCs and
+  working closely with a supportive C maintainer.\n\nHowever\, the work doe
+ sn't stop at the initial merge. The goal of this working session is to use
+  the PWM experience to establish a repeatable playbook for cross-language 
+ collaboration. I will start by presenting concrete solutions that worked f
+ or PWM\, and then open the floor to brainstorm how to replicate this succe
+ ss across the kernel.\n\nDiscussion Points:\nAfter a brief (10-minute) ove
+ rview of the specific strategies that worked during the PWM review process
+ \, we will spend the rest of the session brainstorming solutions to the fo
+ llowing:\n\n- Technical Mapping & The "C Lens": Concrete strategies for ma
+ pping established C expectations (callbacks\, structs) to modern Rust trai
+ ts. How do we design and explain these API boundaries so they intuitively 
+ click for a C maintainer and reduce their review burden?\n\n- Post-Merge C
+ ollaboration: How to maintain momentum after the bindings land. I will sha
+ re my experience coordinating abstraction and driver fixes via IRC with th
+ e C maintainer. We will debate strategies for getting maintainers heavily 
+ involved and comfortable reviewing the Rust side on an ongoing basis.\n\n-
+  "Marketing" the Abstractions: Once the initial bindings and driver are me
+ rged\, how do we effectively market these new abstractions to the wider co
+ mmunity? We will brainstorm how to encourage other developers to write new
+  Rust drivers for the subsystem.\n\nhttps://mwilczynski.dev/posts/bringing
+ -rust-to-the-pwm-subsystem/
+URL:https://lpc.events/event/20/contributions/2500/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602n@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T130500
+DTEND;TZID=Europe/Prague:20261007T133000
+SUMMARY:BPF CO-RE support in Rust
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Rust MC · Michal Rostecki · https://lpc.events/event/20/contr
+ ibutions/2499/\n\nWriting BPF programs in the long past meant wrestling wi
+ th Linux kernel version fragmentation. That problem was solved\, many year
+ s ago\, thanks to CO-RE (Compile Once\, Run Everywhere) relocations. CO-RE
+  is a mechanism that uses the BTF type format and its relocation entries (
+ `BTF.ext`) to handle layout differences\, by patching the loaded BPF bytec
+ ode with correct offsets that match the running kernel version.\n\nHowever
+ \, as of today\, only C compilers (Clang\, GCC) are able to emit these rel
+ ocations\, while the Rust ecosystem has been missing that final piece for 
+ 100% developer experience parity.\n\nIn this talk\, we'll dive into the de
+ sign and experimental implementation of native CO-RE support in the Rust c
+ ompiler — from the `#[btf_relocatable]` attribute and `core::btf` field-
+ info macros\, through compiler lowering to the `llvm.bpf.preserve.field.in
+ fo` intrinsic\, to the final `BTF.ext` emission. We'll also discuss the tr
+ ade-offs behind requiring explicit relocation queries rather than making o
+ rdinary field projection relocatable.
+URL:https://lpc.events/event/20/contributions/2499/
+END:VEVENT
+END:VCALENDAR

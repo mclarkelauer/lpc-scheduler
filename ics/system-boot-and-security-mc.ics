@@ -1,0 +1,324 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: System Boot and Security MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2578@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T150000
+DTEND;TZID=Europe/Prague:20261005T152000
+SUMMARY:Linux Crypto API is dead\, long live Linux Crypto API v2?
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:System Boot and Security MC · Ignat Korchagin · https://lpc.e
+ vents/event/20/contributions/2578/\n\nLinux Crypto API has recently come u
+ nder fire due to a series of discovered vulnerabilities\, like [Copy Fail]
+ [1] and friends. This resulted in a drastic response from some maintainers
+ : deprecation of the [Linux Crypto API userspace interface][2]. However\, 
+ it feels like cracking a nut with a sledgehammer\, as some vulnerabilities
+ \, like [Dirty Frag][3]\, do not even use the userspace interface directly
+  for the exploit.\n\nDoing crypto in the kernel on behalf of userspace cod
+ e may bring some security and efficiency advantages:\n\n- the key material
+  is not exposed to the process address space anymore\, which can save the 
+ key from very common memory bugs (remember Heartbleed?)\n- abstracting the
+  key material as a kernel object (e.g.\, a file descriptor) allows sharing
+  the key usage across unprivileged applications without giving those appli
+ cations access to the key material (software HSM/KMS use case\, cloud work
+ loads\, K8s)\n- the kernel is best positioned to abstract modern cryptogra
+ phic hardware and allow applications to utilize it and reap the performanc
+ e benefits\n- highly-constrained embedded systems may have fewer dependenc
+ ies as they don't have to pull extra crypto libraries such as OpenSSL or g
+ crypt into their firmware\n\nOne of the reasons quoted for the deprecation
+  is that the userspace Linux Crypto API interface is not efficient anyway 
+ and there are very few users. But maybe there are few users\, because it i
+ s not very efficient and apparently insecure? What if instead of disabling
+  it we improve it or even redesign? For example:\n\n- replace the splice()
+ -based zero-copy interface (which was targeted by the vulnerabilities in t
+ he first place and is not truly zero-copy anyway) with a modern primitive 
+ such as io_uring\n- fix the limitation of authenticated encryption being a
+ ble to process only ~64k of data\n- replace the confusing network-based AF
+ _ALG protocol with something simpler\, such as plain device files/sysfs\n-
+  use eBPF to expose Linux Crypto API to userspace in a more constrained an
+ d controllable manner\n- limit the number of algorithms exposable to users
+ pace – only general-purpose algorithms should be exposed\n\nThe goal of 
+ this session is to reach a shared view on whether the userspace Linux Cryp
+ to API is worth saving and\, if so\, what a v2 should look like.\n\n[1]: h
+ ttps://copy.fail/\n[2]: https://lore.kernel.org/netdev/20260430011544.3182
+ 3-1-ebiggers@kernel.org/\n[3]: https://github.com/v4bel/dirtyfrag
+URL:https://lpc.events/event/20/contributions/2578/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2585@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T152500
+DTEND;TZID=Europe/Prague:20261005T154500
+SUMMARY:Early Attestation is Very Harmful. Why is it Required?
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:System Boot and Security MC · Muhammad Usama Sardar · https:/
+ /lpc.events/event/20/contributions/2585/\n\n**Abstract**:\nThis talk is a 
+ follow-up of LPC'25\, where we introduced the security problem to the comm
+ unity for a suitable approach of attested TLS protocols. We would like to 
+ present updates to the work since LPC'25 and discuss open problems with th
+ e community so that the feedback can be accommodated in the standardizatio
+ n in the IETF. In particular\, we share our discovered critical-severity C
+ VEs\, such as [CVE-2026-92701][1]\, [CVE-2026-92702][2]\, [CVE-2026-100835
+ ][3]\, each of CVSS 9.1\, and other [critical- and high-severity security 
+ concerns][4] against early attestation\, and ask the community whether ear
+ ly attestation is really necessary.\n\n**Discussion**:\nWe would like to d
+ iscuss:\n\n- Section 7 of [this work][5].\n- [Questions][6] raised by the 
+ IETF community\n\n**Background**:\nTransport Layer Security (TLS) is a wid
+ ely used protocol for secure channel establishment. However\, it lacks an 
+ inherent mechanism for validating the security state of the workload and i
+ ts platform. To address this\, remote attestation can be integrated into T
+ LS\, which is named attested TLS protocol.\n\nAs presented in LPC'25\, the
+ re are two key approaches for this integration\, namely early (intra-hands
+ hake) and standard (post-handshake) attestation. We also present insights 
+ from formal verification using the state-of-the-art symbolic security anal
+ ysis tool ProVerif that led to the discovery of the critical- and high-sev
+ erity CVEs.\n\nCurrent project partners include CoreWeave\, University of 
+ Namur\, Stevens Institute of Technology\, Shanghai Guan An Information Tec
+ hnology\, Switch\, Oxford University\, Sureshot Labs\, PHI-OMEGA\, HashClo
+ ak Inc\, Stoffel Labs Inc\, EMILIA Protocol\, ESILV\, Birmingham City Univ
+ ersity\, Verily\, Arm\, Linaro\, Siemens\, Huawei\, Intuit\, Axis\, Bonn-R
+ hein-Sieg University of Applied Sciences\, and Barkhausen Institut. By thi
+ s talk\, we hope to inspire more open-source contributors to this project.
+ \n\nThe attendees will gain technical insights into the latest development
+ s of standardization of attested TLS protocols in the IETF\, and will be a
+ ble to provide feedback on the standardization effort of attested TLS.\n\n
+ **Benefits to the ecosystem**\nOur thorough formal security analysis shows
+  that early attestation is potentially vulnerable to replay\, relay\, dive
+ rsion\, and misbinding attacks. Our analysis shows that:\n\n 1. Early atte
+ station adds unnecessary complexity in the handshake.\n 2. Early attestati
+ on results in several security and privacy problems\, such as those captur
+ ed in published CVEs.\n 3. All use cases of early attestation can be handl
+ ed with standard attestation while offering better security properties.\n\
+ nBecause of critical-severity CVEs and fundamental architecture problems i
+ n early attestation\, we believe early attestation is very harmful to the 
+ TEE attestation ecosystem. We would like to discuss with the community whe
+ ther it is necessary.\n\n  [1]: https://www.cve.org/CVERecord?id=CVE-2026-
+ 92701\n  [2]: https://www.cve.org/CVERecord?id=CVE-2026-92702\n  [3]: http
+ s://www.cve.org/CVERecord?id=CVE-2026-100835\n  [4]: https://datatracker.i
+ etf.org/doc/draft-intra-handshake-fail/\n  [5]: https://www.researchgate.n
+ et/publication/414529199_EarlyAttestationBleed_Three_Critical-severity_Vul
+ nerabilities_of_CVSS_90_in_Confidential_Computing\n  [6]: https://www.ietf
+ .org/archive/id/draft-intra-handshake-fail-54.html#section-17.2.1
+URL:https://lpc.events/event/20/contributions/2585/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2591@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T154500
+DTEND;TZID=Europe/Prague:20261005T160500
+SUMMARY:Extending BPF Signing into an IMA Integrity Lifecycle
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:System Boot and Security MC · Hongming Qiu · https://lpc.even
+ ts/event/20/contributions/2591/\n\neBPF programs enter the kernel as privi
+ leged extensions and\, once admitted\, become part of the system’s trust
+ ed computing base. Prior LPC discussions established BPF signing as a way 
+ to track the provenance of these programs\, while deliberately separating 
+ signature verification from the policy that consumes it [1\,2]. IMA was id
+ entified as one possible consumer through LSM integration\, but its enforc
+ ement semantics were left open. Follow-up discussion highlighted unresolve
+ d issues involving dynamically generated programs\, trusted loaders\, and 
+ applications such as Cilium and bpftrace.\n\nWe developed IMA-BPF as a con
+ crete continuation of this work. IMA-BPF connects BPF signatures to IMA po
+ licy\, measurement\, appraisal\, and TPM-backed attestation. It preserves 
+ signer provenance for programs created by signed loaders\, allowing reside
+ nt programs to be re-evaluated after the original loader disappears. We al
+ so introduce reappraisal and purge mechanisms\, allowing programs that no 
+ longer satisfy current policy or trust state to be detached and removed th
+ rough BPF’s link and reference based lifetime mechanisms.\n\nThis talk w
+ ill explain how IMA-BPF extends BPF signing into an integrity lifecycle\, 
+ evaluated through Cilium vulnerability remediation. We hope to discuss thr
+ ee areas: the practicality of adopting signing across real BPF workloads\;
+  how the BPF ecosystem should standardize provenance for dynamically gener
+ ated programs\, such as providing common reference tooling in different la
+ nguages\; and how our initial reappraisal and revocation policies and mech
+ anisms should be refined. Although our prototype demonstrates this lifecyc
+ le end to end\, we hope to use the discussion to improve the design and id
+ entify a practical path toward upstream adoption.\n\nReferences\n\n1. KP S
+ ingh\, BPF Signing and IMA Integration\, https://lpc.events/event/16/contr
+ ibutions/1357/\n2. KP Singh\, Discussion: What’s Next for BPF Signing\, 
+ https://lpc.events/event/19/contributions/2167/
+URL:https://lpc.events/event/20/contributions/2591/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2592@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T161000
+DTEND;TZID=Europe/Prague:20261005T163000
+SUMMARY:Attestation-Based Storage Provisioning for Linux: Towards a Standar
+ d Model
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:System Boot and Security MC · Nandakumar Raghavan · https://l
+ pc.events/event/20/contributions/2592/\n\nLinux has no standard model for 
+ provisioning and unlocking encrypted persistent storage at boot in environ
+ ments where the underlying platform cannot be fully trusted. Today\, every
+  deployment stack solves this independently: custom boot agents\, post-pro
+ visioning scripts\, and platform-specific unlock logic. The mechanism exis
+ ts — LUKS2 tokens and the cryptsetup plugin interface — but the workfl
+ ow around it does not. Every team that wants attestation-backed storage un
+ locking ends up writing the same three things from scratch: a script to re
+ gister token metadata at provisioning time\, a plugin to perform attestati
+ on and key retrieval at boot\, and custom logic to handle failure cases. N
+ one of this is reusable across platforms or deployable through standard Li
+ nux tooling.\n\nThis session proposes that the LUKS2 token mechanism and t
+ he cryptsetup plugin interface should become the standard interoperability
+  contract between Linux storage tooling and external attestation-aware key
+  services. In this model\, a Key Broker Service holds encryption keys and 
+ releases them only after the system proves its identity through remote att
+ estation. The LUKS2 header carries the token metadata that tells systemd-c
+ ryptsetup which plugin to invoke at boot\, making the storage layer indepe
+ ndent of any specific attestation technology\, hardware platform\, or key 
+ service implementation. The provisioning side is handled by systemd-repart
+ \, which registers the token metadata in the LUKS2 header at first-boot 
+ — no separate import step\, no custom scripts.\n\nFor this model to work
+  reliably end-to-end\, three specific gaps need to close. First\, the cryp
+ tsetup plugin error contract is undefined: today systemd-cryptsetup silent
+ ly falls through to passphrase unlock when a plugin fails\, with no distin
+ ction between permanent attestation failure and transient network unavaila
+ bility. A KBS plugin that fails because attestation was rejected should be
+ have very differently from one that timed out waiting for the network — 
+ but there is currently no standard way to express that. Second\, the LUKS2
+  token JSON schema beyond type and keyslots is unspecified: KBS-specific m
+ etadata such as service endpoint URLs is stored in private fields with no 
+ agreed naming\, making provisioning tools and unlock plugins non-interoper
+ able without bilateral coordination. Third\, there are no packaging or ini
+ trd inclusion guidelines for token plugins\, leaving distributions without
+  a clear answer on how to ship and discover them at boot.\n\nThe session w
+ ill walk through the current state of the code in systemd-cryptsetup and s
+ ystemd-repart\, identify precisely where these gaps exist today\, and open
+  a discussion on what standardisation is needed. The goal is agreement on 
+ reusable\, upstream building blocks for attestation-driven storage provisi
+ oning — so that every platform and deployment stack building on Linux do
+ es not have to solve this problem independently.
+URL:https://lpc.events/event/20/contributions/2592/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2589@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T170000
+DTEND;TZID=Europe/Prague:20261005T172000
+SUMMARY:Secure Boot: Getting your SHIM signed - The process and Its challen
+ ges
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:System Boot and Security MC · Sherif Nagy · https://lpc.event
+ s/event/20/contributions/2589/\n\nThis talk walks through the end-to-end p
+ rocess for Linux distributions to have their SHIM submitted for review and
+  eventual signing by Microsoft\, surfacing the challenges faced by both di
+ stribution teams and the SHIM review team.\n\nWe examine this process in d
+ epth from dual vantage points: distribution maintainers navigating submiss
+ ion requirements -- including SBAT entries\, CVE patching\, DBX and revoca
+ tion policies -- and the SHIM review team evaluating submissions.\n\nWe al
+ so address the Partner centre for Windows Hardware and what Linux distribu
+ tion teams need to eventually get the SHIM signed by Microsoft.
+URL:https://lpc.events/event/20/contributions/2589/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2587@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T172500
+DTEND;TZID=Europe/Prague:20261005T174500
+SUMMARY:Generic Boot Flow for Type 1 Hypervisors: UKI with systemd-stub
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:System Boot and Security MC · Anushka Nabar · https://lpc.eve
+ nts/event/20/contributions/2587/\n\nARM SystemReady defines a standard fir
+ mware-to-OS boot path via UEFI\, but provides no standard mechanism for bo
+ oting Type 1 hypervisors such as Gunyah or Xen. Platforms relying on Type 
+ 1 hypervisors to isolate security- or latency-sensitive workloads\, lack a
+  standardized boot flow\, which creates fragmentation across mobile\, IoT\
+ , and compute ecosystems.\n\nWe have implemented a solution for this acros
+ s three areas. First\, we propose extensions to the UKI format to bundle a
+  Type 1 hypervisor and its static guest VM images in a single UEFI secure-
+ boot authenticated image. Second\, we discuss the required changes to syst
+ emd-stub to parse the extended UKI to extract and pass configuration data 
+ to the hypervisor at boot. Third\, we have prototyped support to the syste
+ md-boot tooling to control and maintain this configuration.\n\nBy aligning
+  with both the Xen and Gunyah communities\, the goal is to enable a vendor
+ -neutral\, standards-compliant boot flow for any Type 1 hypervisor\, using
+  UKI.\n\nTopics to be discussed:\n1. UKI extensions for Type 1 hypervisors
+ \n2. Interface between systemd-stub and hypervisor\n3. Configuration data 
+ passed to the hypervisor
+URL:https://lpc.events/event/20/contributions/2587/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2590@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T174500
+DTEND;TZID=Europe/Prague:20261005T180500
+SUMMARY:Booting Android with Linux EFI Boot Stub
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:System Boot and Security MC · Yi-Yo Chiang · https://lpc.even
+ ts/event/20/contributions/2590/\n\nAndroid is evaluating the Linux EFI boo
+ t stub to standardize OS handoff and reduce bootloader feature duplication
+ .\nWe present blockers encountered with embedded hardware constraints\, an
+ d aim to discuss potential solutions.\n\nTopics for Discussion:\n\n* EL2 E
+ levation and KVM within an EFI context\n    * **The Problem:** KVM require
+ s booting the kernel at EL2. Since Android firmware operates at EL1\, it m
+ ust elevate to EL2 before kernel execution.\n    * **Discussion:** What ar
+ e the options to elevate to EL2 before jumping to the kernel?\n        * O
+ verride UEFI `ExitBootServices` to hijack the boot flow?\n        * Instal
+ l a custom UEFI protocol callback that executes EL switch and takes over k
+ ernel jump?\n\n* Physical Image Placement and PE/COFF Relocation\n    * **
+ The Problem:** The UEFI PE/COFF loader copies and relocates the kernel ima
+ ge to a dynamically allocated buffer address.\n    * **The Constraint:**\n
+         * *Boot Latency:* Copying large kernel payloads increases boot lat
+ ency.\n        * *Defeat Architectural Expectations:* Hardware platforms m
+ ight require the kernel image loaded at specific address ranges. The PE lo
+ ader moving the kernel image around defeats this.\n    * **Discussion:** H
+ ow do we eliminate unnecessary allocations and respect physical image plac
+ ement done by the firmware/bootloader.
+URL:https://lpc.events/event/20/contributions/2590/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2577@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T181000
+DTEND;TZID=Europe/Prague:20261005T183000
+SUMMARY:Arm DRTM beyond the reference model: dynamic launch on real platfor
+ ms and Linux
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:System Boot and Security MC · Piotr Król · https://lpc.event
+ s/event/20/contributions/2577/\n\nArm's DRTM architecture (DEN 0113) defin
+ es a dynamic root of trust for measurement: a DCE-Preamble triggers a dyna
+ mic launch event\, EL3 firmware (TF-A) measures a protected payload into a
+  fresh chain of trust\, and the dynamically launched measured environment 
+ (DLME) continues under a smaller TCB. Yet a working implementation exists 
+ only against the Base AEM FVP TF-A's plat_drtm hooks (SMMU-based DMA prote
+ ction\, the DRTM address map\, and measurement) live solely under the fvp 
+ board\, and the Neoverse reference-design platforms that model real server
+  silicon ship no DRTM support at all.\n\nThis session looks at what it tak
+ es to move Arm DRTM off the reference model and make it useful to Linux: p
+ orting the plat_drtm platform layer onto the Neoverse reference-design por
+ ts\; delivering the DCE-Preamble as a UEFI/EDK2 application rather than a 
+ bootloader patch\; measuring into PCR 17/18 with a DRTM event log\; and th
+ e kernel-side plumbing to consume and attest the launch. Drawing on 3mdeb'
+ s TrenchBoot work and years in the Arm DRTM ecosystem\, we want to map the
+  upstreaming path across TF-A\, EDK2\, and the kernel\, and name the gaps 
+ and their owners.\n\nDesired outcome: consensus on a minimal\, reproducibl
+ e Arm DRTM reference that the community can build on FVP-first\, then real
+  silicon\, and a shared list of the upstream changes needed to get there.
+URL:https://lpc.events/event/20/contributions/2577/
+END:VEVENT
+END:VCALENDAR

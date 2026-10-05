@@ -1,0 +1,321 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: RISC-V MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2405@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150000
+DTEND;TZID=Europe/Prague:20261006T152000
+SUMMARY:Topics in RISC-V Linux kernel maintenance
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Paul Walmsley\, Palmer Dabbelt · https://lpc.even
+ ts/event/20/contributions/2405/\n\nReview the past year in RISC-V Linux ke
+ rnel maintenance\, and discuss upcoming plans for the next year - similar 
+ to what we did last year
+URL:https://lpc.events/event/20/contributions/2405/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2341@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T152000
+DTEND;TZID=Europe/Prague:20261006T154000
+SUMMARY:RISC-V Svnapot: dynamic fold/unfold for folded PTEs
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Yunhui Cui · https://lpc.events/event/20/contribu
+ tions/2341/\n\nSvnapot gives RISC-V an architectural way to encode contigu
+ ous PTE ranges as folded mappings\, and 64K mTHP is a particularly good ma
+ tch\nfor that capability.\n\nThis session presents a patch series that ena
+ bles that model through dynamic fold/unfold and a split between public and
+  raw page-table\nAPIs. Public helpers preserve the logical sub-PTE view ex
+ pected by core MM\, while raw helpers remain available to architecture-pri
+ vate\nusers that need direct access to the encoded hardware entry. In our 
+ measurements\, combining 64K mTHP with Svnapot aggregation reduces\nlat_me
+ m_rd latency by about 12% compared with non-aggregated 4K mappings\, impro
+ ves overall SPEC CPU performance by around 2%\, and\ndelivers about 7% on 
+ the instruction-TLB-sensitive 520.omnetpp_r sub-benchmark.\n\nThe session 
+ will also discuss whether fold/unfold transitions can avoid intermediate T
+ LB flushes\, and examine the trade-offs between\nhardware 64K pages and Sv
+ napot-based aggregation\, including the advantages and drawbacks of each a
+ nd whether Svnapot should support\nadditional aggregation granularities be
+ yond today’s 64K mTHP use case.
+URL:https://lpc.events/event/20/contributions/2341/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2455@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T154000
+DTEND;TZID=Europe/Prague:20261006T160000
+SUMMARY:Optimizing the kernel with vector
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Tao Chiu · https://lpc.events/event/20/contributi
+ ons/2455/\n\nThe territory of using a larger context in the kernel-mode ha
+ s been a forbidden topic since the existence of Linux. The use of SIMD uni
+ t in the kernel-mode is strictly restricted because the program is highly 
+ optimized for stack footprint\, responsiveness\, and maximum hardware comp
+ atibility. However\, as hardware and compiler technologies advance\, the b
+ enefit of enabling autovectorization has become more viable\, and it might
+  be a good time to revisit it.\n\nIn this talk we will go through some ini
+ tial measurements to see the benefit of compiling the risc-v kernel with a
+ utovectorization\, challenges of managing VLA context and ways to maintain
+  code when compiled with such feature.
+URL:https://lpc.events/event/20/contributions/2455/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2626@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T160000
+DTEND;TZID=Europe/Prague:20261006T162000
+SUMMARY:RVA23 in practice: discovery\, dispatch\, and the hardware left beh
+ ind
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Guodong Xu · https://lpc.events/event/20/contribu
+ tions/2626/\n\nRVA23 is ratified and the first (vendor-announced) complian
+ t silicon is shipping\, but between "the profile exists" and "userspace ca
+ n rely on it" sit three unresolved kernel questions.\n\n**Discovery.** Ext
+ ension capability discovery between user mode and the kernel is still mess
+ y: hwprobe and prctl can disagree\, so which interface should IFUNC resolv
+ ers actually trust\, or does the discovery contract itself need a rethink?
+  The "riscv: hwprobe: export the availability of vector to user" series un
+ der discussion on linux-riscv is a live example.\n\n**Dispatch.** (runtime
+  selection of optimized code paths) x86 already does coarse\, library-leve
+ l selection via glibc-hwcaps. Could the same mechanism sit on top of hwpro
+ be on RISC-V\, keyed on something like rva23u64? Is profile granularity ev
+ en the right key? For distros like Debian that will not flip their baselin
+ e any time soon\, this is probably the realistic path. But there is a catc
+ h though\, as the prctl/hwprobe mismatch shows.\n\n**The hardware left beh
+ ind.** What compatibility fallbacks do pre-RVA23 systems get? And further 
+ out: can kernel-side cooperation support RVA23 capability certification\, 
+ and what test infrastructure would that take?\n\nAiming at concrete next s
+ teps for the discovery contract and a dispatch story distros can adopt. Fo
+ ur asks to the room:\n\n**Ask 1**  kernel maintainers: is the RVA23U64 bit
+  the right shape?\n**Ask 2**  distros: ship rva23u64 builds of selected li
+ braries?\n**Ask 3**  kernel maintainers: deprecate the V prctl?\n**Ask 4**
+   future extensions: always-on\, or dynamically enabled per process?
+URL:https://lpc.events/event/20/contributions/2626/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2454@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T162000
+DTEND;TZID=Europe/Prague:20261006T163000
+SUMMARY:Extensions - What's new? What's coming up?
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Tom Gall · https://lpc.events/event/20/contributi
+ ons/2454/\n\nThe RISC-V ISA specs contained the ratified collection of bas
+ es\, extensions and profiles. This talk will cover recently ratified exten
+ sions\, as well as cover upcoming extensions and profiles which are close 
+ to ratification. We'll dive into kernel / user space design considerations
+  that implementors will want to care about.
+URL:https://lpc.events/event/20/contributions/2454/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2342@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T170000
+DTEND;TZID=Europe/Prague:20261006T171500
+SUMMARY:Local\, SBI\, or IPI? Tracing RISC-V TLB Flush Decisions in Linux
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Roman Storozhenko · https://lpc.events/event/20/c
+ ontributions/2342/\n\nRISC-V Linux TLB flushing has several runtime paths.
+  A flush may be local to the current hart\, may use SBI remote fence suppo
+ rt\, or may fall back to Linux IPIs. The kernel also makes range-versus-fu
+ ll decisions\, performs ASID-aware flushing\, and carries different flush 
+ strides for normal and huge-page ranges. These decisions can matter when d
+ ebugging correctness issues\, performance anomalies\, and SMP scalability 
+ problems\, but they are not currently visible in a compact RISC-V-specific
+  form.\n\nThis talk presents a small RFC tracepoint patch that makes the L
+ inux-side RISC-V TLB flush decision visible. The proposed tracepoint recor
+ ds the requested flush range\, stride\, ASID\, target CPU count\, flush ty
+ pe\, threshold decision\, and selected transport path: local\, SBI remote 
+ fence\, or IPI fallback.\n\nThe goal is intentionally narrow. This is not 
+ a hardware TLB profiler and not a complete MM observability framework. It 
+ focuses on one practical question: when Linux decides to invalidate RISC-V
+  address translations\, can a developer easily see which path was selected
+  and why?\n\nThe talk will walk through the relevant RISC-V kernel TLB-flu
+ sh path\, explain what existing tracing can and cannot show\, and demonstr
+ ate the proposed tracepoint using QEMU and one real RISC-V board. A small 
+ multi-threaded mmap() / mprotect() / munmap() workload will be used to tri
+ gger local and remote flushes and to show range-size effects around the cu
+ rrent threshold logic.\n\nAttendees will leave with a concrete understandi
+ ng of how RISC-V TLB flush decisions are made in Linux\, how they can be o
+ bserved today\, what a minimal tracepoint adds\, and what trade-offs shoul
+ d be considered before adding architecture-specific observability to hot M
+ M paths.\n\nComments:\n\nThis topic is primarily intended for the RISC-V M
+ C because it focuses on arch/riscv MM/TLB behavior\, including local flush
+ es\, SBI remote fences\, and IPI fallback paths. If the organizers think t
+ he tracing or MM angle is a better fit elsewhere\, it could also be consid
+ ered for the Tracing MC or Kernel Memory Management MC.\n\nI previously pr
+ esented in the FOSDEM 2026 Kernel devroom with a practical talk on reprodu
+ cing a Linux kernel bug using virtme-ng. This LPC proposal is a different 
+ topic\, but it follows the same practical style: a small kernel RFC patch\
+ , reproducible QEMU testing\, and validation on real RISC-V hardware where
+  possible.\n\nP.S. Patches to review:\nv1\nhttps://lore.kernel.org/lkml/20
+ 260829-tlb_tracepoint-v1-1-dfdaede7e741@gmail.com/T/#me0739340db5d4dfc6e0f
+ f1675896129af941eca5\nv2\nhttps://lore.kernel.org/linux-riscv/20260830-tlb
+ _tracepoint-v2-1-e3c88c24df5b@gmail.com/T/#u\nv2 re-send:\nhttps://lore.ke
+ rnel.org/lkml/20260924-tlb_tracepoint-v2-1-4e3e78ef5cdb@gmail.com/\nasciin
+ ema presentation:\nhttps://asciinema.org/a/1266683
+URL:https://lpc.events/event/20/contributions/2342/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2414@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T171500
+DTEND;TZID=Europe/Prague:20261006T173000
+SUMMARY:Error INJection support for RAS on RISC-V architecture
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Himanshu Chauhan · https://lpc.events/event/20/co
+ ntributions/2414/\n\nError INJection (EINJ)\, defined by ACPI\, offers a p
+ latform-independent mechanism to inject hardware errors and validate syste
+ m resilience paths. By avoiding platform-specific tooling\, EINJ enables c
+ onsistent testing of the Linux error-handling stack across architectures\,
+  including APEI and broader RAS workflows.\n\nThis session discuss the des
+ ign and implementation strategy for enabling EINJ on RISC-V platforms. It 
+ will cover architecture-specific considerations\, firmware and kernel inte
+ gration points\, and practical validation flows for injected error scenari
+ os. The goal is to establish a robust\, upstream-friendly approach that br
+ ings RISC-V closer to feature parity with existing ACPI-based RAS ecosyste
+ ms and improves confidence in production reliability.
+URL:https://lpc.events/event/20/contributions/2414/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2422@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T173000
+DTEND;TZID=Europe/Prague:20261006T174500
+SUMMARY:RISC-V Trace support in ACPI
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · SUNIL V L · https://lpc.events/event/20/contribut
+ ions/2422/\n\nTo support RISC-V E-trace/N-trace components in ACPI\, we pr
+ opose using the Device Graph UUID defined in the DSD Guide\, aligned with 
+ how similar topologies are described on other architectures. Beyond discus
+ sing the proposal itself and how it should appear in the ACPI namespace\, 
+ we also want feedback on implementation strategy.\n\n  Today\, ACPI fwnode
+  graph handling does not interpret Device Graph UUID data\, so trace drive
+ rs parse ACPI graph links in-driver. We have a PoC with that approach\, bu
+ t it duplicates logic\, raises long-term maintenance cost\, and keeps DT a
+ nd ACPI paths separate instead of reusing common fwnode_graph_* helpers.\n
+ \n  Our proposal is to extend ACPI fwnode graph support\, so Device Graph 
+ UUID data is translated into standard fwnode_graph_* operations. This allo
+ ws shared trace-driver code across DT and ACPI\, reduces duplication\, and
+  scales better as additional architectures adopt this representation.\n\n 
+  We plan to post an RFC series before the conference so maintainers and su
+ bsystem stakeholders can review concrete patches and align on direction.
+URL:https://lpc.events/event/20/contributions/2422/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2478@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T174500
+DTEND;TZID=Europe/Prague:20261006T180500
+SUMMARY:One Kernel Per Cluster: Multikernel for Heterogeneous RISC-V
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Cong Wang\, Yuning Liang · https://lpc.events/eve
+ nt/20/contributions/2478/\n\nBoot mainline on SpacemiT's Key Stone K3 and 
+ half the machine stays dark: eight 1024-bit AI cores rejected by smpboot b
+ ecause riscv_v_vsize allows exactly one vlenb per system. This is not a br
+ ing-up bug\, it is the first shipping proof that RISC-V vendors will not p
+ ay for matched vector widths\, and the SG2042's RVV 0.7.1 installed base m
+ akes it worse: not narrower\, incompatible. Per-process vlenb patches can 
+ boot this machine\, but no patch changes the physics: 4 KB of vector state
+  cannot land in a 1 KB register file\, so any single-kernel fix confines v
+ ector tasks to one cluster for life and inherits the arm64 asymmetric-32bi
+ t price list: no hotplug of the last capable core\, no SCHED_DEADLINE admi
+ ssion\, silently rewritten affinity masks\, undefined cpuset isolation\, p
+ lus hwprobe intersecting capabilities down to no vector unit anywhere on a
+  0.7.1/1.0 mix. The partition was decided at tape-out\; the scheduler can 
+ only hide it\, expensively. We propose making it first class instead: mult
+ ikernel boots one independent Linux kernel per cluster\, each compiled for
+  its exact silicon\, seeing a machine where every core matches. The capabi
+ lity word tells the truth\, glibc picks real vector routines\, hotplug and
+  deadline scheduling and cpusets just work\, and RVV 0.7.1 and 1.0 domains
+  coexist on one board. The prototype exists (github.com/multikernel/linux)
+ \; what it needs is this room. We will present the architecture and the RI
+ SC-V gaps we want to close with the community: kernel spawning on the RISC
+ -V boot flow\, cross-domain interrupt routing with AIA/IMSIC\, and DT/ACPI
+  bindings for heterogeneous vector topology. Heterogeneous VLEN is the RIS
+ C-V roadmap\, not a corner case. Let's give it a first-class answer before
+  the next SoC tapes out.
+URL:https://lpc.events/event/20/contributions/2478/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2479@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T180500
+DTEND;TZID=Europe/Prague:20261006T182000
+SUMMARY:Supporting Heterogeneous VLEN on RISC-V: Lessons from SpacemiT K3
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Qiubin Zhuang\, Dong Xu · https://lpc.events/even
+ t/20/contributions/2479/\n\nSpacemiT K3 is among the first production RVA2
+ 3-compatible SoCs\, shipping\, features heterogeneous vector lengths:\n\n-
+  **8× X100 cores**: RV64GCV\, VLEN=256\, full RVA23 compliance\, H-extens
+ ion — general-purpose\n- **8× A100 cores**: RV64GCV\, VLEN=1024\, no H-
+ extension — AI/vector compute\n\nBoth core types implement RVV 1.0\, but
+  their incompatible vector register widths create a correctness issue: if 
+ a thread using vector instructions migrates between core types\, its vecto
+ r state corrupts. This isn't a performance concern — it's a data integri
+ ty problem.\n\nOur current vendor-specific approach (CONFIG_SPACEMIT_HMP) 
+ enforces strict per-thread core-type binding. This works\, but it's not up
+ stream-friendly.\n\n---\n\n## What SpacemiT Can Contribute\n\nWe can provi
+ de engineering data from 2+ years of HMP scheduling in production\, includ
+ ing details on vector state management\, signal frames\, ptrace\, and CPU 
+ hotplug. We'll also share real constraints — why certain approaches work
+  or don't on actual silicon.\n\nK3 development boards are available for te
+ sting\, and we have deployment experience with 9+ distributions (Ubuntu\, 
+ Debian\, Fedora\, openEuler\, openKylin\, etc.). We're committed to upstre
+ am patches based on community consensus.\n\n---\n\n## Proposed Discussion 
+ Topics\n\n### 1. Kernel mechanism options\n\nWe've explored several approa
+ ches and can share trade-offs:\n- Generic heterogeneous-VLEN scheduling (s
+ imilar to ARM capacity-aware)\n- Cpuset/cgroup-based isolation\n- ISA-capa
+ bility-aware scheduling\n- Userspace-only manual pinning\n\n### 2. Vector 
+ state management\n\n- Should `riscv_v_vsize` be per-task or per-CPU?\n- Si
+ gnal frame handling with variable VLEN?\n- ptrace behavior?\n\n### 3. DT b
+ indings and discoverability\n\n- Should VLEN capabilities be explicit in D
+ T or runtime-discovered?\n- Standardization of per-core capability propert
+ ies?\n\n### 4. RVA23 ecosystem assumptions\n\n- Should RVA23 distributions
+  assume uniform VLEN=256?\n- How should applications/libraries handle VLEN
+  variability?\n- Kernel enforcement vs. userspace detection?\n\n### 5. Sho
+ uld kernel support this at all?\n\n- Is this a legitimate use case (like A
+ RM big.LITTLE) or a hardware constraint software shouldn't accommodate?\n\
+ n---\n\n## Session Format\n\nWe suggest a community-driven discussion. Spa
+ cemiT can provide engineering data and K3-specific details\, while communi
+ ty maintainers lead the architectural direction. We'll share detailed tech
+ nical background (2-3 pages) before the conference.\n\n---\n\n## Why This 
+ Matters\n\n- **RISC-V flexibility vs. portability**: vendors can customize
+  per-core ISA\, but software must remain portable\n- **This is solvable**:
+  ARM addressed big.LITTLE heterogeneity\; RISC-V can too\n- **Prevent frag
+ mentation**: if every vendor ships custom scheduling\, distro/kernel maint
+ enance becomes unsustainable\n\n---\n\n## Desired Outcomes\n\n1. Community
+  consensus on whether/how to support heterogeneous VLEN upstream\n2. DT bi
+ nding direction for representing per-core capabilities\n3. Clear action it
+ ems for follow-up patches and testing\n\n---\n\n## Pre-Conference Material
+ s\n\nWe will circulate 2-3 pages of technical background (HMP implementati
+ on\, trade-offs\, deployment observations\, code pointers) to participants
+  before the conference.\n\nReference: https://github.com/spacemit-com/linu
+ x
+URL:https://lpc.events/event/20/contributions/2479/
+END:VEVENT
+END:VCALENDAR

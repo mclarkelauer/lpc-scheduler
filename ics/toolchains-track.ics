@@ -1,0 +1,413 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Toolchains Track
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2393@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100000
+DTEND;TZID=Europe/Prague:20261005T103000
+SUMMARY:Security Features status update
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Justin Stitt\, Kees Cook · https://lpc.eve
+ nts/event/20/contributions/2393/\n\nAnother year of work is behind us\, wi
+ th lots of progress across GCC\, Clang\, and Rust to provide the Linux ker
+ nel with a variety of security features. Let's review and discuss where we
+  are with parity between toolchains\, approaches to solving open problems\
+ , and exploring new features.\n\nParity reached since last year:\n- Variou
+ s little behavioral corner-case bug fixes\n\nIn progress:\n- Overflow Beha
+ vior Types (needed in GCC)\n- forward-edge CFI (GCC KCFI at v14)\n- covera
+ ge-sanitizer stack-depth tracking (needed in GCC)\n\nStalled / needs atten
+ tion:\n- -fbounds-safety language extension (slow in Clang)\n- __strong ty
+ pedef (needs design finalized)\n- Link Time Optimization for GCC kernel su
+ pport\n- backward-edge CFI (x86 CET shadow stack\, kernel mode)
+URL:https://lpc.events/event/20/contributions/2393/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2391@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T103000
+DTEND;TZID=Europe/Prague:20261005T110000
+SUMMARY:Compiler-Based Context Analysis for Compile-Time Lock Safety
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Marco Elver · https://lpc.events/event/20/
+ contributions/2391/\n\nCompiler-Based Context Analysis is a language exten
+ sion which enables statically checking that required contexts are active (
+ or inactive) by acquiring and releasing user-definable “context locks”
+ . An obvious application of this feature is lock-safety checking for the k
+ ernel's various synchronization primitives\, verifying at compile time tha
+ t locking rules are not violated. This session will begin with a brief ove
+ rview of this new infrastructure that relies on Clang's Thread Safety Anal
+ ysis (-Wthread-safety)\, but the focus will be on how developers can use i
+ t to annotate locking requirements to catch concurrency bugs before they e
+ ver make it into a kernel binary.\n\nCurrently\, the analysis is opt-in by
+  default and requires declaring which modules and subsystems should be ana
+ lyzed\, as enabling it tree-wide currently results in numerous false posit
+ ive warnings. In the remainder of the talk\, we will discuss strategies an
+ d best practices on broadening Context Analysis coverage across the entire
+  kernel tree.\n\nReference: https://docs.kernel.org/dev-tools/context-anal
+ ysis.html
+URL:https://lpc.events/event/20/contributions/2391/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2394@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T110000
+DTEND;TZID=Europe/Prague:20261005T113000
+SUMMARY:BPF support in the GNU Toolchain
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Cupertino Miranda\, David Faust\, Jose E. M
+ archesi\, Vineet Gupta · https://lpc.events/event/20/contributions/2394/\
+ n\nIn this activity we will first provide a very brief update on the statu
+ s of the port of GNU binutils and GCC to the BPF target\, with emphasis on
+  the level of support for extant BPF programs and the kernel BPF selftests
+ . Then we will address a set of particular issues for which we need feedba
+ ck and/or consensus from the BPF kernel and clang/LLVM hackers.
+URL:https://lpc.events/event/20/contributions/2394/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2399@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T120000
+DTEND;TZID=Europe/Prague:20261005T123000
+SUMMARY:Are your types the same as mine?
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Kris Van Hees · https://lpc.events/event/2
+ 0/contributions/2399/\n\nThis session is aimed at discussing the benefits 
+ (and requirements) of having a unified type representation that can be use
+ d in tracing tools to facilitate type management\, type compatibility chec
+ ks\, etc.  With type info from the kernel\, type info from userspace\, and
+  types that may be defined in tracing scripts\, the hoops that one may nee
+ d to jump through to make it all work as a single environment where cross-
+ stack tracing can be done are a bit excessive.\n\nLet's discuss ongoing ef
+ forts to work on this\, and look at the needs\, wants\, etc to help drive 
+ this in the right direction where a single type management system can sati
+ sfy all requirements\, and avoid duplication of effort\, and painful conve
+ rsions between systems.
+URL:https://lpc.events/event/20/contributions/2399/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2395@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T123000
+DTEND;TZID=Europe/Prague:20261005T130000
+SUMMARY:Towards real-time ABI compatibility assurance and smarter module ve
+ rsioning with libctf
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Nick Alcock · https://lpc.events/event/20/
+ contributions/2395/\n\nThe CTFv4 extension of the CTF file format into a s
+ uperset of BTF is nearly complete.  Once it's working\, what can we do wit
+ h systemwide type information for all C programs and the kernel?\n\nOne po
+ ssibility we explore in this talk is to use some simple linker extensions 
+ to provide real-time\, linear-time ABI checking in ld.so to determine for 
+ every running program whether any of the C libraries it uses has changed i
+ ncompatibly since the program was linked in a way that breaks the program\
+ , without linking ld.so with libctf or requiring it to do anything more di
+ fficult than a few equality comparisons and strcmps.\n\nThe end goal in us
+ erspace is to be able to see something like this\n\n    # emacs\n    warni
+ ng: libxml.so.2.13.9: incompatible symbol: linked against\n      xmlDocPtr
+  xmlReadMemory (const char *\, int\, const char *\, const char *\, int)\n 
+    but running against\n      xmlDocPtr xmlReadMemory (const char *\, int\
+ , const char *\, const char *)\n\n(a contrived example: xmlReadMemory has 
+ not actually broken ABI. ld.so invokes a helper program that uses libctf t
+ o print that output\, but does not itself need to use libctf.)\n\nIt also 
+ seems likely to me that the same infrastructure that implements the above 
+ can be reused to implement a better modversions without the manifold pain 
+ points of the current implementation.\n\nThis is only partly written so fa
+ r: we explore the design of this scheme in part so that the audience can s
+ pot any serious errors before it causes widespread breakage\, and to see i
+ f people can suggest improvements to the general design. (I'm certain that
+  modversions will add exciting extra wrinkles to this.)
+URL:https://lpc.events/event/20/contributions/2395/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2397@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T130000
+DTEND;TZID=Europe/Prague:20261005T133000
+SUMMARY:Adding C library wrappers for all Linux syscalls - The Return
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Carlos O'Donell\, Florian Weimer · https:/
+ /lpc.events/event/20/contributions/2397/\n\nAt Linux Plumbers Conference 2
+ 025 in Tokyo I gave part 1 of this talk\, this year I want to revisit prog
+ ress made against the use cases presented last year including progress mad
+ e on raw futex.\n\nIn review we'll look at more applications and if we we 
+ are able to solve their most thorny calls to syscall with actual libc wrap
+ pers.\n\nI'll include a more formal review of what is currently missing in
+  glibc\, collecting the list of syscalls for x86_64 and comparing to the k
+ ernel.\n\nI will close again with a call to action for always having sysca
+ lls available as C library calls even if they could be used behind the bac
+ k of the implementation.\n\nI will propose a formal mentoring program. If 
+ you want to get a syscall wrapper into glibc I'll work with you to make it
+  happen.
+URL:https://lpc.events/event/20/contributions/2397/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2396@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T150000
+DTEND;TZID=Europe/Prague:20261005T153000
+SUMMARY:Advancing PGO\, AutoFDO\, and Propeller in the Linux Kernel
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Rong Xu · https://lpc.events/event/20/cont
+ ributions/2396/\n\nAutoFDO and Propeller are upstream and PGO is available
+  out of tree\, but none of them supports kernel modules\, which run 4–5%
+  of kernel cycles on Google's servers and carry performance-sensitive vend
+ or drivers on Android. Part 1 presents per-module profiles for all three b
+ ehind one Kbuild interface\, and a path to upstream PGO by reusing compile
+ r-rt's profile code. Part 2 shows why function-level coverage misleads onc
+ e functions are split\, and introduces line-level attribution and Cycles p
+ er Byte (CPB) to measure how well a kernel's hot code is laid out.
+URL:https://lpc.events/event/20/contributions/2396/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2392@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T153000
+DTEND;TZID=Europe/Prague:20261005T160000
+SUMMARY:Upgrading Runtime Leaks to Compile-Time Errors: Adopting Clang’s 
+ require_explicit_initialization
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Ian Rogers · https://lpc.events/event/20/c
+ ontributions/2392/\n\nThe Linux kernel makes heavy use of aggregate struct
+  initializers to configure subsystem interfaces\, driver registries\, and 
+ object lifecycles (such as struct kobj_type and struct device_type). Howev
+ er\, omitting mandatory struct members—such as a kobject's release callb
+ ack—may result in silent memory leaks or deferred runtime panics.\n\nCla
+ ng offers a static alternative attribute ‘require_explicit_initializatio
+ n’\, which triggers the -Wuninitialized-explicit-init warning if a desig
+ nated field is left uninitialized during aggregate construction . This tal
+ k is proposed as a collaborative discussion to brainstorm how we can adopt
+  this safety mechanism in kernel headers (e.g.\, via a macro like __requir
+ ed_init) . We will discuss the candidate structures that would benefit mos
+ t\, evaluate the engineering friction of enforcing this across cross-tree 
+ refactors\, and address compiler parity issues—specifically how to handl
+ e GCC fallback and whether a similar diagnostic can be proposed for GCC.
+URL:https://lpc.events/event/20/contributions/2392/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2398@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T160000
+DTEND;TZID=Europe/Prague:20261005T163000
+SUMMARY:Kage: device driver isolation in the Linux kernel with LFI
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Zachary Yedidia · https://lpc.events/event
+ /20/contributions/2398/\n\nDrivers in Linux run with full kernel privilege
+ s and account for a significant share of exploitable vulnerabilities. Kage
+  is an experimental kernel subsystem that runs kernel modules inside of in
+ -kernel sandboxes using LLVM's Lightweight Fault Isolation (LFI) feature. 
+ Kaged drivers still run in the same hardware privilege level and address s
+ pace as the rest of the kernel\, but are compiled such that control-flow a
+ nd memory accesses are confined to a subset of virtual memory. This keeps 
+ transition costs cheap and reduces the engineering effort needed to retrof
+ it isolation onto existing drivers. LFI is designed to provide secure isol
+ ation even for arbitrarily malicious code through the use of a machine cod
+ e verifier that keeps the compiler out of the trusted code base.\n\nThis t
+ alk will walk through a prototype version of Kage\, which can load LFI-bui
+ lt kernel modules into an isolated portion of the address space\, and demo
+ nstrate how drivers can be ported to run in sandboxes. Kage uses BTF type 
+ information to automatically check call signatures and replace kernel poin
+ ters with opaque handles on calls between the kernel and the module. The c
+ urrent prototype can sandbox simple computational kernel modules\, and is 
+ expected to grow in capabilities in order to handle MMIO\, buffer sharing\
+ , DMA (via the IOMMU)\, and interrupt routing\, with the end goal of being
+  able to isolate real\, complex drivers\, such as USB\, network\, or possi
+ bly even GPU drivers.
+URL:https://lpc.events/event/20/contributions/2398/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2449@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T170000
+DTEND;TZID=Europe/Prague:20261005T173000
+SUMMARY:GCC Rust support for Linux
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · David Edelsohn\, Philip Herron · https://l
+ pc.events/event/20/contributions/2449/\n\nA conversation about the Linux k
+ ernel requirements from GCC Rust and how to promote GCC Rust as another co
+ mpiler for the Rust components of the Linux kernel.  The technical and com
+ munity issue.
+URL:https://lpc.events/event/20/contributions/2449/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2448@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T173000
+DTEND;TZID=Europe/Prague:20261005T174500
+SUMMARY:Crossing borders between user space and kernel space: GDB/Valgrind/
+ drgn close cooperation
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Alexandra Petlanova Hajkova · https://lpc.
+ events/event/20/contributions/2448/\n\nWhile is GDB is primarily a  user s
+ pace tool\, drgn is a kernel space one. Using them together may improve us
+ er experience as drgn can help GDB to get access to various kernel structu
+ res. Right now\, GDB can show what a thread is doing in user space\, drgn 
+ can show what it is doing in the kernel — but the two tools do not talk 
+ to each other. I would like to discuss what it would mean to cross that bo
+ rder.\n\nThe crossing is technically straightforward: drgn is a Python lib
+ rary\, and GDB already has a Python API\, making it natural to call drgn f
+ rom GDB scripts. As a concrete demonstration\, I wrote a small GDB Python 
+ command\, drgn_why_sleeping\, which retrieves the kernel stack of a sleepi
+ ng thread via drgn and displays it alongside GDB's user-space backtrace 
+ — showing the full kernel path where bt alone shows only a generic sysca
+ ll frame.\n\nThis raises further questions: could drgn's per-frame registe
+ r and local variable access allow GDB users to inspect kernel frames inter
+ actively? Is a remote variant worth pursuing for kgdb setups? Could drgn h
+ elp trace where in the kernel an error originates when stepping over a fai
+ ling syscall? Valgrind could also benefit — since drgn does not use ptra
+ ce\, it could attach to a Valgrind-instrumented process  simultaneously an
+ d resolve invalid memory addresses to named kernel structures. And in the 
+ other direction: could user-space tools like GDB or Valgrind offer anythin
+ g useful back to drgn?
+URL:https://lpc.events/event/20/contributions/2448/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2402@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T174500
+DTEND;TZID=Europe/Prague:20261005T180000
+SUMMARY:Beyond Coverage: Per-Task Function Boundary Extraction for Kernel C
+ ontract Verification
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:Toolchains Track · Yunseong Kim · https://lpc.events/event/20
+ /contributions/2402/\n\nKCOV's trace-pc provides edge coverage feedback fo
+ r kernel fuzzers\, but captures no data-flow context. Two syscalls hitting
+  identical basic blocks with different argument values (e.g.\, vfs_open wi
+ th O_RDONLY vs O_WRONLY|O_TRUNC) are indistinguishable to the fuzzer. This
+  "semantic gap" causes coverage saturation on value-dependent state transi
+ tions in complex subsystems (binder\, io_uring\, ksmbd).\n\nftrace functio
+ n graph tracer support arg/ret values tracing during runtime. But their is
+  a couple of challenge(FTRACE_REGS_MAX_ARGS 6) regarding architecture call
+ ing convention from register\, and currently can't support structure and t
+ heir members on the function.\n\nOn the other hands\, Rust For Linux kerne
+ l modules can't supported by current tracing framework.\n\nWe need consens
+ us on extending LLVM's SanitizerCoverage to capture function arguments and
+  return values\, including automatic struct field decomposition from DWARF
+  metadata\, with a kernel-resident per-task ring buffer.\n\n# What I Imple
+ mented\n\nTwo new SanitizerCoverage modes in LLVM:\n\n## Emits LLVM RFC su
+ bmitted\n1. `__sanitizer_cov_trace_args(arg_idx\, arg_size\, val\, offsets
+ \, num_fields)` at function entry for each parameter.\n\n2. `__sanitizer_c
+ ov_trace_ret(ret_size\, val\, offsets\, num_fields)` before each return.\n
+ \nThe pass uses DICompositeType metadata to extract struct field offsets/s
+ izes at compile time and emits them as global constant arrays. At runtime\
+ , the kernel backend reads fields via `copy_from_kernel_nofault()` into a 
+ per-task lock-free mmap'd buffer at `/sys/kernel/debug/kcov_dataflow`.\n\n
+ A native rustc path (rustc built against the custom LLVM) enables Rust ker
+ nel module instrumentation without a post-compilation pipeline. The only k
+ nown method for capturing Rust function arguments at runtime given -O2 DWA
+ RF elision.\n\n# Discussion Topics Needing Agreement\n\n1. **Callback ABI 
+ stability**\nShould `__sanitizer_cov_trace_args/ret` be considered stable 
+ SanitizerCoverage API\, or experimental? What's the path from `-fsanitize-
+ coverage=trace-args` to an accepted upstream flag?\n\n2. **DWARF metadata 
+ dependency**\nThe pass requires `-g` for struct expansion. Currently it gr
+ acefully degrades: without `-g`\, `F.getSubprogram()` returns null and the
+  function is silently skipped. With `-g` but missing type info for a param
+ \, it records as scalar (offsets=NULL\, num_fields=0). Should this behavio
+ r be documented as the contract?\n\n3. **Interaction with optimizations**\
+ nAt -O2\, scalar arguments are spilled to `alloca` so the kernel callback 
+ receives a uniform pointer. Should the pass mark these as side-effecting t
+ o prevent DSE\, or accept the current behavior (compiler preserves them be
+ cause the call itself is a side effect)?\n\n4. **Rust integration path**\n
+ Currently requires building rustc against the custom LLVM (native path) or
+  using a wrapper (rustc emit-llvm-ir then opt). Is there appetite for nati
+ ve `-Zsanitizer-coverage=trace-args` support in upstream rustc? The kernel
+ 's Kbuild does not expose intermediate IR for external instrumentation\, m
+ aking the native path mandatory for Rust kernel modules.\n\n5. **Kernel-si
+ de callback design**\nThe kernel backend uses `copy_from_kernel_nofault()`
+  for safe pointer reads and a bit-31 recursion guard (needed because `copy
+ _from_kernel_nofault` itself is instrumented under INSTRUMENT_ALL). Should
+  the LLVM pass remain fully target-agnostic\, or emit hints for the runtim
+ e?\n\n6. **Scope control**\nPer-module opt-in (`KCOV_DATAFLOW_file.o := y`
+ ) vs. global (`CONFIG_KCOV_DATAFLOW_INSTRUMENT_ALL`). The pass currently i
+ nstruments all functions with DISubprogram. Should it support function-lev
+ el filtering via attributes (e.g.\, `__attribute__((no_sanitize("dataflow"
+ )))`)?\n\n7. **Performance implications**\nWith INSTRUMENT_ALL: +9.5% .tex
+ t\, +133% syscall latency. Per-module: +8.3% on instrumented paths. The pe
+ r-callback cost is ~27ns dominated by `copy_from_kernel_nofault`. Is this 
+ acceptable for the SanitizerCoverage framework\, or should it be a separat
+ e pass?\n\n# Why Rust Kernel Modules Need This\n\nExisting observability t
+ ools completely fail on Rust kernel code:\n\n- **ftrace**: Cannot hook Rus
+ t functions (no `__fentry__` prologue — rustc doesn't emit `-mfentry`)\n
+ - **kprobes/fprobe**: Rust symbol mangling makes targeting impractical\; e
+ ven with correct names\, only captures raw register values (no struct expa
+ nsion)\n- **drgn/vmcore**: `rustc -O2` elides `DW_AT_location` for all par
+ ameters — `frame.locals()` returns `{}`\n- **eBPF**: Requires manual str
+ uct layout specification\; Rust `#[repr(Rust)]` types have no stable ABI\n
+ \nOur LLVM pass operates on Rust-generated IR *before* codegen — the onl
+ y point where both debug metadata and argument values coexist.\n\nVerified
+ : Rust eight_struct_args_rust selftest produces correct output at -O2 on C
+ I result: https://github.com/yskzalloc/kcov-dataflow/actions/runs/29659128
+ 011/job/88119068007\n```\ndo_el0_svc({0x4\, 0x4\, 0xffffffff\, 0x0\, 0x0\,
+  0x0})\n0x0 = B...\nsb_start_write()\nfile_start_write()\n0x0 = _RNvCsdfZG
+ IOKgjaD_22eight_struct_args_rust13write_handler() [eight_struct_args_rust]
+ \n  0x11 = rsf_1(0x11) [eight_struct_args_rust]\n  0x33 = rsf_2(0x11\, {0x
+ 11\, 0x22}) [eight_struct_args_rust]\n  ...\n  0x30c = rnsf_8({0xa8\, 0x11
+ \, 0x11\, 0x11\, 0x11\, 0x11\, 0x11\, 0x11\, 0x11}) [eight_struct_args_rus
+ t]\n    0xaa = rsf_fwd_inner(0x11\, {0x11\, 0x22}\, {0x11\, 0x22\, 0x33}\,
+  {0x11\, 0x22\, 0x33\, 0x44}) [eight_struct_args_rust]\n  0xaa = rsf_fwd(0
+ x11\, {0x11\, 0x22}\, {0x11\, 0x22\, 0x33}\, {0x11\, 0x22\, 0x33\, 0x44}) 
+ [eight_struct_args_rust]\n  rsf_ret_struct(0x0\, {0x11\, 0x11}\, 0x11) [ei
+ ght_struct_args_rust]\n  0xfffffdffc0356e80 = rust_helper_krealloc_node_al
+ ign(0x0\, 0x8\, 0x8\, 0xcc0\, 0xffffffff)\n  0x6f00000009 = rust_helper_kr
+ ealloc_node_align(0x0\, 0x10\, 0x8\, 0xcc0\, 0xffffffff)\n  0xf200006e0000
+ 0011 = rust_helper_krealloc_node_align(0x0\, 0x18\, 0x8\, 0xcc0\, 0xffffff
+ ff)\n  0x2500006e00000011 = rust_helper_krealloc_node_align(0x0\, 0x20\, 0
+ x8\, 0xcc0\, 0xffffffff)\n  0xaa = rsf_heap(0x11\, {0x11\, 0x22}\, {0x11\,
+  0x22\, 0x33}\, {0x11\, 0x22\, 0x33\, 0x44}) [eight_struct_args_rust]\n  0
+ x0 = rust_helper_krealloc_node_align(0x11\, 0x0\, 0x1\, 0x0\, 0xffffffff)\
+ n  0x0 = rust_helper_krealloc_node_align(0x11\, 0x0\, 0x1\, 0x0\, 0xffffff
+ ff)\n  0x0 = rust_helper_krealloc_node_align(0x11\, 0x0\, 0x1\, 0x0\, 0xff
+ ffffff)\n  0x0 = rust_helper_krealloc_node_align(0x11\, 0x0\, 0x1\, 0x0\, 
+ 0xffffffff)\n0x1 = _RNvCsdfZGIOKgjaD_22eight_struct_args_rust13write_handl
+ er(0xffffa64d1231\, 0x1\, 0x0) [eight_struct_args_rust]\n...\n```\n\n# Imp
+ lementation vs. ftrace funcgraph-args\n\nftrace's funcgraph-args (availabl
+ e since 6.x) captures 6 raw register values but:\n- Requires `-mfentry` (n
+ o Rust support)\n- No struct field expansion (just pointer addresses)\n- S
+ hared per-CPU ring buffer with preempt_disable per event\n- Under load: ev
+ ents silently overwritten/dropped\n- Stack-passed args (> 6) not captured\
+ n\nkcov-dataflow:\n- Per-task private mmap buffer (no contention\, no pree
+ mpt_disable)\n- Automatic struct field expansion from DWARF\n- All args in
+ cluding stack-passed (alloca'd at compile time)\n- Works on both C and Rus
+ t identically\n- Zero-copy consumer via mmap\n\n# Current Status\n\n- Repo
+ sitory (kernel + LLVM + rustc + selftests + CI):\n  https://github.com/ysk
+ zalloc/kcov-dataflow\n- CI (x86_64 + arm64\, 6 selftests):\n  https://gith
+ ub.com/yskzalloc/kcov-dataflow/actions\n- Tested on linux-next 7.2.0-rc3 w
+ ith custom clang/LLVM 23 and rustc 1.99-nightly\n- All selftests pass on b
+ oth x86_64 (KVM) and arm64 (native) Github CI\n\n# Why This Needs Face-to-
+ Face Discussion\n\n- This work crosses 3 communities (LLVM\, kernel\, Rust
+ -for-Linux) that rarely meet simultaneously.\n- The callback ABI\, optimiz
+ ation interaction\, and Rust pipeline decisions require input from all 3.\
+ n- LPC Toolchains Track is the only venue where clang/LLVM developers\, ke
+ rnel maintainers\, and Rust-for-Linux contributors are in the same room.\n
+ \n# References\n\n- LLVM RFC: https://discourse.llvm.org/t/rfc-sanitizerco
+ verage-add-fsanitize-coverage-trace-args-trace-ret/91026\n- LLVM PR: https
+ ://github.com/llvm/llvm-project/pull/201410\n- Kernel patch v3: https://lo
+ re.kernel.org/all/20260902-b4-kcov-dataflow-rfc-v3-v3-0-824609f279f5@est.t
+ ech/\n- arXiv paper: https://arxiv.org/pdf/2606.00455\n- LWN: https://lwn.
+ net/Articles/1092429/
+URL:https://lpc.events/event/20/contributions/2402/
+END:VEVENT
+END:VCALENDAR

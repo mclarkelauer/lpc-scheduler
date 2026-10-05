@@ -1,0 +1,718 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: LPC Refereed Track
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2345@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100000
+DTEND;TZID=Europe/Prague:20261005T104500
+SUMMARY:Untangling convoluted performance regression
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Jan Kara · https://lpc.events/event/20/c
+ ontributions/2345/\n\nIn this talk I will speak about a performance regres
+ sion in DB2 backup speed reported by one of SUSE's customer last year. Due
+  to various reasons the analysis was rather convoluted so I will go throug
+ h the dead ends we have explored as well as leads which eventually allowed
+  us to track down and fix the problem. Overall we demonstrate on a practic
+ al example how various tools for analyzing IO related performance regressi
+ ons can be used.
+URL:https://lpc.events/event/20/contributions/2345/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2344@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T104500
+DTEND;TZID=Europe/Prague:20261005T113000
+SUMMARY:The slab allocator sheaves post-mortem
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Vlastimil Babka · https://lpc.events/eve
+ nt/20/contributions/2344/\n\nSheaves are a new percpu caching layer for th
+ e Linux kernel's slab allocator (specifically\, its only remaining impleme
+ ntation\, SLUB). To some extent it's a return to the former SLAB implement
+ ation's percpu arrays (callled magazines in the original Bonwick's paper)\
+ , but avoiding the pitfalls that the SLAB implementation had\, thus attemp
+ ting to get the best of both SLAB and SLUB approaches.\n\nIn 6.18 sheaves 
+ were merged and enabled for maple node and VMA caches. Later  in 7.0 they 
+ were enabled for all caches and the original cpu slabs and cpu partial sla
+ bs caching layer was removed. This talk will discuss the new implementatio
+ n\, explain the tradeoffs involved\, the challenges and performance regres
+ sion reports encountered on the way. We'll also look at the lessons learne
+ d\, and ongoing/future work that the sheaves caching has enabled.
+URL:https://lpc.events/event/20/contributions/2344/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2351@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T120000
+DTEND;TZID=Europe/Prague:20261005T124500
+SUMMARY:Modern Developments with NFS in Linux
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Jeffrey Layton · https://lpc.events/even
+ t/20/contributions/2351/\n\nThe Linux Kernel's NFS server and client has b
+ een undergoing a lot of changes recently. This talk will cover some of the
+  latest developments in the Linux NFS Client and Server in the last few ye
+ ars. Including:\n\n- Dynamic threading\n- New iomodes (buffered\, direct a
+ nd dontcache)\n- Directory delegations\n- POSIX ACLs for NFSv4\n- Signed f
+ ilehandles\n- Delegated timestamps\n- Multigrain timestamps\n- Netlink upc
+ alls
+URL:https://lpc.events/event/20/contributions/2351/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2353@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T124500
+DTEND;TZID=Europe/Prague:20261005T133000
+SUMMARY:Modernizing Kernel Boot Options: Resolving cmdline and Bootconfig D
+ iscrepancies
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Masami Hiramatsu · https://lpc.events/ev
+ ent/20/contributions/2353/\n\nThe current Linux kernel command-line subsys
+ tem is very simple and easy to define\, but it seems to have several probl
+ ems\, such as inconsistent API naming\, drivers and the kernel sharing the
+  same command-line options\, and discrepancies between documentation and c
+ ommand-line option definitions. Furthermore\, some options require special
+  handling and cannot be supported by Bootconfig\, an extension of kernel c
+ ommand-line options\, but there is no way to indicate which options these 
+ are.\n\nThis session will present ideas for solving these problems\, or di
+ scuss whether to continue as is.
+URL:https://lpc.events/event/20/contributions/2353/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2346@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T150000
+DTEND;TZID=Europe/Prague:20261005T154500
+SUMMARY:Nova — Building an NVIDIA GPU Driver in Rust Upstream
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Danilo Krummrich\, John Hubbard · https:
+ //lpc.events/event/20/contributions/2346/\n\nNova is an open-source NVIDIA
+  GPU driver being developed entirely upstream from day one — and in Rust
+ . This talk presents the current status and roadmap of the project\, descr
+ ibes the upstream development process\, and dives into the driver's archit
+ ecture and how Rust shapes it.\n\nOn the technical side\, we present Nova'
+ s architecture: the split into nova-core\, nova-drm\, vGPU support\, and f
+ wctl\, the rationale behind this decomposition\, and how the components in
+ teract across bare-metal and virtualized environments. We follow up with i
+ mplementation details showing how Rust's type system and ownership model h
+ elp enforce the boundaries between these components at compile time in the
+  context of the driver model and the DRM subsystem — and show why the DR
+ M subsystem provides a challenge in this regard.\n\nFinally\, we examine t
+ he Hardware Abstraction Layer (HAL) architecture common in GPU drivers\, w
+ here multiple generations of hardware must be supported through composable
+  abstraction layers. We discuss how Rust's trait system and generics provi
+ de stronger compositional guarantees than C when building and maintaining 
+ these layered abstractions.
+URL:https://lpc.events/event/20/contributions/2346/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2347@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T154500
+DTEND;TZID=Europe/Prague:20261005T163000
+SUMMARY:Long-term latency monitoring of real-time Linux systems
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Jan Altenberg · https://lpc.events/event
+ /20/contributions/2347/\n\nWith the PREEMPT_RT configuration being merged 
+ for the 6.12 release a milestone of a twenty years lasting journey was rea
+ ched: Linux officially became an RTOS! During that time many technical iss
+ ues have been resolved and many features have been added that made Linux e
+ ven better even for non real-time users. A specific challenge which had to
+  be tackled was testing and proving the real-time behavior. While for clas
+ sical RTOSes traditionally a path analysis was carried out\, this is close
+  to impossible for a modern operating system such as Linux - not just beca
+ use of the complexity of the software: Modern processors do come with a lo
+ t of performance with the price of being non-deterministic due to several 
+ levels of caches\, speculation engines and other techniques. As a result t
+ he real-time behavior of modern systems has to be evaluated. This is why t
+ he OSADL QA Farm was born\, doing comparable measurements on a huge variet
+ y of systems collecting long-term data to prove stability in the field. Bu
+ t even after 20 years of operation work is not done yet. Linux is evolving
+  rapidly and the test scenarios (also for real-time) have to adopt. Apart 
+ from that Open Source RTOSes are also approaching small processors. This i
+ s why the OSADL QA Farm was recently extended with Zephyr tests.\nThis pre
+ sentation gives an overview on best practices for evaluating the real-time
+  behavior of Linux (and other) systems\, sharing the experience from the O
+ SADL QA Farm. It also wants to serve as a basis for discussion on how meas
+ urements shall be carried out in future and how data can be efficiently sh
+ ared.
+URL:https://lpc.events/event/20/contributions/2347/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2352@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T170000
+DTEND;TZID=Europe/Prague:20261005T174500
+SUMMARY:Firmware-mediated accelerators for edge AI
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Tomeu Vizoso · https://lpc.events/event/
+ 20/contributions/2352/\n\nA well-represented class of accelerators for AI 
+ in edge deployments aren't programmed directly by the Linux kernel in the 
+ host CPU\, but by firmware running on a companion core.\n\nDuring the firs
+ t half of 2026 alone\, we have seen three different drivers submitted to t
+ he mailing list for this specific type of hardware\, by their respective v
+ endors or on their behalf (TI C7x\, NXP Neutron and Qualcomm QDA).\n\nThis
+  talk will describe in detail a proposal that aligns with the upstreaming 
+ requirements in the drm/accel subsystem and streamlines the functionality 
+ that is needed inside the Linux kernel and the UAPI. The architecture will
+  be described in detail: firmware\, kernel and userspace.\n\nAn important 
+ benefit of the approach is that users will be able to accelerate their wor
+ kloads without having to integrate any vendor BSPs or vendor-specific soft
+ ware.
+URL:https://lpc.events/event/20/contributions/2352/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2355@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T174500
+DTEND;TZID=Europe/Prague:20261005T183000
+SUMMARY:20 years of pahole : alive and kicking!
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Alan Maguire\, Arnaldo Carvalho de Melo 
+ · https://lpc.events/event/20/contributions/2355/\n\nThe first cset for p
+ ahole is from October 24\, 2006\, a long time ago\, from the first goals o
+ f helping reorganize the Linux kernel networking data structures\, that wa
+ s done beyond my expectations\, helping countless open source projects to 
+ view its data structures with great precision and flexibility\, to becomin
+ g a swiss army knife tool to convert type information from DWARF to CTF an
+ d\, crucially\, to BTF\, becoming part of the kernel build process to enab
+ le BPF CO-RE\, it has kept earning its keep.\n\nRecent advances in DWARF t
+ ag and language support\, plus features that exist but aren't well publici
+ zed\, are subjects I want to communicate.\n\nCoverage analysis\, a quickly
+  growing set of regression tests\, support for DWARF tags for C++ and Rust
+  concepts\, support for DWZ\, partial units\, supporting modern DWARF pres
+ ent in distro userlands are topics of recent improvement that\, by the 20t
+ h anniversary\, will surely be ready to talk about.\n\nIntegration with pe
+ rf\, namely in having pahole and perf work together in areas such as data-
+ type profiling has been a perennial source of requests that\, by now\, wit
+ h some help from new and controversial friends\, should finally become a r
+ eality.
+URL:https://lpc.events/event/20/contributions/2355/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2348@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T100000
+DTEND;TZID=Europe/Prague:20261006T104500
+SUMMARY:RCU Pseudo-Transactions: Bridging the gap between RCU and STM
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Mathieu Desnoyers · https://lpc.events/e
+ vent/20/contributions/2348/\n\nRCU data structures are notoriously complex
+  to design mainly due to the\nneed to carefully manage how mutations are m
+ ade observable to concurrent\nreaders.\n\nAs a general solution to this pr
+ oblem\, I am proposing a novel\ntransaction-based synchronisation mechanis
+ m: "RCU Pseudo-Transactions"\n(rcu_txn).\n\nIt applies both to userspace a
+ nd kernel. It allows publishing complex\ndata structure mutations atomical
+ ly to RCU readers\, and synchronizing\nupdates from multiple writers\, wit
+ h minimal overhead on the read-side\n(low-bit pointer tag check\, predicte
+ d branch on rcu_dereference)\, and no\nsize overhead on the data structure
+  nodes. It is composable: an object\ncan belong to multiple transaction-aw
+ are data structures\, and\ntransactions allow it to become visible (or hid
+ den) atomically.
+URL:https://lpc.events/event/20/contributions/2348/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2356@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T104500
+DTEND;TZID=Europe/Prague:20261006T113000
+SUMMARY:Checkpoint/Restore for RDMA: Saving and Restoring Live Queue Pairs 
+ with CRIU
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Raphael Norwitz · https://lpc.events/eve
+ nt/20/contributions/2356/\n\nRDMA delivers high-throughput\, low-latency n
+ etworking by bypassing the kernel and letting applications communicate dir
+ ectly with the hardware. CRIU\, by contrast\, works by freezing running pr
+ ocesses and serializing their state so they can be restored later. Bringin
+ g the two together is difficult precisely because of what makes RDMA fast:
+  RDMA bypasses the kernel abstractions CRIU would normally use to checkpoi
+ nt. CRIU already migrates live TCP connections but relies on filesystem at
+ tributes and a hook in the socket interface. RDMA is conceptually similar 
+ but the interfaces required to save/restore look very different. Our work 
+ aims to close this gap with an approach we demonstrate on NVIDIA ConnectX 
+ and BlueField devices using existing SRIOV VF migration support\, as well 
+ as on RXE/Soft-RoCE. In both cases the RDMA connection survives checkpoint
+ /restore intact: when peers are checkpointed together\, the connection is 
+ never torn down and neither side sees QP errors or forced reconnects.\n\nT
+ his matters most for machine learning\, where RDMA carries communication f
+ or large distributed training and inference jobs that are expensive to sta
+ rt and stop. The ability to checkpoint and restore these jobs enables defr
+ agmenting a cluster to improve utilization\, recovering seamlessly from ha
+ rdware failures\, time-sharing expensive resources between seasonal worklo
+ ads (for example\, inference by day and training by night)\, and migrating
+  jobs to cheaper resources as availability changes. It also standardizes t
+ he save/restore workflow across frameworks\, simplifying resource manageme
+ nt for infra owners. Crucially\, these jobs typically run on bare metal\, 
+ so virtual machine live migration—the main existing alternative—will n
+ ot be adopted by many would-be users.\n\nTo get there\, the talk will firs
+ t propose the concrete kernel interfaces required to support checkpoint/re
+ store for RDMA\, and explain how our implementation in CRIU uses them to c
+ heckpoint and restore a connection. Then we will then turn to mlx5\, which
+  has supported live migrating RDMA connections inside of QEMU VMs for some
+  time. By reusing the same device capabilities and firmware APIs that alre
+ ady power SRIOV VM live migration\, we show how realistic machine learning
+  workloads can be checkpointed and restored on Linux using networking hard
+ ware available today.
+URL:https://lpc.events/event/20/contributions/2356/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2358@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T120000
+DTEND;TZID=Europe/Prague:20261006T124500
+SUMMARY:Improving kernel test coverage using stress-ng
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Colin King · https://lpc.events/event/20
+ /contributions/2358/\n\nThe Linux kernel is constantly growing and evolvin
+ g\; unfortunately\, corner-case regressions can creep into code in every r
+ elease. Gcov test coverage can find infrequently used code paths that may 
+ contain issues. This presentation discusses how such techniques are used t
+ o improve kernel testing with stress-ng and the challenges in reaching ful
+ l test coverage.
+URL:https://lpc.events/event/20/contributions/2358/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2359@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T124500
+DTEND;TZID=Europe/Prague:20261006T133000
+SUMMARY:Rust SPDM in the Kernel
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Alistair Francis · https://lpc.events/ev
+ ent/20/contributions/2359/\n\n[Security Protocols and Data Models (SPDM)](
+ https://www.dmtf.org/standards/spdm) is used for authentication\, attestat
+ ion and key exchange. SPDM is generally used over a range of  transports\,
+  such as PCIe\, MCTP/SMBus/I3C\, ATA\, SCSI\, NVMe or TCP.\n\nFrom the ker
+ nels perspective SPDM is used to authenticate and attest devices.  In this
+  threat model a device is considered untrusted until it can be verified  b
+ y the kernel and userspace using SPDM. As such SPDM data is untrusted data
+  that is possibly from a mallicious device. The SPDM specification is also
+  complex\, with the 1.2.1 spec being almost 200  pages and the 1.3.0 spec 
+ being almost 250 pages long.\n\nAs such we have the kernel parsing untrust
+ ed responses from a complex specification\, which sounds like a possible e
+ xploit vector. This is the type of place where Rust excels!\n\nOver the la
+ st few years there has been gradual momentum building for SPDM support in 
+ the kernel and an implementation written in Rust. This implementation is i
+ n charge of authenticating and attesting untrusted and potentially malicio
+ us devices in the kernel using Rust code. The kernel also needs to allow u
+ serspace to apply security policies and allow remote verifiers to verify t
+ he running system\, even with a possible malicious kernel.\n\nThis talk is
+  going to cover the current status of the SPDM Rust implementation\, how a
+ nd why we got here and then discuss next steps for getting it merged into 
+ mainline.\n\nIt's not even over once SPDM is supported in the kernel thoug
+ h\, as there are a range of more complex features that need to be supporte
+ d. We can also talk about future features and what they might look like\, 
+ ensuring we don't step on any PCI TSM feet.
+URL:https://lpc.events/event/20/contributions/2359/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2349@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150000
+DTEND;TZID=Europe/Prague:20261006T154500
+SUMMARY:Virtio-GPU for Automotive: Implementing Libkrun + Vhost-User.
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Dorinda Bassey · https://lpc.events/even
+ t/20/contributions/2349/\n\nAutomotive hardware architectures are consolid
+ ating standalone Electronic Control Units (ECUs) into centralized compute 
+ platforms. A major challenge in this architecture is safely and efficientl
+ y sharing a single GPU across multiple isolated virtual machines. For exam
+ ple\, systems must run critical instrument clusters\, infotainment setups\
+ , and ADAS pipelines simultaneously without risking cross-domain interfere
+ nce.\n\nThis presentation tackles this challenge by introducing an archite
+ cture that combines libkrun\, a process-based KVM virtualization library\,
+  with the vhost-user protocol to split device emulation into separate proc
+ esses. By executing the virtio-gpu backend independently via virglrenderer
+ \, this approach achieves fault isolation\, zero-copy transfers\, and a re
+ duced attack surface compared with traditional Type-1 hypervisors. We have
+  implemented headless GPU compute acceleration\, verified using AMD Radeon
+  graphics via virgl\, allowing offscreen rendering and ADAS sensor preproc
+ essing. We have also implemented software scanout display output using the
+  gfxstream backend\, with DMABUF zero-copy scanout for virglrenderer in pr
+ ogress.\n\nHowever\, productizing this architecture has revealed concrete 
+ specification gaps\, where the virtio-gpu specification and Linux kernel i
+ mplementation diverge. During our ongoing implementation of display output
+  paths\, such as UPDATE and cursor paths\, we encountered some blockers wh
+ ere the written specification and the kernel driver handle headless state 
+ and display configurations differently.\n\nThis talk focuses on two concre
+ te topics from our implementation experience:\n\n1. Spec vs. Kernel Realit
+ y on Headless Operation: The Virtio-GPU Spec (v1.4 §5.7.4) requires a min
+ imum of 1 scanout\, yet the Linux kernel (virtgpu_kms.c) gracefully accept
+ s and handles 0. We will discuss how to reconcile the specification to nat
+ ively support headless\, compute-only automotive workloads without forcing
+  VMMs to waste resources on dummy display allocations.\n2. Display Output 
+ & Device Infrastructure in libkrun: We will present the two GPU display sc
+ anout paths we are implementing: Software scanout via gfxstream (pixel cop
+ y in message payload) and DMABUF zero-copy scanout via virglrenderer and a
+ lso covering their tradeoffs in latency\, memory usage\, and backend compa
+ tibility. We will discuss how implementing GPU display support required ad
+ ding generic SHMEM region mapping and BACKEND_REQ protocol features to lib
+ krun's vhost-user framework\, and how this infrastructure then enabled sup
+ port for other vhost-user devices like virtio-media (camera/decoder passth
+ rough) with minimal additional effort.\n\nEventually\, we want to engage k
+ ernel maintainers\, virtio specification editors\, and VMM developers to d
+ iscuss how the specification and its implementation can be improved to bui
+ ld a way forward for automotive virtualized graphics.\n\nSession Timeline 
+ & Core Discussion Points (45 Minutes)\n\n* Architecture & Status (10 mins)
+ : High-level overview of the libkrun + vhost-user-gpu stack\, where it sta
+ nds relative to Type-1 hypervisors\, and a status update on PR #717 (worki
+ ng headless compute vs. pending display paths).\n* Spec vs. Kernel: num_sc
+ anouts Divergence (20 mins): Open discussion on the conflict where the ker
+ nel accepts num_scanouts == 0 while the spec forbids it. Questions: Should
+  the spec be amended to support headless operation? Should the kernel enfo
+ rce spec compliance? When spec and implementation conflict\, which is auth
+ oritative? What are the implications for VMM developers and automotive use
+  cases?\n* Display Output & Device Infrastructure in libkrun (10 mins): Th
+ e two GPU scanout paths: Software scanout (gfxstream\, full-frame pixel co
+ py) vs DMABUF zero-copy (virglrenderer\, FD passing via SCM_RIGHTS)\, thei
+ r tradeoffs and current status. How implementing GPU display required addi
+ ng generic SHMEM region and BACKEND_REQ protocol support to libkrun\, whic
+ h then enabled vhost-user support for virtio-media with minimal additional
+  work.\n* Q&A and Upstream Planning (5 mins)
+URL:https://lpc.events/event/20/contributions/2349/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2357@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T154500
+DTEND;TZID=Europe/Prague:20261006T163000
+SUMMARY:The State of the Kconfig Ecosystem
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Julian Braha · https://lpc.events/event/
+ 20/contributions/2357/\n\n**Part 1: Tooling**\nResearchers continue to be 
+ fascinated by the Linux kernel’s usage of Kconfig\, and academic papers 
+ have been regularly published on it for almost 20 years now. And with thes
+ e papers often comes tools. Some examples include detecting dead configura
+ tion options\, unmet dependency bugs\, and generating config files that co
+ mpile affected lines of C code from patches\, among many others. We take a
+  look at which tools are still being maintained post-publication\, and dis
+ cuss interesting tools that have since been abandoned. Can they be picked 
+ up by the open source community? And what kind of tooling is still missing
+ ?\n\n**Part 2: The Many Implementations of Kconfig**\nKconfig\, a language
+  originally introduced for use in the Linux build system\, has grown to ov
+ er 200\,000 lines of usage in Linux itself\, and has been adopted by many 
+ other open source projects\, like coreboot\, BusyBox\, Zephyr\, and more. 
+ However\, Kconfig does not have a specification like other languages\, and
+  is implemented differently in each of these projects that uses it. We tak
+ e a look at how these implementations differ\, and discuss the feasibility
+  of a unified spec and implementation.
+URL:https://lpc.events/event/20/contributions/2357/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2363@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T170000
+DTEND;TZID=Europe/Prague:20261006T174500
+SUMMARY:Devicetree-ACPI hybrid mode
+LOCATION:Small Hall\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Hans de Goede · https://lpc.events/event
+ /20/contributions/2363/\n\nCurrently when booting in Devicetree mode the k
+ ernel will fully disable the ACPI subsystem. On WoA Snapdragon laptops whe
+ re the factory Windows OS actually boots using the ACPI tables this is not
+  necessarily desirable.\n\nThe purpose of this session is to present and d
+ iscuss a proposal for a new DT-ACPI hybrid mode\, in which while booting w
+ ith Devicetree:\n\n1. The ACPI tables are still parsed and ACPI fwnodes ar
+ e made available for device-drivers to use for (extra) information.\n\n2. 
+ Some devices may even be fully enumerated through ACPI e.g. enumerate I2C 
+ clients through ACPI for an I2C controller which itself is described in DT
+ .\n\n3. Going futher: use ACPI GPIO-IRQ event handlers + I2C opregion supp
+ ort to let ACPI handle a laptops embedded controller connected over I2C an
+ d using the ACPI battery device (backed by the EC) to expose battery state
+  information in a laptop-model agnostic way like how laptop batteries are 
+ handled on x86 laptops.\n\nNote on current laptops Linux cannot boot using
+  ACPI due to some information missing from the ACPI tables. People are wor
+ king on changing this so that for future WoA Snapdragon laptops Linux can 
+ boot using ACPI only without requiring Devicetree.\n\nAn early [RFC patch-
+ series][1] implementing 1. + 2. has been posted upstream.\n\n  [1]: https:
+ //lore.kernel.org/linux-acpi/20260623145225.143218-1-johannes.goede@oss.qu
+ alcomm.com/
+URL:https://lpc.events/event/20/contributions/2363/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2406@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T090000
+DTEND;TZID=Europe/Prague:20261007T094500
+SUMMARY:TAB Q&A
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Dave Hansen\, David Hildenbrand\, Greg Kr
+ oah-Hartman\, Julia Lawall\, Kees Cook\, Miguel Ojeda\, Shuah Khan\, Steve
+ n Rostedt\, Theodore Ts'o · https://lpc.events/event/20/contributions/240
+ 6/\n\nThe Linux Foundation Technical Advisory Board (TAB) represents Linux
+  Kernel project interests to the Linux Foundation. It also uses the pooled
+  influence of its elected members to support the long term health of the p
+ roject.\n\nThis open forum / panel discussion is an opportunity to learn a
+ bout and discuss TAB initiatives and ongoing project needs.
+URL:https://lpc.events/event/20/contributions/2406/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2350@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T100000
+DTEND;TZID=Europe/Prague:20261007T104500
+SUMMARY:Cryptographic Proofs of Personhood: Solving the Kernel Web of Trust
+  Problem in a Privacy-Preserving Manner
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Drummond Reed\, Glenn Gore\, Hart Montgom
+ ery · https://lpc.events/event/20/contributions/2350/\n\nIn any open sour
+ ce software project\, maintainer identity is becoming a critical problem. 
+  How can you be confident that someone contributing a patch (or PR) is not
+  a malicious adversary?  Attacks like the XZUtils compromise have heighten
+ ed the concern around this sort of software supply chain attack\, and the 
+ “North Korean developer” problem plagues both companies and open sourc
+ e projects.\n\nToday\, the kernel uses the kernel.org PGP web of trust to 
+ mitigate this problem.  However\, the technology that is used is outdated\
+ , leading to a system that is neither scalable nor private.  In this talk\
+ , we propose using a system built on cryptographic proofs of personhood as
+  a better alternative for a cryptographic web of trust.  Informally speaki
+ ng\, cryptographic proofs of personhood allow us to build a decentralized\
+ , private reputation system\, giving us all of the power of the existing w
+ eb of trust\, plus a whole new suite of functionalities.\n\nWe will explai
+ n the cryptographic principles behind proofs of personhood at a high level
+  in a way that non-cryptographers can understand.  Then\, we will explain 
+ how this technology can be applied to solve the web of trust problem.  Fin
+ ally\, we will demonstrate a fully functional\, large implementation of pr
+ oofs of personhood using entirely open source technology (standards and co
+ de) hosted in Linux Foundation Decentralized Trust. The demonstration will
+  show that such a solution is ready to be adopted by kernel.org for the we
+ b of trust.
+URL:https://lpc.events/event/20/contributions/2350/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2362@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T104500
+DTEND;TZID=Europe/Prague:20261007T113000
+SUMMARY:A Loadable Crypto Module for FIPS Certification
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Jay Wang · https://lpc.events/event/20/c
+ ontributions/2362/\n\nMany organizations require US Federal Information Pr
+ ocessing Standard (FIPS) certification of the crypto code they are running
+ . The certification process is lengthy (typically 12–18 months)\, but th
+ e bigger problem is that the way the crypto subsystem is built into the ke
+ rnel makes the result unable to be reused across kernel updates. This is b
+ ecause FIPS certification is granted at the binary level by [NIST](https:/
+ /en.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology). In
+  current kernels\, the crypto subsystem is built directly into the main ke
+ rnel image\, so even a non-crypto kernel update — a scheduler fix\, a dr
+ iver addition — produces a new binary and invalidates the existing certi
+ fication. Distributions are then forced through the full validation cycle 
+ again\, making it extremely difficult to deliver timely kernel updates whi
+ le maintaining FIPS compliance.\n\nThis talk presents a solution that has 
+ shipped in kernel 6.18 on Amazon Linux 2023 and is covered in an [LWN.net 
+ feature article](https://lwn.net/Articles/1073759/): decoupling the crypto
+  subsystem from the main kernel and building it as a separate loadable mod
+ ule. The module\, rather than the entire kernel\, becomes the unit of cert
+ ification. A subsequent kernel update that does not touch the module leave
+ s the existing certification intact\, and loading that certified module on
+ to the updated kernel makes it FIPS-compliant automatically. When the cryp
+ to code itself needs updating\, a new module can be submitted for certific
+ ation while users continue running the previously certified one on newer k
+ ernels\; the old module acts as a bridge\, so users never have to choose b
+ etween an updated kernel and FIPS compliance.\n\nWhile the existing kernel
+ 's module system already allows code to live outside the main kernel\, thi
+ s talk will present why the same approach cannot simply be used here\, wha
+ t falls short\, and how the approach overcomes these obstacles in its desi
+ gn and implementation as shipped in production. It will also discuss what 
+ it needs to be as a unified upstream foundation that distributions can cus
+ tomize to satisfy different certification setting requirements.\n\n**Refer
+ ences:**\n\n- Patch series: https://lwn.net/ml/all/20260418002032.2877-1-w
+ anjay@amazon.com/\n- LWN article: https://lwn.net/SubscriberLink/1073759/9
+ 5b3d4cd28506836/\n- AWS compute blog: https://aws.amazon.com/blogs/compute
+ /introducing-modularized-kernel-cryptography-in-amazon-linux/
+URL:https://lpc.events/event/20/contributions/2362/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2361@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T120000
+DTEND;TZID=Europe/Prague:20261007T124500
+SUMMARY:From CVE to Fix in Minutes: AI-Augmented Security Lifecycle Managem
+ ent for Linux Distributions
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Kanishk Bansal · https://lpc.events/even
+ t/20/contributions/2361/\n\n# Linux Plumbers Conference 2026 — Proposal\
+ n\n---\n\n## Recommended Track\n\n**Distributions Microconference**\n\n> *
+ *Why this track:** The proposal centers on distro-level CVE lifecycle mana
+ gement — scanning\, triage\, patching\, backporting\, and release engine
+ ering — which sits squarely in the Distributions MC's scope. It addresse
+ s pain points shared by every LTS distro maintainer (Debian\, Fedora\, ope
+ nSUSE\, Alpine\, etc.) and invites cross-distro collaboration on AI-assist
+ ed tooling.\n>\n> **Alternative tracks (if Distributions MC is not availab
+ le):**\n> - *Security MC* — the CVE rescoring methodology and SLA-driven
+  release model are directly relevant.\n> - *Tooling MC / Refereed Track* 
+ — the AI backporting agent and automated review pipeline are novel devel
+ oper tooling contributions.\n\n---\n\n## Title\n\n**From CVE to Fix in Min
+ utes: AI-Augmented Security Lifecycle Management for Linux Distributions**
+ \n\n---\n\n## Abstract\n\nEvery day\, hundreds of new CVEs are disclosed. 
+ For Linux distribution maintainers\, the challenge is not *whether* vulner
+ abilities will arrive — it is how fast you can triage\, patch\, test\, a
+ nd ship fixes **at scale**. This session presents a production-proven\, en
+ d-to-end pipeline that automates the full CVE lifecycle for a Linux distri
+ bution serving millions of deployed systems.\n\nWe cover five key stages a
+ nd the design decisions behind each:\n\n### 1. Detection & Ingestion\nCVEs
+  are continuously ingested from the National Vulnerability Database and cr
+ oss-referenced against distro-specific package versions using scanning pip
+ elines. Raw CVE feeds are noisy\, so an automated triage layer checks whet
+ her a CVE actually affects the distribution by examining build configurati
+ ons\, internal dependency graphs\, and shipped code paths.\n\n### 2. Distr
+ o-Specific Rescoring\nUpstream CVSS scores frequently misrepresent actual 
+ risk for a given distribution. We present a principled methodology for **r
+ escoring CVEs against your own build configuration and hardening posture**
+  — a vulnerability rated HIGH upstream may genuinely be LOW risk due to 
+ compiler flags (`-fstack-protector-strong`\, `-D_FORTIFY_SOURCE=2`)\, disa
+ bled features\, or sandboxing that neutralizes the attack vector. This dir
+ ectly combats alert fatigue and misallocated engineering effort.\n\n### 3.
+  Automated Patching & AI-Powered Backporting\nOnce a CVE is confirmed\, th
+ e pipeline automatically attempts the fix — preferring minor version (pa
+ tch-level) upgrades when available\, falling back to cherry-picking upstre
+ am patches. When neither works cleanly\, an **AI-powered SWE (Software Eng
+ ineering) Agent** backports patches to the distro's specific version\, res
+ olving merge conflicts\, adapting to API renames\, struct layout changes\,
+  and conditional compilation differences. The agent operates in an iterati
+ ve build-feedback loop: apply patch → build → analyze errors → refin
+ e — producing a complete\, buildable patch set with full provenance.\n\n
+ **Case studies we'll share:**\n- Patches requiring adaptation across 3+ ma
+ jor version gaps\n- Handling renamed functions and refactored code paths\n
+ - Fallback strategies when AI backporting fails and how we route to human 
+ experts with maximum context\n\n### 4. Automated Review Pipeline\nReviewin
+ g CVE patches is one of the most time-consuming bottlenecks in distro main
+ tenance (15–30 min per PR). We built a **multi-stage automated review pi
+ peline** that reduces human review time to ~1 minute:\n\n| Stage | Method 
+ | What It Checks |\n|-------|--------|-----------------|\n| Spec Validatio
+ n | Deterministic | Version bumps\, patch declarations\, changelog format\
+ , signature updates |\n| Build Log Analysis | Heuristic | Errors\, warning
+ s\, test failures from CI |\n| Semantic Patch Comparison | LLM-driven | Cl
+ assifies match against upstream fix (exact / minor diff / clean backport /
+  significant divergence)\, generates risk score |\n| Structured Report | T
+ emplate (Jinja2) | Renders Markdown review posted directly to the PR |\n\n
+ We share accuracy metrics\, prompt engineering techniques for reliable sem
+ antic diff analysis\, and lessons learned from production deployment.\n\n#
+ ## 5. SLA-Driven Release Engineering\nWe enforce strict SLAs tied to sever
+ ity:\n\n| Severity | Fix SLA | Release Channel |\n|----------|---------|--
+ ---------------|\n| Critical | 5 business days | Fasttrack RPM release |\n
+ | High | 10 business days | Fasttrack RPM release |\n| Medium | 30 busines
+ s days | Monthly cadence |\n| Low | Next release | Monthly cadence |\n\nWe
+  share the operational framework for tying CVE severity to release cadence
+  and how end-to-end observability (CVE inflow trends\, severity distributi
+ on\, package hotspots\, fix throughput) enables data-driven security postu
+ re management.\n\n---\n\n## Why This Matters to the Plumbers Community\n\n
+ 1. **Reproducible\, Distro-Agnostic Blueprint** — The architecture (scan
+  → triage → rescore → patch → AI-backport → test → review → 
+ ship) is not tied to any single distribution. Maintainers of Debian\, Fedo
+ ra\, Alpine\, Gentoo\, or any custom enterprise distro can adopt the same 
+ pipeline patterns.\n\n2. **Tackles the Maintainer Shortage** — The Linux
+  ecosystem faces a chronic shortage of security-focused maintainers. By au
+ tomating 80%+ of the CVE lifecycle\, small teams can maintain the security
+  posture of a large distribution — directly addressing the sustainabilit
+ y crisis in open-source maintenance.\n\n3. **AI Backporting as a Shared Co
+ mmunity Tool** — We want to start a conversation about building a **comm
+ unity-maintained backporting agent** that could serve multiple distributio
+ ns. Every LTS distro\, every stable kernel branch\, and every enterprise v
+ endor deals with backporting\; a shared tool benefits everyone.\n\n4. **Di
+ stro-Specific Rescoring Should Be Standard Practice** — Most organizatio
+ ns blindly consume upstream CVSS scores. We propose a methodology that any
+  distro can adopt to prioritize what truly matters for *their* configurati
+ on.\n\n5. **Faster Backporting = Smaller Exposure Windows** — AI-assiste
+ d backporting means vulnerabilities are patched sooner in stable releases\
+ , directly improving security for billions of deployed systems.\n\n---\n\n
+ ## Session Format\n\n**Preferred:** 30-minute presentation + 15-minute dis
+ cussion\n**Alternate:** 20-minute presentation (can condense to focus on b
+ ackporting agent + review pipeline)\n\nWe can provide a **live demo** of:\
+ n- The automated patching pipeline processing a real CVE\n- The AI backpor
+ ting agent resolving a non-trivial merge conflict\n- The review pipeline g
+ enerating a structured review report\n- The CVE observability dashboard\n\
+ n---\n\n## Discussion Topics for the Microconference\n\nIf accepted as par
+ t of a broader discussion slot\, we'd like to explore:\n\n- Could distros 
+ share a common AI backporting agent\, and what would the interface/API nee
+ d to be?\n- How do other distros handle the tension between automated patc
+ hing speed and review thoroughness?\n- What test infrastructure is needed 
+ to validate AI-generated patches with high confidence?\n\n---\n\n## Speake
+ r Bio\n\nKanishk Bansal is a Software Engineer working on Azure Linux dist
+ ribution security infrastructure at Microsoft. His work spans CVE triage\,
+  AI-powered patch backporting\, and intelligent code review systems for a 
+ production Linux distribution. He is passionate about applying AI to the c
+ ritical but under-resourced work of open-source supply chain security.\n\n
+ ---
+URL:https://lpc.events/event/20/contributions/2361/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2360@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T124500
+DTEND;TZID=Europe/Prague:20261007T133000
+SUMMARY:BPF_PROG_TEST_RUN: the hidden perils of testing.
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Lucas Castanheira\, Theophilus Benson · 
+ https://lpc.events/event/20/contributions/2360/\n\n`BPF_PROG_TEST_RUN` has
+  been a crucial tool for testing eBPF programs. Although it has been instr
+ umental for XDP\, as BPF spreads to other hookpoints (e.g.\, TC\, sock_ops
+ \, struct_ops) that rely on complex data structures such as the SKB\, we f
+ ound that it provides an environment that diverges significantly from the 
+ kernel: it does not model these structures and instead defaults their stat
+ e to zero. This leads to unfaithful test replication and test cases that m
+ ay miss bugs that would occur in production. We verified three such scenar
+ ios in which a single zeroed field hides an entire branch of real kernel b
+ ehavior.\n\nA simple\, concrete instance is `skb->cloned`\, which the harn
+ ess hard-wires to zero so that every clone-branching helper only ever take
+ s its fast path. Testing against open-source eBPF programs\, we confirmed 
+ this produces silent semantic divergence: `bpf_skb_ecn_set_ce` returns suc
+ cess but never sets the CE bit when an skb is cloned and its IP header is 
+ unwritable: a path the harness cannot reach. The test therefore reports a 
+ pass while the corresponding production behavior differs\, illustrating ho
+ w one unmodeled bit lets both unit tests and verification tools built on `
+ BPF_PROG_TEST_RUN` overlook real bugs.
+URL:https://lpc.events/event/20/contributions/2360/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2354@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T150000
+DTEND;TZID=Europe/Prague:20261007T154500
+SUMMARY:When Embedded Codecs Meet Graphics
+LOCATION:South Hall 1 B\, Prague Congress Centre
+DESCRIPTION:LPC Refereed Track · Nicolas Dufresne · https://lpc.events/ev
+ ent/20/contributions/2354/\n\nIn the current Linux kernel\, video codecs s
+ plit into two categories. Accelerators built into GPUs are implemented as 
+ thin drivers with userspace components exposing APIs such as Vulkan Video 
+ or VA-API. Everything else falls under the Video4Linux kernel API. This fr
+ agmentation adds complexity for both kernel and userspace developers. VA-A
+ PI has stagnated and carries historical assumptions tied to Intel hardware
+ \, while Video4Linux\, despite remaining relevant and widely deployed\, ha
+ s an aging memory model and resource queue mechanism that limits modern us
+ e cases. Vulkan Video\, by contrast\, is actively developed and designed w
+ ith hardware-specific extensions in mind\, making it a strong candidate fo
+ r embedded use cases.\n\nThis talk proposes introducing a new class of emb
+ edded video codec drivers into Linux: thin\, vendor-specific drivers model
+ ed after GPU drivers\, where the V4L2 kernel API is replaced by Vulkan Vid
+ eo\, with the userspace driver implemented in Mesa. The goal is not to rei
+ nvent the wheel\, but to replace an aging one. Such an approach would brin
+ g better buffer management through existing DRM memory helpers\, modern ex
+ plicit synchronization primitives already used by GPU drivers\, and reduce
+ d kernel complexity by pushing codec-specific logic into userspace where i
+ t belongs.
+URL:https://lpc.events/event/20/contributions/2354/
+END:VEVENT
+END:VCALENDAR

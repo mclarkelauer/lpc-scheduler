@@ -1,0 +1,171 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: KVM MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2552@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T100000
+DTEND;TZID=Europe/Prague:20261006T103000
+SUMMARY:mmu_notifier: can we use it better?
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:KVM MC · Claudio Imbrenda · https://lpc.events/event/20/contr
+ ibutions/2552/\n\nKVM uses the mmu_notifier infrastructure to keep the gue
+ st mapping up to date. After having completely rewritten the memory manage
+ ment of KVM/s390 to use mmu_notifiers\, I have noticed some of the shortco
+ mings in how KVM uses the notifiers.\n\nSome of areas where KVM's usage of
+  the notifiers\, or the mmu_notifier infrastructure itself can be improved
+ :\n\n - passing the reason code to the KVM callback when unmapping\n - mor
+ e fine-grained reason codes\n - passing back flags from the notifier callb
+ ack\n\nI will show how and why each of the above points would be useful fo
+ r KVM with some concrete examples.
+URL:https://lpc.events/event/20/contributions/2552/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2555@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T103000
+DTEND;TZID=Europe/Prague:20261006T110000
+SUMMARY:Exploring KVM and SMMUv3 Stage-2 Page Table Sharing for arm64 pKVM
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:KVM MC · Mostafa Saleh · https://lpc.events/event/20/contribu
+ tions/2555/\n\nAs Protected KVM (pKVM) progresses on arm64\, achieving ful
+ l isolation requires hypervisor-controlled IOMMUs to prevent DMA attacks. 
+ While there has been progress on SMMUv3 support for pKVM via trap-and-emul
+ ate on the mailing list [1]\, a major architectural design question remain
+ s unresolved: managing the stage-2 translation tables.\n\nCurrently\, the 
+ series relies on maintaining a shadow stage-2 page tables for the SMMUv3.\
+ nArchitecturally\, it is possible to share these page tables between the C
+ PU and the SMMUv3 in a similar way the kernel does SVA for stage-1\, which
+  would reduce memory overhead. However\, KVM has different design constrai
+ nts than user-space processes\, and we are expected to run on a wide range
+  of hardware without introducing impractical limitations or assumptions br
+ ought by SVA.\n\n**Some of the main points:**\n- Dealing with page faults 
+ (Pinning\, BBM…)\n- IO TLB invalidation and DVM\n- Cache coherency of th
+ e IOMMU and page tables\n\nThe goal of this session is to discuss the viab
+ ility of shared stage-2 page tables and reach a path forward for DMA isola
+ tion on pKVM.\n\n[1] https://lore.kernel.org/all/20260501111928.259252-1-s
+ mostafa@google.com/
+URL:https://lpc.events/event/20/contributions/2555/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2551@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T110000
+DTEND;TZID=Europe/Prague:20261006T113000
+SUMMARY:How to support multiple backends for guest_memfd?
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:KVM MC · Ackerley Tng · https://lpc.events/event/20/contribut
+ ions/2551/\n\nTo improve performance of CoCo VMs\, there's active work on 
+ huge pages for guest_memfd. The first "backend" in the works for providing
+  huge pages is HugeTLB.\n\nFrank summarized interest in having devdax/ZONE
+ _DEVICE memory as another backend [1] for guest_memfd.\n\nIf guest_memfd i
+ s to be *the* guest memory provider of KVM\, it has to support (almost) an
+ y memory backend that can be configured in a memslot today through VMAs\, 
+ going beyond memory backends to other things can be mmap()-ed\, like perha
+ ps MMIO though VFIO.\n\nI would like to get ideas and feedback on how gues
+ t_memfd should be extended to support different backends.\n\nAre flags wha
+ t we really want to go with? Will we end up supporting many flags?  Using 
+ HugeTLB as an example\, flags/fields can encode use of HugeTLB\, HugeTLB p
+ age sizes\, but how would the HugeTLB mount be encoded? Should there be so
+ me way to encode size limits of the mount? Is that a required feature?\n\n
+ Could we perhaps reuse existing interfaces to communicate the memory confi
+ g to guest_memfd? What if we hand fds (opened on specific mounts) where gu
+ est_memfd can grab config from? Should guest_memfd perhaps use pre-allocat
+ ed memory from the fd?\n\n[1] https://lore.kernel.org/all/CAPTztWajm_JLpp9
+ BjRcX=h72r25ELrXeGkOXVachybBxLJGS=g@mail.gmail.com/
+URL:https://lpc.events/event/20/contributions/2551/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2553@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T120000
+DTEND;TZID=Europe/Prague:20261006T123000
+SUMMARY:In-Kernel Caretaker for Orphaned VMs
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:KVM MC · Pasha Tatashin · https://lpc.events/event/20/contrib
+ utions/2553/\n\nAs cloud infrastructure continues to push toward zero-down
+ time host maintenance\, extending the capabilities of kexec-based Live Upd
+ ate to minimize guest disruption is becoming increasingly critical. This p
+ roposal introduces the architectural concept of an "Orphaned VM"—a virtu
+ al machine that actively executes guest instructions on isolated physical 
+ hardware while completely decoupled from a host operating system or a VMM 
+ during a host reboot. This execution asymmetry is achieved by introducing 
+ the "Caretaker\," a specialized bare-metal primitive interpose layer that 
+ runs within the hypervisor's privileged hardware state to trap and resolve
+  some VM exits locally while the host kernel is offline. This session will
+  explore the mechanisms required to orchestrate this transition using the 
+ LUO\, focusing on how vcpufd structures are preserved across the reboot ga
+ p\, how physical CPUs are shielded from boot-time reset signals\, and how 
+ asynchronous hardware challenges like timekeeping drift\, stray interrupts
+ \, and guest-to-guest IPI routing are mitigated during the management gap.
+ \n\nRFC Reference & Discussion Thread: For full architectural background a
+ nd ongoing community feedback\, see the original mailing list discussion a
+ t https://lore.kernel.org/all/afEwWZksU0Fw61oT@plex
+URL:https://lpc.events/event/20/contributions/2553/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2554@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T123000
+DTEND;TZID=Europe/Prague:20261006T130000
+SUMMARY:Orphaned VMs: Which VM Exits can we handle?
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:KVM MC · Pratyush Yadav\, Tarun Sahu · https://lpc.events/eve
+ nt/20/contributions/2554/\n\nOrphaned VMs [0] is proposed to be the next e
+ volution of hypervisor live update. It relies on a specialized micro-hyper
+ visor\, called the Caretaker\, which handles VM Exits during the time betw
+ een old kernel shutting down and new kernel booting up. The Caretaker redu
+ ces the downtime observed by the VM during live update by servicing VM Exi
+ ts during this transition period.\n\nThe Caretaker is not a full hyperviso
+ r or VMM\, so it cannot service all the VM Exits. If it cannot handle a VM
+  Exit\, it must pause the VM and wait for the next kernel to take over. Th
+ e success of the Caretaker in reducing observed VM downtime relies on whic
+ h VM Exits it can and can't service\, and how frequently they occur.\n\nIn
+  this talk\, we will present the types and frequency of VM Exits observed 
+ under some sample workloads. We will also categorize the VM Exits into one
+ s which the Caretaker can handle and the ones which it can't.\n\nBy combin
+ ing the frequency of VM Exits and whether they can be handled\, we can est
+ imate observed VM downtime\, and decide how effective Orhpaned VMs can be.
+ \n\n[0] https://lore.kernel.org/all/afEwWZksU0Fw61oT@plex/
+URL:https://lpc.events/event/20/contributions/2554/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2632@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T130000
+DTEND;TZID=Europe/Prague:20261006T133000
+SUMMARY:KVM and Live Update
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:KVM MC · Paolo Bonzini\, Sean Christopherson · https://lpc.ev
+ ents/event/20/contributions/2632/\n\nDuring this session\, the maintainers
+  of KVM welcome discussion around other topics related to live update and 
+ the Caretaker that did not fit in the previous hour\, including:\n* guest_
+ memfd live update\n* stable ABI for live update\n* reusing the Caretaker c
+ oncept for pKVM\n\nThe above list is just a suggestion\, as we will take o
+ ther topics from the audience if there are any.
+URL:https://lpc.events/event/20/contributions/2632/
+END:VEVENT
+END:VCALENDAR

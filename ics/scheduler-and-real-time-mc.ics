@@ -1,0 +1,271 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Scheduler and Real-Time MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2602o@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T100000
+DTEND;TZID=Europe/Prague:20261007T100200
+SUMMARY:Introduction and Kickoff
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Vincent Guittot · https://lpc.ev
+ ents/event/20/contributions/2637/
+URL:https://lpc.events/event/20/contributions/2637/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602p@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T100200
+DTEND;TZID=Europe/Prague:20261007T102400
+SUMMARY:Enable runtime modification of nohz_full and managed_irq housekeepi
+ ng CPUs
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Waiman Long · https://lpc.events
+ /event/20/contributions/2568/\n\nBy using the cpuset isolated partition fu
+ nctionality in the Linux\nkernel\, users are now able to change the set of
+  "isolcpus[=domain]"\nHK_TYPE_DOMAIN housekeeping CPUs at runtime. This fe
+ ature is used by\nsome Kubernetes based container orchestration platforms 
+ to enable the\ncreation of containers running latency sensitive workloads 
+ like DPDK.\n\nDomain isolation by itself doesn't provide enough CPU isolat
+ ion\, so the\nsystem has to be booted with a set of boot-time enabled nohz
+ _full and\nmanaged_irq isolated CPUs which are then combined with runtime 
+ domain\nisolation to create the desired isolated CPUs for workloads that n
+ eed\nthem. There are some wasted system overhead to have boot-time isolate
+ d\nnohz_full and managed_irq CPUs that are not actually being used in\niso
+ lated cpuset partitons.\n\nEventually we would like to have nohz_full and 
+ managed_irq isolated\nCPUs created at runtime when they are needed. This t
+ alk is about the\nprogress we have made in this direction and additional f
+ uture works\nthat are needed to achieve this goal.
+URL:https://lpc.events/event/20/contributions/2568/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602q@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T102400
+DTEND;TZID=Europe/Prague:20261007T104600
+SUMMARY:Bringing Proxy Execution’s benefits to Userland / Futexes
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · John Stultz\, Suleiman <> Souhlal
+  · https://lpc.events/event/20/contributions/2569/\n\nMore and more we’
+ re seeing issues around priority (sometimes called performance) inversion 
+ of SCHED_NORMAL/BATCH tasks. Particularly if any sort of constraints are p
+ ut on “background” deprioritized tasks. These background tasks will ev
+ entually grab an important lock\, and then won’t be constrained and prev
+ ented from running for some extended period of time\, resulting in all the
+  important tasks becoming blocked waiting for them to release the lock. Si
+ nce the tasks are fair tasks\, the delays are not indefinite\, but they st
+ ill can be substantial and user visible.\n\nPI Futexes seem like a good so
+ lution here\, but the underlying rt_mutex behavior doesn’t help SCHED_NO
+ RMAL tasks as rt_mutex priority inheritance isn’t used between SCHED_NOR
+ MAL tasks since ~v5.10 or so. Further\, even on systems where kernels patc
+ h rt_mutexes do “nice inheritance” (as imperfect as that is) for NORMA
+ L tasks\, the strict rt_mutex handoff behavior results in pi-futex not per
+ forming as well as normal futexes.\n\nThus\, there is a desire to preserve
+  the performance characteristics of normal futexes\, while also providing 
+ priority inheritance to avoid priority/performance inversions.\n\nProxy Ex
+ ecution has been a feature in development for many years now\, which provi
+ des semantics similar to what is desired in this case. Proxy Execution wor
+ ks for in-kernel mutexes (and rw_sems)\, and provides priority-inheritance
+  without the strict handoff ordering and performance overhead that rt_mute
+ xes can cause.  For RT tasks\, rt_mutexes and their strict behavior is sti
+ ll important\, but for other sched-classes Proxy Execution provides much o
+ f the benefits without the costs.\n\nSo it would be nice to similarly enab
+ le futexes to benefit from Proxy Execution’s generalized form of priorit
+ y inheritance and avoid the negative performance impact of PI futexes.\n\n
+ Unfortunately\, the existing normal futex API is insufficient to be used w
+ ith Proxy Execution\, as when a task is blocked on a futex lock\, Proxy Ex
+ ecution has to understand who the owner of that lock is\, so they can be r
+ un to release the needed lock. Thus we need to find a way to extend the no
+ rmal futex API so that the lock owner is communicated to the kernel.\n\nPr
+ oxy Execution is not yet fully upstream\, so this discussion is a little p
+ remature\, but since uAPI is important to get right\, we wanted to start t
+ he discussion early so we can plan and work toward an acceptable solution.
+URL:https://lpc.events/event/20/contributions/2569/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602r@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T104600
+DTEND;TZID=Europe/Prague:20261007T110800
+SUMMARY:PREEMPT_RT: How a simple interface up event might break your realti
+ me
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Florian Bezdeka · https://lpc.ev
+ ents/event/20/contributions/2575/\n\nRealtimers know: Resource configurati
+ on for RT enabled systems is key. RT applications rely on a proper system 
+ configuration and expect this configuration to stay unmodified as long as 
+ the application is alive.\n\nAs it turned out\, Linux might silently recon
+ figure IRQ affinities of network adapters in a way that violates the expec
+ ted system configuration. While we run into this kind of problem in the ar
+ ea of networking first\, the\nproblem seems generic to all kind of "multi 
+ queue devices".\n\nWe ended up having two problematic situations:\n\n- RT 
+ applications (partially) breaking out of their previously requested system
+  configuration as Linux ignores previously requested affinities during rec
+ onfiguration\n- non RT applications polluting isolated (RT) CPU cores via 
+ IRQs\n\nAnd there is even more flexibility on the horizon already: The pro
+ per system\nconfiguration might not be known at boot time. Using container
+  runtimes for the deployment of RT applications requires an adaptive resou
+ rce management that might change IRQ affinities at runtime.\n\nIn this ses
+ sion we will showcase a couple of shortcomings related to resource managem
+ ent in the networking area. Starting with how network drivers are\nviolati
+ ng CPU isolation by implementing IRQ spreading\, we want to discuss\n\n - 
+ How do we close the gap between cgroups (cpuset controller) and the IRQ co
+ re?\n - How should we adjust all the affected drivers to honor the cgroup 
+ configuration?\n - What APIs are necessary to get there?
+URL:https://lpc.events/event/20/contributions/2575/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2636@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T110800
+DTEND;TZID=Europe/Prague:20261007T113000
+SUMMARY:Understanding differences in results between timerlat and cyclictes
+ t
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Tomas Glozar\, John Kacur\, Luis 
+ Goncalves · https://lpc.events/event/20/contributions/2636/\n\nThe propos
+ al is to discuss differences in results between timerlat and cyclictest an
+ d the reasons behind that. Once the reasons are understood\, ways to reduc
+ e the differences could be sought. In addition\, the discussion could incl
+ ude rtla feature parity with rt-tests\, as well as between different rtla 
+ tools (osnoise\, timerlat)\, and integrating rtla with other tools such as
+  perf.
+URL:https://lpc.events/event/20/contributions/2636/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602s@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T120000
+DTEND;TZID=Europe/Prague:20261007T122200
+SUMMARY:Remaining EEVDF scheduling latency and lag improvement
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Vincent Guittot · https://lpc.ev
+ ents/event/20/contributions/2570/\n\nRecent improvements have been made in
+  tasks ordering\, scheduling latency and lag of the fair/EEVDF scheduler b
+ ut some issues still remain and will involve more complex mechanisms. The 
+ talk will discuss possible solutions for a number of open issues:\nHow to 
+ fix the remaining out of range lag of tasks ?\nHow to further decrease the
+  scheduling latency ?\nHow to select the best CPU to minimize scheduling l
+ atency?
+URL:https://lpc.events/event/20/contributions/2570/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2574@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T122200
+DTEND;TZID=Europe/Prague:20261007T124400
+SUMMARY:Kernel Sched QoS Interface
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Qais Yousef · https://lpc.events
+ /event/20/contributions/2571/\n\nFollowing last year discussion about user
+ space assissted scheduling [1]\, schedqos utility is announced [2] and a p
+ roposal for kernel interface to help address one of the QoS issues folks s
+ ee in the wild\, DVFS and migration latencies\, was sent also [3].\n\nThe 
+ interface proposal is a simple extension to sched_attr\, but has the goal 
+ of being extensible without requiring further addition to sched_attr.\n\nS
+ ome of the key areas to discuss:\n\n1. Deprecatability: We want to end up 
+ with baggage ABI we don't want to carry forward if internals change and a 
+ QoS no longer make sense.\n2. Extensibility: We want to allow almost arbit
+ rary description of behavior without having to modify the interface.\n3. D
+ iscoverability: how can users know a set of QoS are available?\n\nCurrentl
+ y there are two proposed users\, rampup_multiplier to manage DVFS response
+  time\, and tag memory dependency between tasks for cache aware scheduling
+ .\n\nThe latter had interesting discussions about cookie management and wh
+ ether ownership should be in kernel space or userspace.\n\nWe will go thro
+ ugh all open questions and hope to come up with a plan of what to do next.
+ \n\n[1] https://lpc.events/event/19/contributions/2089/\n[2] https://lore.
+ kernel.org/lkml/20260415000910.2h5misvwc45bdumu@airbuntu/\n[3] https://lor
+ e.kernel.org/lkml/20260504020003.71306-9-qyousef@layalina.io/
+URL:https://lpc.events/event/20/contributions/2571/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602t@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T124400
+DTEND;TZID=Europe/Prague:20261007T130600
+SUMMARY:Energy-Aware Scheduling on x86 Hybrid Topologies: Latency Analysis 
+ and Idle CPU Selection
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Ricardo Neri · https://lpc.event
+ s/event/20/contributions/2574/\n\nDuring OSPM 2026\, there was an agreemen
+ t to stop requiring schedutil to enable EAS on x86 platforms\, which impli
+ es EAS may soon be active by default on these systems.\n\nEnergy-Aware Sch
+ eduling (EAS) places tasks by comparing estimated energy costs across perf
+ ormance domains\, directing light tasks to power-efficient cores on asymme
+ tric systems. The known trade-off is that EAS packing introduces runqueue 
+ contention when idle CPUs are available: tasks are packed onto fewer CPUs\
+ , and wakeups that land on already-busy CPUs incur queuing delay even when
+  other CPUs sit idle.\n\nThis talk uses quantitative wakeup latency decomp
+ osition on x86 hybrid platforms as a starting point to motivate making EAS
+  more aggressive in selecting idle CPUs. I examine where in find_energy_ef
+ ficient_cpu() idle-CPU preference can be strengthened without abandoning t
+ he energy-efficiency objective\, measure the resulting impact on tail late
+ ncy (p99+) and energy consumption via platform power counters\, and discus
+ s how the latency–power trade-off compares to the packing baseline.
+URL:https://lpc.events/event/20/contributions/2574/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602u@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T130600
+DTEND;TZID=Europe/Prague:20261007T132800
+SUMMARY:sparsemask: the missing generic plumbing and next step forward
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Prateek Nayak · https://lpc.even
+ ts/event/20/contributions/2573/\n\nAs CPU counts grow\, Linux scheduler sc
+ alability suffers from contention on global cpumasks — frequent atomic u
+ pdates to shared cachelines become a measurable bottleneck on large core-c
+ ount systems.\n\nTwo proposals address this: Steve Sistare's sparsmask\, w
+ hich distributes a cpumask across multiple cachelines to reduce contention
+  [1]\, and Peter Zijlstra's sbm (sparse bitmap) [2]\, a simpler\, topology
+ -aware evolution of the same idea. While sbm effectively eliminates cachel
+ ine ping-pong\, its generic infrastructure falls short in one critical are
+ a: CPU hotplug handling\, where topological information for offline CPUs m
+ ay be unavailable.\n\nThis talk covers:\n\n - **The gap**: shortcomings in
+  the generic sbm layer for hotplug scenarios\n - **Peter's proposal for x8
+ 6** to address the challenges with offline CPUs\, and what's still needed 
+ to make sparsemask truly generic\n - **A scheduler-native alternative**: a
+ n orthogonal sbm implementation scoped to the scheduler\, leveraging hotpl
+ ug callbacks to dynamically size sbm allocations.\n\nPrevious version of t
+ his work was posted at [3] and was discussed at LPC2025.\n\nReferences:\n\
+ n[1] https://lore.kernel.org/lkml/1541767840-93588-2-git-send-email-steven
+ .sistare@oracle.com/\n[2] https://lore.kernel.org/lkml/20260324120008.GB37
+ 38010@noisy.programming.kicks-ass.net/\n[3] https://lore.kernel.org/lkml/2
+ 0251208083602.31898-1-kprateek.nayak@amd.com/
+URL:https://lpc.events/event/20/contributions/2573/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602v@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T132800
+DTEND;TZID=Europe/Prague:20261007T133000
+SUMMARY:Wrap-up
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Scheduler and Real-Time MC · Vincent Guittot · https://lpc.ev
+ ents/event/20/contributions/2638/
+URL:https://lpc.events/event/20/contributions/2638/
+END:VEVENT
+END:VCALENDAR

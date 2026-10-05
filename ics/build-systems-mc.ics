@@ -1,0 +1,277 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Build Systems MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2582@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T100000
+DTEND;TZID=Europe/Prague:20261007T103000
+SUMMARY:The Supply Chain Attack on Buildsystems
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Build Systems MC · Alejandro Hernandez Samaniego · https://lp
+ c.events/event/20/contributions/2582/\n\nModern embedded Linux build syste
+ ms such as Yocto and Buildroot rely on complex pipelines that reuse interm
+ ediate artifacts and external inputs. While this improves performance and 
+ reproducibility\, it also creates opportunities for supply chain attacks t
+ hat are difficult to detect.\n\nThis talk demonstrates practical attack ve
+ ctors targeting build systems at different stages of the pipeline. First\,
+  we show how intermediate object files produced by make in Buildroot can b
+ e tampered with during the build process\, resulting in compromised binari
+ es without modifying upstream source code. Next\, we explore how shared st
+ ate (sstate) cache artifacts in Yocto can be poisoned\, allowing malicious
+  code to propagate across builds through trusted cache reuse.\n\nWe demons
+ trate these attacks end-to-end by injecting malicious behavior into binari
+ es and executing them in a final Linux image under QEMU\, illustrating how
+  such compromises can evade traditional verification mechanisms.\n\nWe the
+ n present mitigation strategies\, focusing on signing and verification of 
+ sstate artifacts to establish trust in reused build outputs. Integration p
+ oints and tradeoffs between security\, performance\, and reproducibility a
+ re discussed.\n\nThis session provides a practical look at real-world buil
+ d system attacks and concrete techniques to harden them. It is aimed at de
+ velopers and maintainers of build systems\, embedded Linux distributions\,
+  and toolchains who are concerned with supply chain security.
+URL:https://lpc.events/event/20/contributions/2582/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602w@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T103000
+DTEND;TZID=Europe/Prague:20261007T110000
+SUMMARY:OpenWrt is reproducible! How we got there and what we learned
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Build Systems MC · Denver Gingerich · https://lpc.events/even
+ t/20/contributions/2581/\n\nOpenWrt has been fully reproducible for a few 
+ months now\, the culmination of many years of work to achieve this importa
+ nt milestone.  In this talk we'll discuss how we got here\, what it took\,
+  and tips for other build systems that are looking for the same\, includin
+ g how to handle the unique challenges of reproducibility across multiple c
+ ross-compilation targets.\n\nWe'll also go into some of the issues specifi
+ c to embedded build systems\, which platforms took the longest\, and some 
+ of the rationale for doing it at all.  Thanks to reproducibility\, we are 
+ much better positioned to tackle a variety of regulations and new requirem
+ ents on router manufacturing\, which we'll address in detail as well.\n\nJ
+ oin us for an enlightening discussion on the hows and whys of making a com
+ munity-built distribution reproducible\, and please bring your questions a
+ nd thoughts from your own experiences and/or other build systems.
+URL:https://lpc.events/event/20/contributions/2581/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2586@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T110000
+DTEND;TZID=Europe/Prague:20261007T113000
+SUMMARY:Relevance of LTS distro releases and the GenAI world
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Build Systems MC · Khem Raj · https://lpc.events/event/20/con
+ tributions/2586/\n\nMost of Linux distros who follow time based releases\,
+  do have LTS release policy e.g. Ubuntu\, Yocto\, Debian\, buildroot to na
+ me a few\, and then there are rolling releases like archlinux and its fami
+ ly of distros. This talk is to discuss the LTS in the wake of genAI coding
+  agents. There is a fair bit of coding agents at work for yocto project an
+ d other distributions doing different functions from CI/CD to generating p
+ atches for package upgrades. GenAI coding agents is resulting in increased
+  amount of patches and pace for package upgrades and general patching arou
+ nd distributions. This is going to increase the maintenance load for LTS d
+ ramatically in next 2-3 years. We need to rethink the utility of LTS relea
+ ses and seeing if rolling release model is more viable option for the dist
+ ributions especially embedded linux distributions which have smaller commu
+ nities to maintain them.\n\nWe could use genAI tooling to aid in maintaini
+ ng LTS releases as well. However\, is that the best choice going forward o
+ r do we focus on mainline and rolling release model
+URL:https://lpc.events/event/20/contributions/2586/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602x@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T120000
+DTEND;TZID=Europe/Prague:20261007T123000
+SUMMARY:Bitwise-Reproducible Kernel Builds for the WhatsApp TEE — Proof o
+ f Concept
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Build Systems MC · Joshua Lilly · https://lpc.events/event/20
+ /contributions/2584/\n\nA build is bitwise reproducible when compiling the
+  same source with the same configuration and toolchain yields byte-for-byt
+ e identical output — an identical vmlinux and bzImage\, verifiable by a 
+ simple sha256sum. For a normal kernel this is a hygiene property\; for a T
+ rusted Execution Environment it is foundational. A platform that measures 
+ the code it boots and reports a cryptographic hash  is only meaningful if 
+ the expected value can be independently reproduced i.e. if an auditor or W
+ hatsApp itself\, or an external reviewer can take the published source and
+  configuration\, rebuild the kernel\, and arrive at exactly the same hash 
+ the hardware attests to. Without bitwise reproducibility there is an unver
+ ifiable gap between "the source we published" and "the binary that is runn
+ ing\," and the attestation degrades from a proof into a promise. Reproduci
+ bility closes that gap and lets a TEE's trust chain be checked end-to-end 
+ by anyone. The central difficulty is that a stock kernel build is not dete
+ rministic by default\, it embeds build timestamps\, the building user and 
+ host\, git-derived version strings\, an archive of kernel headers\, and ep
+ hemeral module-signing keys all of which vary run to run and perturb the f
+ inal hash even when no source changed. The engineering problem is therefor
+ e to systematically identify and eliminate every source of non-determinism
+  until two independent builds collapse to a single hash.\n\nThe strategy w
+ e used to obtain a proof of concept was divide and conquer\, subsystem by 
+ subsystem. The final vmlinux/bzImage hash is just a deterministic function
+  of all the compiled object files linked into it clearly if every .o in ev
+ ery subsystem compiles identically\, the whole-kernel hash is necessarily 
+ identical. That observation turns an intractable "the whole image differs"
+  problem into a localizable one. Rather than chase the top-level hash blin
+ dly\, the approach hashes every object file in the tree after each of two 
+ builds and then diffs the two manifests. The resulting diff lists exactly 
+ which objects and subsystems still differ between builds. Each divergent o
+ bject is a concrete lead pointing at a specific source of non-determinism\
+ ; fix that source\, rebuild\, re-diff\, and the list shrinks. Reproducibil
+ ity is reached when the diff is empty. This breaks the problem down into a
+  tractable\, iterative hunt that pinpoints where in the build the divergen
+ ce originates instead of guessing at the image as a whole.\n\nThe work pro
+ ceeded as many rebuild-and-compare cycles against a copy of the previous b
+ uild (t1/\, build1/)\, each cycle narrowing the set of differing objects. 
+ Recurring offenders and their fixes\n  included:\n  - kheaders.o (CONFIG_I
+ KHEADERS)\, embeds a freshly-archived\, timestamped snapshot of the kernel
+  headers that never matches between builds\; disabled for the POC.\n  - Ve
+ rsion strings — CONFIG_LOCALVERSION_AUTO appends a git-derived suffix\; 
+ disabled (LOCALVERSION_AUTO off\, empty LOCALVERSION/BUILD_SALT) and the g
+ enerated version files under init/ and arch/ were pinned.\n  - Module sign
+ ing (CONFIG_MODULE_SIG) — signs modules with a per-build ephemeral key\,
+  guaranteeing divergence\; disabled (captured as a standalone remove_modul
+ e_signing change).\n  - Debug/introspection artifacts — CONFIG_GDB_SCRIP
+ TS disabled to drop non-deterministic generated content.\n  - Build enviro
+ nment — pinned via KBUILD_BUILD_TIMESTAMP\, KBUILD_BUILD_USER=builder\, 
+ KBUILD_BUILD_HOST=buildhost\, and SOURCE_DATE_EPOCH\, so timestamps and id
+ entity strings are fixed rather than sampled from the build machine. The b
+ uild environment here was a standard Meta devserver\, however\, to deploy 
+ this we would build and deploy an image for a build environment.\n\nThe sc
+ ope of the proof of concept was to establish a clean baseline\, the POC wa
+ s built against Linus's mainline branch (the vanilla upstream tree\, origi
+ n/linus-upstream) rather than the internal Meta proprietary TEE kernels\, 
+ isolating the reproducibility problem from the additional out-of-tree patc
+ hes carried by the production kernel. With the fixes above\, two independe
+ nt builds produced an empty object-level diff every one of the ~4\,800 tra
+ cked objects matched and identical sha256sum/md5sum values for both vmlinu
+ x and arch/x86/boot/bzImage. This demonstrates that a bitwise-reproducible
+  kernel is achievable for the target and validates the subsystem-by-subsys
+ tem manifest-diffing method as the path to extend reproducibility from van
+ illa upstream to the full WhatsApp TEE production kernel.
+URL:https://lpc.events/event/20/contributions/2584/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602y@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T123000
+DTEND;TZID=Europe/Prague:20261007T130000
+SUMMARY:The last step to secure reproducible distribution kernels: Hash-bas
+ ed module integrity checking
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Build Systems MC · Thomas Weißschuh · https://lpc.events/eve
+ nt/20/contributions/2583/\n\nThe kernels current module signature scheme d
+ oes not work well together with reproducible builds. If the key is generat
+ ed at build-time the build is not reproducible. A static key that is known
+  to the public does not provide security\, but a static key not known to t
+ he public does prevent public rebuilds of the kernel for validation purpos
+ es.\n\nCurrently distributions need to make a tradeoff:\n* Allow non-publi
+ c reproducibility through static module signature keys. At the cost of com
+ plexity in build infrastructure and package definitions. (Debian)\n* Focus
+  on reproducibility and disable module signatures (NixOS)\n* Focus on secu
+ rity and have an irreproducible kernel package (ArchLinux)\n\nI am proposi
+ ng the replacement of module signatures for built-in modules with a merkle
+  tree calculated at build-time.\nThis solves the problems outlined above a
+ nd also avoids a lot of the complexity involved in the current implementat
+ ion.\n\nAgenda:\n* Problem statement\n* Current proposal\n* Discussion\n\n
+ Discussion topics:\n* How to strip modules as part of this scheme?\n* Prob
+ lems in the integration with kbuild.\n* How to interact with IMA?\n* Would
+  it make sense to have a generic and reusable merkle tree implementation?\
+ n\nCurrent series on LKML: https://lore.kernel.org/lkml/20260505-module-ha
+ shes-v5-0-e174a5a49fce@weissschuh.net/\nLWN article for the previous imple
+ mentation: https://lwn.net/Articles/1012946/
+URL:https://lpc.events/event/20/contributions/2583/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602z@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T130000
+DTEND;TZID=Europe/Prague:20261007T133000
+SUMMARY:What does "buildable" mean during a toolkit migration?
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Build Systems MC · Krish Pandya · https://lpc.events/event/20
+ /contributions/2588/\n\nSugar has been in tree since April 2006. Its last 
+ toolkit transition\, GTK2 to GTK3\, ran from October 2011 to the 0.98 rele
+ ase in November 2012. The current one\, GTK3 to GTK4 and X11 to Wayland\, 
+ is in its second year across twelve repositories. I ported the toolkit and
+  presented that work at [GNOME Asia Summit 2025](https://events.gnome.org/
+ event/303/)\; this year I mentor the two contributors porting the [sugar s
+ hell](https://summerofcode.withgoogle.com/organizations/sugar-labs/project
+ s/details/Yf2eiaqE) and the [activities](https://wiki.sugarlabs.org/go/Act
+ ivities) set we call [Fructose](https://summerofcode.withgoogle.com/organi
+ zations/sugar-labs/projects/details/AwHyY0sr). The stack is deliberately h
+ alf-migrated and will stay that way for some time.\n\nThe code side of a t
+ oolkit migration is documented. The build side is not\, and it has cost th
+ is project more time than the porting.\n\nNothing detects that a set of GO
+ bject Introspection typelibs disagree about a major version. The shell req
+ uires eleven GI namespaces. One is the project's own C helper library\, wh
+ ose installed typelib was built against GTK3\, loaded into a process that 
+ already holds GTK4. The process dies at import. In C this is a link error.
+  In GI there is no build-time or package-time gate\, and no way to ask whe
+ ther a set of typelibs can share one process\, even though the information
+  is in the typelibs. We fixed it by bumping our own namespace from SugarEx
+ t-1.0 to SugarExt-2.0 so the two cannot be confused\, which works and is w
+ hat I would tell the next project to do. Nothing identified it as the prob
+ lem. It took the first five weeks of a contributor's summer to find. It wi
+ ll recur for any GI-based project that migrates a toolkit while carrying i
+ ts own introspected library.\n\nThe versions you have decides what you can
+  test\, and nobody has written that down. The shell puts a Wayland composi
+ tor inside a widget ([Casilda](https://gitlab.gnome.org/jpu/casilda))\, so
+  activities run as Wayland clients inside the shell. Casilda 1.2.1 is the 
+ last version that builds against wlroots 0.19. Version 1.2.2 moved to wlro
+ ots 0.20\, and 1.2.4 raised the GTK requirement to 4.22.2. Our pinned nixp
+ kgs gives us GTK 4.20.3 and wlroots 0.19.2. So a pin two layers away from 
+ our own code decides which Casilda we can have\, and that decides what a r
+ eviewer can run. A contributor on Debian and a reviewer on Nix could not r
+ eproduce each other's bugs.\n\nEven then\, a git checkout is not something
+  you can build. Some files only exist in a release tarball: a config modul
+ e built from a template\, and compiled GSettings schemas. You have to make
+  those by hand. One runtime dependency is packaged by no distribution. And
+  the tree carries three build systems at once: autotools from 2006\, Meson
+  in the C library\, and a pyproject in the new toolkit.\n\n## Questions I 
+ would like to put to the room:\n\n- Should typelib agreement be a build-ti
+ me or package-time check? A typelib carries its dependency list version-qu
+ alified\, readable without loading it. Debian lintian already requires tha
+ t a package declare a strictly versioned dependency on the typelibs it nee
+ ds. What I could not find is anything that takes a set of typelibs and ans
+ wers whether they can share one process. Does that exist\, or is there a r
+ eason not to build it?\n- How should a build system or a distribution repr
+ esent a stack that is deliberately half-migrated\, where the right answer 
+ to "which version" differs per repository and changes weekly?\n- What do y
+ ou hand a new contributor so they can build a multi-repository stack mid-m
+ igration?\n- Is there anything for coordinating the patches distributions 
+ each end up carrying during an ecosystem-wide toolkit transition?\n\n## Re
+ ference material:\n\n- Shell migration\, 188 files: https://github.com/sug
+ arlabs/sugar/pull/1106\n- C helper library\, autotools to Meson and GDK4 e
+ vent porting: https://github.com/sugarlabs/sugar-ext/pull/6\n- Toolkit mig
+ ration talk\, GNOME Asia Summit 2025: https://www.youtube.com/live/WZ63lQ-
+ DsOA?t=14725\n- GTK4 migration guide: https://docs.gtk.org/gtk4/migrating-
+ 3to4.html
+URL:https://lpc.events/event/20/contributions/2588/
+END:VEVENT
+END:VCALENDAR

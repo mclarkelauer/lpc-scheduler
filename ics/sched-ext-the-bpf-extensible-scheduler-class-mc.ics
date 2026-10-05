@@ -1,0 +1,287 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: sched_ext: The BPF extensible scheduler class MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2602o1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T150000
+DTEND;TZID=Europe/Prague:20261007T151000
+SUMMARY:Intro / Welcome
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · https://lpc
+ .events/event/20/contributions/2488/
+URL:https://lpc.events/event/20/contributions/2488/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2482@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T151000
+DTEND;TZID=Europe/Prague:20261007T152800
+SUMMARY:Bridging the VM Boundary: Scheduling Passthrough via pvsched and sc
+ hed_ext
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · Josh Don\, 
+ Vineeth Remanan Pillai · https://lpc.events/event/20/contributions/2482/\
+ n\nAs production workloads increasingly transition to virtual machines for
+  security isolation and resource consolidation in multi-tenant environment
+ s\, traditional CPU scheduling faces a critical M:N preemption challenge. 
+ The host operating system schedules opaque virtual CPUs rather than the ac
+ tual workload threads. Consequently\, the host scheduler remains blind to 
+ the varying priorities and latency sensitivities of the guest threads runn
+ ing inside the VM. This leads to severe priority inversion\; for instance\
+ , the host scheduler cannot differentiate between a vCPU running a low-pri
+ ority batch or kernel system thread and one executing a latency-sensitive 
+ task (such as a critical helper daemon) nested within the same VM. Consequ
+ ently\, critical latency-sensitive work is starved\, and physical resource
+ s are wasted under host CPU contention.\n\nTo resolve this\, we propose a 
+ bidirectional VM Scheduling Passthrough architecture to bridge the VM boun
+ dary from a scheduling perspective. This model relies on cooperative\, par
+ avirtualized communication to enable host-side awareness and control:\n1. 
+ Guest-to-Host: The guest kernel exposes scheduling metadata (potential sig
+ nals include thread-level priorities and latency requirements) to the host
+ .\n2. Host-to-Guest / Host Control: The host leverages these guest signals
+  to either (a) intelligently prioritize the execution of a given vCPU\, or
+  (b) in a more complete solution\, directly select both the vCPU and the s
+ pecific guest thread running on that vCPU to execute (this latter proposal
+  is more aspirational\, and would effectively give the host full schedulin
+ g control over the guest\, voiding the need for guest scheduling or load b
+ alancing).\n\nImplementing such a model requires a clean separation of mec
+ hanism and policy. In line with upstream maintainer feedback\, KVM should 
+ remain policy-free\, acting purely as the communication conduit. We propos
+ e sched_ext as the ideal framework to house the scheduling policy\, and pv
+ sched as the communication mechanism to share data between host and guest.
+  Running the policy in a host BPF scheduler allows for rapid iteration and
+  workload-specific customization without modifying KVM or the core kernel.
+ \n\nCurrent upstream efforts\, notably the IBM patch series "Introduce cpu
+ _preferred_mask and steal-driven vCPU backoff"\, attempt to address host p
+ reemption purely from the guest side. In this model\, the guest monitors h
+ ypervisor steal time and flags heavily preempted vCPUs as "non-preferred" 
+ to guide guest-side task migration. While this provides a defensive mechan
+ ism\, it is unidirectional and reactive. Furthermore\, as highlighted by u
+ pstream maintainers\, this approach faces significant limitations: it risk
+ s embedding scheduling policy within the hypervisor\, and in high-overcomm
+ it scenarios where steal time is elevated across all cores\, the guest-sid
+ e mask degrades\, leaving the guest scheduler with no viable execution tar
+ gets.\n\npvsched (https://github.com/pvsched/) has undergone some discussi
+ on on the list already\, and v3 is being prepared.\n\nIn this session\, we
+  want to discuss:\n- Interface Design: The updates in pvsched v3\n- sched_
+ ext Integration: How sched_ext can ingest these guest signals to influence
+  host scheduling decisions\, and conversely\, how it can export host sched
+ uling desires back to the guest
+URL:https://lpc.events/event/20/contributions/2482/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2483@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T152800
+DTEND;TZID=Europe/Prague:20261007T154600
+SUMMARY:BPF-based Composable Idle cpumask Selection
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · Emil Tsalap
+ atis · https://lpc.events/event/20/contributions/2483/\n\nAll sched_ext s
+ chedulers currently use kfuncs to manage their idle cpumask using a hardco
+ ded policy provided by the kernel. This lack of configurability of the cur
+ rent cpumask requires us to add policy through explicit masking operations
+  directly in the scheduler code. This in turn leads to duplicating idle CP
+ U selection logic across schedulers as it is difficult to factor it out.\n
+ \nThis session discusses a new BPF-based subsystem for idle CPU mask selec
+ tion. This subsystem abstracts the representation of the idle CPU set behi
+ nd a common API that exposes explicit alternative policies to the user. Th
+ e API is portable between schedulers and requires little code to adopt. In
+ ternally\, the subsystem stores idle CPU information in arena-based data s
+ tructures. Different structures (e.g.\, radix trees) provide different per
+ formance/scalability tradeoffs and can be tailored to different idle CPU s
+ election policies.\n\nTopics for this session:\n    - Overview of the idle
+  CPU selection subsystem\n    - Data structures for representing the idle 
+ CPU set\, tradeoffs for each\n    - Representing policy in a flexible\, ex
+ tensible fashion through the idle selection API\n    - Using alternative C
+ PU selection strategies as part of load balancing
+URL:https://lpc.events/event/20/contributions/2483/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2484@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T154600
+DTEND;TZID=Europe/Prague:20261007T160400
+SUMMARY:Taming latency spikes caused by lock holder and lock waiter preempt
+ ion
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · Changwoo Mi
+ n · https://lpc.events/event/20/contributions/2484/\n\nPreempting a lock 
+ holder — or failing to promptly schedule a just-woken\nlock waiter — e
+ xtends the serialized critical section and produces severe\ntail-latency (
+ P99) spikes: degraded server throughput\, frame-time\nspikes and dropped f
+ rames in games. Applications hit this on both\nkernel-space locks and user
+ -space primitives backed by futexes and SysV\nsemaphores. Existing techniq
+ ues help but leave gaps: proxy execution\naddresses kernel-mutex priority 
+ inversion but not user-space futex waiters\nor counting semaphores\, and t
+ ime-slice extension protects a detected holder\nwhile doing nothing for th
+ e delayed waiter.\n\nWe define lock waiter preemption (LWP) as the dual of
+  lock holder\npreemption (LHP): the scheduling delay a woken waiter suffer
+ s before it\nruns\, which we have measured at 2–16 ms in production game
+  and server\nworkloads. We will present these measurements and a prototype
+  LHP/LWP\nmitigation built in a production sched_ext scheduler\, then open
+  three\nchallenges for community discussion:\n\n- efficiently identifying 
+ lock-related preemption from BPF\;\n- exposing synchronization state betwe
+ en libc and sched_ext\;\n- designing lightweight scheduler-assisted lockin
+ g that improves latency\n  without sacrificing scalability.
+URL:https://lpc.events/event/20/contributions/2484/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2481@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T160400
+DTEND;TZID=Europe/Prague:20261007T163000
+SUMMARY:Making proxy execution compatible with sched_ext
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · Andrea Righ
+ i · https://lpc.events/event/20/contributions/2481/\n\nProxy execution al
+ lows a waiting task (the "donor") to donate its execution context to a mut
+ ex owner\, enabling the owner to continue running while the donor remains 
+ eligible on the runqueue.\n\nToday\, proxy execution and sched_ext are mut
+ ually exclusive build-time options: a kernel cannot be built with both CON
+ FIG_SCHED_PROXY_EXEC=y and CONFIG_SCHED_CLASS_EXT=y.\n\nThis limitation is
+  problematic for Linux distributions and anyone who wants to ship a single
+  kernel image while selecting features at runtime.\n\nAn RFC series propos
+ ing support for this integration has already been posted: https://lore.ker
+ nel.org/all/20260506174639.535232-1-arighi@nvidia.com/\n\nHowever\, severa
+ l design questions remain open. This session aims to discuss those issues\
+ , reach agreement on the overall approach\, and define a concrete plan for
+  moving the integration forward.
+URL:https://lpc.events/event/20/contributions/2481/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2485@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T170000
+DTEND;TZID=Europe/Prague:20261007T171800
+SUMMARY:Stickiness: Keeping tasks cache-warm in work-conserving LAVD schedu
+ ler
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · Gavin Guo 
+ · https://lpc.events/event/20/contributions/2485/\n\nWork-conserving sche
+ dulers prefer running tasks on idle CPUs\nimmediately\, ensuring no proces
+ sing capacity is wasted while work is\nwaiting. In the lavd select_cpu pro
+ cess\, when a task wakes\, the\nscheduler will do its best to seek an idle
+  core and run the task over\nthere. However\, this idle-oriented CPU selec
+ tion generally prioritizes\nidle cores over the cache-warm cores\, leading
+  to more migrations\,\nmaking the tasks cache-cold\, and requiring L1/L2 c
+ aches and TLBs to be\nrefilled frequently.\n\nThe work-conserving mechanis
+ m works well in some scenarios. However\,\nthere are cache-sensitive workl
+ oads such as edge routers using routing\ntables as in-memory KV stores. Th
+ e migrations to the cold CPU have a\nglobal impact\, and the cache refilli
+ ng evicts the other cache lines\nand pulls the new ones in\, making the ca
+ che contention worse and further\nimpacting the tail latency.\n\n---\nWe w
+ ill present our measurements and open the floor on topics\nincluding:\n\n-
+  **Warmth estimation**: How long does L1/L2/TLB state realistically\n  sur
+ vive on a CPU\, and could the kernel expose hardware signals\n  (e.g.\, PM
+ U counters\, cache-occupancy registers) usable at\n  scheduling-decision f
+ requency?\n\n- **The wait-or-migrate decision**: Waiting requires predicti
+ ng when\n  a busy CPU will become available (remaining slice + queue servi
+ ce\n  time\, or queue load?). Which metrics should a scheduler maintain to
+ \n  make that prediction accurate?\n\n- **The scheduler/userspace interfac
+ e**: Userspace structures (such\n  as allocator per-CPU caches) suffer hea
+ vily from core migrations.\n  Should applications hint their locality need
+ s to the scheduler\, or\n  should the scheduler expose warmth and migratio
+ n state to userspace?
+URL:https://lpc.events/event/20/contributions/2485/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2486@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T171800
+DTEND;TZID=Europe/Prague:20261007T173600
+SUMMARY:HFI plug in to scx_ext
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · Srinivas Pa
+ ndruvada · https://lpc.events/event/20/contributions/2486/\n\nThis presen
+ tation explores how Intel HFI can be integrated with a sched_ext to improv
+ e task placement and power-performance efficiency on hybrid Intel systems.
+  HFI provides real-time hardware guidance on which CPUs are better suited 
+ for performance- or efficiency-oriented work\, or which to avoid\, while s
+ ched_ext like LAVD supplies an adaptive scheduling framework capable of us
+ ing that guidance at runtime. By converting HFI output into scheduler-read
+ able CPU hints\, the system can bias wakeup placement\, avoid degraded cor
+ es\, and better match task type to CPU capability without hard pinning or 
+ manual tuning.
+URL:https://lpc.events/event/20/contributions/2486/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2487@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T173600
+DTEND;TZID=Europe/Prague:20261007T180200
+SUMMARY:Automatic placement of accelerator workloads
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · Balbir Sing
+ h\, Lee Trager · https://lpc.events/event/20/contributions/2487/\n\nPropo
+ sal\n\nOn modern multi-socket\, multi-GPU systems\, application performanc
+ e is often limited not by compute availability but by poor CPU/GPU localit
+ y. Today\, customers are frequently instructed to rely on strict node pinn
+ ing (numactl) and disabling NUMA balancing in order to avoid costly cross-
+ node memory accesses. While effective in some cases\, this approach can be
+  suboptimal\, since it limits workloads to a subset of available resources
+  and it also requires deep system knowledge from the user.\n\nIn this talk
+ \, we will explore how GPU-aware auto-affinitization can be implemented di
+ rectly in the Linux scheduler using sched_ext\, enabling dynamic and trans
+ parent placement of CPU tasks close to the GPUs they actively use. We disc
+ uss the challenges of integrating scheduler-driven task migration with NUM
+ A balancing\, handling mixed CPU/GPU thread groups\, and avoiding resource
+  over-concentration. Finally\, we present design principles showing how sc
+ heduler-level techniques can outperform static affinity policies\, while s
+ implifying the user experience.\n\nKey Challenges\n\nInteraction with NUMA
+  Balancing\n\nNaively migrating a task closer to its GPU can backfire if t
+ he task's memory remains allocated on a remote NUMA node. In such cases\, 
+ migration may increase memory access latency instead of reducing it.\nKey 
+ questions explored:\nHow can sched_ext and NUMA balancing cooperate rather
+  than conflict?\nWhen should migration be deferred or paired with memory m
+ igration?\n\nThread Aggregation and Shared State\n\nMany GPU-enabled appli
+ cations use multi-threaded CPU components\, where:\nOnly a subset of threa
+ ds directly interacts with the GPU\nOther threads share memory\, locks\, o
+ r cache lines with GPU-driving threads\nMigrating only GPU-active threads 
+ may introduce new inefficiencies due to cross-node communication among thr
+ eads of the same process.\n\nWe need to explore strategies for:\n\nSelecti
+ ve thread aggregation\, migrating related threads together\nAvoiding overl
+ oad of a single NUMA node or LLC\nBalancing locality benefits against para
+ llel resource contention\n\nResource Saturation and Fairness\n\nAutomatica
+ lly clustering tasks near GPUs risks oversubscribing CPUs\, LLCs\, or memo
+ ry bandwidth on specific NUMA nodes. The scheduler must therefore avoid ov
+ erloading a certain LLC or NUMA node\, make optimal use of system resource
+ s and maintain fairness.
+URL:https://lpc.events/event/20/contributions/2487/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602p1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T180200
+DTEND;TZID=Europe/Prague:20261007T183000
+SUMMARY:Closing / Final Q&A
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:sched_ext: The BPF extensible scheduler class MC · https://lpc
+ .events/event/20/contributions/2489/
+URL:https://lpc.events/event/20/contributions/2489/
+END:VEVENT
+END:VCALENDAR

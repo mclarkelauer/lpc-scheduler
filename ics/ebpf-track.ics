@@ -1,0 +1,770 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: eBPF Track
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2439@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T100000
+DTEND;TZID=Europe/Prague:20261005T103000
+SUMMARY:Rust-BPF updates
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Alexei Starovoitov · https://lpc.events/event/20
+ /contributions/2439/\n\nSupport for all of Rust required rethinking of how
+  the verifier processes instructions. Stack liveness\, SCEV\, indirect cal
+ ls are known building blocks while more fundamental rewrite is still neces
+ sary. The talk will cover completed and upcoming work areas in the verifie
+ r\, LLVM\, GCC\, rustc\, libbpf.
+URL:https://lpc.events/event/20/contributions/2439/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2438@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T103000
+DTEND;TZID=Europe/Prague:20261005T110000
+SUMMARY:Support large-size arguments and Rust based exception handling
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Yonghong Song · https://lpc.events/event/20/cont
+ ributions/2438/\n\nLarge-size Arguments\n--------------------\n\nCurrent b
+ pf verifier will reject a function if one of its arguments\nis a union/str
+ uct or more than one register size (except __int128 type).\nSuch limitatio
+ n forces users to work around codes to fit bpf prog\nrequirement\, but suc
+ h limitation does not exists for other languages\,\nlike normal C\, rust\,
+  etc. Without such limitation\, users will be able\nto write more elegant 
+ codes.\n\nRust Based Exception Handling\n-----------------------------\n\n
+ Current C based bpf prog do not have language level exception\nhandling. T
+ he bpf echosystem added bpf_throw() kfunc to allow\nexception which does a
+ rchitecture unwinding and allows some\ncode at main prog level.\n\nRust bp
+ f supports more flexible exception handling at language\nlevel. It allows 
+ bpf callbacks at individual function exception\nlevel\, e.g. to release ce
+ rtain references etc. At each function\nlevel\, it is possible there are m
+ ultiple possible exception\nhandling\, e.g.\, A -> B -> C. If C tiggered e
+ xception\, bpf\ncallbacks can be called for C\, then B\, then A.\n\nIn any
+  case\, Rust can provide lots of flexibility when something\nwrong during 
+ verification.
+URL:https://lpc.events/event/20/contributions/2438/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2408@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T110000
+DTEND;TZID=Europe/Prague:20261005T113000
+SUMMARY:Extending the BPF Type Format to support more languages
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Alan Maguire · https://lpc.events/event/20/contr
+ ibutions/2408/\n\nNow that kernel modules can be built in Rust [1]\,[2]\, 
+ it seems timely to look at programming language constructs outside of C to
+  assess their applicability to BTF representation. Suggestions include\n\n
+ - slices/"fat pointers" with type and size\n- tagged unions\n- generics\n-
+  interfaces\n- lifetime tags\n\nRough suggestions will be made for how to 
+ represent these as BTF kinds to trigger discussion.\n\n[1] https://docs.ke
+ rnel.org/rust/index.html\n[2] https://lwn.net/Articles/991719/
+URL:https://lpc.events/event/20/contributions/2408/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2436@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T120000
+DTEND;TZID=Europe/Prague:20261005T123000
+SUMMARY:Slaying the BPF Verifier: Safe & Static Kernel Extensions Using Rus
+ t
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Aniket Gattani · https://lpc.events/event/20/con
+ tributions/2436/\n\nWhile the BPF verifier ensures kernel safety\, its rig
+ id static rules heavily bottleneck the development of complex kernel exten
+ sions. Last year’s LPC introduced [Rex][1] (Rust Extensions) to address 
+ these gaps. By leveraging Rust\, Rex aims to guarantee memory and type saf
+ ety at compile time rather than relying on the restrictive verifier. While
+  this initial iteration utilized runtime protection to manage panics and a
+ ddress the halting problem\, it resulted in **considerable** architectural
+  and performance trade-offs.\n\nThis talk introduces the revamped\, static
+ ally compiled **panic-free** Rex. By fully leaning into Rust’s static ty
+ ping\, borrow checker\, and a dedicated compiler pass\, this new architect
+ ure closely mirrors the verifier’s safety profile but at compile time. I
+ t empowers developers to build large-scale kernel programs using dynamic l
+ oops\, complex data structures\, and natural programming patterns.\n\nTo p
+ rove this model's viability\, we will present a successful Proof of Concep
+ t integrating the new Rex with the [ghOSt][2] scheduler. We will walk thro
+ ugh the implementation details\, demonstrating how Rex handles complex [sc
+ heduling logic][3] safely and efficiently entirely in Rust.\n\nUltimately\
+ , we seek to engage the community in a dialogue regarding the robustness o
+ f this architectural framework and the strategic roadmap for upstream inte
+ gration. We are eager to assess the broader interest in the evolved Rex an
+ d solicit feedback on potential refinements to further optimize our model.
+ \n\n  [1]: https://lpc.events/event/19/contributions/2190/\n  [2]: https:/
+ /research.google/pubs/ghost-fast-and-flexible-user-space-delegation-of-lin
+ ux-scheduling/\n  [3]: https://lpc.events/event/19/contributions/2034/
+URL:https://lpc.events/event/20/contributions/2436/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2432@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T123000
+DTEND;TZID=Europe/Prague:20261005T130000
+SUMMARY:blitmus: Litmus-testing the eBPF memory model on real hardware
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Puranjay Mohan · https://lpc.events/event/20/con
+ tributions/2432/\n\nThe eBPF instruction set has quietly grown a concurren
+ cy surface: load_acquire/store_release instructions\, arena atomics now JI
+ T-compiled across x86\, arm64\, riscv and powerpc\, resilient queued spinl
+ ocks\, and lock-free ring buffers. eBPF programs routinely run concurrentl
+ y across CPUs and increasingly coordinate through shared memory. Yet unlik
+ e the Linux kernel — which has a formal\, herd7-executable memory model 
+ (LKMM) and the klitmus7 tool to exercise it — eBPF has no formal memory 
+ model and no way to check that the ordering a program requests actually su
+ rvives the verifier and each architecture's JIT.\n\nThis talk presents **b
+ litmus** (https://github.com/puranjaymohan/blitmus)\, a tool that converts
+  standard LKMM litmus tests into eBPF programs and runs them on real hardw
+ are. Each process of a litmus test becomes a BPF program pinned to a speci
+ fic CPU\; a userspace harness races them across millions of iterations\, h
+ istograms the outcomes\, and compares them against the test's exists claus
+ e and expected result — the same methodology klitmus7 and herd7 use\, bu
+ t exercising the BPF runtime end to end. Because the same litmus test can 
+ be run unchanged on every architecture\, blitmus can surface JIT ordering 
+ bugs (e.g. a missing barrier for cmpxchg) that are otherwise silent and ca
+ tastrophic for concurrent BPF code.\n\nI will demo the tool converting and
+  running the LKMM litmus suite through BPF\, walk through the results on a
+ arch64 and x86-64 (including weak behaviors observed for store-buffering a
+ nd a Result: Never test that blitmus flags as violated)\, and use that cas
+ e to discuss tool fidelity: how faithfully a batched\, test-run-based harn
+ ess models true multi-CPU races\, and where the current barrier/interleavi
+ ng strategy needs to improve.\n\nI would like to use the session to discus
+ s next steps with the community:\n\n(1) growing the harness to cover BPF-s
+ pecific primitives — arena spinlocks\, rqspinlock\, ring buffer reserve/
+ commit ordering\, per-CPU maps\;\n\n(2) a proper litmus parser and cross-a
+ rchitecture CI (qemu on riscv/ppc/s390/loongarch) wired into selftests/bpf
+  as a memory-model conformance suite\;
+URL:https://lpc.events/event/20/contributions/2432/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2431@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T130000
+DTEND;TZID=Europe/Prague:20261005T133000
+SUMMARY:Adding KASAN support for JIT-compiled BPF Programs
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Alexis Lothoré · https://lpc.events/event/20/co
+ ntributions/2431/\n\nKASAN (Kernel Address Sanitizer) is a powerful develo
+ per tool for detecting\nuse-after-free and out-of-bounds memory accesses i
+ n the kernel code.\nHowever\, not all memory accesses performed by the ker
+ nel are covered by\nKASAN monitoring. BPF programs are a major example: wh
+ en they are\ntranslated by the in-kernel JIT compiler\, the kernel directl
+ y emits new\nnative instructions that then escape KASAN instrumentation. C
+ losing this\ngap would shed some light on potential bugs in the eBPF verif
+ ier or JIT\ncompilers that would be hard to investigate otherwise.\n\nThis
+  talk will present the current effort funded by the eBPF Foundation\naimin
+ g to introduce KASAN support for eBPF programs: we will discuss the\nmain 
+ architectural points\, going over how the JIT compiler emits calls to\n`__
+ asan_*()` functions before each memory access\, discussing the register\ns
+ ave/restore strategy\, and the interactions with the BPF verifier.\n\nAs a
+  first draft of this work has been introduced at the LSFMMBPF\nconference 
+ 2026 (Zagreb\, Croatia)\, and as many revisions have been sent and\ndiscus
+ sed on the BPF mailing list since then\, this talk will also act as an\nup
+ date\, highlighting the main changes since the first draft\, as well as th
+ e\nremaining difficulties and issues to solve.
+URL:https://lpc.events/event/20/contributions/2431/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2442@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T150000
+DTEND;TZID=Europe/Prague:20261005T153000
+SUMMARY:BPF Kernel Verifier meets GCC: A saga of arranged marriage
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Vineet Gupta · https://lpc.events/event/20/contr
+ ibutions/2442/\n\nBPF Verifier has troubles grok'ing GCC generated code (h
+ aving evolved with LLVM over time). This talk is about my recent work on B
+ PF GCC and the kernel verifier and efforts to make them like each other mo
+ re.
+URL:https://lpc.events/event/20/contributions/2442/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2447@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T153000
+DTEND;TZID=Europe/Prague:20261005T160000
+SUMMARY:Evolution of Value Tracking in the BPF Verifier
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Shung-Hsi Yu · https://lpc.events/event/20/contr
+ ibutions/2447/\n\nWhile safety and performance get most of the credit for 
+ BPF's success\, a safe and fast program that couldn't do anything interest
+ ing would be rather useless. Much of the flexibility that makes BPF progra
+ ms interesting today (e.g. indexing into a map value at a computed offset\
+ , walking packet data\, reading a stack array at a variable index) was act
+ ually not there at the start.\n\nIn this talk\, we'll give a thousand-foot
+  overview that goes from the initial tracking of constant/unknown all the 
+ way to cnum\, covering topics like scalar IDs\, sub-register bounds\, boun
+ ds syncing\, as well as value-tracking bugs along the way.
+URL:https://lpc.events/event/20/contributions/2447/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2440@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T160000
+DTEND;TZID=Europe/Prague:20261005T163000
+SUMMARY:Proof-Carrying Verification for eBPF
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Martin Fink · https://lpc.events/event/20/contri
+ butions/2440/\n\n## Abstract\n\neBPF provides a safe way to extend the ker
+ nel functionality. To ensure safety\, the kernel verifies the memory safet
+ y and termination of eBPF programs and is thus the security boundary for e
+ BPF. It must accept untrusted programs from userspace and determine\, unde
+ r strict time and memory limits\, whether they are safe to execute.\n\nTod
+ ay\, the verifier symbolically executes program paths\, tracks abstract re
+ gister and memory states\, and uses state pruning and repeated loop explor
+ ation to establish safety. Keeping both proof discovery and proof checking
+  in the kernel has the important advantage that the kernel does not need t
+ o trust the compiler or any userspace component.\n\nThe cost of this desig
+ n is that the kernel has to employ a sophisticated analysis capable of rec
+ onstructing invariants from eBPF bytecode. Compilers may already discover 
+ source-level relationships and loop invariants\, but these facts are not n
+ ormally conveyed to the kernel. When the verifier cannot recover invariant
+ s\, it must conservatively reject the program. At the same time\, the comp
+ lexity of the analysis makes it difficult to audit and maintain this secur
+ ity boundary\, and verifier bugs can result in malicious programs being ac
+ cepted. Verification failures can also be difficult to predict and relate 
+ back to the source program.\n\nWe are exploring a proof-carrying verificat
+ ion architecture that separates proof generation from proof checking. An u
+ ntrusted userspace proof generator analyzes the program\, discovers invari
+ ants\, and uses an SMT solver to discharge safety obligations. If successf
+ ul\, it emits a certificate containing the invariants and proof steps need
+ ed to validate the program. If an obligation cannot be proved\, the tool c
+ an use compiler metadata and solver output to distinguish concrete counter
+ examples from unsupported reasoning or missing invariants\, and produce so
+ urce-oriented diagnostics.\n\nInside the kernel\, a domain-specific checke
+ r validates the program and certificate together. The certificate supplies
+  facts such as basic-block and loop invariants\, pointer bounds\, and rela
+ tionships between program values. The checker does not search for invarian
+ ts or invoke an SMT solver. It validates each claimed state transition and
+  entailment using a restricted set of eBPF-specific reasoning rules.\n\nFo
+ r example\, a loop certificate may provide an invariant relating an induct
+ ion variable\, a packet pointer\, and data_end. The checker verifies that 
+ the invariant holds on entry\, is preserved across the back edge\, and is 
+ strong enough to justify each memory access. It does not need to infer the
+  invariant or repeatedly explore the loop.\n\nWe have built a preliminary 
+ end-to-end prototype that generates and checks certificates for a subset o
+ f eBPF programs\, including examples with control flow\, loops\, scalar re
+ lationships\, and memory-safety obligations. Our early experiments indicat
+ e that certificate checking can perform particularly well on larger progra
+ ms for which abstract interpretation requires extensive path exploration\,
+  state merging\, or repeated loop analysis. In these cases\, the checker b
+ enefits from being given the required invariants directly and can avoid mu
+ ch of the search performed by the existing verifier. These results are sti
+ ll preliminary and currently apply only to the supported subset. At LPC\, 
+ we will present the supported feature set\, representative examples\, and 
+ an initial comparison of verification behavior and runtime\, together with
+  the cases where the approach does not yet apply.\n\nA central design prob
+ lem is defining the safety policy shared by the proof generator and checke
+ r. This policy must cover instructions\, helper calls\, kfuncs\, program c
+ ontexts\, pointer accesses\, and kernel-managed resources\, while evolving
+  with eBPF and its kernel interfaces. Its format\, maintenance model\, and
+  relationship to existing verifier semantics are part of the research ques
+ tion.\n\nThe talk will present the architecture\, certificate language\, p
+ rototype\, and initial results. We will also discuss certificate size\, ma
+ lformed or adversarial certificates\, unsupported features\, policy evolut
+ ion\, verifier transformations\, and the relationship between checked byte
+ code and JIT semantics.\n\nWe seek feedback from the eBPF community on whe
+ ther this is a useful and technically plausible way to structure safety ch
+ ecking\, which parts of current verifier semantics are hardest to express 
+ as explicit proof obligations\, and whether a maintainable shared safety p
+ olicy is possible.\n\n## Relation to Prior Work\n\nProof-carrying verifica
+ tion for eBPF was previously explored by Exoverifier\, which separates pro
+ of generation from proof checking and emits general proof objects based on
+  a Lean formalization of eBPF semantics. More recently\, VEP proposed an a
+ nnotation-guided toolchain with userspace verification\, a specialized com
+ piler\, and a lightweight bytecode-level proof checker. BCF takes a hybrid
+  approach: it retains the kernel verifier’s abstract interpretation\, wh
+ ile using machine-checkable proofs generated in userspace to guide abstrac
+ tion refinement and improve precision.\n\nOur work explores another point 
+ in this design space. Rather than relying on general theorem-prover object
+ s\, source annotations\, or refinement of the existing verifier analysis\,
+  we are designing a restricted certificate language around eBPF-specific i
+ nvariants and state transitions. The checker accepts only a fixed set of r
+ easoning steps\, with explicit limits on certificate structure and checkin
+ g work. Our preliminary prototype suggests that this model is sufficient f
+ or a useful subset of programs while remaining closely aligned with curren
+ t eBPF concepts. The talk will compare these approaches and discuss which 
+ parts of eBPF verification fit restricted certificate checking and which m
+ ay require richer reasoning.
+URL:https://lpc.events/event/20/contributions/2440/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2445@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T170000
+DTEND;TZID=Europe/Prague:20261005T173000
+SUMMARY:Safely Optimizing eBPF for Hardware and Workloads
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · YUSHENG ZHENG\, Hao Sun · https://lpc.events/eve
+ nt/20/contributions/2445/\n\neBPF users pay for verified safety with perfo
+ rmance. Across 27 microbenchmarks extracted from production programs\, cod
+ e that reaches native speed when compiled directly is up to 2x slower thro
+ ugh the eBPF pipeline. The gap is structural and cannot be closed by LLVM 
+ optimization passes or source code rewrites: every deployment runs on spec
+ ific hardware under a specific workload\, yet the pipeline is a single-pas
+ s JIT deliberately kept simple to keep a minimal trusted computing base (T
+ CB)\, without many optimizations. For example\, a 64-bit rotate costs 15 m
+ achine instructions in the eBPF JIT instead of one ROL. Hardware features 
+ and registers\, and workload facts such as stable input patterns\, map con
+ tents\, and biased branches remain under-explored. Improving the JIT in pl
+ ace needs upstream acceptance\, enlarges the TCB that years of formal-meth
+ ods work have hardened\, and grows per-architecture kernel code.\n\nThe ta
+ lk covers two pieces that try to approach this problem with minimal additi
+ ons to the kernel TCB. BpfReJIT is a userspace library built on LLVM: an i
+ n-process shim intercepts an unmodified application's load and attach call
+ s\, rewrites the bytecode based on configs\, workloads\, and the kernel ve
+ rsion\, and resubmits every candidate through the original verifier and JI
+ T. It can perform runtime speculative optimization similar to V8 or the JV
+ M\, but separates correctness (ensured in userspace) from safety (ensured 
+ in the kernel). Kops is the part that needs a kernel patch and discussion.
+  A small one-time patch adds an interface through which kernel modules can
+  register new hardware-specific operations without further core changes. E
+ ach operation carries a proof sequence of vanilla eBPF instructions that t
+ he verifier checks on every load\, plus a native emit that the JIT compile
+ s. We can further leverage Lean 4 proofs to establish that the two compute
+  the same result\, so the emit is the only per-operation addition to the T
+ CB. Seven hardware-idiom operations yield speedups of up to 24% on x86-64 
+ and 22% on ARM64\, and add up to 12% datapath throughput on Cilium and Kat
+ ran. We would like feedback on the interface design\, on where module-supp
+ lied emits sit in the kernel's trust story\, and on when to apply an opera
+ tion at all\, since naively applying every matched site can regress.
+URL:https://lpc.events/event/20/contributions/2445/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2407@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T173000
+DTEND;TZID=Europe/Prague:20261005T180000
+SUMMARY:BPF\, sysctls and programmable kernel decision points
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Alan Maguire · https://lpc.events/event/20/contr
+ ibutions/2407/\n\nTraditionally the kernel community have introduced new s
+ ysctl tunables in places in the code where there is no "one-size-fits-all"
+  answer. With BPF we have the opportunity to make such decision points pro
+ grammable. A simple example of this is the kernel socket acceptq length\, 
+ set via a combination of the listen() backlog and somaxconn sysctl.  While
+  the traditional advice has been to set this to a very high value to allow
+  for connection bursts\, doing so can lead to unacceptable connection late
+ ncies for applications\, particularly when the application is doing CPU-in
+ tensive processing that limits connection acceptance rate.  We only drop S
+ YNs when the acceptq is full\, but in such cases it would be beneficial to
+  drop earlier to allow the service to recover. Having a BPF program attach
+ ed could detect such conditions and handle this case by dropping SYNs. Hav
+ ing a dynamic response - potentially informed by wider system state - woul
+ d be helpful here and in other cases. Wider discussion of decision points 
+ like these for BPF programmability is explored.
+URL:https://lpc.events/event/20/contributions/2407/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2444@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T180000
+DTEND;TZID=Europe/Prague:20261005T183000
+SUMMARY:eBPF Security: The Uneven Landscape
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Gürkan Gür\, Louie Wolf · https://lpc.events/e
+ vent/20/contributions/2444/\n\nAlthough eBPF is widely used to extend the 
+ Linux kernel\, running programs in kernel space introduces critical securi
+ ty risks. Existing technical work often overlooks eBPF's entire security l
+ ifecycle. This talk aims to address this gap by systematically analyzing e
+ BPF vulnerabilities\, mitigations\, and architectural limits. By reviewing
+  research papers and CVEs\, we will map real-world exploits to specific co
+ mponents\, revealing that current defenses target isolated attacks rather 
+ than systemic architectural risks. Finally\, we will present key takeaways
+ \, outline open directions toward lifecycle-aware\, composition-safe secur
+ ity models\, and highlight understudied non-verifier components.
+URL:https://lpc.events/event/20/contributions/2444/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2427@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T100000
+DTEND;TZID=Europe/Prague:20261006T103000
+SUMMARY:eBPF Research: What's Going On In Academia?
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Paul Chaignon · https://lpc.events/event/20/cont
+ ributions/2427/\n\nThe body of academic work on eBPF is growing so large a
+ nd scattered that it’s hard to see the forest for the trees. Papers span
+  all kinds of topics and conferences\, vary wildly in quality\, and are of
+ ten dense and hard to parse.\n\nThis talk will present the dominant trends
+  of research. To that end\, we will first explain some heuristics to ident
+ ify "high-quality papers"—it is not the number of citations!—and what 
+ it means for a paper to be considered high-quality. We’ll then map these
+  standout papers to some of the teams behind them.\n\nFinally\, we will se
+ e that only specific research topics are leading to contributions upstream
+  and explain why that might be. We will discuss how the kernel community c
+ ould encourage research on specific problems\, should it choose to do so.
+URL:https://lpc.events/event/20/contributions/2427/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2434@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T103000
+DTEND;TZID=Europe/Prague:20261006T110000
+SUMMARY:bpf_fault: Custom Page Fault Handling with eBPF
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Tal Zussman · https://lpc.events/event/20/contri
+ butions/2434/\n\nPage faults\, which occur when a program accesses a virtu
+ al memory page that is not mapped to physical memory\, are traditionally h
+ andled by the operating system. However\, many applications benefit from r
+ unning custom page fault handling logic. For example\, some applications m
+ ay seek to prefill newly-faulted pages with content\, or intercept writes 
+ in order to make a copy of the original contents. Linux’s userfaultfd in
+ terface enables some of these use cases by offloading fault handling to us
+ erspace. Unfortunately\, it suffers from significant limitations\, namely 
+ high overhead\, poor scalability\, and a design that precludes its use in 
+ libraries.\n\nWe present bpf_fault\, an experimental framework that allows
+  applications to run page fault handlers directly within the Linux kernel 
+ using eBPF. By eliminating the overheads and complexity associated with us
+ erfaultfd\, bpf_fault reduces fault latency by 2.8-6.1x and eliminates use
+ rfaultfd’s scalability bottleneck. We integrate bpf_fault with several a
+ pplications\, including VM live snapshots in Firecracker and QEMU (elimina
+ ting tail latency spikes caused by snapshots)\, JVM garbage collection\, a
+ nd more. We also design a novel lazy dynamic linking mechanism for Linux t
+ hat defers relocations to fault time using bpf_fault\, a use case impossib
+ le with userfaultfd\, which reduces dirty memory usage of widely-used appl
+ ications like Chrome and Clang by up to 50%. Together\, these results demo
+ nstrate that eBPF-based fault handling can improve performance and reduce 
+ resource usage in widely-deployed applications.
+URL:https://lpc.events/event/20/contributions/2434/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2429@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T110000
+DTEND;TZID=Europe/Prague:20261006T113000
+SUMMARY:Programming Across the VM Boundary with eBPF: Lessons from Revisiti
+ ng Phantom Tracker
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Roy Nchang · https://lpc.events/event/20/contrib
+ utions/2429/\n\neBPF programs can exchange data efficiently with other pro
+ grams and userspace through maps\, ring buffers\, and kfuncs\, but these m
+ echanisms stop at the boundary of a kernel instance. The Linux kernel has 
+ no generic\, safe\, low-latency mechanism for eBPF programs in a guest and
+  host to communicate through shared memory across the VM boundary. Roy’s
+  Google Summer of Code (GSoC) project [1] reimplements Himadri’s in-kern
+ el thesis [2] prototype of Phantom Tracker using eBPF and\, in turn\, high
+ lights the need for paravirtualized shared-memory drivers that expose reli
+ able communication APIs to eBPF programs across the VM boundary.\n\nThe th
+ esis models vCPU lifecycle states using the distinction between phantom an
+ d viable vCPUs. A phantom vCPU satisfies two conditions: (1) it is runnabl
+ e but waiting in the run queue of a pCPU on the host\, and (2) a worker th
+ read of the guest parallel application that had been running on that vCPU 
+ is now stalled because the vCPU is not executing. Conversely\, any vCPU th
+ at does not satisfy both conditions is considered viable. Across the VM bo
+ undary\, Phantom Tracker correlates guest-side information about which vCP
+ Us are running worker threads of the parallel application with host-side s
+ cheduler wake-up and context-switch events involving those vCPUs. The GSoC
+  project uses a configurable eBPF timer that aggregates these observations
+  and computes a per-VM metric called the phantom average. Guest userspace 
+ parallel runtime libraries\, such as libgomp\, can use this metric to adap
+ t the application’s degree of parallelism at runtime and minimize the nu
+ mber of phantom vCPUs.\n\nCommunication between the host and guest is impl
+ emented using QEMU’s Inter-VM Shared Memory (IVSHMEM) device [3]. While 
+ the thesis prototype relied on custom IVSHMEM drivers tied to custom kerne
+ ls\, the eBPF implementation resulted in the development of new eBPF-compa
+ tible drivers [4]. By presenting the lessons learned while working on this
+  GSoC project\, this talk discusses the broader applicability of our eBPF-
+ compatible IVSHMEM drivers within the QEMU/KVM virtualization stack and in
+ vites discussion on the scope for upstreaming them.\n\n[1] https://summero
+ fcode.withgoogle.com/programs/2026/projects/iXbp42du\n[2] https://inria.ha
+ l.science/tel-05438117v3\n[3] https://www.qemu.org/docs/master/system/devi
+ ces/ivshmem.html\n[4] https://github.com/himadrics/phantom-tracker/tree/ma
+ in/pvsched-shmem
+URL:https://lpc.events/event/20/contributions/2429/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2437@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T120000
+DTEND;TZID=Europe/Prague:20261006T123000
+SUMMARY:shirudo: BPF live-patching infra for the agentic era
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Daniel Borkmann\, John Fastabend · https://lpc.e
+ vents/event/20/contributions/2437/\n\nIn times of Fable/Mythos or equivale
+ nt LLMs\, security fixes and attack-surface hardening increasingly needs t
+ o land on production systems now\, but data-center fleets\, Kubernetes nod
+ es\, or embedded/air-gapped devices all typically share long patch-and-reb
+ oot cycles.\n\nBPF is the natural vehicle for on-the-fly live mitigations 
+ and runtime visibility - to the kernel itself as well as to userspace apps
+  - and in the age of AI-assisted engineering the natural author of those p
+ atches is an agent working in a close loop with the operator. We'll presen
+ t shirudo\, which is an agentless BPF-based security platform tailored for
+  exactly this: There is deliberately no config DSL\, because agents work f
+ ar better with code directly. shirudo also fully embraces xattrs\, signed 
+ BPF and seals all its assets via BPF LSM in order to defend against untrus
+ ted root tampering with bpf. In this talk we walk through the operator/tar
+ get node workflow\, architecture internals\, demo its capabilities\, and d
+ iscuss gaps and next steps on shirudo\, BPF kernel and libbpf loader side.
+URL:https://lpc.events/event/20/contributions/2437/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2426@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T123000
+DTEND;TZID=Europe/Prague:20261006T130000
+SUMMARY:One Layer of the Onion: A Daemonless eBPF LSM for Confidential VMs 
+ in a WhatsApp TEE
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Joshua Lilly\, Liam Wisehart · https://lpc.event
+ s/event/20/contributions/2426/\n\nHost-side hardening for a confidential V
+ M is not one control\, it's an onion. AMD SEV protects guest memory\, Meta
+ lOS and a measured/verified boot chain establish the platform\, signing an
+ d provisioning gate what lands on disk\, and process isolation constrains 
+ the runtime. This talk is about one specific layer of that onion\, the eBP
+ F LSM that enforces binary identity and process protection at runtime. Wha
+ tsApp runs user workloads inside AMD SEV-backed TEEs where the guest is a 
+ QEMU process\; eBPF LSM is how we add a defense-in-depth layer for that ho
+ st without becoming a new single point of trust.\nThe core of the talk is 
+ the BPF and the goal is to give attendees a full picture of how we use BPF
+  at Meta to supplement confidential workloads in WhatsApp. Specifically\, 
+ we attach a set of LSM programs bprm_creds_from_file for exec-time identit
+ y\, ptrace_access_check/ptrace_traceme for anti-trace\, and task_kill for 
+ anti-signal and drive them entirely from BPF maps keyed by role. The desig
+ n choice we want to dig into is persistence through pinning that has been 
+ discussed in other talks from Tetragon discussed in this lwn article and f
+ ully explore how we pin\, configure our maps\, set up keychains used for b
+ inary identification and how we track processes. We will also talk about t
+ he need for options for logging as is done in the initial article\, but it
+  will be a small portion to ask for opinions and discuss some other option
+ s that we are exploring\, as opposed to standing exclusively behind UDP pa
+ cket sending that has been discussed previously. We will mention potential
+  malware opportunities from this approach. Our method will be contrasted w
+ ith pros and cons of a typical resident daemon. In the use case at Meta\, 
+ a run-to-completion init binary loads the programs\, pins every program\, 
+ link\, and map into bpffs\, and exits. Because the LSM links survive pivot
+  root\, enforcement is live before the confidential workload starts. We'll
+  walk through the map layout\, how policy is expressed per-role\, and how 
+ pinned state lets the enforcement layer survive independently of any users
+ pace processes. We will also discuss some of the strategies we use to disa
+ llow malicious userspace processes from removing these programs once they 
+ are in place and how we manage the potential fallout from this.\nOn identi
+ ty\, we'll show the in-kernel verification path in detail. At exec\, the b
+ prm_creds_from_file hook reads an extended attribute on the binary user.bp
+ fj.policy.exec naming its role\, which forces calls to bpf_get_fsverity_di
+ gest and bpf_verify_pkcs7_signature to check the binary's fs-verity digest
+  and detached PKCS7 signature against a kernel keyring seeded from that ro
+ le's certificates enrolling the process into a role only if its on-disk co
+ ntents are signed for that role. Here the BPF layer leans on fs-verity\, t
+ he keyring subsystem\, and our custom signing pipeline do the heavy crypto
+ graphic lifting. Our programs make the runtime authorization decision from
+  that verified identity. We'll cover the kfuncs we depend on\, the sleepab
+ le-LSM constraints\, and the pitfalls we eliminated by moving to signature
+ -gated\, exec-time enrollment.\nFinally\, we show what verified identity b
+ uys at runtime with QEMU pinned to a verified role\, the ptrace and task_k
+ ill hooks enforce per-role allow-lists so nothing on the host can attach a
+  debugger to\, or signal\, the confidential VM closing common paths for ex
+ tracting or faulting guest state. We'll be explicit about the layer's limi
+ ts what it does not defend against and which sibling controls cover those 
+ gaps — so the audience sees where a focused eBPF LSM fits in a real conf
+ idential-computing threat model.
+URL:https://lpc.events/event/20/contributions/2426/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2435@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T130000
+DTEND;TZID=Europe/Prague:20261006T133000
+SUMMARY:Scaling BPF LSM hooks and error injection across the kernel
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Anton Protopopov · https://lpc.events/event/20/c
+ ontributions/2435/\n\nIn the modern era\, Linux kernel CVEs might accumula
+ te faster than fleets can reboot into patched kernels. In some cases\, thi
+ s takes not even days. BPF-based mitigations can block vulnerable code pat
+ hs at runtime\, no reboot needed.\n\nHowever\, at the moment\, BPF is far 
+ from being a golden bullet. Two mechanisms on how BPF can alter an executi
+ on path\, LSM Hooks and error injection\, are naturally limited: by the se
+ t of existing LSM hooks and by the [short] whitelist of ALLOW_ERROR_INJECT
+ ION functions. Many subsystems\, such as different parts of net/\, device 
+ drivers\, etc.\, have no BPF security coverage.\n\nIn the first part of th
+ e talk\, we investigate how subsystems currently lacking BPF hook coverage
+  can be equipped with it and present tooling and guidelines to support add
+ ing that coverage more systematically.\n\nIn the second part\, we discuss 
+ the error injection topic. One recent radical attempt\, killswitch\, allow
+ s any function to be altered. While this ultimately solves the problem\, t
+ his is not really a solution which can be kept under control. Thus we disc
+ uss what might be done to substantially extend the set of functions eligib
+ le for error injection\, while keeping the mechanism firmly under control.
+URL:https://lpc.events/event/20/contributions/2435/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2428@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150000
+DTEND;TZID=Europe/Prague:20261006T153000
+SUMMARY:Application-Layer Parsing in eBPF
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Laurin Brandner · https://lpc.events/event/20/co
+ ntributions/2428/\n\nRecent advances in the Linux kernel have enabled incr
+ easingly complex kernel offloads with eBPF. Despite this\, parsing applica
+ tion-layer protocols\, e.g. HTTP\, remains a challenge. The reason for thi
+ s is the self-describing structure of such protocols\, which typically req
+ uires more state and more complex control flow than a transport-layer prot
+ ocol. This is unfortunate because supporting L7 protocols in eBPF opens up
+  new opportunities to optimize many applications that were previously deem
+ ed too complex\, e.g. web servers\, web application firewalls\, or L7 serv
+ ice proxies.\n\nThis talk introduces Beeper\, a novel architecture to pars
+ e HTTP directly in eBPF\, without the need for kernel modules. To circumve
+ nt eBPF’s stringent limitations\, it constructs Aho-Corasick-like DFAs i
+ n user space\, and leverages them in kernel space to identify and extract 
+ relevant headers from the message buffer. We will discuss the challenges B
+ eeper must address  to parse HTTP/1.1 and HTTP/2\, and show its advantage 
+ by serving HTTP requests directly from eBPF.
+URL:https://lpc.events/event/20/contributions/2428/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2433@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T153000
+DTEND;TZID=Europe/Prague:20261006T160000
+SUMMARY:Inline DDoS protection for cloud-native game servers at PlayStation
+  with eBPF/XDP
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Babis Stylianopoulos\, Jeffrey Barendse · https:
+ //lpc.events/event/20/contributions/2433/\n\nAt PlayStation\, we see DDoS 
+ attacks of multiple terabits per second targeting game servers. Traditiona
+ l DDoS mitigation systems can be costly\, slow to react\, and difficult to
+  place close enough to the ingress points of the network.\n\nThis talk pre
+ sents a token-based eBPF/XDP architecture for inline DDoS protection. We s
+ how how distributing short lived tokens to legitimate clients allows us to
+  make the most of XDP’s position early in the stack for whitelisting and
+  minimise wasted cycles on unwanted traffic. We also complement the overal
+ l architecture with an eBPF based agent on the K8s workers that i) removes
+  the need to expose backend clusters directly to the Internet ii) forms a 
+ transparent overlay between the public-facing DDoS protection layer and pr
+ ivate game-server clouds and iii) solves challenges in integrating with Ku
+ bernetes CNIs and cloud environments. In order to tackle the unique requir
+ ements of frequently changing routing state that needs to be globally dist
+ ributed\, we also propose a control plane architecture built on CNCF xDS t
+ hat allows us to propagate tokens at high rates close to our network ingre
+ ss points\, constantly updating the eBPF maps that drive our routing decis
+ ions.\n\nFinally\, we share lessons from building and operating an eBPF ba
+ sed DDoS protection architecture at global scale. We discuss the challenge
+ s of integration with cloud providers and their CNIs\, as well as return p
+ ath optimisations that make the most of Playstation’s backbone network.
+URL:https://lpc.events/event/20/contributions/2433/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2430@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T160000
+DTEND;TZID=Europe/Prague:20261006T163000
+SUMMARY:BPF ksock: bringing network sockets to BPF
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Kornilios Kourtis\, Mahé Tardy · https://lpc.ev
+ ents/event/20/contributions/2430/\n\nBPF-based agents aim to be as transpa
+ rent as possible while minimizing CPU and memory overhead. Real-world expe
+ rience from projects such as Cilium’s Tetragon has shown that moving mor
+ e functionality directly into the kernel is an effective strategy. However
+ \, one remaining limitation for observability and logging is the lack of a
+ n API for sending data over the network directly from BPF programs\, keepi
+ ng user space in the critical path.\n\nEfforts to provide BPF programs wit
+ h networking capabilities through new kfuncs have been discussed at the pa
+ st two LSF/MM/BPF summits in Montreal and Zagreb. An initial approach base
+ d on the netpoll infrastructure was proposed but ultimately rejected.\n\nT
+ his talk will recap the motivation behind the current patch sets\, summari
+ ze the discussions so far\, and introduce the current design. We will then
+  demonstrate several ways BPF programs can use the new API\, ranging from 
+ basic examples to practical and more unexpected use cases. Finally\, we wi
+ ll discuss possible future extensions to the API\, such as support for add
+ itional BPF program types and TCP sockets.
+URL:https://lpc.events/event/20/contributions/2430/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2441@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T170000
+DTEND;TZID=Europe/Prague:20261006T173000
+SUMMARY:BPF-RBACd: Delegating BPF permissions with high granularity
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Toke Høiland-Jørgensen · https://lpc.events/ev
+ ent/20/contributions/2441/\n\nBPF usage has traditionally required system-
+ wide capabilities\, and giving an application access to using BPF is an al
+ l-or-nothing proposition. With BPF tokens\, we gained the ability to deleg
+ ate BPF capabilities to user namespaces with more granularity\, and with a
+ n LSM we can increase granularity further.\n\nBoth BPF token usage\, and a
+ n LSM\, require a userspace implementation of the policy enforcement mecha
+ nism. `bpf-rbacd` (the "BPF Role-Based Access Control daemon") is such an 
+ implementation\, which runs as a system service and supports granting perm
+ issions to applications or containers on the system using either BPF token
+  delegation or syscall proxying. A policy language restricts which subset 
+ of BPF an application is allowed to use\, with high granularity\, enforced
+  through an LSM written in BPF.\n\nWe are working on making `bpf-rbacd` a 
+ core part of the Fedora and RHEL distributions. In this talk we'll present
+  the architecture of `bpf-rbacd` and solicit feedback from the community o
+ n the design of the system\, in the hope that this can prove useful to oth
+ er distributions and operators as well.
+URL:https://lpc.events/event/20/contributions/2441/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2443@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T173000
+DTEND;TZID=Europe/Prague:20261006T180000
+SUMMARY:eBPF on Wheels - Automotive and Industrial Use Cases
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Reinhard Kugler · https://lpc.events/event/20/co
+ ntributions/2443/\n\nThe industry increasingly adopts Linux for automotive
+  and industrial use cases\, since companies like Red Hat or Canonical enga
+ ged in development of Linux platforms in safety-critical domains. Using co
+ ntainer technologies or just a bootable images on restricted silicon\, now
+  software operates cyber-physical processes. Those platforms are often clo
+ ud-connected because of maintainability\, attracting new threat actors to 
+ that domain. Defenses in this area are limited\,  because of blind spots i
+ n endpoint protection solutions regarding electronics.\n\nThe missing inte
+ grations can be found in non-IP bus systems\, such as the CAN bus as well 
+ as on-board interfaces to flash chips\, FPGA or the protocols themselves l
+ ike SPI or I2C. While less common in the IT world those missing capabiliti
+ es are missing out in comprehensive observability resulting in unnoticed c
+ yber attacks against IOT platforms.\n\nThis talk showcases the use of eBPF
+  for protocols like CAN\, DMA and SPI to create observability as well as d
+ efenses against cyber attacks in automotive or industrial contexts\, such 
+ as secure updates\, injection attacks and non-IP filters.
+URL:https://lpc.events/event/20/contributions/2443/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2446@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T180000
+DTEND;TZID=Europe/Prague:20261006T183000
+SUMMARY:Pluggable Runtime Verification (RV) monitors with BPF
+LOCATION:South Hall 1 A\, Prague Congress Centre
+DESCRIPTION:eBPF Track · Gabriele Monaco · https://lpc.events/event/20/co
+ ntributions/2446/\n\nRV is a lightweight method for verifying system behav
+ ior at runtime using\, for instance\, deterministic automata. Currently\, 
+ RV monitors must be implemented in-kernel\, meaning any new monitor requir
+ es going through the upstream kernel development process.\nWe can replicat
+ e the existing monitor infrastructure in BPF mapping kernel primitives to 
+ BPF equivalents such as maps and ring buffers\, while reusing common logic
+  where possible.\nThis allows to develop\, test\, and deploy domain-specif
+ ic monitors entirely from userspace\, with all the perks of the BPF tracin
+ g infrastructure.\n\nIn the talk we will cover an implementation using BPF
+  struct_ops for mostly seamless integration with the in-kernel RV framewor
+ k and tools\, BPF monitor lifecycle control via the rv command line tool (
+ i.e. registration\, activation\, and tracing)\, and various tradeoffs to k
+ eep a similar experience between different monitor implementations.
+URL:https://lpc.events/event/20/contributions/2446/
+END:VEVENT
+END:VCALENDAR

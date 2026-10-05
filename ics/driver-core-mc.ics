@@ -1,0 +1,228 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Driver Core MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2602q1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T150000
+DTEND;TZID=Europe/Prague:20261007T152500
+SUMMARY:Power Sequencing for Enumberable Busses - Driver Core Integrations?
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Driver Core MC · Chen-Yu Tsai · https://lpc.events/event/20/c
+ ontributions/2502/\n\nOn x86 / ACPI platforms\, devices on enumerable buss
+ es can normally be seen directly by the OS. On device tree platforms\, the
+ se devices sometimes require extra power sequencing like toggling regulato
+ r supplies or GPIO lines. Over the years most of these cases have been sol
+ ved\, but there are still some gaps.\n\nAs of kernel version v7.0\, suppor
+ t for power sequencing generic PCI devices\, ones that have no extra toggl
+ es that are not part of PCI specification\, and M.2 M-key slots is availab
+ le [[link][1]]. v7.1 then adds support for the PCI part of E-key slots [[l
+ ink][2]].\n\nSupport for the USB part of M.2 E-key slots is WIP by the aut
+ hor [[link][3]]. Support for onboard USB devices and USB type A connectors
+  is provided\nby the onboard device driver.\n\nThis session intends to giv
+ e a quick overview of the current status and discuss whether parts of this
+  could be moved or integrated at the driver core level. These include:\n\n
+  - Bus code integration for acquiring power sequencers\n - Creating stub p
+ latform devices to provide power control functionality\n   - USB onboard d
+ evices\n   - PCI pwrctrl devices\n\nSuch mechanisms could then be reused f
+ or the MDIO bus.\n\n  [1]: https://lore.kernel.org/linux-pci/20260107-pci-
+ m2-v5-0-8173d8a72641@oss.qualcomm.com/\n  [2]: https://lore.kernel.org/all
+ /20260326-pci-m2-e-v7-0-43324a7866e6@oss.qualcomm.com/\n  [3]: https://lor
+ e.kernel.org/all/20260610084053.2059858-1-wenst@chromium.org/
+URL:https://lpc.events/event/20/contributions/2502/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602r1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T152500
+DTEND;TZID=Europe/Prague:20261007T155000
+SUMMARY:Reviving early platform drivers
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Driver Core MC · Bartosz Golaszewski · https://lpc.events/eve
+ nt/20/contributions/2503/\n\nCertain critical subsystems - clocks\, timers
+  and interrupt controllers - sometimes need to be initialized before drive
+ r core is made available in driver_init(). To that end\, we provide a set 
+ of macros: IRQCHIP_DECLARE()\, CLK_OF_DECLARE()\, TIMER_OF_DECLARE() which
+  allow the kernel to call initialization functions based on compatibles ei
+ ther before reaching the point where actual platform devices matching thes
+ e compatibles can be created or *instead* of creating them essentially byp
+ assing the driver model entirely.\n\nThis results in the initialization ro
+ utines not being able to use many APIs only available to real drivers and 
+ - for many modules - never registering with the driver core.\n\nI've worke
+ d on the idea of unifying these paths with a concept of "early platform dr
+ ivers" back in 2018. That work never got anywhere but the "hacky" approach
+  for early setup remains.\n\nI'd like to re-discuss the idea\, it's pros a
+ nd cons and provide possible solutions for the main contention point raise
+ d last time: the fact that my series did nothing to automatically convert 
+ existing invocations of the _DECLARE() macros to using early platform driv
+ ers.\n\n[1] https://lore.kernel.org/all/20180511162028.20616-1-brgl@bgdev.
+ pl/
+URL:https://lpc.events/event/20/contributions/2503/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602s1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T155000
+DTEND;TZID=Europe/Prague:20261007T161500
+SUMMARY:Evolving support for sync_state to subsystems beyond genpd
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Driver Core MC · Ulf Hansson · https://lpc.events/event/20/co
+ ntributions/2504/\n\nAt last LPC in Tokyo we discussed about the limitatio
+ ns of the sync_state support that quite recently was added to the generic 
+ PM domain (genpd) subsystem. The conclusion was to mainly focus on making 
+ it more fine grained\, as this should address most of the problems. Attemp
+ ts to implement this has been submitted to LKML [1]. Discussion and iterat
+ ions of the series are moving forward\, but a solution is yet to be landed
+ .\n\nIn this regards\, we also have the need to extend the support for syn
+ c_state to more subsystems beyond genpd\, to move away from the broken the
+  "disable unused" features that each subsystem currently provides. Moreove
+ r\, ideally we prefer the support for sync_state to be adopted on a subsys
+ tem basis\, rather than relying on a per driver based implementation\, whi
+ ch isn't scaling. Attempts have been made to add support to the regulator 
+ and clock subsystems\, while the support in the interconnect subsystem nee
+ ds improvements.\n\nLet's discuss these topics and in particular how we ca
+ n make subsystem specific implementations to coexist and play along with e
+ ach other.\n\n[1]\n[PATCH v3 00/13] driver core / pmdomain: Add support fo
+ r fined grained sync_state\nhttps://lore.kernel.org/all/20260508123910.114
+ 273-1-ulf.hansson@linaro.org/
+URL:https://lpc.events/event/20/contributions/2504/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602t1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T161500
+DTEND;TZID=Europe/Prague:20261007T164000
+SUMMARY:Constification of sysfs attribute structures
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Driver Core MC · Thomas Weißschuh · https://lpc.events/event
+ /20/contributions/2505/\n\nSysfs attributes are used throughout the kernel
+  to implement UAPI.\nSubsystems either use common attributes\, like `kobj_
+ attribute` and `device_attr` or define their own wrapper structures.\nThes
+ e structures are only descriptors defining the behavior of an attribute an
+ d normally never change.\n\nHistorically the attribute however are not mar
+ ked as `const` and could be modified through their various callbacks. Such
+  modifications are inherently racy and therefore bug-prone or even a vecto
+ r for attackers to redirect control-flow.\n\nFor some time I have been wor
+ king on making it possible to mark all the different attribute structures 
+ as `const` to fix these issues.\n\nAgenda:\n* Problem statement (see above
+ )\n* Current state\n  * Which attributes *can* be marked `const` today?\n 
+  * Which attributes are already converted.\n* Discussion (see below)\n\n* 
+ Discussion\n\nDiscussion topics:\n* Which attribute types are still missin
+ g?\n* How can subsystem maintainers convert their custom attribute types?\
+ n* How to actually convert all the structure instances throughout the tree
+ ?
+URL:https://lpc.events/event/20/contributions/2505/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602u1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T171000
+DTEND;TZID=Europe/Prague:20261007T173500
+SUMMARY:Hardware Cross-Dependencies - Solving the Unsolvable
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Driver Core MC · AngeloGioacchino Del Regno\, Sebastian Reiche
+ l · https://lpc.events/event/20/contributions/2501/\n\nWe are seeing hard
+  to solve cross-dependencies between different SoC subsystems (Rockchip\, 
+ MediaTek\, etc.). For example a power domain needing an I2C regulator\, bu
+ t the I2C regulator needing the I2C bus and the I2C bus driver needing a (
+ different) power domain. This creates a cyclic dependency\, since the powe
+ r domains (or clocks) are usually all behind a single device.
+URL:https://lpc.events/event/20/contributions/2501/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602v1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T173500
+DTEND;TZID=Europe/Prague:20261007T180000
+SUMMARY:Synx: Cross-core synchronization
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Driver Core MC · Pravin Kumar Ravi · https://lpc.events/event
+ /20/contributions/2507/\n\n## Abstract\n\nModern SoCs increasingly run par
+ ts of a single pipeline (AI/ML\,\nvision\, camera\, graphics\, sensors) ac
+ ross a mix of Linux drivers\nand firmwares on remote processors (NPUs and 
+ AI processors\, ISPs\,\ncompanion cores). Coordinating that pipeline requi
+ res\nsynchronization objects that can be created\, synchronously or\nasync
+ hronously waited on\, signaled\, and released by *any*\nparticipant core\,
+  Linux and non-Linux\, with lifetime tracked\nsomewhere no single core own
+ s outright.\n\n`dma_fence` solves the local version of this problem well\,
+  but its\nlifetime and callback model assumes a single kernel's view of th
+ e\nworld. We've developed Synx\, a global handle/refcount table for\nthis 
+ exact cross-processor case\, and posted an RFC to dri-devel\nand linux-arm
+ -msm describing the model and the specific properties\ndma-fence doesn't c
+ urrently cover (refer supporting links).\n\nLetting any two remote process
+ ors signal each other directly\,\nwithout routing through the Linux host\,
+  cuts latency and avoids an\nunnecessary CPU wake-up. The solution has sho
+ wn power and\nperformance benefits in the last few generations of Qualcomm
+ \nmobile and XR chipsets\, and is gathering more use cases\,\nspecifically
+  ones involving AI pipelines.\n\nChristian König redirects us to solve re
+ mote signaling in\nuserspace: a userspace fence/signaling point model base
+ d on\ndma-buf\, citing XE's userspace wait support\, `eventfd`\, and ROCm\
+ nevents as precedent\, with possible common ground centered around\n`event
+ fd`.\n\n## Discussion points\n\n(Supposed to evolve as email thread develo
+ ps)\n- the viability of a userspace vs. kernel-space fence model\n- the cu
+ rrent remote-signaling solutions from other vendors\n- scope as standalone
+  or extend current framework. Define\n  interfaces.\n- model the subsystem
+  crash recovery and cleanup\n\n## Key people\n\n- Bartosz Golaszewski\n- D
+ mitry Baryshkov\, Srinivas Kandagatla (Driver Core MC\; also\n  Qualcomm c
+ olleagues who reviewed Synx internally)\n- Christian König (engaged on th
+ e RFC thread)\n- Faith Ekstrand / Xe authors (cited by König)\n\n## Suppo
+ rting links\n- https://lore.kernel.org/dri-devel/5f90bb35-994e-48bd-bf49-3
+ 001dcefa2ee@amd.com/\n- https://lore.kernel.org/linux-arm-msm/202608060519
+ 15.2234481-1-pravinku@quicinc.com/\n- formatted duplicate @ https://lore.k
+ ernel.org/dri-devel/20260806051915.2234481-1-pravinku@quicinc.com/
+URL:https://lpc.events/event/20/contributions/2507/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602w1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T180000
+DTEND;TZID=Europe/Prague:20261007T182500
+SUMMARY:Managing IRQ mapping and deferred probing for ACPI static tables de
+ vices
+LOCATION:Club B+C\, Prague Congress Centre
+DESCRIPTION:Driver Core MC · Lorenzo Pieralisi · https://lpc.events/event
+ /20/contributions/2506/\n\nIn ACPI based system\,devices can be created ou
+ t of ACPI static tables entries (eg  ARM64 IORT\, GTDT). For those devices
+ \, the GSI HW interrupt number is retrieved by reading table specific fiel
+ ds that are different for different static tables. Devices created out of 
+ static ACPI tables might be created before the interrupt controller driver
+ s their GSI interrupt is routed to is probed\, which means that when the p
+ latform device is created the IRQ domain that should be used to map the GS
+ I into a virtual IRQ may not be registered yet.\n\nThis leaves us with two
+  issues:\n\n - device drivers for devices created out of static tables can
+  probe only after the interrupt controller driver their IRQ is routed to h
+ as probed\n - In order to map the virtual IRQ for those devices at device 
+ driver probe time\, the static table GSI HW IRQ number must be stashed som
+ ewhere in the device object so that it can be retrieved and mapped to a vi
+ rtual IRQ when the device driver is actually probed\n\nPrototyping for thi
+ s solution is under way and a solution for ACPI namespace devices was alre
+ ady posted[1] (but that can't solve the problem for devices that are creat
+ ed out of static table entries).\n\nThis session would help define a way f
+ orward.\n\n[1] https://lore.kernel.org/lkml/20260505-gic-v5-acpi-iwb-probe
+ -deferral-v1-0-b37b85998362@kernel.org/
+URL:https://lpc.events/event/20/contributions/2506/
+END:VEVENT
+END:VCALENDAR

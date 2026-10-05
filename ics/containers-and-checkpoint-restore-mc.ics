@@ -1,0 +1,269 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Containers and checkpoint/restore MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2602a@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T100000
+DTEND;TZID=Europe/Prague:20261007T102000
+SUMMARY:Constraints of process migrations
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Containers and checkpoint/restore MC · Michal Koutný · https
+ ://lpc.events/event/20/contributions/2602/\n\nTriggered by:\nSubject: [PAT
+ CH 0/4] bpf: add a few hooks for sandboxing\nMessage-Id: <20260220-work-bp
+ f-namespace-v1-0-866207db7b83@kernel.org>\n\nProblem statements:\n- Users 
+ (admins) are sometimes confused by some entity (PAM\, systemd\, container\
+ n  runtimes) migrating their processes away from intended cgroup.\n- Coars
+ e-grained DAC doesn't express well who (migrating process) can operate\n  
+ on what (cgroup) to what (migrated task).\n- Limited immutability of membe
+ rship assignment after certain point.\n\nProposed solution:\nBPF LSM hook 
+ for cgroup_attach_permissions\n(combination with other existing migration 
+ vetting mechanisms\nassociation of permissions with PIDs instead of UIDs?)
+ \n\nAlternate solutions:\n- stick with regular cgroup FS permissions\n- ut
+ ilization of other existing LSM hooks
+URL:https://lpc.events/event/20/contributions/2602/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602b@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T102000
+DTEND;TZID=Europe/Prague:20261007T104000
+SUMMARY:Memory Tracking in forensic checkpointing: what soft-dirty bits can
+ ’t tell us
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Containers and checkpoint/restore MC · Shailja Shaktawat · ht
+ tps://lpc.events/event/20/contributions/2607/\n\nCRIU’s incremental chec
+ kpointing is being used for forensic container snapshot(Stoyanov et al.\, 
+ DFRWS 2026) chains. Soft-dirty tracking cuts snapshot size by about 10× a
+ nd makes high-frequency capture practical.  Live migration only needs a co
+ rrect final state. Forensics needs the path that led there. Soft-dirty was
+  built for migration and is now being reused for forensics.\n\nA forensic 
+ snapshot chain starts with one full snapshot\, then stores only later chan
+ ges. Hash-chaining makes tampering detectable\, as long as the host kernel
+  and CRIU stay trusted.\n\nThis talk brings the discusion of the challenge
+ s with the existing memory tracking mechanism and improvements for forensi
+ c use.\n\nSoft-dirty answers one question: did this page change since the 
+ last reset? It cannot say when\, how many times\, in what order\, or by wh
+ om. Tracking makes pages read-only and catches the first write to each but
+  a page written once and a page written ten thousand times are indistingui
+ shable. Every intermediate value is gone\, along with any ordering or cont
+ ext. Even when two pages change\, the kernel walks page tables.\n\nSome wa
+ ys to improve this tracking for forensic checkpointing at container level\
+ , have been inspired from several of live migration\, hypervisor specific 
+ and hardware trapping techniques. One such direction might be maintaining 
+ a kernel level dirty set of pages. PAGEMAP_SCAN already helps here\, but C
+ RIU mainly uses it as a faster way to read soft-dirty. The tracking mechan
+ ism is unchanged\, and the kernel-side still walks the range\, there is no
+  maintained dirty set\, only a faster way to report the outcome of a walk.
+ \n\nAnother direction can be to finally start utilising the first-write pa
+ ge fault data rather than discarding almost everything it exposes. Today
+ ’s interfaces force a choice: async uffd-wp is cheap but reports one bit
+ \, while sync uffd-wp can report richer data at a userspace round trip per
+  fault. Forensics needs rich-and-cheap: capture at the fault\, kernel-side
+ \, without that round trip.\n\nA separate\, lighter option is to recover c
+ hanged bytes by diffing a captured page against its parent and storing onl
+ y the difference.\n\nAt last\, soft-dirty is not broken. It does what live
+  migration needed\, well enough that forensic snapshot chains already use 
+ it. The problem is that forensics asks a different question\, and the inte
+ rface has no answer for it. Upstream work so far has made the answer cheap
+ er to retrieve without making it richer.
+URL:https://lpc.events/event/20/contributions/2607/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602c@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T104000
+DTEND;TZID=Europe/Prague:20261007T110000
+SUMMARY:Enabling Incremental Checkpointing for GPU Workloads
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Containers and checkpoint/restore MC · Radostin Stoyanov · ht
+ tps://lpc.events/event/20/contributions/2603/\n\nWith the increased adopti
+ on of AI workloads\, efficient GPU checkpointing mechanisms are becoming c
+ rucial for inference\, training\, fine-tuning\, and reinforcement learning
+  workloads. One of the key challenges with GPU checkpointing today is the 
+ lack of memory-tracking support that enables incremental snapshots. When t
+ he GPU state is checkpointed into host memory\, all pages appear modified\
+ , preventing CRIU from identifying which pages have changed since the prev
+ ious checkpoint and resulting in full snapshot of the GPU memory for every
+  iteration. In this talk\, we will discuss extending the GPU plugins for C
+ RIU with support for memory tracking that enables efficient incremental ch
+ eckpointing. We will explore the benefits of this approach and the trade-o
+ ffs between performance overhead and storage efficiency across different G
+ PU workloads.
+URL:https://lpc.events/event/20/contributions/2603/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602d@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T110000
+DTEND;TZID=Europe/Prague:20261007T113000
+SUMMARY:dm-qcow2: device-mapper-based QCOW2 storage for containers
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Containers and checkpoint/restore MC · Andrei Zhadchenko · ht
+ tps://lpc.events/event/20/contributions/2605/\n\nContainer storage commonl
+ y relies on directory overlays\, filesystem-native subvolumes\, or thin-pr
+ ovisioned block devices. We will explore another approach: exposing QCOW2 
+ images directly as Linux block devices through a device-mapper target. QCO
+ W2 is the standard virtual-disk format across much of the QEMU/KVM ecosyst
+ em. Its widespread adoption\, mature tooling\, and features such as backin
+ g-file chains\, persistent bitmaps\, and sparse allocation make it an attr
+ active option for container storage as well.\n\nBut just having a nice loo
+ p device is not a complete solution. Container storage must also support e
+ ssential operations such as snapshots\, backups\, and migration. This talk
+  will show how we map these requirements onto existing device-mapper and L
+ inux kernel capabilities\, what is still missing\, and which problems rema
+ in unsolved.
+URL:https://lpc.events/event/20/contributions/2605/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602e@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T120000
+DTEND;TZID=Europe/Prague:20261007T122000
+SUMMARY:Upgrade restrictions for file descriptors
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Containers and checkpoint/restore MC · Jori Koolstra · https:
+ //lpc.events/event/20/contributions/2604/\n\nFor quite a while there has b
+ een a wish from container runtime to be able to restrict how we can reuse 
+ a particular file descriptor. For instance\, CVE-2019-5736 showcased a pri
+ vilege escalation in runc\, whereby the possibility of reopening `/proc/se
+ lf/exe` as writeable allowed a malicious image to overwrite the runc binar
+ y. That was patched on the user space side by copying runc to a sealed mem
+ fd_create() file before executing the target. However\, it would be better
+  if we could just set restrictions on how some file descriptor can be used
+  (via procfs or O_EMPTYPATH) to reopen a file as writeable in the first pl
+ ace. Thus we would like to have some kind of upgrade mask for file descrip
+ tors.\n\nEffort has been spent in the past to implement something like thi
+ s. For instance\, by David Drysdale in 2013 and later by Aleksa Sarai as p
+ art of openat2(2) in 2019. I want to take some time to summarize some of t
+ hese past ideas and see why they were unsuccessful\, and what makes this i
+ n particular a hairy problem. We can finish with some discussion about wha
+ t a merge-able patchset would look like.
+URL:https://lpc.events/event/20/contributions/2604/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602f@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T122000
+DTEND;TZID=Europe/Prague:20261007T124000
+SUMMARY:Checkpoint/Restore of Device Cgroup eBPF Programs
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Containers and checkpoint/restore MC · Pavel Tikhomirov · htt
+ ps://lpc.events/event/20/contributions/2606/\n\nAfter moving OpenVZ contai
+ ners to cgroup-v2 we are struggling a bit to reach\nfeature parity with wh
+ at we had before. One such feature is running nested\nDocker containers in
+ side an OpenVZ (system) container — part of making our\ncontainers behav
+ e as close to a regular server as possible.\n\nIn cgroup-v2 the device con
+ troller was reformed drastically: device\navailability can only be control
+ led by special BPF_PROG_TYPE_CGROUP_DEVICE\nprograms attached to cgroups. 
+ Docker naturally relies on this\, and systemd also\nemploys it for its own
+  services — so a migrated container without these\nprograms comes back w
+ ith its device policy silently dropped. The problem is\nthat the BPF inter
+ face is asymmetric: the kernel accepts a program\, but gives\nno way to ge
+ t it back in a reloadable form. The verified/JITed instructions it\ncan re
+ port are not portable — the verifier rewrites context accesses and helpe
+ r\ncalls into offsets and addresses specific to the running kernel\, so th
+ ey can\nneither pass verification again nor work on another kernel. Mainst
+ ream solved\nthe same problem for seccomp a decade ago — commit f8e529ed
+ 941ba ("seccomp\,\nptrace: add support for dumping seccomp filters") added
+  an API to retrieve\nloaded filters specifically for C/R — but for gener
+ al BPF programs no such interface\nexists to this day.\n\nWe took the secc
+ omp approach for cgroup device programs in the Virtuozzo\nkernel: keep a c
+ opy of the original\, pre-verification instructions at load time\nand repo
+ rt it through BPF_OBJ_GET_INFO_BY_FD in a new\nbpf_prog_info::orig_prog_in
+ sns field. The encoding (struct bpf_insn) and the\nCGROUP_DEVICE context a
+ re stable UAPI\, so on restore the program is simply\nreloaded and the des
+ tination kernel re-verifies and re-JITs it. On top of this\nAPI\, CRIU now
+  dumps programs and their per-cgroup attachments (via\nBPF_PROG_QUERY)\, t
+ he bpf-prog anon-inode fds held by processes\, and on restore\nre-attaches
+  everything once the cgroup tree is recreated\, preserving the\noriginal s
+ haring topology.\n\nIn this talk we will go over the kernel and CRIU sides
+  of the design and\ndiscuss whether such an interface could be accepted in
+  mainstream\, along with\nthe open problems on the way to generic BPF chec
+ kpoint/restore: original\ninstructions for arbitrary program types\, maps 
+ and their contents\, links\, and\npinned objects.
+URL:https://lpc.events/event/20/contributions/2606/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602g@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T124000
+DTEND;TZID=Europe/Prague:20261007T130000
+SUMMARY:Addressing Challenges for Container Migration in Heterogeneous Clus
+ ters
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Containers and checkpoint/restore MC · Andrei Vagin · https:/
+ /lpc.events/event/20/contributions/2608/\n\nCheckpoint/Restore (C/R) is in
+ creasingly used for both startup acceleration (restoring pre-warmed snapsh
+ ot instances on demand) and live migration. However\, deploying static sna
+ pshots or migrating tasks across heterogeneous clusters creates severe run
+ time bottlenecks when source and target nodes possess differing CPU capabi
+ lities. While CRIU and container runtimes can accurately preserve memory s
+ tate\, handling CPU feature consistency and safe architectural state resto
+ ration across diverse hardware remains an unsolved problem at the kernel b
+ oundary.\n\nThis session will focus on two critical kernel/userspace inter
+ action challenges:. While CRIU and container runtimes can accurately captu
+ re and restore process states and kernel resources\, handling CPU feature 
+ consistency and safe architectural state restoration across diverse hardwa
+ re remains an unsolved problem at the kernel boundary.\n\nThis session wil
+ l focus on two critical kernel/userspace interaction challenges:\n 1. HWCA
+ P Inheritance & Feature Discovery: Examining feature detection failures wh
+ en restoring snapshots on target nodes with different CPU features\, and r
+ eviewing proposed mechanisms to inherit or mask hardware capabilities (HWC
+ AP/HWCAP2 via auxv) across execve().\n 2. Restoring Extended Signal Frame 
+ States: Analyzing edge cases where tasks contain in-flight signal frames w
+ ith architecture-specific CPU state on their stack. We will discuss why ri
+ gid kernel-side frame validation during rt_sigreturn causes restoration fa
+ ilures across hardware generations\, and propose flexible validation strat
+ egies that prevent state corruption while preserving ABI safety.\n\nGoal: 
+ Align kernel\, container\, and language runtime maintainers on kernel-assi
+ sted CPU feature control and flexible signal-context restoration to make s
+ napshot-based fast-booting and live migration robust across heterogeneous 
+ fleets.
+URL:https://lpc.events/event/20/contributions/2608/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602h@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T130000
+DTEND;TZID=Europe/Prague:20261007T132000
+SUMMARY:mmtest benchmarking of cgroup code
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Containers and checkpoint/restore MC · Michal Koutný · https
+ ://lpc.events/event/20/contributions/2631/\n\nTriggered by:\na) various rs
+ tat fixups as well as people reporting issues with (memory).stat reading v
+ s writing performance & precision\nb) occasional reports/attempts to make 
+ container startup quicker\n\nProblem statements:\na) cgroup rstats need to
+  balance latency requirements of updaters (writers) and readers while pres
+ erving sufficient precision. The improvement for one may cause some deteri
+ oration at other places -- which is not always clear until those places st
+ art being friction points.\nb) the cgroup creation path is on critical pat
+ h of new container starts but there're no good insights into the behavior 
+ of those.\n\nProposed solution:\nmmtests shellpack and monitor(s)\n\nAlter
+ nate solutions:\n- selftest\, LTP tests\n- bpftrace probes\n- perf-bench
+URL:https://lpc.events/event/20/contributions/2631/
+END:VEVENT
+END:VCALENDAR

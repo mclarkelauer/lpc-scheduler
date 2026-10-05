@@ -14,7 +14,14 @@
   header .sub{margin:4px 0 0;color:#b9c2cf;font-size:13px}
   .clock{font-variant-numeric:tabular-nums;font-size:14px;color:#dfe5ee;text-align:right}
   .clock small{display:block;color:#8b95a5;font-size:11px}
-  .help{flex:0 0 100%;font-size:13px}
+  .headtools{flex:0 0 100%;display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start}
+  .help{font-size:13px}
+  .help[open]{flex:0 0 100%;order:2}
+  .feeds p{margin:10px 0 0;max-width:85ch;line-height:1.55;color:#dfe5ee}
+  .feedgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px 28px;margin:10px 0 2px}
+  .feed b{display:block;color:#fff;font-weight:600}
+  .feed small{font-weight:400;color:#b9c2cf}
+  .feed a,.feed button{color:#9cc2ff;background:none;border:0;padding:0;margin-right:12px;font:inherit;font-size:12.5px;text-decoration:underline;cursor:pointer}
   .help summary{display:inline-block;cursor:pointer;list-style:none;color:#dfe5ee;border:1px solid #475467;border-radius:999px;padding:5px 12px}
   .help summary::-webkit-details-marker{display:none}
   .help summary::after{content:' ▾'}
@@ -142,6 +149,7 @@
     <p class="sub">Schedule board · Prague Congress Centre · Oct 5–7, 2026 · All times Europe/Prague (CEST, UTC+2)</p>
   </div>
   <div class="clock"><small>PRAGUE TIME</small><span id="clock">--:--</span></div>
+  <div class="headtools">
   <details class="help">
     <summary>How to use this page</summary>
     <ul>
@@ -161,9 +169,16 @@
           <li>To stop, open the line. <b>Unlink this browser</b> stops syncing in one browser and lets you keep or clear the picks in it. <b>Delete my synced picks</b> removes them from the server, unlinks every browser and ends the calendar link.</li>
         </ol>
       </li>
+      <li><b>Subscribe to calendars</b>, next to this guide, has a calendar feed of the whole programme and one for each track, for your calendar app. They follow schedule changes and are the same for everyone; your own picks have their own calendar link in My picks.</li>
       <li>All times are Prague time. The schedule is a snapshot of lpc.events: the footer says when it was taken, and reloading the page gets the newest one.</li>
     </ul>
   </details>
+  <details class="help feeds">
+    <summary>Subscribe to calendars</summary>
+    <p>Calendar feeds of the whole programme and of each track. <b>Subscribe</b> opens your calendar app; <b>Google Calendar</b> adds the feed there; <b>Copy link</b> is for any other app's "add calendar from URL". The feeds follow schedule changes, though your calendar app decides how often it looks (Google Calendar may take up to a day).</p>
+    <div class="feedgrid" id="feedList"></div>
+  </details>
+  </div>
 </header>
 <nav class="tabs">
   <button id="tabBtnNow" class="active">Now &amp; next</button>
@@ -1118,6 +1133,20 @@ function readSyncLink(){
   showTab('picks');
 }
 
+/* ---------- calendar feeds for everyone: the whole programme and one per track (rebuild.py writes the files into ics/) ---------- */
+function renderFeeds(){
+  const base = new URL('ics/', siteBase()).href, slug = t=>t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');  // same naming as rebuild.py
+  const row = (name, file, n)=>{
+    const url = base+file+'.ics', cal = url.replace(/^https?:/,'webcal:');
+    return '<div class="feed"><b>'+esc(name)+' <small>· '+n+'</small></b><a href="'+esc(cal)+'">Subscribe</a>'
+      +'<a href="https://calendar.google.com/calendar/render?cid='+encodeURIComponent(cal)+'" target="_blank" rel="noopener">Google Calendar</a>'
+      +'<button data-feed="'+esc(url)+'">Copy link</button></div>';
+  };
+  const tracks = [...new Set(SESSIONS.map(s=>s.track).filter(Boolean))].sort();
+  $('feedList').innerHTML = row('All sessions', 'all', SESSIONS.length)+tracks.map(t=>row(t, slug(t), SESSIONS.filter(s=>s.track===t).length)).join('');
+  $('feedList').querySelectorAll('[data-feed]').forEach(b=>{ b.onclick=()=>copyText(b.getAttribute('data-feed'), b); });
+}
+
 /* ---------- QR code encoder (byte mode, error correction level L, versions 1-40) ---------- */
 const QR_ECC = [7,10,15,20,26,18,20,24,30,18,20,24,26,30,22,24,28,30,28,28,28,28,30,30,26,28,30,30,30,30,30,30,30,30,30,30,30,30,30,30];  // EC codewords per block, by version
 const QR_BLOCKS = [1,1,1,1,1,2,2,2,2,4,4,4,4,4,6,6,6,6,7,8,8,9,9,10,12,12,12,13,14,15,16,17,18,19,19,20,21,22,24,25];                   // EC blocks, by version
@@ -1251,7 +1280,7 @@ window.addEventListener('online', syncNow);
   state.day = DAYS.some(d=>d.d===n.date) ? n.date : '2026-10-05';
   $('pickCount').textContent = flagged();
   initFilters(); renderNow();
-  $('helpSync').hidden = !SYNC_URL;
+  $('helpSync').hidden = !SYNC_URL; renderFeeds();
   readSyncLink(); readShareLink(); syncNow();
   window.addEventListener('hashchange', ()=>{ readSyncLink(); readShareLink(); });
 })();

@@ -1,0 +1,216 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Confidential Computing MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2602g1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T150000
+DTEND;TZID=Europe/Prague:20261007T151000
+SUMMARY:Welcome to the Confidential Computing Microconference
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Confidential Computing MC · Dhaval Giani · https://lpc.events
+ /event/20/contributions/2639/\n\nDhaval and Joerg welcome the attendees.
+URL:https://lpc.events/event/20/contributions/2639/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602h1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T151000
+DTEND;TZID=Europe/Prague:20261007T153000
+SUMMARY:Improving TDX Linux integration: changes in TDX Migration and Attes
+ tation
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Confidential Computing MC · Elena Reshetova · https://lpc.eve
+ nts/event/20/contributions/2340/\n\nLive migration and runtime attestation
+  are two critical features for Confidential Computing to get right\, not j
+ ust in terms of fulfilling customer requirements\, but also correct integr
+ ation into common Linux codebase and overall code simplicity and maintaina
+ bility.  Based on Linux community feedback\, TDX architecture went through
+  a few big changes last year wrt to Live Migration and Attestation to enab
+ le simpler Linux integration.\n\nIn this short talk we will share the key 
+ changes\, as well as our key learnings in this area that could be useful f
+ or other architectures enabling these confidential computing features in L
+ inux. We would also like to hear feedback from the community on other area
+ s where such simplifications can make a great difference.
+URL:https://lpc.events/event/20/contributions/2340/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602i1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T153000
+DTEND;TZID=Europe/Prague:20261007T160000
+SUMMARY:Arm CCA Realm Live Migration
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Confidential Computing MC · Mathias Brossard · https://lpc.ev
+ ents/event/20/contributions/2476/\n\nArm is developing Live Migration ABIs
+  for the Arm Confidential Compute Architecture (CCA)\, with input and requ
+ irements from ecosystem partners. The ABIs are provided by the Realm Manag
+ ement Monitor (RMM)\, the trusted firmware component responsible for manag
+ ing Realms.\n\nThe presentation will start with a short overview of the hi
+ gh-level CCA Live Migration design and the end-to-end process. It will the
+ n examine the assumptions and design choices underpinning the ABIs in thre
+ e areas: core design\, platform preconditions\, and runtime mechanisms\, r
+ elating each to the broader security\, correctness\, and practicality cons
+ traints of confidential live migration.\n\nFinally\, the presentation will
+  provide a basis for discussing how the emerging CCA Live Migration ABIs a
+ nd Linux/KVM infrastructure for confidential-computing migration can infor
+ m one another.
+URL:https://lpc.events/event/20/contributions/2476/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602j1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T160000
+DTEND;TZID=Europe/Prague:20261007T163000
+SUMMARY:CoVE in Action: the Landscape of Confidential VMs on RISC-V
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Confidential Computing MC · Ruoqing He\, Xiaoxia Cui · https:
+ //lpc.events/event/20/contributions/2472/\n\nRISC-V CoVE (Confidential VM 
+ Extension) brings confidential computing — hardware-enforced isolation o
+ f tenant workloads from the hypervisor and cloud operator — to a fully o
+ pen architecture.\nA lightweight TEE Security Manager (TSM) sits below the
+  hypervisor and enforces per-VM memory isolation\, while tenants verify th
+ eir environment through a standard IETF RATS attestation flow. The hypervi
+ sor retains scheduling control — it simply cannot see inside a tenant's 
+ TEE Virtual Machine (TVM).\nWe demonstrate CoVE Deployment Model 1 running
+  end-to-end on real RISC-V hardware\, built on OpenSBI and integrated with
+  Kata Containers and the confidential-containers project — bringing conf
+ idential computing to container runtimes operators already use. No proprie
+ tary extensions\, no special hardware — just standard RISC-V silicon.
+URL:https://lpc.events/event/20/contributions/2472/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602k1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T170000
+DTEND;TZID=Europe/Prague:20261007T172000
+SUMMARY:SEV-TIO implementation challenges
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Confidential Computing MC · Alexey Kardashevskiy · https://lp
+ c.events/event/20/contributions/2473/\n\nSEV-TIO is quite known by now\, t
+ he upstream development is split in stages and continues. The current stag
+ es are set to support basic functionality.\n\nThe talk will focus on exten
+ ded features and how AMD hardware/firmware is going to implement these. Th
+ is includes:\n- huge pages handling in IOMMU and KVM\, how RMP works and w
+ hat TMPM does in PSMASH_IO.\n- IOMMU TLB flushing challenges: a hack for T
+ urin CPU family and a proper fix in the Venice family (new behavior or inv
+ lpgb) and what Venice will do in addition to that.\n- Cbit and vTOM and ho
+ w we can allow simultaneous private and shared access for the same device 
+ within the same VM + a (useless) way to implement “iommu=pt”-like beha
+ vior in the guest.\n- sev-guest SNP platform device and using the DMA laye
+ r for sharing memory with the hypervisor.
+URL:https://lpc.events/event/20/contributions/2473/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602l1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T172000
+DTEND;TZID=Europe/Prague:20261007T175000
+SUMMARY:Extending Arm CCA Device Assignment to CXL Type-2 Accelerators
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Confidential Computing MC · Ankit Agrawal · https://lpc.event
+ s/event/20/contributions/2474/\n\nWe are extending Arm CCA device assignme
+ nt to CXL Type-2 accelerators so a Realm VM can receive such a device with
+  a coherent device memory window. Standard RME-DA assigns a PCIe TDI to a 
+ Realm through TDISP\, SPDM and IDE\, protecting CXL.io traffic. A CXL Type
+ -2 device also exposes a coherent CXL.mem window through HDM decoders and 
+ which confidential assignment must also secure.\n\nRMM v2.0 introduces a P
+ DEV Stream object as a first-class handle for the device security channel 
+ and a COH_CMEM stream type for coherent off-chip accelerators - the right 
+ primitives to extend CCA to CXL Type-2. Several design problems remain uns
+ olved: how the host TSM obtains and registers the CXL coherent memory rang
+ e with RMM\, how the guest TSM attests that range\, and how to coordinate 
+ device probe with stream connect so the coherent range is always registere
+ d with RMM regardless of call ordering. This session will work through the
+ se open questions to align on a direction for upstream development.
+URL:https://lpc.events/event/20/contributions/2474/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602m1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T175000
+DTEND;TZID=Europe/Prague:20261007T181000
+SUMMARY:Deferring SWIOTLB Bounce to Reduce Heavy CPU Utilization
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Confidential Computing MC · Ryan Afranji · https://lpc.events
+ /event/20/contributions/2475/\n\nCoco VMs rely on bounce buffering to use 
+ the guest's vCPUs to encrypt and decrypt data for DMA. This memory copy is
+  performed via the SWIOTLB bounce buffer.\n\nPersistent disk read operatio
+ ns handle completions within their storage interface’s interrupt handler
+ . When SWIOTLB is disabled\, the interrupt handler is invoked only after t
+ he DMA data transfer is completed. This makes the handler only responsible
+  for quick clean up operations. With SWIOTLB enabled\, the read data is cu
+ rrently entirely copied by a vCPU during this interrupt handler which dram
+ atically increases handling time.\n\nThe memory copy is expensive and shou
+ ld not be done within an interrupt handler since it prolongs the time inte
+ rrupting other tasks. This problem is exacerbated by each storage interfac
+ e’s interrupt handler being pinned to run only a specific vCPU. Heavy di
+ sk read workloads can cause these pinned vCPUs to spend the entire duratio
+ n of the workload in the storage interface’s interrupt handler thus star
+ ving other tasks. Google has seen cases of these workloads causing softloc
+ kups on the pinned vCPUs.\n\nI have a prototype which defers the SWIOTLB
+ ’s memory copy out of the interrupt handler and into a workqueue. This e
+ liminates the softlockup problem. It also allows for the memory copy to be
+  scheduled on other vCPUs\; not just the ones pinned to the interrupt hand
+ lers. For VMs with a higher vCPU count\, this approach increases bandwidth
+  and IOPS. Although\, deferring the work has the drawback of slightly decr
+ easing bandwidth for VMs with a low number of vCPUs and slightly increasin
+ g latency regardless of vCPU count.\n\nI would like to gather feedback for
+  my approach and discuss questions I have regarding its enablement. Is thi
+ s slight latency increase tolerable? Should this feature be enabled by def
+ ault for VMs with forced SWIOTLB or should the user of the guest kernel be
+  responsible for enabling it? If we decide to enable it by default\, shoul
+ d we only enable it for VMs with a higher number of vCPUs? If we decide th
+ e user of the guest kernel is responsible for setting it\, how should they
+  be able to set it?
+URL:https://lpc.events/event/20/contributions/2475/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2602n1@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261007T181000
+DTEND;TZID=Europe/Prague:20261007T183000
+SUMMARY:PMU Event Filtering for Confidential Guests
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Confidential Computing MC · Manali Shukla · https://lpc.event
+ s/event/20/contributions/2477/\n\nPMU Event filtering is a security featur
+ e that allows hypervisors to restrict which performance events guests can 
+ monitor\, preventing potential side-channel attacks. However\, when using 
+ hardware-acceleration PMU virtualization\, the encrypted VMSA in SEV-ES an
+ d SEV-SNP creates a fundamental challenge: hypervisors cannot read or modi
+ fy guest PMU states directly\, which breaks PMC filtering with hardware-ac
+ celerated PMU virtualization and prevents confidential VMs from using upco
+ ming AMD feature: Guest PMC Event Filtering.\n\nThis talk explores how PMC
+  filtering can be restored for SEV-ES and SEV-SNP guests without weakening
+  their isolation guarantees. The key idea is a cooperative model between g
+ uest and hypervisor that re-establishes the hypervisor's filtering authori
+ ty even when it cannot touch the guest's encrypted state directly.\n\nWe w
+ ill discuss the protocol design\, implementation challenges\, and how this
+  approach restores hypervisor security control over guest PMC usage in con
+ fidential computing environments.
+URL:https://lpc.events/event/20/contributions/2477/
+END:VEVENT
+END:VCALENDAR

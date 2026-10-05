@@ -1,0 +1,226 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Tracing MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2514@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T100000
+DTEND;TZID=Europe/Prague:20261006T102000
+SUMMARY:Probe events with typecast using BTF
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Tracing MC · Masami Hiramatsu · https://lpc.events/event/20/c
+ ontributions/2514/\n\nBTF fetcharg has been introduced since v6.5 for fpro
+ be and kprobe events for fetching function parameters by name\, and now we
+  intrdouced typecast feature for BTF. This typecast feature is not only ca
+ sting type\, but also\, the series supports nested typecasts\, container_o
+ f()\, this_cpu_ptr()\, and "current" task structure access. With these fea
+ tures\, we can access more context local data from dynamic trace events.\n
+ I  would like to show how you can use these features and discuss what feat
+ ures we can provide with BTF\, what limitations we have now etc.
+URL:https://lpc.events/event/20/contributions/2514/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2511@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T102200
+DTEND;TZID=Europe/Prague:20261006T104200
+SUMMARY:Build ID + offset sampling in perf events
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Tracing MC · Ian Rogers · https://lpc.events/event/20/contrib
+ utions/2511/\n\nPerformance event sampling traditionally captures virtual 
+ addresses\, resolving them to file offsets and symbols post-facto via mmap
+  metadata. Conversely\, BPF enables a direct approach: recording the file'
+ s build ID and offset within the sample itself. While virtual addresses ar
+ e smaller inline\, the required mmap event stream may lead to much larger 
+ raw data files.\n\nIn this talk\, we examine this new sampling method and 
+ its implementation trade-offs. The goal is to gather feedback to land the 
+ pending patchset and explore hybrid sampling schemes that selectively comb
+ ine both approaches to achieve the smallest possible footprint.
+URL:https://lpc.events/event/20/contributions/2511/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2510@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T104400
+DTEND;TZID=Europe/Prague:20261006T110400
+SUMMARY:Developing Next Generation Perf Tools With Python
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Tracing MC · Alice Rogers\, Ian Rogers · https://lpc.events/e
+ vent/20/contributions/2510/\n\nTraditionally\, the Linux perf tool has rel
+ ied on a text user interface (TUI) based on libslang and embedded Python/P
+ erl interpreters for scripting support. However\, developing robust user i
+ nterfaces in C is tedious and error-prone\, and using perf itself as the i
+ nterpreter integrates poorly with broader programming language ecosystems.
+ \n\nIn this talk\, we will describe how we refactored perf into a set of l
+ ibraries\, enabling it to be imported and used directly as a native Python
+  module. Building on this foundation\, we will showcase new tools featurin
+ g rich\, interactive console UIs\, culminating in a console-based flame gr
+ aph analysis tool. This modular library approach dramatically accelerates 
+ tool development\, paving the way for a more agile and extensible Linux pe
+ rformance tooling ecosystem.
+URL:https://lpc.events/event/20/contributions/2510/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2509@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T110600
+DTEND;TZID=Europe/Prague:20261006T112600
+SUMMARY:Bridging perf and ftrace: Recording perf in ftrace buffers and perf
+  data to trace.dat conversion
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Tracing MC · Madhavan Srinivasan\, Steven Rostedt\, Tanushree 
+ Shah · https://lpc.events/event/20/contributions/2509/\n\nThe tracefs sys
+ tem allows for fast flexible tracing of events. Not only is it designed fo
+ r speed (around 100 nanoseconds per event)\, it also has a fully functiona
+ l filtering system and a way to build on events via probes and synthetic e
+ vents.\n\nAllowing perf events to be injected into the tracefs ring buffer
+  with these filters can allow for things like seeing how many cache misses
+  happen between schedule switch events. Perf data could be recorded at any
+  event and even filtered based on the value of the event fields.\n\nThere 
+ is a [Proof of Concept][1] patch set that does this but the interface is v
+ ery poor. This session will be about the best way to create the interface 
+ to allow perf events to be injected into tracefs ring buffers.\n\nThe perf
+  tool is best for statistical profiling and performance analysis\, and ftr
+ ace/trace-cmd for event timeline visualization. While perf captures compre
+ hensive performance data with minimal overhead\, understanding temporal re
+ lationships and event sequences remains challenging through its native int
+ erfaces. In contrast\, KernelShark provides powerful graphical insights bu
+ t traditionally requires separate trace-cmd recordings. Since perf record 
+ already captures tracepoint events alongside other performance metrics\, r
+ unning multiple commands to obtain both statistical and timeline data is r
+ edundant in production or embedded environments.\n\nThis discussion will b
+ e about both moving perf events into trace.dat files as well as being able
+  to inject perf events directly into the tracefs ring buffer.\n\n  [1]: ht
+ tps://lore.kernel.org/linux-trace-kernel/20251118002950.680329246@kernel.o
+ rg/\n  [2]: https://lore.kernel.org/linux-trace-kernel/20251118002950.6803
+ 29246@kernel.org/
+URL:https://lpc.events/event/20/contributions/2509/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2480@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T120000
+DTEND;TZID=Europe/Prague:20261006T122000
+SUMMARY:Sharing trace infrastructure between in-tree and OOT tracers
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Tracing MC · Mathieu Desnoyers · https://lpc.events/event/20/
+ contributions/2480/\n\nThe current situation regarding LTTng vs upstream L
+ inux:\n\n1) There are maintainers who push for everything to be in tree\n2
+ ) There are maintainers who are proponents for no-GPL-export when there ar
+ e no in-tree users\n3) Most of the tracer common facilities are used by tr
+ acers which do not compile as modules (only builtin)\n4) Linus Torvalds st
+ ated that LTTng will stay out of tree\n\nAs a consequence\, LTTng has no w
+ ay to use common tracer facilities\nwithout kernel patches.\n\nThis contex
+ t is not favorable for collaboration of LTTng developers with upstream. It
+  is hard to justify spending time on kernel infrastructure collaboration w
+ hen the resulting APIs cannot be used by out-of-tree tracers.\n\nI am open
+  to suggestions to improve this situation.
+URL:https://lpc.events/event/20/contributions/2480/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2513@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T122200
+DTEND;TZID=Europe/Prague:20261006T124200
+SUMMARY:Lightweight Preempt and IRQ Tracepoints for Production RT Kernels
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Tracing MC · Wander Costa · https://lpc.events/event/20/contr
+ ibutions/2513/\n\nDebugging latency issues in production RT kernels often 
+ requires\nunderstanding where and why preemption and interrupts are being\
+ ndisabled. Today\, enabling the `preempt_disable/enable` and\n`irq_disable
+ /enable` tracepoints requires pulling in heavyweight\ninfrastructure — e
+ ither the preemptoff/irqsoff latency tracers or the\nfull lockdep IRQ trac
+ king — that carries too much overhead for\nproduction deployments. This 
+ forces engineers to reproduce customer\nissues in lab environments\, which
+  is often impractical for intermittent\nlatency problems.\n\nThis talk pre
+ sents a patch series that introduces\n`CONFIG_TRACE_PREEMPT_TOGGLE` and `C
+ ONFIG_TRACE_IRQFLAGS_TOGGLE`\, two\nnew user-selectable kernel options tha
+ t enable these tracepoints\nindependently\, with minimal overhead. The tra
+ cepoints are gated behind\nstatic keys.
+URL:https://lpc.events/event/20/contributions/2513/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2512@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T124400
+DTEND;TZID=Europe/Prague:20261006T130400
+SUMMARY:Handling stack traces in tracing
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Tracing MC · Steven Rostedt · https://lpc.events/event/20/con
+ tributions/2512/\n\nStack tracing of events can be very useful\, for both 
+ kernel stack tracing as well as user space stack tracing. Stack traces can
+  fill the buffer quickly with many duplicate stacks. Having a way to conso
+ lidate them would make it possible to store even more data. There's been [
+ efforts][1] to do this but how to implement it and the interface is still 
+ an ongoing subject.\n\nOn top of that\, tracing user space can have the sa
+ me issue. With the deferred stack trace\, it is now possible to do more wh
+ en taking the stack trace (like reading the vma and finding what files are
+  associated with the stack as well as reporting the actual file offset ins
+ tead of the virtual memory of the task). Work for this has [been done][2] 
+ as well but it also has [issues][3]. Figuring out how to implement this in
+  a way that everyone is satisfied would be a goal of this topic.\n\n  [1]:
+  https://lore.kernel.org/linux-trace-kernel/20260616064119.438063-1-lipeng
+ fei28@xiaomi.com\n  [2]: https://lore.kernel.org/linux-trace-kernel/202508
+ 28180356.546256287@kernel.org/\n  [3]: https://lore.kernel.org/linux-trace
+ -kernel/CAHk-=wi0EnrBacWYJoUesS0LXUprbLmSDY3ywDfGW94fuBDVJw@mail.gmail.com
+ /
+URL:https://lpc.events/event/20/contributions/2512/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2515@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T130600
+DTEND;TZID=Europe/Prague:20261006T132600
+SUMMARY:DEPT (DEPendency Tracker): A Path to Mainline and Solving the False
+  Positive Challenge
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:Tracing MC · Byungchul Park\, Yunseong Kim · https://lpc.even
+ ts/event/20/contributions/2515/\n\nDEPT (DEPendency Tracker) is a runtime 
+ dependency tracking framework\nthat detects potential deadlocks by trackin
+ g wait/event relationships\nrather than lock acquisition order.  Unlike lo
+ ckdep\, which is limited to\ntypical locking primitives\, DEPT can detect 
+ deadlocks involving general\nsynchronization mechanisms such as folio lock
+ s\, completions\, DMA fences\,\nand other wait/event-based patterns.\n\nTh
+ is talk presents the current state of DEPT and addresses the critical\ncha
+ llenge blocking its mainline inclusion: false positive handling\nthrough s
+ ubsystem annotations.\n\nAny runtime dependency tracking tool faces the in
+ herent challenge of\ndistinguishing real deadlocks from intentionally orde
+ red synchronization\npatterns.  Lockdep also encountered this problem at i
+ ts inception and\nsolved it through extensive subsystem-specific annotatio
+ ns (lock classes\,\nsubclasses\, etc.).  DEPT currently lacks sufficient a
+ nnotation for other\nthan typical locking primitives because it just start
+ ed.\n\nThis talk proposes a collaborative path forward: (1) core framework
+ \nstabilization to finalize annotation APIs\, (2) subsystem pilot programs
+ \nwith maintainers if any (3) gradual mainline inclusion enabled\nincremen
+ tally as annotations mature.\n\nI seek community discussion on: annotation
+  design that minimizes\nmaintainer burden\, default behavior when annotati
+ ons are missing\,\ntesting infrastructure\, and coexistence strategy with 
+ lockdep.  Like\nlockdep before it\, achieving practical utility requires e
+ xtensive\nsubsystem-specific annotations.  This talk charts the collaborat
+ ive path\nto get there.
+URL:https://lpc.events/event/20/contributions/2515/
+END:VEVENT
+END:VCALENDAR

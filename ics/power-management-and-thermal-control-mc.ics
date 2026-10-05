@@ -1,0 +1,347 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Power Management and Thermal Control MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2535@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150000
+DTEND;TZID=Europe/Prague:20261006T152000
+SUMMARY:Thermal Framework Corner Cases: Bugs or Undefined Behavior?
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Daniel Lezcano · ht
+ tps://lpc.events/event/20/contributions/2535/\n\nThe Linux thermal framewo
+ rk has proven to be flexible and robust over the years. However\, some asp
+ ects of its event handling have become increasingly difficult to reason ab
+ out\, resulting in inconsistent behaviors and corner cases.\n\nExamples in
+ clude trip point updates while the temperature has already fallen within t
+ he hysteresis range after the notification was generated\, inconsistent ha
+ ndling of thermal zones across system suspend and resume\, and other situa
+ tions where the expected behavior is not clearly defined or documented.\n\
+ nSome of these issues have been reported over the years\, while others hav
+ e surfaced as new users and platforms have adopted the framework. Addressi
+ ng them individually without a common understanding of the expected semant
+ ics risks introducing further inconsistencies.\n\nThe goal of this discuss
+ ion is to identify the current limitations of the thermal framework\, esta
+ blish which behaviors are considered bugs versus intentional design choice
+ s\, prioritize the issues that should be addressed\, and agree on a roadma
+ p for improving the framework while preserving compatibility with existing
+  users.
+URL:https://lpc.events/event/20/contributions/2535/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2539@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T152000
+DTEND;TZID=Europe/Prague:20261006T154000
+SUMMARY:Power Cooling Devices: Bridging Thermal and Powercap
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Daniel Lezcano · ht
+ tps://lpc.events/event/20/contributions/2539/\n\nThe Linux thermal managem
+ ent and power capping frameworks currently evolve independently\, despite 
+ relying on the same Energy Model (EM) to describe the power-performance ch
+ aracteristics of devices.\n\nThe thermal framework regulates temperature b
+ y estimating a sustainable power budget using the power_allocator governor
+ . A PID control loop computes the power reduction required to maintain a t
+ arget temperature\, and the Energy Model translates this budget into Opera
+ ting Performance Point (OPP) constraints applied through thermal cooling d
+ evices.\n\nThe powercap framework\, and in particular the Dynamic Thermal 
+ Power Management (DTPM) controller\, also relies on the Energy Model to en
+ force power budgets. However\, instead of manipulating OPPs directly\, it 
+ distributes power limits across a hierarchy of power domains.\n\nAlthough 
+ both frameworks address closely related problems and use the same underlyi
+ ng model\, there is currently no mechanism to connect them. This raises th
+ e question of whether a common abstraction could allow the thermal framewo
+ rk to express power constraints through the powercap hierarchy rather than
+  through device-specific OPP constraints.\n\nOne possible direction is the
+  introduction of a power cooling device\, acting as a bridge between the t
+ hermal and powercap frameworks. Such an abstraction could enable thermal g
+ overnors to allocate power budgets to powercap domains while leaving power
+  distribution and enforcement to the powercap subsystem. This approach may
+  also open the door to hierarchical power budgeting and more coordinated t
+ hermal management across heterogeneous devices.\n\nThe goal of this discus
+ sion is to explore whether this direction makes sense from an architectura
+ l perspective\, identify the challenges involved\, and agree on a set of i
+ ncremental milestones that would allow such an integration to be developed
+  and upstreamed progressively.
+URL:https://lpc.events/event/20/contributions/2539/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2536@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T154000
+DTEND;TZID=Europe/Prague:20261006T160000
+SUMMARY:Introducing Hardware Thermal Governor
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Srinivas Pandruvada 
+ · https://lpc.events/event/20/contributions/2536/\n\nModern System-on-Chi
+ p designs increasingly incorporate built-in hardware thermal controllers t
+ o manage thermal conditions efficiently. Intel platforms\, beginning with 
+ the Lunar Lake generation\, feature integrated platform temperature contro
+ llers capable of autonomous thermal management. However\, not all platform
+  designs directly interface temperature readings and thermal thresholds wi
+ th these hardware governors\, limiting their effectiveness.\n\nThis presen
+ tation introduces a kernel-level approach that leverages existing thermal 
+ zone infrastructure to provide temperature data and threshold information 
+ directly through a new hardware thermal governor\, bypassing user space in
+ teractions.\n\nA proof-of-concept implementation will be demonstrated\, sh
+ owcasing the integration of thermal zones with hardware-based thermal cont
+ rol mechanisms.
+URL:https://lpc.events/event/20/contributions/2536/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2544@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T160000
+DTEND;TZID=Europe/Prague:20261006T162000
+SUMMARY:Devfreq for uncore DVFS
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Jie Zhan · https://
+ lpc.events/event/20/contributions/2544/\n\nSoC uncore components\, such as
+  interconnects\, system-level caches\, and memory controllers\, can accoun
+ t for a substantial share of package power\, and their operating frequency
+  bounds the achievable bandwidth and latency. Core DVFS is well supported 
+ by cpufreq\, but there is no generic upstream mechanism for uncore DVFS - 
+ a gap felt most on server platforms. We propose building uncore DVFS on to
+ p of devfreq\, the DVFS framework for non-CPU devices. The device model fi
+ ts\, but driving it from real utilization data exposes challenges worth di
+ scussing.\n\nThis topic intends to cover:\n1. Motivation - why we need ker
+ nel-side uncore DVFS.\n2. Existing upstream techniques - devfreq and vendo
+ r drivers.\n3. Issues encountered - no way for a driver to obtain uncore P
+ MU IDs and create perf events\; no suitable events or scaling policy for u
+ ncore.\n4. Proposals and analysis - a perf core helper\, an event monitori
+ ng and scaling policy\, and prototype measurements.
+URL:https://lpc.events/event/20/contributions/2544/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2537@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T164500
+DTEND;TZID=Europe/Prague:20261006T170500
+SUMMARY:Autonomous CPU performance selection: a new cpufreq governor?
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Sumit Gupta · https
+ ://lpc.events/event/20/contributions/2537/\n\nACPI CPPC "autonomous select
+ ion" lets the platform pick the CPU performance level itself\, within OS-p
+ rovided min/max bounds and guided by an Energy Performance Preference (EPP
+ ) hint. Today cppc_cpufreq exposes this as a per-policy auto_select sysfs 
+ toggle layered on top of whatever scaling governor is attached. The result
+  is confusing: once autonomous mode is on\, the attached governor (schedut
+ il\, ondemand\, ...) keeps issuing frequency requests that the hardware ig
+ nores\, and scaling_governor no longer reflects what actually drives frequ
+ ency.\n\ncpufreq provides two ways to drive frequency\, and CPPC autonomou
+ s mode fits neither. Scaling governors use the driver's ->target() callbac
+ k to apply OS-selected operating points. setpolicy drivers (intel_pstate a
+ nd amd-pstate "active"/EPP modes) instead let the hardware choose\, but CP
+ PC has requirements it does not cover. With setpolicy\, the mode is select
+ ed globally for all CPUs at the driver level\, whereas CPPC's registers ar
+ e per-CPU and can be controlled per policy. setpolicy also exposes only th
+ e performance and powersave policies and provides no ->target() path\, whi
+ le the CPPC spec allows an OS desired_perf hint even when autonomous selec
+ tion is enabled. So CPPC maps cleanly onto neither model.\n\nThis session 
+ proposes a third option: modelling autonomous\, EPP-biased operation as a 
+ per-policy cpufreq governor. Selecting the governor enables autonomous mod
+ e and programs the EPP and min/max bounds\; switching away restores OS fre
+ quency control. EPP is exposed as a per-policy governor tunable\, and the 
+ autonomous state is reported read-only.\n\nThe broader question for the mi
+ cro-conference is how cpufreq should represent hardware-autonomous selecti
+ on in general:\n\n- Is a new cpufreq governor the right way to expose auto
+ nomous selection at all?\n- If a governor is the right model\, should it b
+ e CPPC-specific or generalized so other drivers can share it?\n- How shoul
+ d it relate to the existing setpolicy model used by intel_pstate and amd-p
+ state?\n- Should such a governor also pass utilization-based desired_perf 
+ hints to the hardware?\n- How should the EPP control be exposed to userspa
+ ce (naming\, accepted values\, and consistency with the existing energy_pe
+ rformance_preference interface)?\n- What is the migration path away from t
+ he current sysfs toggle without breaking existing users?
+URL:https://lpc.events/event/20/contributions/2537/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2579@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T170500
+DTEND;TZID=Europe/Prague:20261006T172500
+SUMMARY:Amortizing CPU wakeup costs
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Samuel Wu · https:/
+ /lpc.events/event/20/contributions/2579/\n\nTransitioning a CPU into and o
+ ut of idle has a non-negligible energy overhead. During low-utilization st
+ ates\, frequent background wakeups repeatedly pay this "wakeup tax." Becau
+ se the Energy Model only prices active OPP power and not idle-state transi
+ tion costs\, EAS defaults to spreading tasks across a cluster rather than 
+ packing them.\n\nPrototyping with sched_ext on a Pixel 9 running Linux 7.1
+  as a proof-of-concept\, we measure the power and latency tradeoffs of bat
+ ching non-urgent wakeups onto already-active CPUs. We show that reducing i
+ dle exits measurably lowers CPU power\, and that the tail-latency penalty 
+ of packing comes from committing tasks to a specific CPU at wakeup time. D
+ eferring CPU selection until dispatch time achieves the same power savings
+  at a fraction of the latency cost.\n\nDiscussion points:\n\n- Energy Awar
+ e Scheduling: Should the Energy Model expose an idle-exit cost term\, or r
+ ely on a low-utilization packing heuristic?\n- Cluster-scoped deferral: Ca
+ n we support cluster-scoped task push-pull (similar to RT pushable tasks) 
+ instead of committing at select_task_rq()? Would this make it easier to ba
+ tch?\n- Classifying latency-tolerance: What task QoS hints and system-stat
+ e signals should govern wakeup deferral?
+URL:https://lpc.events/event/20/contributions/2579/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2543@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T172500
+DTEND;TZID=Europe/Prague:20261006T174500
+SUMMARY:Current developments in the Common Clk Framework
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Brian Masney · http
+ s://lpc.events/event/20/contributions/2543/\n\nAt last year's Linux Plumbe
+ rs Conference\, we had some great discussions about how to fix clock tree 
+ propagation in the Common Clk Framework (https://lpc.events/event/19/contr
+ ibutions/2152/). Taking that feedback into account\, a v8 patch set has be
+ en posted that solves the problem in a simple manner.\n\nhttps://lore.kern
+ el.org/linux-clk/20260327-clk-scaling-v8-0-86cd0aba3c5f@redhat.com/\n\nThe
+  KUnit tests demonstrate the problem where a clock can unknowingly change 
+ the rate of its parent and siblings to suboptimal frequencies. This can ha
+ ve adverse effects on subsystems that need precise rates\, such as DRM and
+  sound. The patch set needs more eyes from the community to get across the
+  finish line. We’d like to use part of this session to go over the appro
+ ach and figure out how to get it merged.\n\nWe can use the remainder of th
+ e time to discuss suggestions for ways to replace the clk subsystem's glob
+ al prepare lock with a more fine-grained locking mechanism.
+URL:https://lpc.events/event/20/contributions/2543/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2580@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T175000
+DTEND;TZID=Europe/Prague:20261006T181000
+SUMMARY:Hardware Pressure on x86: Does the Linux Scheduler Need to Know Whe
+ n You're Throttled?
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Ricardo Neri · http
+ s://lpc.events/event/20/contributions/2580/\n\nThe scheduler's task wake-u
+ p logic and capacity-aware load balancing rely on arch_scale_cpu_capacity(
+ ) to determine how much work a CPU can absorb. It also has logic to accoun
+ t for the effects of transient thermal- and power-driven capacity loss. Th
+ is mechanism\, known as hardware pressure\, is currently not used on x86: 
+ arch_scale_cpu_capacity() returns a fixed constant on non-hybrid systems\,
+  and even on hybrid systems it is a self-normalizing ratio that hides *uni
+ form\, proportional* capacity loss across all cores\, since the reference 
+ CPU used for normalization throttles along with the rest. No plumbing exis
+ ts to feed x86 thermal/power status signals (PROCHOT\, RAPL power-limitati
+ on bits\, HWP capability changes) into capacity accounting.\n\nThis gap ha
+ s consequences. Task placement at wake-up and EAS's\noverutilized-detectio
+ n gate can silently keep placing or retaining tasks on a throttled CPU\, b
+ ecause the capacity term used for comparison never reflects the throttling
+ \; the load balancer may likewise\nmove tasks onto throttled CPUs. This is
+  not a purely theoretical\nconcern: single-core thermal throttling is comm
+ on even on non-hybrid parts\, and Intel Speed Select Technology’s Core P
+ ower makes persistent\, policy-driven asymmetric power allocation across c
+ ores.\n\nThis talk proposes a design for exposing hardware pressure on x86
+  and demonstrates it against concrete use cases on real hardware. The goal
+  is not to present a finished solution\, but to solicit feedback on whethe
+ r this problem is worth solving\, and if so\, whether the proposed solutio
+ n makes sense.
+URL:https://lpc.events/event/20/contributions/2580/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2595@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T181000
+DTEND;TZID=Europe/Prague:20261006T183000
+SUMMARY:Dynamic Runtime Prediction of CPU Idle-State Exit Latency
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Power Management and Thermal Control MC · Aiqun Yu\, Cong Zhan
+ g · https://lpc.events/event/20/contributions/2595/\n\nBenefits of Accura
+ te Exit Latency can have:\n\n**More Accurate hrtimer Expiration**\n**Bette
+ r CPU Idle level Selection**\n**Improved Support for Latency-Sensitive Sys
+ tems**\n\nCpu different low power state can have different exit latency. A
+ nd the exit latency may be affected by:\n\n 1. current cpu frequency\n 2. 
+ Different firmware version\n 3. Different hardware difference and etc.\n\n
+ So compile time static idle exit latency is not sufficient. Hence propose 
+ to have dynamic Runtime Prediction of CPU Idle-State Exit Latency\n\n**Mor
+ e Accurate hrtimer Expiration**\nDue to exit latency\, the actual executio
+ n time of a timer interrupt is often later than the programmed expiration 
+ time. With an accurate estimate of exit latency\, the timer expiration can
+  be advanced accordingly\, improving timer firing precision.\n\n    QQ Mus
+ ic\n    Version	Max Delay (ns)	Average Delay (ns)\n    Original	2\,446\,25
+ 4	618\,558\n    Original	2\,859\,657	664\,312\n    Original	1\,916\,403	46
+ 6\,087\n    Optimized	629\,050	86\,448\n    Optimized	674\,887	107\,095\n 
+    Optimized	868\,674	102\,682\n    Honor of Kings (30 Hz)\n    Version	Ma
+ x Delay (ns)	Average Delay (ns)\n    Original	2\,309\,583	14\,470\n    Opt
+ imized	360\,256	8\,234\n\nNote that data is collected from an old kernel v
+ ersion and legacy qcom platform.\n\n**Better CPU Idle-State Selection**\nT
+ he current TOE cpuidle governor estimates idle duration using Exit Latency
+  / 2. A more accurate exit latency estimation allows the governor to deriv
+ e an idle duration closer to the actual value\, leading to more appropriat
+ e idle-state selection.\n\nImproved Support for Latency-Sensitive Systems\
+ nAccurate exit latency prediction is particularly beneficial for latency-s
+ ensitive workloads\, such as:\n	• PREEMPT_RT systems\n	• Real-time app
+ lications\n	• Interactive workloads like audio scenario\n\nObtaining Acc
+ urate Exit Latency at Runtime (Monitor)\n	• Exit latency is fundamentall
+ y defined as:\nExit Latency = System Resume Timestamp − Wakeup Event Tim
+ estamp\n	• The current cpuidle governor already compares predicted idle 
+ duration against actual idle duration. However\, the existing measurement 
+ only covers the interval between the last instruction before entering idle
+  and the first instruction after wakeup. Exit latency itself is typically 
+ estimated using a static value defined in the device tree.\n	• In practi
+ ce\, exit latency varies dynamically depending on runtime conditions and s
+ ystem state.\n	• There are many possible wakeup sources. To accurately d
+ etermine the wakeup-event timestamp\, measurements are restricted to timer
+ -based wakeups because the timer expiration time is known.\n	• To ensure
+  measurement accuracy\, only idle exits triggered exclusively by timer int
+ errupts should be considered\, i.e.\, the timer interrupt is the only pend
+ ing interrupt when the CPU wakes up.\n	• CPU idle states are also dynami
+ c. As additional CPUs enter idle\, the cluster-level idle state may change
+ . Therefore\, the actual idle state must be determined dynamically both wh
+ en entering and exiting idle\, ensuring that collected historical data is 
+ correctly associated with the corresponding idle level.\n\nExit Latency Pr
+ ediction (Predict)\n	• Exit latency is influenced by multiple factors an
+ d continuously changes during runtime.\n	• A sliding-window-based approa
+ ch can be used to collect multiple exit-latency samples.\n	• Outliers ar
+ e filtered out\, and the average of the remaining samples is used as the p
+ redicted exit latency.\n\nUtilizing Exit Latency (Control)\nMore Accurate 
+ Idle-Time Estimation\nThe cpuidle governor can use the predicted exit late
+ ncy to improve idle-duration estimation accuracy\, resulting in better idl
+ e-state selection.\n\nImproved Timer Accuracy on Broadcast-Timer Platforms
+ \nOn platforms supporting a broadcast timer\, multiple CPUs may need to wa
+ ke up simultaneously. Since a broadcast timer interrupt can only be delive
+ red to a single CPU initially\, additional wakeup delay is introduced for 
+ the remaining CPUs.\nTo compensate for this effect\, the exit latencies of
+  multiple CPUs can be accumulated and applied to the first awakened CPU\, 
+ producing a more accurate timer expiration schedule.\n\nSummary of Benefit
+ s\nAccurate exit latency prediction provides the following advantages:\n	
+ • More accurate idle-time estimation for the cpuidle governor.\n	• Imp
+ roved CPU idle-state selection.\n	• Higher timer firing accuracy through
+  compensation for exit latency.\n	• Reduced wakeup latency on broadcast-
+ timer platforms.\n	• Better performance for latency-sensitive systems su
+ ch as PREEMPT_RT.\n\nOpen Discussions\n	• During evaluation\, a certain 
+ percentage of outlier samples is still observed within the sampling window
+ . Currently\, these samples are removed directly to reduce their impact on
+  prediction accuracy.\n	• On platforms running multiple virtual machines
+ \, the timer virtualization mechanism may affect the effectiveness and acc
+ uracy of exit-latency prediction and compensation. Further investigation i
+ s required.
+URL:https://lpc.events/event/20/contributions/2595/
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,304 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Kernel Memory Management MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2419@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T150000
+DTEND;TZID=Europe/Prague:20261005T153000
+SUMMARY:Reducing kernel stack memory (on arm64)
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Kernel Memory Management MC · Will Deacon · https://lpc.event
+ s/event/20/contributions/2419/\n\nThere have been a bunch of attempts [1] 
+ to reduce the memory consumed by kernel stacks for x86 and arm64\, largely
+  based around the idea of dynamically growing the kernel stack allocation 
+ based on page faults. This poses what appear to be insurmountable challeng
+ es\, as it introduces complexity into the architecture exception entry cod
+ e (which needs to be able to transition cleanly to a new stack) but also m
+ eans that the kernel must be able to allocate memory from any context at a
+ ll.\n\nI would like to discuss and explore alternatives to dynamic stack a
+ llocation based on some initial rework I have started of the arm64 excepti
+ on entry code[2]. Specifically:\n\n- Revisiting the decision to move from 
+ 8k to 16k stacks\n- Changing the kernel stack size at boot time\n- Changin
+ g the kernel stack size per task\n- Controlling the kernel stack size from
+  userspace\n\nI think it would also be useful to talk briefly about the st
+ icking points with dynamic kernel stacks and whether there is anything tha
+ t can be carried forward from that work.\n\nMy motivation is based on Andr
+ oid vendors having various out-of-tree implementations of the dynamic kern
+ el stack series and I would like to see if there are alternatives that we 
+ can provide upstream so that we can all stop carrying the broken stuff aro
+ und in our pockets.\n\n[1] https://lore.kernel.org/all/20260424191456.2679
+ 717-1-stevensd@google.com/\n[2] https://git.kernel.org/pub/scm/linux/kerne
+ l/git/will/linux.git/log/?h=overflow-stack
+URL:https://lpc.events/event/20/contributions/2419/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2421@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T153000
+DTEND;TZID=Europe/Prague:20261005T155000
+SUMMARY:Better Anon (Swap) Readahead
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Kernel Memory Management MC · Kairui Song · https://lpc.event
+ s/event/20/contributions/2421/\n\nWhen handling swap page faults\, the ker
+ nel often don't reads just a single page. For legacy HDDs\, an entire clus
+ ter is read in. For SSDs\, we check the VMA and page tables to see if near
+ by pages are likely to be needed soon\, using a basic statistic-driven heu
+ ristic. For compressed RAM (like zram\, and potentially soon zswap)\, trad
+ itional readahead is skipped entirely. Meanwhile\, enabling (m)THP swap-in
+  currently acts as kind of a speculative fetching.\n\nThe current implemen
+ tation is not really ideal. For example\, why can't we extend (m)THP suppo
+ rt to SSDs by merging readahead detection with (m)THP lookaround? Why can'
+ t we enable a lightweight readahead for compressed RAM as well? We also ne
+ ed a smarter heuristic\, where workingset shadow entries could provide a m
+ uch better hint than basic per-VMA statistics?\n\nWith so much active deve
+ lopment in the swap subsystem\, the goal of this session is to consolidate
+  these scattered paths\, and explore whether the swap readahead mechanism 
+ can share common\, useful infrastructure.
+URL:https://lpc.events/event/20/contributions/2421/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2416@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T155000
+DTEND;TZID=Europe/Prague:20261005T161000
+SUMMARY:DMA-buf cgroup accounting for proxy allocators: attributing buffers
+  to the right consumer
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Kernel Memory Management MC · Albert Esteve\, T.J. Mercier · 
+ https://lpc.events/event/20/contributions/2416/\n\nOn embedded and automot
+ ive Linux systems\, a single daemon often allocates DMA-buf memory on beha
+ lf of other clients. Today\, most of that memory is invisible to cgroup ac
+ counting\, only system-heap buffers can carry a charge via __GFP_ACCOUNT\,
+  and even then it lands on the allocator’s cgroup rather than the app th
+ at requested the buffer.\n\nThe misattribution has real consequences on an
+ y system that uses cgroup memory limits to drive reclaim or enforce resour
+ ce budgets\, as untracked buffers silently skew pressure signals. For exam
+ ple\, on Android\, where app memory limits depend on per-app accounting\; 
+ or on automotive systems\, where strict Freedom From Interference (FFI) is
+  a key requirement and a central allocator absorbing the charge of its cli
+ ents across domains breaks any meaningful resource isolation argument.\n\n
+ In this session we will discuss the design space for fixing the proxy-allo
+ cator problem\, presenting the context from our proposal in upstream. Shou
+ ld the charge be attributed at allocation time\, or before export time? Sh
+ ould the allocator identify the target via a pidfd (natural for approaches
+  like Binder\, where the allocator already knows the sender_pid) or a cgro
+ upfd? What happens with buffers that may belong to different cgroups acros
+ s their lifetime?
+URL:https://lpc.events/event/20/contributions/2416/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2415@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T161000
+DTEND;TZID=Europe/Prague:20261005T163000
+SUMMARY:Page fault locking
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Kernel Memory Management MC · Matthew Wilcox · https://lpc.ev
+ ents/event/20/contributions/2415/\n\nIn 2023 we introduced per-VMA locks t
+ o solve contention and priority inversion on the mmap_lock for multithread
+ ed programs.  While successful\, the initial implementation did not solve 
+ every case of contention and some workloads can still demonstrate problems
+ .  This session will discuss ways of fixing the remaining problems.
+URL:https://lpc.events/event/20/contributions/2415/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2420@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T170000
+DTEND;TZID=Europe/Prague:20261005T173000
+SUMMARY:Direct map fragmentation
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Kernel Memory Management MC · Kevin Brodsky · https://lpc.eve
+ nts/event/20/contributions/2420/\n\nOn supported configurations\, the dire
+ ct map is built using large\nPMD/PUD-level block mappings. This is expecte
+ d to bring many of the\nbenefits of hugepages: improved TLB hit rate\, les
+ s page table walking\,\nsmaller page table memory footprint.\n\nThis optim
+ isation is most effective when the direct map gives access to\nthe entire 
+ physical memory with uniform permissions. Unfortunately\, a\ngrowing numbe
+ r of features need to remove pages from the direct map or\nmodify permissi
+ ons/attributes at page granularity\, causing PMD/PUD\nblocks to be split d
+ own to PTEs.\n\nAccording to results presented by Mike Rapoport at LSF/MM 
+ 2023 [1]\, the\nperformance impact of such fragmentation is negligible for
+  data\naccesses. However\, recent measurements on x86 and arm64 suggest a 
+ more\nnuanced picture\, and other factors such as power consumption should
+  also\nbe considered.\n\nThis session will briefly summarise key results\,
+  and then discuss\npossible ways to reduce fragmentation.\n\nQuestions for
+  discussion:\n\n* Should direct map permissions be modelled as an allocati
+ on property\n  in the buddy allocator\, or managed by higher-level interfa
+ ces such as\n  execmem or secretmem?\n* Can x86 and arm64 use common logic
+  for splitting and coalescing pages?\n\nA few interesting sources of direc
+ t map fragmentation:\n\n* execmem (may use PMD-sized pools\; direct map PM
+ Ds will still be split\n  if writing code)\n* secretmem\n* Confidential VM
+ s including guest_memfd (encrypted/unmapped pages)\n* pkeys-based page tab
+ le protection\n\nProposals to reduce fragmentation:\n\n* 2021/01 - PMD-siz
+ ed pools for secretmem [2]\n* 2021/04 - Grouped vmalloc [3]\n* 2023/03 - `
+ __GFP_UNMAPPED` based on dedicated cache [4]\n* 2026/02 - pkeys-protected 
+ page table pools [5]\n* 2026/03 - `__GFP_UNMAPPED` based on migratype/page
+ block [6]\n* 2026/06 - Collapsing blocks in secretmem [7]\n* 2026/06 - EXE
+ CMEM_ROX_CACHE for arm64 with direct map PMD coalescing [8]\n\n[1] https:/
+ /lwn.net/Articles/931406/\n[2] https://lore.kernel.org/lkml/20210121122723
+ .3446-8-rppt@kernel.org/\n[3] https://lore.kernel.org/lkml/20210405203711.
+ 1095940-1-rick.p.edgecombe@intel.com/\n[4] https://lore.kernel.org/all/202
+ 30308094106.227365-1-rppt@kernel.org/\n[5] https://lore.kernel.org/linux-h
+ ardening/20260227175518.3728055-1-kevin.brodsky@arm.com/\n[6] https://lore
+ .kernel.org/lkml/20260320-page_alloc-unmapped-v2-0-28bf1bd54f41@google.com
+ /\n[7] https://lore.kernel.org/all/20260603104624.36390-1-lance.yang@linux
+ .dev/\n[8] https://lore.kernel.org/all/20260611130144.1385343-1-abarnas@go
+ ogle.com/
+URL:https://lpc.events/event/20/contributions/2420/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2417@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T173000
+DTEND;TZID=Europe/Prague:20261005T180000
+SUMMARY:Accelerating Page Migration and Making the Migration Core Composabl
+ e
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Kernel Memory Management MC · Shivank Garg\, Zi Yan · https:/
+ /lpc.events/event/20/contributions/2417/\n\nAs the memory hierarchy deepen
+ s at both ends\, with HBM adding a faster tier on top and CXL adding cheap
+ er\, slower capacity below\, keeping hot data in the fast tier and sheddin
+ g cold data downward makes page migration central to NUMA\, tiered-memory 
+ and coherent CPU-GPU systems (where device memory is exposed as NUMA nodes
+ ).\n\nProfiling move_pages(2) on EPYC Zen 6 shows that the folio copy domi
+ nates migration (~96% of time for a 2MB THP)\, making it the primary scali
+ ng bottleneck. Yet this path is largely sequential: folios are copied one 
+ at a time by a single CPU\, while DMA engines\, idle cores and memory band
+ width go unused.\n\nTo tap that idle hardware\, this work separates the fo
+ lio content copy from the rest of migration and hands it to a pluggable mi
+ grator. The batch path:\n - unmaps a batch of folios and flushes the TLB o
+ nce\,\n - asks a migrator to copy the eligible folios\,\n - marks copied f
+ olios so the move phase skips the per-folio copy\,\n - completes the move 
+ through the existing flow [1].\n\nA faster copy is not the whole story: lo
+ wer rmap overheads\, a simpler migration architecture and a composable cor
+ e matter just as much. The work therefore proceeds in three directions: ac
+ celerating the dominant copy phase\, batching the rmap walks and restructu
+ ring the migration core so that these and other independent optimizations 
+ compose instead of becoming special cases.\n\nAccelerating the copy\n-----
+ ----------------\n\nThree complementary\, measured directions:\n1. dcbm - 
+ a DMA-based migrator using dmaengine devices\, for bulk copy across multip
+ le channels.\n2. mtcopy - multi-threaded CPU copy on idle cores\, a softwa
+ re fallback where no DMA/offload engine is available [9].\n3. Bulk folio_c
+ opy() for large folios: one copy over the contiguous range\, independent o
+ f the batch and offload framework [2].\n\nMeasured with move_pages() on 1G
+ B anonymous memory\, DRAM -> DRAM\, batch copy offload makes 2MB THP migra
+ tion several times faster: ~6x with PTDMA (Zen 3\, 16 channels)\, ~3.5X wi
+ th SDXI (Zen 6\, 1 channel) and ~3.8x with multi-threaded CPU copy (Zen 3\
+ , mtcopy\, 8 threads).\n\nSeparately\, a related demotion effort uses non-
+ temporal stores to reduce cache pollution and CXL-side read traffic [3].\n
+ \nBeyond the copy: the rmap phase\n-------------------------------\n\nOnce
+  the copy is offloaded\, rmap work dominates for PTE-mapped large folios (
+ mTHP) because the unmap and restore walks handle each PTE separately. Batc
+ hing those walks is the next lever\, and its payoff grows with folio size:
+  on Zen 3\, a 1MB folio reaches ~5.6x over vanilla with DMA offload and rm
+ ap batching\, compared to ~2x with offload alone [7].\n\nReworking the cor
+ e so these compose\n-------------------------------------\n\nSeveral effor
+ ts optimize different migration phases\, and each one adds flags or specia
+ l cases to the current monolithic path [1][3][4]. They also run into the s
+ ame limitation: ->migrate_folio() receives only enum migrate_mode\, which 
+ describes the blocking semantics but not the migration intent (for example
+ \, promotion versus demotion). So\, new behavior ends up either extending 
+ migrate_mode or going through a side channel. For example\, non-temporal d
+ emotion added MIGRATE_ASYNC_NON_TEMPORAL_STORES\, while the DMA offload re
+ cords FOLIO_CONTENT_COPIED in migrate_info.\n\nTwo changes are posted as R
+ FC[8]:\n\n1. Pass a small context struct (migrate_control) through migrate
+ _pages() into ->migrate_folio()\, carrying mode\, reason\, and room for fu
+ ture attributes. This separates blocking behavior from intent\, so the cop
+ y phase knows why the folio is migrating and copy policy (cached\, non-tem
+ poral\, offload\, and so on) can follow.\n\n2. Split the single list in mi
+ grate_pages() into separate classes\, each with its own list and retries: 
+ hugetlb folios\, movable_ops pages and LRU folios. This removes the type c
+ hecks scattered through the shared batch path and makes the flow easier to
+  follow.\n\nDiscussion\n----------\n\nI'd like to use the session to valid
+ ate the direction of the migration core work and how ongoing efforts shoul
+ d fit together.\n\nKey questions:\n\n- Interface: should migrate_pages() a
+ nd ->migrate_folio() take a context struct? It touches every caller and ca
+ llback. Is that one-time churn acceptable\, and is this the right shape?\n
+ - Policy: Should each policy\, such as cache intent\, be stated explicitly
+  by the caller\, or should the core derive it from the migration reason?\n
+ - Core structure: is the per-class migration model right shape for maintai
+ nability? movable_ops pages still use page->lru\, new_folio_t\, put_folio_
+ t. What should a non-folio migration interface look like?\n- Synchronous f
+ allback: after the async pass\, should the remaining folios be retried thr
+ ough a direct single-folio path\, or should they keep reusing migrate_page
+ s_batch() and avoid a second single-folio path?\n- Copy helpers: there is 
+ no range version of copy_page() for bulk folio copy. memcpy() works\, but 
+ without FSRM on x86 it falls back to an unrolled movq loop instead of copy
+ _page()'s rep movsq. Should we add copy_pages()\, like clear_pages()?\n- E
+ ngine selection: who should select the copy engine: the caller\, the provi
+ der (as in the current RFC)\, or the core\, based on caller constraints an
+ d provider capability? Should folio size\, batch size or topology drive th
+ at choice?\n- Batching trade-offs: What is an acceptable trade-off between
+  throughput and first-folio latency? Should the batch limit be a tunable p
+ er platform?\n\nRoadmap:\n\nMigration core redesign and context passing\; 
+ migration-side rmap batching\, bulk copy within large folios\, batch copy 
+ and DMA offload\, Scatter-gather copy (DMA_MEMCPY_SG)\; SDXI migrator [6] 
+ and DCBM driver\; topology-aware thread placement for multi-threaded copy 
+ and CPU accounting for multi-threaded copy\; hot page promotion (pghot [5]
+ ) reusing the offload path.\n\nReferences\n-----------\n[1] Migration batc
+ h/offload\, RFC V6: https://lore.kernel.org/all/20260630-shivank-batch-mig
+ rate-offload-v6-0-da95d7e8b8a2@amd.com\n[2] Bulk folio_copy optimization\,
+  RFC v1: https://lore.kernel.org/all/20260427142036.111940-4-shivankg@amd.
+ com\n[3] Non-temporal demotion\, RFC V2: https://lore.kernel.org/linux-mm/
+ 20260730-rfc-nt-demote-v2-0-452dbe3b5073@zptcorp.com/#t\n[4] migrate_mode/
+ migrate_folio() ABI extensibility (Memory Hotness and Promotion call):\n  
+   https://lore.kernel.org/linux-mm/37010218-ecad-4f75-961d-686d51b6677d@am
+ d.com\n[5] pghot\, V8: https://lore.kernel.org/all/20260728054356.291998-1
+ -bharata@amd.com\n[6] SDXI\, V3: https://lore.kernel.org/all/20260605-sdxi
+ -base-v3-0-4d38ca2bdffe@amd.com\n[7] Migration-side rmap batching\, RFC V2
+ : https://lore.kernel.org/linux-mm/20260813-migrate-rmap-batch-v2-0-3c5424
+ c555c7@amd.com\n[8] Migration redesign and policy\, RFC V1: https://lore.k
+ ernel.org/linux-mm/20260902-migrate-refactor-shivank-v1-0-9dcca87669c4@amd
+ .com\n[9] mtcopy RFC v3: https://lore.kernel.org/all/20250923174752.35701-
+ 7-shivankg@amd.com
+URL:https://lpc.events/event/20/contributions/2417/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2418@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T180000
+DTEND;TZID=Europe/Prague:20261005T183000
+SUMMARY:Tackling Isolation Issues Due to Memory Pressure
+LOCATION:Club A\, Prague Congress Centre
+DESCRIPTION:Kernel Memory Management MC · Shakeel Butt · https://lpc.even
+ ts/event/20/contributions/2418/\n\nOn a densely shared host\, a routine ev
+ ent breaks tenant isolation: a task holding a shared kernel lock (filesyst
+ em metadata\, a control-plane mutex/rwsem) allocates *inside* the critical
+  section\, the allocation falls into memory reclaim\, and until reclaim fi
+ nishes every other task waiting on that lock — from any cgroup — pays 
+ the stall. Shared kernel locks aren't mediated by cgroups or memcg limits\
+ , so this is cross-tenant priority inversion\, and overcommit makes it wor
+ se.\n\nIn this talk we will present the data we have gathered across the M
+ eta fleet on this problem\, and share how we think the solution should tak
+ e shape. Rather than a finished design or patch series\, the goal is to la
+ y out the problem space\, the constraints any fix must satisfy\, our curre
+ nt direction\, and the open questions and to get early feedback from the u
+ pstream community.
+URL:https://lpc.events/event/20/contributions/2418/
+END:VEVENT
+END:VCALENDAR

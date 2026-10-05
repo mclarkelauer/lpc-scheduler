@@ -1,0 +1,125 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Gaming on Linux MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2401@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T150000
+DTEND;TZID=Europe/Prague:20261005T153000
+SUMMARY:Optimizing Gaming Performance and Power Efficiency with Intel LPMD
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Gaming on Linux MC · Srinivas Pandruvada · https://lpc.events
+ /event/20/contributions/2401/\n\nGaming performance remains critical for u
+ ser experience\, but power efficiency has become equally important\, parti
+ cularly for battery-powered devices. Also improves thermal management and 
+ reduce thermal throttling. LPMD offers a solution for enhancing energy eff
+ iciency by dynamically selecting optimal processor configurations and powe
+ r slider settings based on CPU and GPU utilization.\nThis session demonstr
+ ates how Intel LPMD can be configured to improve energy efficiency during 
+ gaming workloads while maintaining acceptable performance levels. Will pre
+ sent some performance metrics showing improvements in power consumption an
+ d thermal behavior. The discussion will cover LPMD configuration\, impleme
+ ntation considerations\, and get some suggestions from gaming community.
+URL:https://lpc.events/event/20/contributions/2401/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2400@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T153000
+DTEND;TZID=Europe/Prague:20261005T160000
+SUMMARY:GPU Job Scheduling: Current Development
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Gaming on Linux MC · Daniel Almeida\, Philipp Stanner · https
+ ://lpc.events/event/20/contributions/2400/\n\nThe Linux kernel is responsi
+ ble for managing the dependency graph of userspace's compute and graphics 
+ shaders. Moreover\, it handles the GPU load balancing and tries to guarant
+ ee forward progress and deadlock resistance.\n\nHistorically\, most graphi
+ cs drivers have used drm_sched\, a problematic legacy code base\, for thes
+ e tasks. More recently\, Rust drivers are ramping up their own infrastruct
+ ure to achieve the same\, while trying to learn from the mistakes of the p
+ ast and to leverage the features of the Rust programming language for robu
+ stness and reliability. Notably\, engineers at Collabora and Red Hat colla
+ boratively develop a successor in Rust for drm_sched\, drm::JobQueue.\n\nT
+ his talk briefly informs about the aforementioned developments and then op
+ ens room for discussions which may help the developers (who are – in par
+ t – concerned with the compute aspect of GPUs) understand the wider comm
+ unity's pains and requirements\, such as from the graphics and video game 
+ parties. Topics that could be discussed are\, for example:\n\n- Future of 
+ GPU scheduling: more control is handed over to the GPU's firmware\, making
+  it difficult or impossible for the kernel to prioritize real time applica
+ tions such as games.\n- What are the major issues in the Linux kernel rega
+ rding stability\, e.g.\, crashing video games?\n- One reason why drm_sched
+  is in bad shape is that super-priority was given to performance\, for exa
+ mple by omitting locks. Fixing some of these missing locks has been reject
+ ed\, due to reported massive performance regressions. Would video game dev
+ elopers argue that ~100% reliability is worth significant sacrifices with 
+ frames per second?\n- Used hardware: Which GPUs and drivers are most impor
+ tant for gaming on Linux\, and which would the community desire to be supp
+ orted better the most?
+URL:https://lpc.events/event/20/contributions/2400/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2403@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T160000
+DTEND;TZID=Europe/Prague:20261005T163000
+SUMMARY:EPP-boost: Per-core util-based performance boosting in AMD p-state 
+ driver
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Gaming on Linux MC · David Vernet · https://lpc.events/event/
+ 20/contributions/2403/\n\nI've observed that on the Steam Deck\, changes t
+ o the AMD p-state driver can have a significant impact on tail latencies a
+ nd stale frame numbers. I've submitted an RFC upstream which proposes a pe
+ r-CPU EPP boost heuristic: https://lore.kernel.org/all/20260728073150.5496
+ 4-1-void@manifault.com/.\n\nWe should discuss gaps in the current cpufreq 
+ / AMD p-state driver\, and how to best address frequency scaling for gamin
+ g workloads in general.
+URL:https://lpc.events/event/20/contributions/2403/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2594@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261005T170000
+DTEND;TZID=Europe/Prague:20261005T173000
+SUMMARY:Emulating x86 atomics on arm64
+LOCATION:Club H\, Prague Congress Centre
+DESCRIPTION:Gaming on Linux MC · André Almeida · https://lpc.events/even
+ t/20/contributions/2594/\n\nAtomics can be challenging enough by themselve
+ s\, and emulating them can be even worse. The lack of correctness will cra
+ sh the application sooner or later\, and the lack of performance will be v
+ ery noticeable.\n\nOne key difference between x86 and arm64 is how they ha
+ ndle atomic operations on unaligned addresses. While on x86 such operation
+ s are supported transparently\, on arm64 they raise a SIGBUS and the appli
+ cation is terminated. This creates a problem when emulating x86 games on a
+ rm64\, since we can’t modify their source code to avoid unaligned atomic
+  operations. So\, we need a mechanism to handle such operations on top of 
+ arm64.\n\nThis talk will introduce the topic and describe an implementatio
+ n design\, benchmark results and how other OSes approached this issue.\n\n
+ LKML link: https://lore.kernel.org/lkml/20251117160841.334224-1-andrealmei
+ d@igalia.com/
+URL:https://lpc.events/event/20/contributions/2594/
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,302 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//lpc-scheduler//LPC 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:LPC 2026: Kernel Testing & Dependability MC
+X-WR-TIMEZONE:Europe/Prague
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:lpc2026-2644@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150000
+DTEND;TZID=Europe/Prague:20261006T150500
+SUMMARY:Testing MC Intro
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Arisu Tachibana\, Guillaum
+ e Tucker\, Sasha Levin\, Shuah Khan · https://lpc.events/event/20/contrib
+ utions/2644/\n\nWelcome to the Kernel Testing & Dependability MC\n\n*Quick
+  overview of the 2026 edition and usual Plumbers briefing*
+URL:https://lpc.events/event/20/contributions/2644/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2534@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T150500
+DTEND;TZID=Europe/Prague:20261006T152500
+SUMMARY:kci-dev: What Changed\, What Works\, and What Kernel Developers Sti
+ ll Need
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Arisu Tachibana · https:/
+ /lpc.events/event/20/contributions/2534/\n\nkci-dev was created as a stand
+ alone command-line tool that allows kernel developers and maintainers to i
+ nteract directly with KernelCI. Since its initial releases\, the project h
+ as grown beyond its original role as a thin client for triggering jobs and
+  retrieving results.\n\nThe latest development cycle\, including the v0.1.
+ 11 release\, introduced a reusable Python library interface\, direct submi
+ ssion of external build results to KCIDB\, storage-related commands\, broa
+ der result filtering\, improved Maestro and Dashboard validation\, machine
+ -readable validation reports\, distribution packaging workflows\, and an e
+ xperimental Model Context Protocol server for automation and AI-assisted t
+ ooling. Significant reliability work also addressed automated bisection\, 
+ job watching\, network timeouts\, malformed output\, configuration handlin
+ g\, and inconsistent Maestro behaviour.\n\nThese changes are moving kci-de
+ v from a collection of CLI commands toward a common integration layer for 
+ kernel testing workflows. However\, several important pieces are still mis
+ sing before it can become a practical everyday tool for a broader group of
+  kernel developers and maintainers.\n\nKey gaps include first-class testin
+ g of email patch series through b4 and Patchwork\, reproducible pre-submit
+  test plans\, reliable comparison of results between revisions\, classific
+ ation of regressions versus flaky or infrastructure failures\, consistent 
+ interfaces across Maestro\, KCIDB and the KernelCI Dashboard\, richer lab 
+ and hardware metadata\, caching and multi-tree reporting\, and stable exte
+ nsion points for external tools.\n\nThis session will present the current 
+ state of kci-dev\, distinguish mature functionality from experimental work
+ \, and discuss which missing workflows should be prioritised. The goal is 
+ to agree on interfaces\, responsibilities and concrete contributions neede
+ d to make kci-dev a dependable bridge between kernel development workflows
+  and KernelCI.
+URL:https://lpc.events/event/20/contributions/2534/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2620@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T152500
+DTEND;TZID=Europe/Prague:20261006T154500
+SUMMARY:Kernel Builds Deserve an Identity: Portable Kernel Artifacts and Tr
+ aceable Test Results
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Cong Wang · https://lpc.e
+ vents/event/20/contributions/2620/\n\nOur CI systems build thousands of ke
+ rnels a day\, yet the kernel build itself has no canonical identity and no
+  portable distribution format. Reproducing the exact binary behind a regre
+ ssion report is guesswork\, and correlating KCIDB results back to a build 
+ is convention\, not verification.\n\nKBI (Kernel Bundle Image\, Apache-2.0
+ ) is a concrete starting point for fixing this. It packages vmlinuz\, modu
+ les\, initrd\, BTF\, firmware\, and config as a standard OCI image and der
+ ives a deterministic\, independently recomputable build identity from the 
+ artifacts. Existing registries handle distribution and signing\, which map
+ s naturally onto pull-mode labs. Module and eBPF add-ons bind to a specifi
+ c build identity\, turning silent runtime mismatches in labs into early\, 
+ explainable rejections.\n\nProposed discussion points:\n\n- What should de
+ fine kernel build identity\, and how does it interact with reproducible bu
+ ilds?\n\n- Could Tuxmake and KernelCI Maestro emit OCI kernel bundles\, an
+ d could KCIDB adopt a verifiable build identity field?\n\n- How far should
+  artifact metadata go toward a kernel SBOM for safety and traceability use
+  cases?\n\n- Could it solve bare metal kernel CI testing with multikernel?
+URL:https://lpc.events/event/20/contributions/2620/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2531@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T154500
+DTEND;TZID=Europe/Prague:20261006T161000
+SUMMARY:Rethinking KUnit Configuration
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · David Gow · https://lpc.e
+ vents/event/20/contributions/2531/\n\nThe ``kunit.py`` tool currently spre
+ ads its configuration across three places: ``kunitconfig`` files\, which c
+ ontain Kconfig entries for the kernel being tested\; ``qemu_config`` pytho
+ n scripts\, which configure architecture- and emulator-specific options\; 
+ and command-line arguments\, which specify what is being done (building\, 
+ testing\, parsing\, etc.)\, and any options specific to the run (filters\,
+  build options\, output configuration\, etc.)\n\nThis means that\, in orde
+ r to completely configure a test run\, three different configuration sourc
+ es need to be managed\, all of which are in different formats\, and one of
+  which isn’t even a file.\n\nIf we can implement a combined configuratio
+ n format\, this will not only simplify configuring KUnit tests\, but also 
+ allow enhancements to ``kunit.py`` which manage configurations more explic
+ itly. With first-class configurations\, ``kunit.py`` could — for example
+  — support running multiple different configurations as part of a single
+  execution.\n\nWould this be useful\, and if so\, how should we do it? In 
+ particular:\n\n - Should we extend the Kconfig-based ‘kunitconfig’ fil
+ es with additional configuration lines?\n - Would a python-based configura
+ tion (more like the qemu_config files) be sufficiently simpler?\n - How im
+ portant is maintaining compatibility with existing configs (it shouldn’t
+  be hard to do so)?\n - Is doing multiple test runs from within kunit.py u
+ seful? (And\, if not\, are people doing this using other scripts/CI system
+ s?)\n - If so\, how should results be handled? We can merge KTAP results (
+ but it’s trickier to do so in a way which preserves the streaming nature
+  of results).\n - What else can’t be expressed in existing KUnit configu
+ rations which would be useful?
+URL:https://lpc.events/event/20/contributions/2531/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2642@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T161000
+DTEND;TZID=Europe/Prague:20261006T163000
+SUMMARY:Optimizing local kernel build testing
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Arnd Bergmann · https://l
+ pc.events/event/20/contributions/2642/\n\nFor the past 15 years\, Arnd has
+  been using a custom kernel build setup for regression testing linux-next 
+ kernels. Initially set up purely for the maintenance of the SoC tree\, thi
+ s has also helped in a number of other initiatives for cross-tree code cha
+ nges and produced thousands of bugfixes across every major subsystems of t
+ he kernel.\n\nIn this session\, Arnd will discuss some of the lessons lear
+ ned from this work\, and how some of the same ideas can be applied to othe
+ r test setups and CI systems.
+URL:https://lpc.events/event/20/contributions/2642/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2643@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T170000
+DTEND;TZID=Europe/Prague:20261006T171500
+SUMMARY:Kselftest coverage with kcov
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Shuah Khan · https://lpc.
+ events/event/20/contributions/2643/\n\nWe can use KCOV configuration optio
+ ns and a simple tool to measure coverage to find gaps in individual selfte
+ sts. Let's discuss how and if it is helpful in improving and enhancing the
+  existing tests strictly to identify the gaps in critical coverage.
+URL:https://lpc.events/event/20/contributions/2643/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2532@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T171500
+DTEND;TZID=Europe/Prague:20261006T173000
+SUMMARY:KFuzzTest: Fuzzing Internal Kernel Functions\, One Year On
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Ethan Graham · https://lp
+ c.events/event/20/contributions/2532/\n\nAt LPC 2025 we introduced KFuzzTe
+ st\, a framework for exposing stateless and low-state internal kernel func
+ tions\, such as complex data parsers and the like\, directly to a userspac
+ e fuzzer\, reaching code that system-call fuzzers struggle to exercise. De
+ velopers define targets alongside their functions using a simple macro-bas
+ ed API\, with constraints and type annotations compiled into dedicated ELF
+  sections for automatic discovery. This follow-up reports on a year of pro
+ gress and charts the path ahead.\n\nSince last year\, the patch series has
+  matured through upstream review\, with [a follow-up revision][1] that sim
+ plified the design and removed the dependency on syzkaller\, lowering the 
+ barrier to adoption. With the framework stabilizing\, we turn to a broader
+  question: KFuzzTest's defining feature is a uniform\, low-boilerplate int
+ erface for invoking internal functions\, and that interface is useful well
+  beyond a single fuzzing engine.\n\nWe will explore two directions. First\
+ , integration with KUnit: a fuzzing harness is naturally expressed as a sp
+ ecialized unit test\, suggesting a guiding principle that if a function ca
+ n be unit-tested\, it can be fuzzed\, and reusing existing test infrastruc
+ ture rather than standing up new machinery.\n\nSecond\, automated harness 
+ generation: writing fuzz harnesses is routine\, mechanical work\, and KFuz
+ zTest's minimal interface is well suited to being driven by LLM-based agen
+ ts\, both to author targets and to drive fuzzing loops. We see offloading 
+ this boilerplate as a concrete value proposition.\n\nThis presentation wil
+ l cover what changed over the past year\, lessons from the review process\
+ , and these avenues for extending KFuzzTest's reach. We hope to use the se
+ ssion to gather community feedback on the most promising directions for up
+ streaming.\n\n  [1]: https://lore.kernel.org/all/20260112192827.25989-1-et
+ han.w.s.graham@gmail.com/
+URL:https://lpc.events/event/20/contributions/2532/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2619@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T173000
+DTEND;TZID=Europe/Prague:20261006T174500
+SUMMARY:LLM-Assisted Fuzzing with Syzkaller
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Aleksandr Nogikh\, Chuyang
+  Wang · https://lpc.events/event/20/contributions/2619/\n\nCoverage-guide
+ d fuzzing has proven to be highly effective at discovering Linux kernel vu
+ lnerabilities. Since its appearance in 2016\, syzkaller - especially throu
+ gh the automated syzbot platform - has reported over 14\,000 findings to t
+ he public kernel mailing lists.\n\nDespite the success\, traditional fuzzi
+ ng methods struggle to reach deep code paths within complex kernel subsyst
+ ems\, even when provided with exact descriptions of the Linux kernel inter
+ faces and fine-grained coverage feedback. Generating programs to reach dee
+ ply nested Linux kernel locations often requires a nuanced semantic unders
+ tanding of target source code - a bottleneck that historically demanded su
+ bstantial manual engineering. Now\, the ever increasing capabilities of LL
+ Ms offer us the opportunity to address this problem in a fully automated m
+ anner.\n\nWe will present an intelligent\, context-aware bug discovery wor
+ kflow that integrates LLM-driven seed program generation with coverage-gui
+ ded fuzzing using Syzkaller. By leveraging coverage feedback from the fuzz
+ ing engine\, our approach selectively targets weakly covered Linux kernel 
+ regions and automatically synthesizes context-relevant seed programs to re
+ ach them. These seeds are subsequently fed back into the fuzzer\, enabling
+  coverage expansion into previously unexplored code regions and facilitati
+ ng bug discovery.\n\nDuring the experiments\, we have successfully increas
+ ed the testing coverage of the Linux kernel **from 30% to 35%** on the syz
+ bot platform\, exercising over 70\,000 previously uncovered basic blocks. 
+ In total\, by injecting the discovered seeds into the syzkaller pipeline\,
+  we've already discovered **450+** new\, reproducible kernel bugs\, includ
+ ing numerous UAF\, OOB accesses and memory leaks.\n\nBenchmark testing of 
+ the seed program generation workflow has demonstrated that it can reach ro
+ ughly **16%** of previously never reached locations (a random sample of **
+ N=500**). We are confident that further improvements and future LLM models
+  will let us achieve even higher effectiveness.
+URL:https://lpc.events/event/20/contributions/2619/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2533@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T175000
+DTEND;TZID=Europe/Prague:20261006T181000
+SUMMARY:Testing the kernel where the fleet runs: KernelCI in the cloud
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Norbert Manthey\, Stanisla
+ v Uschakow · https://lpc.events/event/20/contributions/2533/\n\nKernelCI 
+ provides continuous testing for the Linux kernel. Over the past year we ex
+ tended testing into the cloud. AWS lab is now integrated upstream and visi
+ ble on the KernelCI dashboard.\n\nWe will describe the architecture and ho
+ w it maps onto KernelCI's pull-mode lab model so other cloud vendors can a
+ ttach their own infrastructure. We will share the gotchas of testing on re
+ mote virtualized machines.\n\nThe cloud unlocks special test usecases from
+  tiny\, memory-pressured instances to machines with hundreds of cores and 
+ terabytes of RAM.\nAdditionally\, EC2 exposes nested KVM on c8i instances\
+ , and we run kvm-unit-tests inside these guests to exercise the kernel's o
+ wn virtualization stack.\n\nKernelCI already runs tests on AWS infrastruct
+ ure. We will discuss next steps and improvements like performance testing.
+URL:https://lpc.events/event/20/contributions/2533/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2621@lpc.events
+DTSTAMP:20261005T090715Z
+DTSTART;TZID=Europe/Prague:20261006T181000
+DTEND;TZID=Europe/Prague:20261006T183000
+SUMMARY:Security Lessons from Auditing the Linux accel/ethosu Driver
+LOCATION:Club E\, Prague Congress Centre
+DESCRIPTION:Kernel Testing & Dependability MC · Muhammad Bilal · https://
+ lpc.events/event/20/contributions/2621/\n\nThe Linux accel/ subsystem is s
+ till relatively young\, yet it already exposes\ncomplex userspace interfac
+ es for machine learning accelerators. These drivers\nprocess user-controll
+ ed command streams\, DMA descriptors\, tensors\, and region\nmetadata\, ma
+ king input validation critical.\n\nThis talk presents the results of a sec
+ urity audit of the accel/ethosu driver\nthat led to seven upstream fixes m
+ erged in 2026\, with the fixes subsequently\nbackported to supported stabl
+ e kernel series where appropriate. The issues\nincluded out-of-bounds acce
+ sses\, arithmetic overflows\, incorrect index\nvalidation\, sentinel misus
+ e\, and insufficient validation of DMA-related\nmetadata.\n\nRather than f
+ ocusing on individual bug fixes\, the presentation identifies the\nrecurri
+ ng implementation patterns that produced these vulnerabilities and\ndiscus
+ ses practical techniques for preventing similar issues in future\naccelera
+ tor drivers. Topics include overflow-safe arithmetic\, structured input\nv
+ alidation\, region and descriptor verification\, and opportunities for imp
+ roving\nfuzz testing of accelerator interfaces.\n\nThe session concludes w
+ ith discussion of possible common validation helpers\,\nsecurity review gu
+ idelines for new accelerator drivers\, and ways to improve the\nlong-term 
+ robustness of the Linux accel/ subsystem as ML hardware becomes\nincreasin
+ gly common.
+URL:https://lpc.events/event/20/contributions/2621/
+END:VEVENT
+END:VCALENDAR
