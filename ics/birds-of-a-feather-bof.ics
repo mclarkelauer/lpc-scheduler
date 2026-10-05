@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2635@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T104500
 SUMMARY:AF_XDP BoF
@@ -46,7 +46,7 @@ URL:https://lpc.events/event/20/contributions/2635/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2640@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261005T104500
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:Attested TLS for Confidential AI Agents: Insights and Lessons Learn
@@ -73,7 +73,7 @@ URL:https://lpc.events/event/20/contributions/2640/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2641@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T124500
 SUMMARY:Live Update BoF
@@ -97,7 +97,7 @@ URL:https://lpc.events/event/20/contributions/2641/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2381@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261005T150000
 DTEND;TZID=Europe/Prague:20261005T154500
 SUMMARY:Debugging CPU isolation / nohz_full
@@ -111,7 +111,7 @@ URL:https://lpc.events/event/20/contributions/2381/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2382@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261005T154500
 DTEND;TZID=Europe/Prague:20261005T163000
 SUMMARY:Rust for Linux Office Hours
@@ -132,7 +132,7 @@ URL:https://lpc.events/event/20/contributions/2382/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2383@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261005T170000
 DTEND;TZID=Europe/Prague:20261005T174500
 SUMMARY:BoF: Memory Efficiency on Modern Linux Systems
@@ -149,7 +149,7 @@ URL:https://lpc.events/event/20/contributions/2383/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2368@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261005T174500
 DTEND;TZID=Europe/Prague:20261005T183000
 SUMMARY:Updates and Future Directions for Resctrl RDT/MPAM/PQOS/CBQRI
@@ -173,7 +173,7 @@ URL:https://lpc.events/event/20/contributions/2368/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2409@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T104500
 SUMMARY:Kernel Sanitizers Office Hours
@@ -202,7 +202,7 @@ URL:https://lpc.events/event/20/contributions/2409/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2410@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T104500
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Linux CVEs\, vulnerability management and agentic security workflow
@@ -224,7 +224,7 @@ URL:https://lpc.events/event/20/contributions/2410/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2633@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T124500
 SUMMARY:x86 BoF
@@ -239,7 +239,7 @@ URL:https://lpc.events/event/20/contributions/2633/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2412@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T124500
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:DRM Fabric: Vendor-Neutral Topology Infrastructure for Scale-Up Acc
@@ -286,7 +286,7 @@ URL:https://lpc.events/event/20/contributions/2412/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2413@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T154500
 SUMMARY:Bridging the Linux Tux and the FreeBSD Beastie – Linuxulator\, Li
@@ -333,7 +333,7 @@ URL:https://lpc.events/event/20/contributions/2413/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2634@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T154500
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:F2FS update
@@ -346,7 +346,7 @@ URL:https://lpc.events/event/20/contributions/2634/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2452@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T174500
 SUMMARY:Improving THP placement policies
@@ -366,7 +366,7 @@ URL:https://lpc.events/event/20/contributions/2452/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2364@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T174500
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Camera & ISP BoF
@@ -419,7 +419,7 @@ URL:https://lpc.events/event/20/contributions/2364/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2453@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261006T174500
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:DAMON Nano Conference
@@ -432,47 +432,50 @@ DESCRIPTION:Birds of a Feather (BoF) · SJ Park · https://lpc.events/event
  ill present and discuss what changes have recently been made\, what change
  s are ongoing\, and what should be the next work.\n\n# Schedule\n\nNote th
  at the schedule could be updated until the last minute.\n\n17:45-17:48 _Op
- ening_\n17:48-17:55 _Breaking through Accessed Bit Limits of DAMON_\, SJ P
- ark\, Ravi Jonnalagadda\, Akinobu Mita\n17:55-18:05 _Beyond Weighted Inter
- leaving: Bandwidth-Driven Memory Tiering with DAMON_\, Ravi Jonnalagadda. 
-  [Slides](https://lpc.events/event/20/contributions/2453/attachments/2032/
- 4675/beyond-weighted-interleaving.pdf)\n18:05-18:15 DAMON for Huge Pages\n
- - _Guiding THP Decisions with DAMON Memory Monitoring_\, Asier Gutierrez. 
- [Slides](https://lpc.events/event/20/contributions/2453/attachments/2032/4
- 727/LPC-DAMON-THP.pdf)\n- _Host-side DAMON Hotness under KVM/THP: Granular
- ity Gaps and Evidence for Demotion_\, Lian Wang\, Kunwu Chan. [Slides](htt
- ps://lpc.events/event/20/contributions/2453/attachments/2032/4723/LPC2026_
- Host-side_DAMON_Hotness_under_KVM_THP_v4.pptx.pdf)\n18:15-18:25 _DAMON in 
- the AI Cloud: Monitoring Real-World GPU Workloads_\, Krishna Iyer. [Slides
- ](https://lpc.events/event/20/contributions/2453/attachments/2032/4571/DAM
- ON%20in%20the%20AI%20Cloud.pdf)\n18:25-18:30 _Joint QnA and Closing_\n\n# 
- Authors (Alphabetically sorted)\n\n_Akinobu Mita_\nSoftware engineer at Fi
- xstars Corporation.\n\n_Asier Gutierrez_\nSenior Software Engineer at Huaw
- ei.  Experienced Senior Software Developer specializing in Linux developme
- nt\, kernel-level debugging\, and high-load\, high-availability systems. I
-  currently work for Huawei. I have worked for Intel\, IBM and Yandex in th
- e past.\n\n_Krishna Iyer_\nKrishna Iyer is a Software Engineer at Crusoe s
- pecializing in low-level systems\, driver development\, and Linux build sy
- stems. Previously at Cisco-Meraki\, he now focuses on researching memory a
- ccess patterns using DAMON for AI workloads on GPU infrastructure.\n\n_Kun
- wu Chan_\nKunwu Chan is a Linux kernel developer with experience in kernel
-  performance analysis and tuning\, subsystem design\, and memory safety. H
- e works on DAMON\, memory management\, swap\, MGLRU\, and RCU.\n\n_Lian Wa
- ng_\nLian Wang is a Linux kernel developer working on memory management\, 
- with a focus on DAMON\, huge pages\, swap\, and virtualized and large-memo
- ry systems.\n\n_Ravi Jonnalagadda_\nRavi Jonnalagadda is a Sr Manager at M
- icron working on Linux kernel memory management for CXL and tiered-memory 
- systems. He co-developed the weighted interleaving memory policy and added
-  the node_eligible_mem_bp DAMOS quota goal. His current work lets DAMON ta
- ke access samples from hardware sampling units.\n\n_SJ Park_\nSJ is a kern
- el programmer with a strong focus on memory management. He develops and ma
- intains DAMON\, a Linux kernel subsystem designed for efficient data acces
- s monitoring and access-aware system operations.
+ ening_\, SJ Park. [Slides](https://lpc.events/event/20/contributions/2453/
+ attachments/2032/4709/damon_conf_opening.pdf)\n17:48-17:55 _Breaking throu
+ gh Accessed Bit Limits of DAMON_\, SJ Park\, Ravi Jonnalagadda\, Akinobu M
+ ita. [Slides](https://lpc.events/event/20/contributions/2453/attachments/2
+ 032/4710/damon_extension.pdf)\n17:55-18:05 _Beyond Weighted Interleaving: 
+ Bandwidth-Driven Memory Tiering with DAMON_\, Ravi Jonnalagadda.  [Slides]
+ (https://lpc.events/event/20/contributions/2453/attachments/2032/4675/beyo
+ nd-weighted-interleaving.pdf)\n18:05-18:15 DAMON for Huge Pages\n- _Guidin
+ g THP Decisions with DAMON Memory Monitoring_\, Asier Gutierrez. [Slides](
+ https://lpc.events/event/20/contributions/2453/attachments/2032/4727/LPC-D
+ AMON-THP.pdf)\n- _Host-side DAMON Hotness under KVM/THP: Granularity Gaps 
+ and Evidence for Demotion_\, Lian Wang\, Kunwu Chan. [Slides](https://lpc.
+ events/event/20/contributions/2453/attachments/2032/4723/LPC2026_Host-side
+ _DAMON_Hotness_under_KVM_THP_v4.pptx.pdf)\n18:15-18:25 _DAMON in the AI Cl
+ oud: Monitoring Real-World GPU Workloads_\, Krishna Iyer. [Slides](https:/
+ /lpc.events/event/20/contributions/2453/attachments/2032/4571/DAMON%20in%2
+ 0the%20AI%20Cloud.pdf)\n18:25-18:30 _Joint QnA and Closing_\n\n# Authors (
+ Alphabetically sorted)\n\n_Akinobu Mita_\nSoftware engineer at Fixstars Co
+ rporation.\n\n_Asier Gutierrez_\nSenior Software Engineer at Huawei.  Expe
+ rienced Senior Software Developer specializing in Linux development\, kern
+ el-level debugging\, and high-load\, high-availability systems. I currentl
+ y work for Huawei. I have worked for Intel\, IBM and Yandex in the past.\n
+ \n_Krishna Iyer_\nKrishna Iyer is a Software Engineer at Crusoe specializi
+ ng in low-level systems\, driver development\, and Linux build systems. Pr
+ eviously at Cisco-Meraki\, he now focuses on researching memory access pat
+ terns using DAMON for AI workloads on GPU infrastructure.\n\n_Kunwu Chan_\
+ nKunwu Chan is a Linux kernel developer with experience in kernel performa
+ nce analysis and tuning\, subsystem design\, and memory safety. He works o
+ n DAMON\, memory management\, swap\, MGLRU\, and RCU.\n\n_Lian Wang_\nLian
+  Wang is a Linux kernel developer working on memory management\, with a fo
+ cus on DAMON\, huge pages\, swap\, and virtualized and large-memory system
+ s.\n\n_Ravi Jonnalagadda_\nRavi Jonnalagadda is a Sr Manager at Micron wor
+ king on Linux kernel memory management for CXL and tiered-memory systems. 
+ He co-developed the weighted interleaving memory policy and added the node
+ _eligible_mem_bp DAMOS quota goal. His current work lets DAMON take access
+  samples from hardware sampling units.\n\n_SJ Park_\nSJ is a kernel progra
+ mmer with a strong focus on memory management. He develops and maintains D
+ AMON\, a Linux kernel subsystem designed for efficient data access monitor
+ ing and access-aware system operations.
 URL:https://lpc.events/event/20/contributions/2453/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2367@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261007T154500
 DTEND;TZID=Europe/Prague:20261007T163000
 SUMMARY:FUSE mostly-passthrough filesystems
@@ -499,7 +502,7 @@ URL:https://lpc.events/event/20/contributions/2367/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2366@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261007T170000
 DTEND;TZID=Europe/Prague:20261007T174500
 SUMMARY:Defining the pkeys ABI
@@ -558,7 +561,7 @@ URL:https://lpc.events/event/20/contributions/2366/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2365@lpc.events
-DTSTAMP:20261005T092223Z
+DTSTAMP:20261005T093727Z
 DTSTART;TZID=Europe/Prague:20261007T174500
 DTEND;TZID=Europe/Prague:20261007T183000
 SUMMARY:Virtio and Vhost-User Ecosystem for Production and Automotive Syste
