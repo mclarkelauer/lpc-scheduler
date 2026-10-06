@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2405@lpc.events
-DTSTAMP:20261006T150717Z
+DTSTAMP:20261006T152225Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T152000
 SUMMARY:Topics in RISC-V Linux kernel maintenance
@@ -39,7 +39,7 @@ URL:https://lpc.events/event/20/contributions/2405/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2341@lpc.events
-DTSTAMP:20261006T150717Z
+DTSTAMP:20261006T152225Z
 DTSTART;TZID=Europe/Prague:20261006T152000
 DTEND;TZID=Europe/Prague:20261006T154000
 SUMMARY:RISC-V Svnapot: dynamic fold/unfold for folded PTEs
@@ -65,7 +65,7 @@ URL:https://lpc.events/event/20/contributions/2341/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2455@lpc.events
-DTSTAMP:20261006T150717Z
+DTSTAMP:20261006T152225Z
 DTSTART;TZID=Europe/Prague:20261006T154000
 DTEND;TZID=Europe/Prague:20261006T160000
 SUMMARY:Optimizing the kernel with vector
@@ -85,7 +85,7 @@ URL:https://lpc.events/event/20/contributions/2455/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2626@lpc.events
-DTSTAMP:20261006T150717Z
+DTSTAMP:20261006T152225Z
 DTSTART;TZID=Europe/Prague:20261006T160000
 DTEND;TZID=Europe/Prague:20261006T162000
 SUMMARY:RVA23 in practice: discovery\, dispatch\, and the hardware left beh
@@ -118,7 +118,7 @@ URL:https://lpc.events/event/20/contributions/2626/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2454@lpc.events
-DTSTAMP:20261006T150717Z
+DTSTAMP:20261006T152225Z
 DTSTART;TZID=Europe/Prague:20261006T162000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:Extensions - What's new? What's coming up?
@@ -133,7 +133,7 @@ URL:https://lpc.events/event/20/contributions/2454/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2342@lpc.events
-DTSTAMP:20261006T150717Z
+DTSTAMP:20261006T152225Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T171500
 SUMMARY:Local\, SBI\, or IPI? Tracing RISC-V TLB Flush Decisions in Linux
@@ -181,56 +181,10 @@ DESCRIPTION:RISC-V MC · Roman Storozhenko · https://lpc.events/event/20/c
 URL:https://lpc.events/event/20/contributions/2342/
 END:VEVENT
 BEGIN:VEVENT
-UID:lpc2026-2414@lpc.events
-DTSTAMP:20261006T150717Z
-DTSTART;TZID=Europe/Prague:20261006T171500
-DTEND;TZID=Europe/Prague:20261006T173000
-SUMMARY:Error INJection support for RAS on RISC-V architecture
-LOCATION:Small Theatre\, Prague Congress Centre
-DESCRIPTION:RISC-V MC · Himanshu Chauhan · https://lpc.events/event/20/co
- ntributions/2414/\n\nError INJection (EINJ)\, defined by ACPI\, offers a p
- latform-independent mechanism to inject hardware errors and validate syste
- m resilience paths. By avoiding platform-specific tooling\, EINJ enables c
- onsistent testing of the Linux error-handling stack across architectures\,
-  including APEI and broader RAS workflows.\n\nThis session discuss the des
- ign and implementation strategy for enabling EINJ on RISC-V platforms. It 
- will cover architecture-specific considerations\, firmware and kernel inte
- gration points\, and practical validation flows for injected error scenari
- os. The goal is to establish a robust\, upstream-friendly approach that br
- ings RISC-V closer to feature parity with existing ACPI-based RAS ecosyste
- ms and improves confidence in production reliability.
-URL:https://lpc.events/event/20/contributions/2414/
-END:VEVENT
-BEGIN:VEVENT
-UID:lpc2026-2422@lpc.events
-DTSTAMP:20261006T150717Z
-DTSTART;TZID=Europe/Prague:20261006T173000
-DTEND;TZID=Europe/Prague:20261006T174500
-SUMMARY:RISC-V Trace support in ACPI
-LOCATION:Small Theatre\, Prague Congress Centre
-DESCRIPTION:RISC-V MC · SUNIL V L · https://lpc.events/event/20/contribut
- ions/2422/\n\nTo support RISC-V E-trace/N-trace components in ACPI\, we pr
- opose using the Device Graph UUID defined in the DSD Guide\, aligned with 
- how similar topologies are described on other architectures. Beyond discus
- sing the proposal itself and how it should appear in the ACPI namespace\, 
- we also want feedback on implementation strategy.\n\n  Today\, ACPI fwnode
-  graph handling does not interpret Device Graph UUID data\, so trace drive
- rs parse ACPI graph links in-driver. We have a PoC with that approach\, bu
- t it duplicates logic\, raises long-term maintenance cost\, and keeps DT a
- nd ACPI paths separate instead of reusing common fwnode_graph_* helpers.\n
- \n  Our proposal is to extend ACPI fwnode graph support\, so Device Graph 
- UUID data is translated into standard fwnode_graph_* operations. This allo
- ws shared trace-driver code across DT and ACPI\, reduces duplication\, and
-  scales better as additional architectures adopt this representation.\n\n 
-  We plan to post an RFC series before the conference so maintainers and su
- bsystem stakeholders can review concrete patches and align on direction.
-URL:https://lpc.events/event/20/contributions/2422/
-END:VEVENT
-BEGIN:VEVENT
 UID:lpc2026-2478@lpc.events
-DTSTAMP:20261006T150717Z
-DTSTART;TZID=Europe/Prague:20261006T174500
-DTEND;TZID=Europe/Prague:20261006T180500
+DTSTAMP:20261006T152225Z
+DTSTART;TZID=Europe/Prague:20261006T171500
+DTEND;TZID=Europe/Prague:20261006T173500
 SUMMARY:One Kernel Per Cluster: Multikernel for Heterogeneous RISC-V
 LOCATION:Small Theatre\, Prague Congress Centre
 DESCRIPTION:RISC-V MC · Cong Wang\, Yuning Liang · https://lpc.events/eve
@@ -262,8 +216,54 @@ DESCRIPTION:RISC-V MC · Cong Wang\, Yuning Liang · https://lpc.events/eve
 URL:https://lpc.events/event/20/contributions/2478/
 END:VEVENT
 BEGIN:VEVENT
+UID:lpc2026-2414@lpc.events
+DTSTAMP:20261006T152225Z
+DTSTART;TZID=Europe/Prague:20261006T173500
+DTEND;TZID=Europe/Prague:20261006T175000
+SUMMARY:Error INJection support for RAS on RISC-V architecture
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · Himanshu Chauhan · https://lpc.events/event/20/co
+ ntributions/2414/\n\nError INJection (EINJ)\, defined by ACPI\, offers a p
+ latform-independent mechanism to inject hardware errors and validate syste
+ m resilience paths. By avoiding platform-specific tooling\, EINJ enables c
+ onsistent testing of the Linux error-handling stack across architectures\,
+  including APEI and broader RAS workflows.\n\nThis session discuss the des
+ ign and implementation strategy for enabling EINJ on RISC-V platforms. It 
+ will cover architecture-specific considerations\, firmware and kernel inte
+ gration points\, and practical validation flows for injected error scenari
+ os. The goal is to establish a robust\, upstream-friendly approach that br
+ ings RISC-V closer to feature parity with existing ACPI-based RAS ecosyste
+ ms and improves confidence in production reliability.
+URL:https://lpc.events/event/20/contributions/2414/
+END:VEVENT
+BEGIN:VEVENT
+UID:lpc2026-2422@lpc.events
+DTSTAMP:20261006T152225Z
+DTSTART;TZID=Europe/Prague:20261006T175000
+DTEND;TZID=Europe/Prague:20261006T180500
+SUMMARY:RISC-V Trace support in ACPI
+LOCATION:Small Theatre\, Prague Congress Centre
+DESCRIPTION:RISC-V MC · SUNIL V L · https://lpc.events/event/20/contribut
+ ions/2422/\n\nTo support RISC-V E-trace/N-trace components in ACPI\, we pr
+ opose using the Device Graph UUID defined in the DSD Guide\, aligned with 
+ how similar topologies are described on other architectures. Beyond discus
+ sing the proposal itself and how it should appear in the ACPI namespace\, 
+ we also want feedback on implementation strategy.\n\n  Today\, ACPI fwnode
+  graph handling does not interpret Device Graph UUID data\, so trace drive
+ rs parse ACPI graph links in-driver. We have a PoC with that approach\, bu
+ t it duplicates logic\, raises long-term maintenance cost\, and keeps DT a
+ nd ACPI paths separate instead of reusing common fwnode_graph_* helpers.\n
+ \n  Our proposal is to extend ACPI fwnode graph support\, so Device Graph 
+ UUID data is translated into standard fwnode_graph_* operations. This allo
+ ws shared trace-driver code across DT and ACPI\, reduces duplication\, and
+  scales better as additional architectures adopt this representation.\n\n 
+  We plan to post an RFC series before the conference so maintainers and su
+ bsystem stakeholders can review concrete patches and align on direction.
+URL:https://lpc.events/event/20/contributions/2422/
+END:VEVENT
+BEGIN:VEVENT
 UID:lpc2026-2479@lpc.events
-DTSTAMP:20261006T150717Z
+DTSTAMP:20261006T152225Z
 DTSTART;TZID=Europe/Prague:20261006T180500
 DTEND;TZID=Europe/Prague:20261006T182000
 SUMMARY:Supporting Heterogeneous VLEN on RISC-V: Lessons from SpacemiT K3
