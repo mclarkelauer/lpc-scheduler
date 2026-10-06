@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2514@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T102000
 SUMMARY:Probe events with typecast using BTF
@@ -44,7 +44,7 @@ URL:https://lpc.events/event/20/contributions/2514/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2511@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T102200
 DTEND;TZID=Europe/Prague:20261006T104200
 SUMMARY:Build ID + offset sampling in perf events
@@ -63,7 +63,7 @@ URL:https://lpc.events/event/20/contributions/2511/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2510@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T104400
 DTEND;TZID=Europe/Prague:20261006T110400
 SUMMARY:Developing Next Generation Perf Tools With Python
@@ -85,7 +85,7 @@ URL:https://lpc.events/event/20/contributions/2510/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2509@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T110600
 DTEND;TZID=Europe/Prague:20261006T112600
 SUMMARY:Bridging perf and ftrace: Recording perf in ftrace buffers and perf
@@ -121,7 +121,7 @@ URL:https://lpc.events/event/20/contributions/2509/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2480@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T122000
 SUMMARY:Sharing trace infrastructure between in-tree and OOT tracers
@@ -142,7 +142,7 @@ URL:https://lpc.events/event/20/contributions/2480/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2513@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T122200
 DTEND;TZID=Europe/Prague:20261006T124200
 SUMMARY:Lightweight Preempt and IRQ Tracepoints for Production RT Kernels
@@ -164,7 +164,7 @@ URL:https://lpc.events/event/20/contributions/2513/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2512@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T124400
 DTEND;TZID=Europe/Prague:20261006T130400
 SUMMARY:Handling stack traces in tracing
@@ -191,7 +191,7 @@ URL:https://lpc.events/event/20/contributions/2512/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2515@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T130600
 DTEND;TZID=Europe/Prague:20261006T132600
 SUMMARY:DEPT (DEPendency Tracker): A Path to Mainline and Solving the False

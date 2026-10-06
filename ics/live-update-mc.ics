@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2609@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T151500
 SUMMARY:LUO support in systemd
@@ -41,7 +41,7 @@ URL:https://lpc.events/event/20/contributions/2609/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2617@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T151500
 DTEND;TZID=Europe/Prague:20261006T153000
 SUMMARY:Resolving Complex FD Dependencies for Live Update
@@ -64,7 +64,7 @@ URL:https://lpc.events/event/20/contributions/2617/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2614@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T153000
 DTEND;TZID=Europe/Prague:20261006T155000
 SUMMARY:Extending Memory State Preservation Across Warm Reboots Using KHO/L
@@ -146,32 +146,32 @@ URL:https://lpc.events/event/20/contributions/2614/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2613@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T155000
 DTEND;TZID=Europe/Prague:20261006T161000
 SUMMARY:Live Update Compatibility
 LOCATION:Club H\, Prague Congress Centre
-DESCRIPTION:Live Update MC · Logan Odell\, Pratyush Yadav · https://lpc.e
- vents/event/20/contributions/2613/\n\nData that is serialized and preserve
- d through a live update may have formatting differences between two kernel
- s. This can affect the compatibility between two kernels when trying to pe
- rform a Live Update. Current efforts have been to use compatibility string
- s with implicit version numbers\, like "memfd-v2" to help provide compatib
- ility data. Changes to the formatting of the preserved data may not affect
-  the compatibility if the new kernel understands the format of the old ver
- sion. For example\, an optional feature may be available on a new kernel t
- hat is not strictly needed. If the old kernel does not support that featur
- e and the new kernel does\, we still want to allow a Live Update between t
- hese versions.\n\nThis discussion is for a proposed method of serializing 
- all supported versions of a component and having the new kernel negotiate 
- the version to deserialize. The current proposal uses file handlers as the
-  first user of this scheme\, but this will apply to any component that nee
- ds to preserve and restore serialized data.
+DESCRIPTION:Live Update MC · Logan Odell · https://lpc.events/event/20/co
+ ntributions/2613/\n\nData that is serialized and preserved through a live 
+ update may have formatting differences between two kernels. This can affec
+ t the compatibility between two kernels when trying to perform a Live Upda
+ te. Current efforts have been to use compatibility strings with implicit v
+ ersion numbers\, like "memfd-v2" to help provide compatibility data. Chang
+ es to the formatting of the preserved data may not affect the compatibilit
+ y if the new kernel understands the format of the old version. For example
+ \, an optional feature may be available on a new kernel that is not strict
+ ly needed. If the old kernel does not support that feature and the new ker
+ nel does\, we still want to allow a Live Update between these versions.\n\
+ nThis discussion is for a proposed method of serializing all supported ver
+ sions of a component and having the new kernel negotiate the version to de
+ serialize. The current proposal uses file handlers as the first user of th
+ is scheme\, but this will apply to any component that needs to preserve an
+ d restore serialized data.
 URL:https://lpc.events/event/20/contributions/2613/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2610@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T161000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:Guest_Memfd Preservation For Live Update
@@ -190,7 +190,7 @@ URL:https://lpc.events/event/20/contributions/2610/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2611@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T171500
 SUMMARY:Performance improvements for live-update reboots
@@ -206,7 +206,7 @@ URL:https://lpc.events/event/20/contributions/2611/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2618@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T171500
 DTEND;TZID=Europe/Prague:20261006T173000
 SUMMARY:Preserving tmpfs Files Across Live Update
@@ -229,7 +229,7 @@ URL:https://lpc.events/event/20/contributions/2618/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2612@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T173000
 DTEND;TZID=Europe/Prague:20261006T175000
 SUMMARY:Live Update IOMMU (vIOMMU with Arm SMMUv3)
@@ -252,7 +252,7 @@ URL:https://lpc.events/event/20/contributions/2612/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2616@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T175000
 DTEND;TZID=Europe/Prague:20261006T181000
 SUMMARY:VFIO Live Update Road to Continuous DMA
@@ -282,7 +282,7 @@ URL:https://lpc.events/event/20/contributions/2616/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2615@lpc.events
-DTSTAMP:20261006T085117Z
+DTSTAMP:20261006T100722Z
 DTSTART;TZID=Europe/Prague:20261006T181000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Challenges in Preserving Virtual Networking State and dmabuf across
