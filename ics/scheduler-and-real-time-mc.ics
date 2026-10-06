@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2602o@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T100200
 SUMMARY:Introduction and Kickoff
@@ -37,7 +37,7 @@ URL:https://lpc.events/event/20/contributions/2637/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602p@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T100200
 DTEND;TZID=Europe/Prague:20261007T102400
 SUMMARY:Enable runtime modification of nohz_full and managed_irq housekeepi
@@ -63,7 +63,7 @@ URL:https://lpc.events/event/20/contributions/2568/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602q@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T102400
 DTEND;TZID=Europe/Prague:20261007T104600
 SUMMARY:Bringing Proxy Execution’s benefits to Userland / Futexes
@@ -107,7 +107,7 @@ URL:https://lpc.events/event/20/contributions/2569/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602r@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T104600
 DTEND;TZID=Europe/Prague:20261007T110800
 SUMMARY:PREEMPT_RT: How a simple interface up event might break your realti
@@ -139,7 +139,7 @@ URL:https://lpc.events/event/20/contributions/2575/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2636@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T110800
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:Understanding differences in results between timerlat and cyclictes
@@ -157,7 +157,7 @@ URL:https://lpc.events/event/20/contributions/2636/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602s@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T122200
 SUMMARY:Remaining EEVDF scheduling latency and lag improvement
@@ -174,7 +174,7 @@ URL:https://lpc.events/event/20/contributions/2570/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2574@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T122200
 DTEND;TZID=Europe/Prague:20261007T124400
 SUMMARY:Kernel Sched QoS Interface
@@ -203,7 +203,7 @@ URL:https://lpc.events/event/20/contributions/2571/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602t@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T124400
 DTEND;TZID=Europe/Prague:20261007T130600
 SUMMARY:Energy-Aware Scheduling on x86 Hybrid Topologies: Latency Analysis 
@@ -229,7 +229,7 @@ URL:https://lpc.events/event/20/contributions/2574/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602u@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T130600
 DTEND;TZID=Europe/Prague:20261007T132800
 SUMMARY:sparsemask: the missing generic plumbing and next step forward
@@ -259,7 +259,7 @@ URL:https://lpc.events/event/20/contributions/2573/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602v@lpc.events
-DTSTAMP:20261006T100722Z
+DTSTAMP:20261006T132022Z
 DTSTART;TZID=Europe/Prague:20261007T132800
 DTEND;TZID=Europe/Prague:20261007T133000
 SUMMARY:Wrap-up
