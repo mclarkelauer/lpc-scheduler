@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2582@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T103000
 SUMMARY:The Supply Chain Attack on Buildsystems
@@ -57,7 +57,7 @@ URL:https://lpc.events/event/20/contributions/2582/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602w@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T103000
 DTEND;TZID=Europe/Prague:20261007T110000
 SUMMARY:OpenWrt is reproducible! How we got there and what we learned
@@ -80,7 +80,7 @@ URL:https://lpc.events/event/20/contributions/2581/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2586@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T110000
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:Relevance of LTS distro releases and the GenAI world
@@ -105,7 +105,7 @@ URL:https://lpc.events/event/20/contributions/2586/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602x@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T123000
 SUMMARY:Bitwise-Reproducible Kernel Builds for the WhatsApp TEE — Proof o
@@ -178,7 +178,7 @@ URL:https://lpc.events/event/20/contributions/2584/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602y@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T123000
 DTEND;TZID=Europe/Prague:20261007T130000
 SUMMARY:The last step to secure reproducible distribution kernels: Hash-bas
@@ -209,7 +209,7 @@ URL:https://lpc.events/event/20/contributions/2583/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602z@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T130000
 DTEND;TZID=Europe/Prague:20261007T133000
 SUMMARY:What does "buildable" mean during a toolkit migration?

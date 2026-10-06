@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2602q1@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T150000
 DTEND;TZID=Europe/Prague:20261007T152500
 SUMMARY:Power Sequencing for Enumberable Busses - Driver Core Integrations?
@@ -56,7 +56,7 @@ URL:https://lpc.events/event/20/contributions/2502/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602r1@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T152500
 DTEND;TZID=Europe/Prague:20261007T155000
 SUMMARY:Reviving early platform drivers
@@ -84,7 +84,7 @@ URL:https://lpc.events/event/20/contributions/2503/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602s1@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T155000
 DTEND;TZID=Europe/Prague:20261007T161500
 SUMMARY:Evolving support for sync_state to subsystems beyond genpd
@@ -112,7 +112,7 @@ URL:https://lpc.events/event/20/contributions/2504/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602t1@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T161500
 DTEND;TZID=Europe/Prague:20261007T164000
 SUMMARY:Constification of sysfs attribute structures
@@ -138,7 +138,7 @@ URL:https://lpc.events/event/20/contributions/2505/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602u1@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T171000
 DTEND;TZID=Europe/Prague:20261007T173500
 SUMMARY:Hardware Cross-Dependencies - Solving the Unsolvable
@@ -154,7 +154,7 @@ URL:https://lpc.events/event/20/contributions/2501/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602v1@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T173500
 DTEND;TZID=Europe/Prague:20261007T180000
 SUMMARY:Synx: Cross-core synchronization
@@ -197,7 +197,7 @@ URL:https://lpc.events/event/20/contributions/2507/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602w1@lpc.events
-DTSTAMP:20261006T082226Z
+DTSTAMP:20261006T083709Z
 DTSTART;TZID=Europe/Prague:20261007T180000
 DTEND;TZID=Europe/Prague:20261007T182500
 SUMMARY:Managing IRQ mapping and deferred probing for ACPI static tables de
