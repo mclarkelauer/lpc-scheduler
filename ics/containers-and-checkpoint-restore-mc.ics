@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2602a@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261007T100000
 DTEND;TZID=Europe/Prague:20261007T102000
 SUMMARY:Constraints of process migrations
@@ -48,7 +48,7 @@ URL:https://lpc.events/event/20/contributions/2602/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602b@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261007T102000
 DTEND;TZID=Europe/Prague:20261007T104000
 SUMMARY:Memory Tracking in forensic checkpointing: what soft-dirty bits can
@@ -94,7 +94,7 @@ URL:https://lpc.events/event/20/contributions/2607/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602c@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261007T104000
 DTEND;TZID=Europe/Prague:20261007T110000
 SUMMARY:Enabling Incremental Checkpointing for GPU Workloads
@@ -117,7 +117,7 @@ URL:https://lpc.events/event/20/contributions/2603/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602d@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261007T110000
 DTEND;TZID=Europe/Prague:20261007T113000
 SUMMARY:dm-qcow2: device-mapper-based QCOW2 storage for containers
@@ -140,7 +140,7 @@ URL:https://lpc.events/event/20/contributions/2605/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602e@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261007T120000
 DTEND;TZID=Europe/Prague:20261007T122000
 SUMMARY:Upgrade restrictions for file descriptors
@@ -166,7 +166,7 @@ URL:https://lpc.events/event/20/contributions/2604/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602f@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261007T122000
 DTEND;TZID=Europe/Prague:20261007T124000
 SUMMARY:Checkpoint/Restore of Device Cgroup eBPF Programs
@@ -209,7 +209,7 @@ URL:https://lpc.events/event/20/contributions/2606/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602g@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261007T124000
 DTEND;TZID=Europe/Prague:20261007T130000
 SUMMARY:Addressing Challenges for Container Migration in Heterogeneous Clus
@@ -247,7 +247,7 @@ URL:https://lpc.events/event/20/contributions/2608/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2602h@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261007T130000
 DTEND;TZID=Europe/Prague:20261007T132000
 SUMMARY:mmtest benchmarking of cgroup code

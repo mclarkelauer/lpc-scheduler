@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2609@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T150000
 DTEND;TZID=Europe/Prague:20261006T151500
 SUMMARY:LUO support in systemd
@@ -41,7 +41,7 @@ URL:https://lpc.events/event/20/contributions/2609/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2617@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T151500
 DTEND;TZID=Europe/Prague:20261006T153000
 SUMMARY:Resolving Complex FD Dependencies for Live Update
@@ -64,7 +64,7 @@ URL:https://lpc.events/event/20/contributions/2617/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2614@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T153000
 DTEND;TZID=Europe/Prague:20261006T155000
 SUMMARY:Extending Memory State Preservation Across Warm Reboots Using KHO/L
@@ -146,7 +146,7 @@ URL:https://lpc.events/event/20/contributions/2614/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2613@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T155000
 DTEND;TZID=Europe/Prague:20261006T161000
 SUMMARY:Live Update Compatibility
@@ -171,7 +171,7 @@ URL:https://lpc.events/event/20/contributions/2613/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2610@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T161000
 DTEND;TZID=Europe/Prague:20261006T163000
 SUMMARY:Guest_Memfd Preservation For Live Update
@@ -190,7 +190,7 @@ URL:https://lpc.events/event/20/contributions/2610/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2611@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T170000
 DTEND;TZID=Europe/Prague:20261006T171500
 SUMMARY:Performance improvements for live-update reboots
@@ -206,7 +206,7 @@ URL:https://lpc.events/event/20/contributions/2611/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2618@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T171500
 DTEND;TZID=Europe/Prague:20261006T173000
 SUMMARY:Preserving tmpfs Files Across Live Update
@@ -229,7 +229,7 @@ URL:https://lpc.events/event/20/contributions/2618/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2612@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T173000
 DTEND;TZID=Europe/Prague:20261006T175000
 SUMMARY:Live Update IOMMU (vIOMMU with Arm SMMUv3)
@@ -252,48 +252,37 @@ URL:https://lpc.events/event/20/contributions/2612/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2616@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T175000
 DTEND;TZID=Europe/Prague:20261006T181000
 SUMMARY:VFIO Live Update Road to Continuous DMA
 LOCATION:Club H\, Prague Congress Centre
 DESCRIPTION:Live Update MC · Vipin Sharma · https://lpc.events/event/20/c
- ontributions/2616/\n\nLive Update enables hypervisor updates with minimal 
- guest downtime by preserving VM state across `kexec`. While memory preserv
- ation (via KHO/LUO) covers VM RAM\, pass-through PCIe devices assigned to 
- VMs (e.g.\, GPUs\, NICs\, NVMe\, accelerators) require kernel support to m
- aintain device state across the reboot boundary.\n\nThis talk presents the
-  design of VFIO Live Update (Phase 1\, recently posted in v5 [1]) and our 
- roadmap toward continuous DMA [2]. Phase 1 establishes base support for pr
- eserving VFIO `cdev` device file descriptors across `kexec` using the Live
-  Update Orchestrator (LUO) and Kexec Handover (KHO).\n\nWe will discuss:\n
- \n1. **Architecture & Current Phase**: How VFIO `cdev` device FDs are pres
- erved across `kexec`\, enforced retrieval through `LIVEUPDATE_SESSION_RETR
- IEVE_FD`\, and safe quiescing/reset in `freeze()` in Phase 1.\n2. **Failur
- e Handling & Recovery**: How VFIO devices handle failures if a Live Update
-  session is cancelled before `kexec` (unfreezing/unpreserving) or fails af
- ter `kexec` (cleanup of unretrieved devices).\n3. **Subsystem Interactions
- **: Handoff ordering\, dependencies\, and recovery semantics between VFIO\
- , PCI core\, and IOMMUFD.\n4. **The Road to Continuous DMA**: Future phase
- s extending beyond device reset toward preserving running devices with act
- ive DMA/interrupts (noiommu -> iommufd -> SR-IOV VFs).\n5. **VF and SR-IOV
-  Live Update (Phase 5)**: Unique challenges of preserving Virtual Function
- s (VFs) when the Physical Function (PF) driver or host PCI core initialize
- s post-`kexec`\, and managing PF/VF dependency trees across Live Update.\n
- 6. **Testing & Tooling**: How to test active DMA in QEMU environments when
-  DMA-capable physical hardware is absent\, and how to simplify/standardize
-  VFIO Live Update selftests for developers and CI.\n\nWe hope to get commu
- nity feedback on our approach and align on the future direction of VFIO Li
- ve Update.\n\n---\n\n### References\n* [1] [v5 Patch Series on Lore](https
- ://lore.kernel.org/kvm/20260714151505.3466855-1-vipinsh@google.com)\n* [2]
-  [VFIO PCI Live Update Presentation](https://docs.google.com/presentation/
- d/1XVVL-oeSHp-Y-uBrhRVwz-Bm0lGFdGCKWELR8JamPp4/edit?usp=sharing&resourceke
- y=0-b7I6ZPRcal0sLhK8woByEw)
+ ontributions/2616/\n\nLive Update enables host kernel updates with minimal
+  guest downtime by preserving VM state across `kexec`. While memory preser
+ vation (via KHO/LUO) covers VM RAM\, pass-through PCIe devices assigned to
+  VMs (e.g.\, GPUs\, NICs\, NVMe\, accelerators) require kernel support to 
+ maintain device state across the reboot boundary.\n\nThis talk presents th
+ e design of VFIO Live Update (Phase 1\, recently posted in v5 [1]) and our
+  roadmap toward continuous DMA [2]. Phase 1 establishes base support for p
+ reserving VFIO `cdev` device file descriptors across `kexec` using the Liv
+ e Update Orchestrator (LUO) and Kexec Handover (KHO).\n\nWe will discuss:\
+ n\n1. **Current State**: What is the current state of VFIO patches?.\n2. *
+ *Upstream Path**: We will discuss few of the concerns regarding VFIO patch
+ es.\n3. **Data storage and cleanup**: Clarification on what to save and wh
+ at should be cleanup during error.\n4. **Future series**: Future series to
+ ward making VFIO LU feature complete like:noiommu -> iommufd -> SR-IOV VFs
+ ).\n\nLooking forward to get community feedback on our approach and align 
+ on the future direction of VFIO Live Update.\n\n---\n\n### References\n* [
+ 1] [v5 Patch Series on Lore](https://lore.kernel.org/kvm/20260714151505.34
+ 66855-1-vipinsh@google.com)\n* [2] [VFIO PCI Live Update Presentation](htt
+ ps://docs.google.com/presentation/d/1XVVL-oeSHp-Y-uBrhRVwz-Bm0lGFdGCKWELR8
+ JamPp4/edit?usp=sharing&resourcekey=0-b7I6ZPRcal0sLhK8woByEw)
 URL:https://lpc.events/event/20/contributions/2616/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2615@lpc.events
-DTSTAMP:20261005T154929Z
+DTSTAMP:20261006T000726Z
 DTSTART;TZID=Europe/Prague:20261006T181000
 DTEND;TZID=Europe/Prague:20261006T183000
 SUMMARY:Challenges in Preserving Virtual Networking State and dmabuf across
