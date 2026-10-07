@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2645@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T100000
 DTEND;TZID=Europe/Prague:20261006T104500
 SUMMARY:Sashiko current status
@@ -40,7 +40,7 @@ URL:https://lpc.events/event/20/contributions/2645/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2646@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T104500
 DTEND;TZID=Europe/Prague:20261006T111500
 SUMMARY:Sashiko feedback and feature requests
@@ -53,7 +53,7 @@ URL:https://lpc.events/event/20/contributions/2646/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2597@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T111500
 DTEND;TZID=Europe/Prague:20261006T113000
 SUMMARY:Automating Kernel Bug Fixes: Syzbot's AI-Assisted Patching Workflow
@@ -87,7 +87,7 @@ URL:https://lpc.events/event/20/contributions/2597/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2599@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T120000
 DTEND;TZID=Europe/Prague:20261006T121500
 SUMMARY:Boro: Do We Need More AI-assisted Kernel Tooling?
@@ -114,7 +114,7 @@ URL:https://lpc.events/event/20/contributions/2599/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2600@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T121500
 DTEND;TZID=Europe/Prague:20261006T123000
 SUMMARY:Automated kernel CVE backports
@@ -137,36 +137,35 @@ URL:https://lpc.events/event/20/contributions/2600/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2601@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T123000
 DTEND;TZID=Europe/Prague:20261006T124500
 SUMMARY:From Findings to Fixes: AI-Assisted Linux Kernel Bug Triage and Rem
  ediation
 LOCATION:Club H\, Prague Congress Centre
 DESCRIPTION:AI-Assisted Open Source Development MC · Yuan Tan · https://l
- pc.events/event/20/contributions/2601/\n\nKernel maintainers increasingly 
- receive bug findings from fuzzers and AI-assisted tools. While these tools
-  expand bug-finding coverage\, they also create a growing triage burden. T
- he quality of both bug reports and patches can vary substantially: finding
- s may be false positives\, lack a usable reproducer\, duplicate existing i
- ssues\, or come with patches that are incomplete or incorrect.\n\nWe are d
- eveloping Vega\, a continuous Linux kernel bug discovery and triage system
-  inspired by syzbot. Vega aggregates findings from multiple sources and gi
- ves maintainers a view of bugs affecting their subsystems. For each findin
- g\, it attempts to generate and execute a proof of concept\, helping filte
- r false positives and turn plausible findings into reproducible bugs. For 
- confirmed bugs\, Vega further analyzes impact and severity and can generat
- e a draft patch as a remediation reference.\n\nWe would like to share our 
- experience triaging over 1\,000 Linux kernel bugs and discuss a practical 
- question: which bugs are actually worth fixing? AI-assisted tools can surf
- ace many real but obscure corner cases\, making it increasingly important 
- to distinguish technically real bugs from bugs that warrant engineering at
- tention.
+ pc.events/event/20/contributions/2601/\n\nAI-assisted tools are producing 
+ an increasing number of Linux kernel bug findings. While these tools can u
+ ncover genuine bugs\, many findings still require validation before they c
+ an be treated as actionable issues. Reports may be false positives\, lack 
+ a working reproducer\, duplicate existing issues\, or fail to trigger unde
+ r the reported conditions.\n\nWe would like to share our experience triagi
+ ng over 1\,000 Linux kernel bugs\, with a focus on validating findings\, u
+ nderstanding the privilege required to trigger them\, and assessing their 
+ security impact. These steps help distinguish false positives and low-impa
+ ct corner cases from bugs that deserve higher remediation priority.\n\nTo 
+ support this process\, we are developing a continuous Linux kernel bug col
+ lection and verify platform[1] inspired by syzbot. It aggregates findings
+  from multiple sources\, like sashiko\, and attempts to generate and execu
+ te reproducers for them. For bugs with runtime evidence\, the platform fur
+ ther analyzes trigger privilege\, impact\, severity and generating patches
+ .\n\n[1] https://lore.kernel.org/all/20260830115546.3942129-1-yuantan098@g
+ mail.com/
 URL:https://lpc.events/event/20/contributions/2601/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2647@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T124500
 DTEND;TZID=Europe/Prague:20261006T130000
 SUMMARY:Open discussion: using fix generation effectively
@@ -179,7 +178,7 @@ URL:https://lpc.events/event/20/contributions/2647/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2598@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T130000
 DTEND;TZID=Europe/Prague:20261006T131500
 SUMMARY:Talk to Your Crash Dumps: Debugging a Real-Time Kernel Stall with d
@@ -203,7 +202,7 @@ URL:https://lpc.events/event/20/contributions/2598/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2648@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261006T131500
 DTEND;TZID=Europe/Prague:20261006T133000
 SUMMARY:Wrap-up

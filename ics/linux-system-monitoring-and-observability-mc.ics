@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:lpc2026-2450@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261005T100000
 DTEND;TZID=Europe/Prague:20261005T102000
 SUMMARY:Performance Tools and Prompts
@@ -48,7 +48,7 @@ URL:https://lpc.events/event/20/contributions/2450/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2576@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261005T102000
 DTEND;TZID=Europe/Prague:20261005T103500
 SUMMARY:Unified collection of kernel bug reports
@@ -86,43 +86,42 @@ URL:https://lpc.events/event/20/contributions/2576/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2550@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261005T103500
 DTEND;TZID=Europe/Prague:20261005T105500
 SUMMARY:What Bugs Matter? Continuous Linux Kernel Bug Monitoring
 LOCATION:Club H\, Prague Congress Centre
 DESCRIPTION:Linux System Monitoring and Observability MC · Yuan Tan · htt
  ps://lpc.events/event/20/contributions/2550/\n\nLinux kernel bug reports v
- ary widely in quality: some are duplicates\nor false positives\, while oth
- ers describe exploitable vulnerabilities\nor issues with little practical 
- impact. Maintainers still need to\ndetermine what is real\, what matters\,
-  and what deserves attention\nfirst.\n\nAt the same time\, bug findings ar
- e increasingly fragmented across\ndifferent tools and workflows\, includin
- g fuzzers\, static analyzers\,\nhuman analysis\, AI-assisted tools\, and p
- atch-review systems. For\nexample\, Sashiko may uncover pre-existing bugs 
- while reviewing\npatches\, but those findings can remain scattered across 
- individual\nreview reports rather than being collected and tracked in one 
- place.\n\nWe are developing a continuous Linux kernel bug monitoring and t
- riage\nplatform. The platform aggregates findings from multiple sources\, 
- maps\nthem to kernel subsystems\, and gives maintainers a view of currentl
- y\nobserved bugs affecting the code they maintain. For each finding\, it\n
- attempts to generate and execute a reproducer on a KASAN-enabled\nkernel t
- o help validate the report. It also assesses potential impact.\nFor exampl
- e\, whether a bug may enable privilege escalation or has\nlimited practica
- l impact. Confirmed bugs can also include AI-generated\nanalysis and draft
-  patches to help reduce the effort required to\nunderstand and fix the iss
- ue.\n\nBuilding on the [mailing-list discussion][1]\, we would like to exp
- lore\nwhat actionable kernel bug observability should look like. How shoul
- d\nheterogeneous bug signals be validated\, prioritized\, and presented to
- \nsubsystem maintainers? How can automated analysis help distinguish\nimpo
- rtant bugs from noise without creating yet another stream of\nlow-quality 
- reports?\n\n  [1]: https://lore.kernel.org/all/20260830115546.3942129-1-yu
- antan098@gmail.com/
+ ary widely in quality: some are duplicates or false positives\, while othe
+ rs describe exploitable vulnerabilities or issues with little practical im
+ pact. Maintainers still need to determine what is real\, what matters\, an
+ d what deserves attention first.\n\nAt the same time\, bug findings are in
+ creasingly fragmented across different tools and workflows\, including fuz
+ zers\, static analyzers\, human analysis\, AI-assisted tools\, and patch-r
+ eview systems. For example\, Sashiko may uncover pre-existing bugs while r
+ eviewing patches\, but those findings can remain scattered across individu
+ al review reports rather than being collected and tracked in one place.\n\
+ nWe are developing a continuous Linux kernel bug monitoring and veirfy pla
+ tform. The platform aggregates findings from multiple sources\, maps them 
+ to kernel subsystems\, and gives maintainers a view of currently observed 
+ bugs affecting the code they maintain. For each finding\, it attempts to g
+ enerate and execute a reproducer on a KASAN-enabled kernel to help validat
+ e the report. It also assesses potential impact. For example\, whether a b
+ ug may enable privilege escalation or has limited practical impact. Confir
+ med bugs can also include AI-generated analysis and draft patches to help 
+ reduce the effort required to understand and fix the issue.\n\nBuilding on
+  the mailing-list discussion[1]\, we would like to explore what actionable
+  kernel bug observability should look like. How should heterogeneous bug s
+ ignals be validated\, prioritized\, and presented to subsystem maintainers
+ ? How can automated analysis help distinguish important bugs from noise wi
+ thout creating yet another stream of low-quality reports?\n\n[1] https://l
+ ore.kernel.org/all/20260830115546.3942129-1-yuantan098@gmail.com/
 URL:https://lpc.events/event/20/contributions/2550/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2547@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261005T105500
 DTEND;TZID=Europe/Prague:20261005T111500
 SUMMARY:Detecting Unhealthy Kernels at Scale
@@ -141,7 +140,7 @@ URL:https://lpc.events/event/20/contributions/2547/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2548@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261005T111500
 DTEND;TZID=Europe/Prague:20261005T113000
 SUMMARY:We don't know what we're looking for until we find what we're looki
@@ -165,7 +164,7 @@ URL:https://lpc.events/event/20/contributions/2548/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2549@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261005T120000
 DTEND;TZID=Europe/Prague:20261005T122000
 SUMMARY:Following the bread crumbs: Tracing packets through the kernel with
@@ -211,7 +210,7 @@ URL:https://lpc.events/event/20/contributions/2549/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2386@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261005T122000
 DTEND;TZID=Europe/Prague:20261005T124000
 SUMMARY:Crash Dumps at a Bare-Metal Cloud Provider - Capture\, Dedup\, and 
@@ -273,7 +272,7 @@ URL:https://lpc.events/event/20/contributions/2386/
 END:VEVENT
 BEGIN:VEVENT
 UID:lpc2026-2546@lpc.events
-DTSTAMP:20261006T200713Z
+DTSTAMP:20261007T110725Z
 DTSTART;TZID=Europe/Prague:20261005T124000
 DTEND;TZID=Europe/Prague:20261005T130000
 SUMMARY:Breakpoints in drgn
